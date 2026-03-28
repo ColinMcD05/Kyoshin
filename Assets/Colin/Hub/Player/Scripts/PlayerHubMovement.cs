@@ -22,7 +22,7 @@ public class PlayerHubMovement : MonoBehaviour
 
     public void Movement()
     {
-        transform.Translate(direction * moveSpeed * Time.deltaTime, Space.World);
+        transform.Translate(direction * moveSpeed * Time.deltaTime, Space.Self);
     }
 
     public void SetDirection(Vector2 movement)

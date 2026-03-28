@@ -34,12 +34,12 @@ public class PlayerInput : MonoBehaviour
         player.SetDirection(Vector2.zero);
     }
 
-    void CameraPerform(InputAction.CallbackContext context)
+    void LookPerform(InputAction.CallbackContext context)
     {
 
     }
 
-    void CameraCancel(InputAction.CallbackContext context)
+    void LookCancel(InputAction.CallbackContext context)
     {
 
     }
