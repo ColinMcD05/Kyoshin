@@ -657,7 +657,7 @@ GameObject:
   - component: {fileID: 1761669065}
   - component: {fileID: 1761669066}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player_Hub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -751,6 +751,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Rewind
   rewindTime: 3
   positions: []
+  rewinding: 0
 --- !u!1 &1996343578
 GameObject:
   m_ObjectHideFlags: 0
