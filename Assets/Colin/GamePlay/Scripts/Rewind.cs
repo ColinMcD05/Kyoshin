@@ -81,10 +81,22 @@ public class Rewind : MonoBehaviour
     }
     #endregion
 
-    // StopRewind
-    void StopRewind()
+
+
+    // Stop and start Rewind
+    #region
+    // Lets other scripts more easily start rewind mechanic
+    public void StartRewind()
+    {
+        rewinding = true;
+        playerController.enabled = false;
+    }
+
+    // Lets other scripts more easily stop rewind mechanic
+    public void StopRewind()
     {
         rewinding = false;
         playerController.enabled = true;
     }
+    #endregion
 }
