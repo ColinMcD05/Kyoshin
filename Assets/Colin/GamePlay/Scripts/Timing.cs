@@ -2,15 +2,23 @@ using UnityEngine;
 
 public class Timing : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    GameObject player;
+    Rewind rewind;
+
+    float timePassed;
+
+    private void Start()
+    {
+        player = GameObject.Find("Player");
+    }
+
+    private void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    void IncreaseTimePassed()
     {
-        
+        timePassed += Time.deltaTime;
     }
 }
