@@ -131,9 +131,10 @@ GameObject:
   - component: {fileID: 145629803}
   - component: {fileID: 145629802}
   - component: {fileID: 145629801}
+  - component: {fileID: 145629805}
   m_Layer: 0
   m_Name: Cube (7)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,6 +231,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1035695167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &145629805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145629800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Obstacle
+  gameManager: {fileID: 0}
 --- !u!1 &176330053
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,9 +256,10 @@ GameObject:
   - component: {fileID: 176330056}
   - component: {fileID: 176330055}
   - component: {fileID: 176330054}
+  - component: {fileID: 176330058}
   m_Layer: 0
   m_Name: Cube (11)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -341,6 +356,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1035695167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &176330058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176330053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Obstacle
+  gameManager: {fileID: 0}
 --- !u!1 &210428954
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,13 +508,14 @@ GameObject:
   - component: {fileID: 257553406}
   - component: {fileID: 257553405}
   - component: {fileID: 257553404}
+  - component: {fileID: 257553408}
   m_Layer: 0
   m_Name: Cube (8)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &257553404
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -579,6 +608,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1035695167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &257553408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257553403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Obstacle
+  gameManager: {fileID: 0}
 --- !u!1 &328210652
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,13 +633,14 @@ GameObject:
   - component: {fileID: 328210655}
   - component: {fileID: 328210654}
   - component: {fileID: 328210653}
+  - component: {fileID: 328210657}
   m_Layer: 0
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &328210653
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -690,6 +733,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1035695167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &328210657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328210652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Obstacle
+  gameManager: {fileID: 0}
 --- !u!1 &370718341
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,13 +758,14 @@ GameObject:
   - component: {fileID: 370718344}
   - component: {fileID: 370718343}
   - component: {fileID: 370718342}
+  - component: {fileID: 370718346}
   m_Layer: 0
   m_Name: Cube (9)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &370718342
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -801,6 +858,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1035695167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &370718346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370718341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Obstacle
+  gameManager: {fileID: 0}
 --- !u!1 &676707826
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,9 +883,10 @@ GameObject:
   - component: {fileID: 676707829}
   - component: {fileID: 676707828}
   - component: {fileID: 676707827}
+  - component: {fileID: 676707831}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -912,6 +983,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1035695167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &676707831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676707826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Obstacle
+  gameManager: {fileID: 0}
+--- !u!1 &883935494 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7777911891889704523, guid: d713011faa9f5964d9fc906740cdfa56, type: 3}
+  m_PrefabInstance: {fileID: 5285660206617030631}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &883935496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883935494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48a4809abb33fab45a7c5bd33683875b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  lives: 3
 --- !u!4 &933928426 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5593447944046831325, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
@@ -929,9 +1031,10 @@ GameObject:
   - component: {fileID: 999298783}
   - component: {fileID: 999298782}
   - component: {fileID: 999298781}
+  - component: {fileID: 999298785}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1028,6 +1131,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1035695167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &999298785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999298780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Obstacle
+  gameManager: {fileID: 883935496}
 --- !u!1 &1035695166
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,7 +1155,7 @@ GameObject:
   - component: {fileID: 1035695167}
   m_Layer: 0
   m_Name: Obstacles
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1083,9 +1199,10 @@ GameObject:
   - component: {fileID: 1081026744}
   - component: {fileID: 1081026743}
   - component: {fileID: 1081026742}
+  - component: {fileID: 1081026746}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1182,6 +1299,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1035695167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1081026746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081026741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Obstacle
+  gameManager: {fileID: 0}
 --- !u!1 &1175408438
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,13 +1324,14 @@ GameObject:
   - component: {fileID: 1175408441}
   - component: {fileID: 1175408440}
   - component: {fileID: 1175408439}
+  - component: {fileID: 1175408443}
   m_Layer: 0
   m_Name: Cube (10)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1175408439
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1293,6 +1424,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1035695167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1175408443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175408438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Obstacle
+  gameManager: {fileID: 0}
 --- !u!1 &1298227333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1417,13 +1561,14 @@ GameObject:
   - component: {fileID: 1444825497}
   - component: {fileID: 1444825496}
   - component: {fileID: 1444825495}
+  - component: {fileID: 1444825499}
   m_Layer: 0
   m_Name: Cube (6)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1444825495
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1516,6 +1661,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1035695167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1444825499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444825494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Obstacle
+  gameManager: {fileID: 0}
 --- !u!1 &1687784407
 GameObject:
   m_ObjectHideFlags: 0
@@ -1528,13 +1686,14 @@ GameObject:
   - component: {fileID: 1687784410}
   - component: {fileID: 1687784409}
   - component: {fileID: 1687784408}
+  - component: {fileID: 1687784412}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1687784408
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1550,7 +1709,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1627,6 +1786,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1035695167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1687784412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687784407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Obstacle
+  gameManager: {fileID: 0}
 --- !u!1 &1716610988
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,8 +1886,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1716610988}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08828583, y: 0, z: 0, w: 0.9960952}
-  m_LocalPosition: {x: 0.15, y: 2.1000001, z: -3.08}
+  m_LocalRotation: {x: 0.14150599, y: 0, z: 0, w: 0.9899374}
+  m_LocalPosition: {x: 0, y: 2.8400002, z: -3.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1809,9 +1981,10 @@ GameObject:
   - component: {fileID: 1783941791}
   - component: {fileID: 1783941790}
   - component: {fileID: 1783941789}
+  - component: {fileID: 1783941793}
   m_Layer: 0
   m_Name: Cube (5)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1908,6 +2081,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1035695167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1783941793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783941788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Obstacle
+  gameManager: {fileID: 0}
 --- !u!1001 &1269076639901392491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1974,6 +2160,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3403870942742053944, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
+      propertyPath: centerLaneX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3403870942742053944, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
+      propertyPath: currentLane
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3403870942742053944, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
       propertyPath: groundCheckDistance
       value: 1.5
       objectReference: {fileID: 0}
@@ -1984,6 +2178,10 @@ PrefabInstance:
     - target: {fileID: 3403870942742053944, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
       propertyPath: groundCheckStartHeight
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4101899570415419720, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
+      propertyPath: m_Mass
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5593447944046831325, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2089,7 +2287,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7777911891889704523, guid: d713011faa9f5964d9fc906740cdfa56, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 883935496}
   m_SourcePrefab: {fileID: 100100000, guid: d713011faa9f5964d9fc906740cdfa56, type: 3}
 --- !u!1001 &8633052995418584657
 PrefabInstance:
@@ -2103,29 +2304,41 @@ PrefabInstance:
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 933928426}
+    - target: {fileID: 899933235902448538, guid: 459dce46211c54544a40abde73b11228, type: 3}
+      propertyPath: ShoulderOffset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 899933235902448538, guid: 459dce46211c54544a40abde73b11228, type: 3}
+      propertyPath: ShoulderOffset.y
+      value: 1.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 899933235902448538, guid: 459dce46211c54544a40abde73b11228, type: 3}
+      propertyPath: ShoulderOffset.z
+      value: -1.75
+      objectReference: {fileID: 0}
     - target: {fileID: 1321607435560748508, guid: 459dce46211c54544a40abde73b11228, type: 3}
       propertyPath: m_Name
       value: CinemachineCamera
       objectReference: {fileID: 0}
     - target: {fileID: 6975411035422619735, guid: 459dce46211c54544a40abde73b11228, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6975411035422619735, guid: 459dce46211c54544a40abde73b11228, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.1000001
+      value: 2.8400002
       objectReference: {fileID: 0}
     - target: {fileID: 6975411035422619735, guid: 459dce46211c54544a40abde73b11228, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.08
+      value: -3.75
       objectReference: {fileID: 0}
     - target: {fileID: 6975411035422619735, guid: 459dce46211c54544a40abde73b11228, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9960952
+      value: 0.9899374
       objectReference: {fileID: 0}
     - target: {fileID: 6975411035422619735, guid: 459dce46211c54544a40abde73b11228, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.08828583
+      value: 0.14150599
       objectReference: {fileID: 0}
     - target: {fileID: 6975411035422619735, guid: 459dce46211c54544a40abde73b11228, type: 3}
       propertyPath: m_LocalRotation.y
@@ -2146,6 +2359,10 @@ PrefabInstance:
     - target: {fileID: 6975411035422619735, guid: 459dce46211c54544a40abde73b11228, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7136606802427550247, guid: 459dce46211c54544a40abde73b11228, type: 3}
+      propertyPath: TiltAxis.Value
+      value: 16.27
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

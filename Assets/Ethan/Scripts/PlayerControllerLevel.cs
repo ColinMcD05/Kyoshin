@@ -54,7 +54,6 @@ public class PlayerControllerLevel : MonoBehaviour
     public void OnJump(InputValue value){ // This is a function that is called when the jump button is pressed argument is the value of the input
         if(value.isPressed){ // If the jump button is pressed, then set the jumpPressed to true
             jumpPressed = true;// Set the jumpPressed to true
-            Debug.Log("Jump pressed");
         }
     }
     void FixedUpdate(){
@@ -77,16 +76,18 @@ public class PlayerControllerLevel : MonoBehaviour
         }
         jumpPressed = false; // Set the jumpPressed to false
     }
-    float GetTargetLaneX(){
-       if(currentLane == 0){
+    
+    float GetTargetLaneX(){ // This is a function that is called to get the target x position of the player
+       if(currentLane == 0){ // If the current lane is 0, then return the left lane x position
         return lefLaneX;
        }
-       if (currentLane == 1){
+       if (currentLane == 1){ // If the current lane is 1, then return the center lane x position
         return centerLaneX;
        }
-       return rightLaneX; 
+       return rightLaneX; // If the current lane is 2, then return the right lane x position
     }
-    bool IsGrounded(){
+
+    bool IsGrounded(){ // This is a function that is called to check if the player is grounded
         Vector3 rayStart = transform.position + Vector3.up * groundCheckStartHeight; // Get the start of the ray by adding the up vector to the position of the player and the ground check start height
         return Physics.Raycast(rayStart, Vector3.down, groundCheckDistance, groundLayers); // Cast a ray down from the start of the ray to the ground check distance and check if the ray hits the ground layers
     }
