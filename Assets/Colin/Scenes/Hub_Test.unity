@@ -719,8 +719,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1009f61fa951d04c8b47eeb675aba6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInput
-  move: {fileID: 7262952768987543960, guid: ec10140244250664f941449263ce27d6, type: 3}
-  look: {fileID: 8063910938247117474, guid: ec10140244250664f941449263ce27d6, type: 3}
+  move: {fileID: 7262952768987543960, guid: 94c3d52784761304ba4b577fd8e7128c, type: 3}
+  look: {fileID: 8063910938247117474, guid: 94c3d52784761304ba4b577fd8e7128c, type: 3}
   player: {fileID: 1761669065}
 --- !u!114 &1761669065
 MonoBehaviour:
