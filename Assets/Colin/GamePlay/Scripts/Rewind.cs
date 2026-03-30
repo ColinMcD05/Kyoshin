@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Rewind : MonoBehaviour
 {
     // Variables
     #region
+    // References
+    [SerializeField] PlayerControllerLevel playerController;
+    [SerializeField] Rigidbody rigidbody;
+
     // Mutable Variables in Inspector
     public float rewindTime = 3f; // How far back does the player rewind
 
@@ -16,21 +21,17 @@ public class Rewind : MonoBehaviour
     public bool rewinding = false;
     #endregion
 
-    // Awake Instances
+    // FixedUpdate
     #region
-    void Awake()
-    {
-        StartCoroutine(RecordPos());
-    }
-    #endregion
-
-    // Update
-    #region
-    void Update()
+    void FixedUpdate()
     {
         if (rewinding)
         {
             RewindTime();
+        }
+        else
+        {
+            RecordPos();
         }
     }
     #endregion
@@ -38,30 +39,15 @@ public class Rewind : MonoBehaviour
     // RecordPos
     #region
     // Records the position of the player
-    private IEnumerator RecordPos()
+    private void RecordPos()
     {
-        float time = 0;
-        while (1 == 1)
+        int maxHeld = Mathf.RoundToInt(rewindTime / Time.fixedDeltaTime);
+
+        if (positions.Count > maxHeld)
         {
-            if (!rewinding)
-            {
-                if (time < rewindTime) // starts filling up the position list once game starts
-                {
-                    time += Time.deltaTime;
-                    positions.Add(transform.position);
-                }
-                else // after rewindTime amount of seconds removes the first index in the list and keeps adding in new ones.
-                {
-                    positions.Remove(positions[0]);
-                    positions.Add(transform.position);
-                }
-            }
-            if (rewinding && time != 0)
-            {
-                time = 0;
-            }
-            yield return null;
+            positions.RemoveAt(0);
         }
+        positions.Add(rigidbody.position);
     }
     #endregion
 
@@ -72,13 +58,33 @@ public class Rewind : MonoBehaviour
         if (positions.Count > 0)
         {
             int nextPosition = positions.Count - 1;
-            transform.position = positions[nextPosition];
+            rigidbody.MovePosition(positions[nextPosition]);
             positions.Remove(positions[nextPosition]);
         }
         else
         {
-            rewinding = false;
+            StopRewind();
         }
     }
     #endregion
+
+    // OnRewind
+    #region
+    // Function gets called when the rewind button is pressed
+    public void OnRewind(InputValue input)
+    {
+        if (input.isPressed)
+        {
+            rewinding = !rewinding;
+            playerController.enabled = !playerController.enabled;
+        }
+    }
+    #endregion
+
+    // StopRewind
+    void StopRewind()
+    {
+        rewinding = false;
+        playerController.enabled = true;
+    }
 }

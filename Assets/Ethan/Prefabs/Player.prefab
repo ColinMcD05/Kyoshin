@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4101899570415419720}
   - component: {fileID: 3276353842319540466}
   - component: {fileID: 3403870942742053944}
+  - component: {fileID: 4535084694414337032}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -199,3 +200,20 @@ MonoBehaviour:
     m_Bits: 0
   playerRigidbody: {fileID: 4101899570415419720}
   currentLane: 0
+--- !u!114 &4535084694414337032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5700681849272917398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2037d2795bc34941b72e57faaf14b74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Rewind
+  playerController: {fileID: 3403870942742053944}
+  rigidbody: {fileID: 4101899570415419720}
+  rewindTime: 3
+  positions: []
+  rewinding: 0

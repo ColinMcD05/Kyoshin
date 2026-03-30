@@ -2112,7 +2112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 365356147086341493, guid: fbd4c46f22cda2e4fa90aeec79338c00, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 199.6
       objectReference: {fileID: 0}
     - target: {fileID: 365356147086341493, guid: fbd4c46f22cda2e4fa90aeec79338c00, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2142,9 +2142,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1462858010241498341, guid: fbd4c46f22cda2e4fa90aeec79338c00, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -126.7
+      objectReference: {fileID: 0}
     - target: {fileID: 2463787811353504335, guid: fbd4c46f22cda2e4fa90aeec79338c00, type: 3}
       propertyPath: m_Name
       value: PlayerTeleportSpots
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009968018325754884, guid: fbd4c46f22cda2e4fa90aeec79338c00, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -199.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2181,6 +2189,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4101899570415419720, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
       propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4535084694414337032, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5593447944046831325, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
