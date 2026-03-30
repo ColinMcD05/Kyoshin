@@ -25,7 +25,6 @@ public class PlayerInput : MonoBehaviour
     void MovePerformed(InputAction.CallbackContext context)
     {
         Vector2 movement = context.ReadValue<Vector2>();
-        Debug.Log(movement);
         player.SetDirection(movement);
     }
 

@@ -655,6 +655,7 @@ GameObject:
   - component: {fileID: 1761669063}
   - component: {fileID: 1761669064}
   - component: {fileID: 1761669065}
+  - component: {fileID: 1761669066}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -736,6 +737,20 @@ MonoBehaviour:
   moveSpeed: 5
   rotationSpeed: 1
   direction: {x: 0, y: 0, z: 0}
+--- !u!114 &1761669066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761669061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2037d2795bc34941b72e57faaf14b74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Rewind
+  rewindTime: 3
+  positions: []
 --- !u!1 &1996343578
 GameObject:
   m_ObjectHideFlags: 0
