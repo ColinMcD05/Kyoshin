@@ -9,7 +9,7 @@ public class Rewind : MonoBehaviour
     #region
     // References
     [SerializeField] PlayerControllerLevel playerController;
-    [SerializeField] Rigidbody rigidbody;
+    [SerializeField] Rigidbody playerRigidbody;
 
     // Mutable Variables in Inspector
     public float rewindTime = 3f; // How far back does the player rewind
@@ -47,7 +47,7 @@ public class Rewind : MonoBehaviour
         {
             positions.RemoveAt(0);
         }
-        positions.Add(rigidbody.position);
+        positions.Add(playerRigidbody.position);
     }
     #endregion
 
@@ -58,7 +58,7 @@ public class Rewind : MonoBehaviour
         if (positions.Count > 0)
         {
             int nextPosition = positions.Count - 1;
-            rigidbody.MovePosition(positions[nextPosition]);
+            playerRigidbody.MovePosition(positions[nextPosition]);
             positions.Remove(positions[nextPosition]);
         }
         else

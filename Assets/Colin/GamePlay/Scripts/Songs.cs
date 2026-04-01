@@ -3,17 +3,20 @@ using System.Collections.Generic;
 
 public class Songs : MonoBehaviour
 {
+    [SerializeField] AudioClip songs;
+
     public class SongData
     {
         public string name;
+        public AudioClip song;
         public int levelIndex;
         public int bpm;
-        public float timeBetween; // time between beats
+        public float bps; // time between beats
         public float length; // in seconds  
 
-        void Start()
+        void Awake()
         {
-            timeBetween = 60 / bpm;
+            bps = 60 / bpm;
         }
     }
 
