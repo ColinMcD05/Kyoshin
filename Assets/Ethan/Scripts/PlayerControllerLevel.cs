@@ -9,6 +9,8 @@ public class PlayerControllerLevel : MonoBehaviour
     public float rightLaneX = 5.0f;
     // Move Speed
     public float forwardSpeed = 8.0f;
+    [HideInInspector] public float maxSpeed;
+    [HideInInspector] public float minSpeed;
     // Lane Change Speed
     public float laneChangeSpeed = 20.0f;
     // Jump Variables
@@ -26,6 +28,8 @@ public class PlayerControllerLevel : MonoBehaviour
     public int currentLane = 1; // This is the current lane of the player
     private bool canReadLaneInput = true;
     void Awake(){
+        maxSpeed = forwardSpeed * 4;
+        minSpeed = forwardSpeed;
         groundLayers = LayerMask.GetMask("Ground"); // Get the layer mask for the ground
         if(playerRigidbody == null){
             playerRigidbody = GetComponent<Rigidbody>();

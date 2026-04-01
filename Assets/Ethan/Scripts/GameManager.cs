@@ -4,6 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public int lives = 3;
     public int score = 0;
+    [HideInInspector] public int combo = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
