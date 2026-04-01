@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public int lives = 3;
+    public int score = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,5 +24,9 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver(){
         Debug.Log("Game Over");
+    }
+    public void AddScore(int value){
+        score += value;
+        Debug.Log("Score: " + score);
     }
 }
