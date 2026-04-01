@@ -3,7 +3,11 @@ using System.Collections.Generic;
 
 public class Songs : MonoBehaviour
 {
-    [SerializeField] AudioClip songs;
+    // Variables
+    #region
+    // References
+    [SerializeField] AudioClip[] songClips; // Holds all the songs
+    #endregion
 
     public class SongData
     {
@@ -14,9 +18,14 @@ public class Songs : MonoBehaviour
         public float bps; // time between beats
         public float length; // in seconds  
 
-        void Awake()
+        public SongData(string name, AudioClip song, int levelIndex, int bpm, float length)
         {
-            bps = 60 / bpm;
+            this.name = name;
+            this.song = song;
+            this.levelIndex = levelIndex;
+            this.bpm = bpm;
+            this.bps = 60f / bpm;
+            this.length = length;
         }
     }
 
@@ -25,12 +34,7 @@ public class Songs : MonoBehaviour
     {
         songs = new List<SongData>()
         {
-            new SongData
-            {
-                name = "Bullet Train",
-                bpm = 155,
-                length = 137
-            }
+            new SongData("Bullet Train", songClips[0], 0, 155, 138)
         };
     }
 }
