@@ -116,6 +116,7 @@ public class Timing : MonoBehaviour
             // Else bad move
             gameManager.LoseLife();
             gameManager.combo = 0;
+            playerControllerLevel.forwardSpeed = playerControllerLevel.minSpeed;
         }
     }
     #endregion
