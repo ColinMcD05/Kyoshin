@@ -1321,7 +1321,7 @@ MonoBehaviour:
   player: {fileID: 1509702813}
   songClass: {fileID: 883935497}
   musicPlayer: {fileID: 136045358}
-  messUpRange: 0.1
+  messUpRange: 0.25
 --- !u!4 &933928426 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5593447944046831325, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
