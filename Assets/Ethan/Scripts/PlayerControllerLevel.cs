@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 public class PlayerControllerLevel : MonoBehaviour
 {
-    // This is the x position of the left lane, center lane, and right lane
+    [SerializeField] private Rewind rewind;
+    #region Lane Variables | This is the x position of the left lane, center lane, and right lane
     public float lefLaneX = -5.0f;
     public float centerLaneX = 0.0f;
     public float rightLaneX = 5.0f;
-    // Move Speed
+    #endregion
     public float forwardSpeed = 8.0f;
     // Lane Change Speed
     public float laneChangeSpeed = 20.0f;
@@ -25,6 +25,10 @@ public class PlayerControllerLevel : MonoBehaviour
 
     public int currentLane = 1; // This is the current lane of the player
     private bool canReadLaneInput = true;
+
+    #region Lives
+    public int lives = 3;
+    #endregion
     void Awake(){
         groundLayers = LayerMask.GetMask("Ground"); // Get the layer mask for the ground
         if(playerRigidbody == null){
@@ -90,5 +94,29 @@ public class PlayerControllerLevel : MonoBehaviour
     bool IsGrounded(){ // This is a function that is called to check if the player is grounded
         Vector3 rayStart = transform.position + Vector3.up * groundCheckStartHeight; // Get the start of the ray by adding the up vector to the position of the player and the ground check start height
         return Physics.Raycast(rayStart, Vector3.down, groundCheckDistance, groundLayers); // Cast a ray down from the start of the ray to the ground check distance and check if the ray hits the ground layers
+    }
+
+    #region Lose Life | This is a function that is called to lose a life
+    // lose a life function will only be called after player collides with an obstacle x amount of times each collison will cause the camera to shake
+    public void LoseLife(){
+        lives--;
+        Debug.Log("Lives: " + lives);
+        // call rewind time function
+        if (rewind != null)
+        {
+            rewind.StartRewind();
+        }
+    
+        if(lives <= 0){
+            GameOver();
+        }
+    }
+    //public void ShakeCamera(int shakeIntensity){
+        // shake the camera by using the CinemachineShake script
+        //CinemachineShake.Instance.ShakeCamera(shakeIntensity);
+    //}
+    #endregion
+    public void GameOver(){
+        Debug.Log("Game Over");
     }
 }

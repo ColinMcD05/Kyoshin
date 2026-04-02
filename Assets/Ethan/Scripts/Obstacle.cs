@@ -1,13 +1,19 @@
 using UnityEngine;
 
+
 public class Obstacle : MonoBehaviour
 {
     public GameManager gameManager;
+    public PlayerControllerLevel playerControllerLevel;
+    public int collidedAmount = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         if(gameManager == null){
-            gameManager = FindObjectOfType<GameManager>();
+            gameManager = FindFirstObjectByType<GameManager>();
+        }
+        if(playerControllerLevel == null){
+            playerControllerLevel = FindFirstObjectByType<PlayerControllerLevel>();
         }
     }
 
@@ -18,7 +24,13 @@ public class Obstacle : MonoBehaviour
     }
     void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("Player")){
-            gameManager.LoseLife();
+            //playerControllerLevel.ShakeCamera(10);
+            collidedAmount++;
+            Debug.Log("Collided Amount: " + collidedAmount);
+            if(collidedAmount >= 3){
+                playerControllerLevel.LoseLife();
+                collidedAmount = 0;
+            }
         }
     }
 }
