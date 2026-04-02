@@ -92,6 +92,7 @@ public class Rewind : MonoBehaviour
         rewinding = true;
         playerController.enabled = false;
         playerCollider.enabled = false;
+        rigidbody.isKinematic = true;
     }
 
     // Lets other scripts more easily stop rewind mechanic
@@ -99,6 +100,7 @@ public class Rewind : MonoBehaviour
     {
         rewinding = false;
         playerController.enabled = true;
+        rigidbody.isKinematic = false;
         playerCollider.enabled = true;
     }
     #endregion
