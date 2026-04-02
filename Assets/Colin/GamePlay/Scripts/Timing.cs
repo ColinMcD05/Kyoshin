@@ -24,7 +24,7 @@ public class Timing : MonoBehaviour
     float songPosition; // Rough position of the song position of the song
     float songPositionInBeats; // find where it lands on the beat for correct timing
     float songTimePassed; // How much time has passsed since the song has played
-    [Range(0, 0.25f)] float messUpRange;
+    [Range(0, 0.33f)] public float messUpRange = 0.1f;
     float rewindTimeUsed; // How much time has been rewinded
     int comboNeeded;
     #endregion
@@ -101,6 +101,7 @@ public class Timing : MonoBehaviour
     void CheckTime(InputAction.CallbackContext context)
     {
         float positionDecimal = GetDecimal(songPositionInBeats); // Getting position
+        Debug.Log(positionDecimal);
         if (positionDecimal <= messUpRange || positionDecimal >= 1 - messUpRange)
         {
             // Do correct movement
@@ -110,6 +111,7 @@ public class Timing : MonoBehaviour
                 playerControllerLevel.forwardSpeed *= 2;
             }
             gameManager.combo++;
+            Debug.Log("Good");
         }
         else
         {
@@ -117,6 +119,7 @@ public class Timing : MonoBehaviour
             gameManager.LoseLife();
             gameManager.combo = 0;
             playerControllerLevel.forwardSpeed = playerControllerLevel.minSpeed;
+            Debug.Log("Bad");
         }
     }
     #endregion

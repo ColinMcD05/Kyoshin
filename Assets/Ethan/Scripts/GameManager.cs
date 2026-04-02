@@ -4,7 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public int lives = 3;
     public int score = 0;
-    [HideInInspector] public int combo = 0;
+    public int combo = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,16 +18,16 @@ public class GameManager : MonoBehaviour
     }
     public void LoseLife(){
         lives--;
-        Debug.Log("Lives: " + lives);
+        //Debug.Log("Lives: " + lives);
         if(lives <= 0){
             GameOver();
         }
     }
     public void GameOver(){
-        Debug.Log("Game Over");
+        //Debug.Log("Game Over");
     }
     public void AddScore(int value){
         score += value;
-        Debug.Log("Score: " + score);
+        //Debug.Log("Score: " + score);
     }
 }
