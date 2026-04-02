@@ -10,6 +10,7 @@ public class Rewind : MonoBehaviour
     // References
     [SerializeField] PlayerControllerLevel playerController;
     [SerializeField] Rigidbody rigidbody;
+    [SerializeField] Collider playerCollider;
 
     // Mutable Variables in Inspector
     public float rewindTime = 3f; // How far back does the player rewind
@@ -90,6 +91,7 @@ public class Rewind : MonoBehaviour
     {
         rewinding = true;
         playerController.enabled = false;
+        playerCollider.enabled = false;
     }
 
     // Lets other scripts more easily stop rewind mechanic
@@ -97,6 +99,7 @@ public class Rewind : MonoBehaviour
     {
         rewinding = false;
         playerController.enabled = true;
+        playerCollider.enabled = true;
     }
     #endregion
 }

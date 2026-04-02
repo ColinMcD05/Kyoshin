@@ -243,9 +243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  gameManager: {fileID: 0}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  gameManager: {fileID: 883935496}
+  playerControllerLevel: {fileID: 933928429}
 --- !u!1 &176330053
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,9 +369,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  gameManager: {fileID: 0}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  gameManager: {fileID: 883935496}
+  playerControllerLevel: {fileID: 933928429}
 --- !u!1 &210428954
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,7 +517,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &240162549
 Transform:
   m_ObjectHideFlags: 0
@@ -529,7 +527,7 @@ Transform:
   m_GameObject: {fileID: 240162548}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 23.29}
+  m_LocalPosition: {x: 0, y: 1, z: 60.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -547,9 +545,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  gameManager: {fileID: 0}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  gameManager: {fileID: 883935496}
+  playerControllerLevel: {fileID: 933928429}
 --- !u!65 &240162551
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -646,7 +643,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &257553404
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -733,7 +730,7 @@ Transform:
   m_GameObject: {fileID: 257553403}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 15}
+  m_LocalPosition: {x: 0, y: 1, z: 53.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -751,9 +748,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  gameManager: {fileID: 0}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  gameManager: {fileID: 883935496}
+  playerControllerLevel: {fileID: 933928429}
 --- !u!1 &328210652
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,7 +769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &328210653
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -860,7 +856,7 @@ Transform:
   m_GameObject: {fileID: 328210652}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 1, z: 10}
+  m_LocalPosition: {x: -5, y: 1, z: 36.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -878,9 +874,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  gameManager: {fileID: 0}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  gameManager: {fileID: 883935496}
+  playerControllerLevel: {fileID: 933928429}
 --- !u!1 &370718341
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,7 +895,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &370718342
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1005,9 +1000,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  gameManager: {fileID: 0}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  gameManager: {fileID: 883935496}
+  playerControllerLevel: {fileID: 933928429}
 --- !u!1001 &614069026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1059,6 +1053,10 @@ PrefabInstance:
     - target: {fileID: 5758162461303985541, guid: 82408493283c2e647a99c74e3603e72e, type: 3}
       propertyPath: m_Name
       value: coin (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5758162461303985541, guid: 82408493283c2e647a99c74e3603e72e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1189,9 +1187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  gameManager: {fileID: 0}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  gameManager: {fileID: 883935496}
+  playerControllerLevel: {fileID: 933928429}
 --- !u!1001 &700173221
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1243,6 +1240,10 @@ PrefabInstance:
     - target: {fileID: 5758162461303985541, guid: 82408493283c2e647a99c74e3603e72e, type: 3}
       propertyPath: m_Name
       value: coin (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5758162461303985541, guid: 82408493283c2e647a99c74e3603e72e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1296,9 +1297,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  gameManager: {fileID: 0}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  gameManager: {fileID: 883935496}
+  playerControllerLevel: {fileID: 933928429}
 --- !u!65 &713840260
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1423,9 +1423,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  gameManager: {fileID: 0}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  gameManager: {fileID: 883935496}
+  playerControllerLevel: {fileID: 933928429}
 --- !u!65 &804589282
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1522,7 +1521,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   lives: 3
   score: 0
-  rewind: {fileID: 0}
 --- !u!4 &933928426 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5593447944046831325, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
@@ -1539,6 +1537,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2037d2795bc34941b72e57faaf14b74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rewind
+--- !u!114 &933928429 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3403870942742053944, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
+  m_PrefabInstance: {fileID: 3848446327473552623}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec453f3d6cf71514b9f145b642b1fc7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerControllerLevel
 --- !u!1 &999298780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1664,8 +1673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
   gameManager: {fileID: 883935496}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  playerControllerLevel: {fileID: 933928429}
 --- !u!1001 &1001785010
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1717,6 +1725,10 @@ PrefabInstance:
     - target: {fileID: 5758162461303985541, guid: 82408493283c2e647a99c74e3603e72e, type: 3}
       propertyPath: m_Name
       value: coin (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5758162461303985541, guid: 82408493283c2e647a99c74e3603e72e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1804,7 +1816,7 @@ Transform:
   m_GameObject: {fileID: 1058086894}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 1, z: 38.29}
+  m_LocalPosition: {x: -5, y: 1, z: 76.479996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1822,9 +1834,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  gameManager: {fileID: 0}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  gameManager: {fileID: 883935496}
+  playerControllerLevel: {fileID: 933928429}
 --- !u!65 &1058086897
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1921,7 +1932,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1081026742
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2008,7 +2019,7 @@ Transform:
   m_GameObject: {fileID: 1081026741}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 1, z: 10}
+  m_LocalPosition: {x: 5, y: 1, z: 47.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2026,9 +2037,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  gameManager: {fileID: 0}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  gameManager: {fileID: 883935496}
+  playerControllerLevel: {fileID: 933928429}
 --- !u!1 &1175408438
 GameObject:
   m_ObjectHideFlags: 0
@@ -2048,7 +2058,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1175408439
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2135,7 +2145,7 @@ Transform:
   m_GameObject: {fileID: 1175408438}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 1, z: 20}
+  m_LocalPosition: {x: -5, y: 1, z: 58.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2153,9 +2163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  gameManager: {fileID: 0}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  gameManager: {fileID: 883935496}
+  playerControllerLevel: {fileID: 933928429}
 --- !u!1 &1298227333
 GameObject:
   m_ObjectHideFlags: 0
@@ -2287,7 +2296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1342435589
 Transform:
   m_ObjectHideFlags: 0
@@ -2297,7 +2306,7 @@ Transform:
   m_GameObject: {fileID: 1342435588}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 1, z: 33.29}
+  m_LocalPosition: {x: -5, y: 1, z: 65.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2315,9 +2324,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  gameManager: {fileID: 0}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  gameManager: {fileID: 883935496}
+  playerControllerLevel: {fileID: 933928429}
 --- !u!65 &1342435591
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2442,9 +2450,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  gameManager: {fileID: 0}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  gameManager: {fileID: 883935496}
+  playerControllerLevel: {fileID: 933928429}
 --- !u!65 &1346809644
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2541,7 +2548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1385270063
 Transform:
   m_ObjectHideFlags: 0
@@ -2551,7 +2558,7 @@ Transform:
   m_GameObject: {fileID: 1385270062}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 1, z: 33.29}
+  m_LocalPosition: {x: 5, y: 1, z: 65.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2569,9 +2576,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  gameManager: {fileID: 0}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  gameManager: {fileID: 883935496}
+  playerControllerLevel: {fileID: 933928429}
 --- !u!65 &1385270065
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2696,9 +2702,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  gameManager: {fileID: 0}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  gameManager: {fileID: 883935496}
+  playerControllerLevel: {fileID: 933928429}
 --- !u!65 &1435886776
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2795,7 +2800,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1444825495
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2900,9 +2905,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  gameManager: {fileID: 0}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  gameManager: {fileID: 883935496}
+  playerControllerLevel: {fileID: 933928429}
 --- !u!1 &1687784407
 GameObject:
   m_ObjectHideFlags: 0
@@ -2922,7 +2926,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1687784408
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3009,7 +3013,7 @@ Transform:
   m_GameObject: {fileID: 1687784407}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 5}
+  m_LocalPosition: {x: 0, y: 1, z: 42.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3027,9 +3031,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  gameManager: {fileID: 0}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  gameManager: {fileID: 883935496}
+  playerControllerLevel: {fileID: 933928429}
 --- !u!1 &1699217661
 GameObject:
   m_ObjectHideFlags: 0
@@ -3049,7 +3052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1699217662
 Transform:
   m_ObjectHideFlags: 0
@@ -3077,9 +3080,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  gameManager: {fileID: 0}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  gameManager: {fileID: 883935496}
+  playerControllerLevel: {fileID: 933928429}
 --- !u!65 &1699217664
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3451,9 +3453,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  gameManager: {fileID: 0}
-  playerControllerLevel: {fileID: 0}
-  collidedAmount: 0
+  gameManager: {fileID: 883935496}
+  playerControllerLevel: {fileID: 933928429}
 --- !u!1 &1834391870 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1321607435560748508, guid: 459dce46211c54544a40abde73b11228, type: 3}
@@ -3476,6 +3477,26 @@ MonoBehaviour:
   AmplitudeGain: 0
   FrequencyGain: 1.5
   m_NoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!114 &1834391876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834391870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96c98aa667d9954a9a06c9f615722ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CineMachineShake
+  noise: {fileID: 1834391871}
+  shakeTimer: 0
+  defaultShakeTime: 1
+--- !u!136 &1871260107 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 3663179470139874644, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
+  m_PrefabInstance: {fileID: 3848446327473552623}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1269076639901392491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3494,7 +3515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 365356147086341493, guid: fbd4c46f22cda2e4fa90aeec79338c00, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 208.23
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 365356147086341493, guid: fbd4c46f22cda2e4fa90aeec79338c00, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3526,7 +3547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1462858010241498341, guid: fbd4c46f22cda2e4fa90aeec79338c00, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -172.93
+      value: 132.6
       objectReference: {fileID: 0}
     - target: {fileID: 2463787811353504335, guid: fbd4c46f22cda2e4fa90aeec79338c00, type: 3}
       propertyPath: m_Name
@@ -3534,7 +3555,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7009968018325754884, guid: fbd4c46f22cda2e4fa90aeec79338c00, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -199.6
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3553,6 +3574,10 @@ PrefabInstance:
       propertyPath: rewind
       value: 
       objectReference: {fileID: 933928427}
+    - target: {fileID: 3403870942742053944, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
+      propertyPath: jumpForce
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3403870942742053944, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
       propertyPath: centerLaneX
       value: 0
@@ -3581,6 +3606,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4535084694414337032, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
+      propertyPath: playerCollider
+      value: 
+      objectReference: {fileID: 1871260107}
     - target: {fileID: 5593447944046831325, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3746,6 +3775,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: coin
       objectReference: {fileID: 0}
+    - target: {fileID: 5758162461303985541, guid: 82408493283c2e647a99c74e3603e72e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3830,6 +3863,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1321607435560748508, guid: 459dce46211c54544a40abde73b11228, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1834391871}
+    - targetCorrespondingSourceObject: {fileID: 1321607435560748508, guid: 459dce46211c54544a40abde73b11228, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1834391876}
   m_SourcePrefab: {fileID: 100100000, guid: 459dce46211c54544a40abde73b11228, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

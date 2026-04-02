@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Cinemachine;
 public class PlayerControllerLevel : MonoBehaviour
 {
     [SerializeField] private Rewind rewind;
@@ -25,6 +26,10 @@ public class PlayerControllerLevel : MonoBehaviour
 
     public int currentLane = 1; // This is the current lane of the player
     private bool canReadLaneInput = true;
+// Collision Variables | This is the amount of times the player has collided with an obstacle
+    private int collidedAmout = 0;
+    public int maxCollisions = 3;
+
 
     #region Lives
     public int lives = 3;
@@ -99,22 +104,28 @@ public class PlayerControllerLevel : MonoBehaviour
     #region Lose Life | This is a function that is called to lose a life
     // lose a life function will only be called after player collides with an obstacle x amount of times each collison will cause the camera to shake
     public void LoseLife(){
-        lives--;
-        Debug.Log("Lives: " + lives);
+        collidedAmout++; // Increment the collided amount
+        Debug.Log("Collided Amount: " + collidedAmout); // Log the collided amount
+        if(collidedAmout >= maxCollisions){ // If the collided amount is greater than or equal to the max collisions
+            lives--; // Decrement the lives
+            Debug.Log("Lives: " + lives);
+            collidedAmout = 0; // Reset the collided amount
         // call rewind time function
         if (rewind != null)
         {
+            // disable player collider
             rewind.StartRewind();
         }
-    
+        
+    }
         if(lives <= 0){
             GameOver();
         }
     }
-    //public void ShakeCamera(int shakeIntensity){
+    public void ShakeCamera(int shakeIntensity){
         // shake the camera by using the CinemachineShake script
-        //CinemachineShake.Instance.ShakeCamera(shakeIntensity);
-    //}
+        CineMachineShake.Instance.ShakeCamera(shakeIntensity);
+    } // end of ShakeCamera function
     #endregion
     public void GameOver(){
         Debug.Log("Game Over");
