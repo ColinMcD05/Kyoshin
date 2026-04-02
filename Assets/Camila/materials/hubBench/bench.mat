@@ -64,6 +64,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _FaceMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: a0d209f7e0c15df42874c050a18166cc, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -120,12 +124,13 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _OutlineShadowDarken: 0.557
-    - _OutlineThickness: 0.0146
+    - _OutlineThickness: 0.0124
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RimIntensity: 0.39
     - _RimPower: 4.63
+    - _ShadowSoftness: 0.05
     - _ShadowThreshold: 0.564
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -144,6 +149,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ShadowColor: {r: 0.09999997, g: 0.09999997, b: 0.19999996, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
