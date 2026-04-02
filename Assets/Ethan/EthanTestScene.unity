@@ -1322,6 +1322,8 @@ MonoBehaviour:
   songClass: {fileID: 883935497}
   musicPlayer: {fileID: 136045358}
   messUpRange: 0.25
+  rewindTimeUsed: 0
+  comboNeeded: 3
 --- !u!4 &933928426 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5593447944046831325, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
@@ -2561,6 +2563,14 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4535084694414337032, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
+      propertyPath: timing
+      value: 
+      objectReference: {fileID: 883935498}
+    - target: {fileID: 4535084694414337032, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
+      propertyPath: musicPlayer
+      value: 
+      objectReference: {fileID: 136045358}
     - target: {fileID: 5593447944046831325, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

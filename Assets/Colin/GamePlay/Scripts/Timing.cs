@@ -24,9 +24,12 @@ public class Timing : MonoBehaviour
     float songPosition; // Rough position of the song position of the song
     float songPositionInBeats; // find where it lands on the beat for correct timing
     float songTimePassed; // How much time has passsed since the song has played
-    [Range(0, 0.33f)] public float messUpRange = 0.1f;
-    float rewindTimeUsed; // How much time has been rewinded
-    int comboNeeded;
+    [Range(0, 0.33f)] public float messUpRange = 0.33f;
+    public float rewindTimeUsed; // How much time has been rewinded
+
+    // Other variables
+    public int comboNeeded = 3;
+    public float startWaitTime = 1;
     #endregion
 
     // Start
@@ -38,6 +41,7 @@ public class Timing : MonoBehaviour
         playerControllerLevel = player.GetComponent<PlayerControllerLevel>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
+        // Changing current song based on the build index. May change
         foreach (Songs.SongData song in songClass.songs)
         {
             if (SceneManager.GetActiveScene().buildIndex == song.levelIndex)
@@ -45,8 +49,8 @@ public class Timing : MonoBehaviour
                 currentSong = song;
             }
         }
-        move.action.performed += CheckTime;
-        SceneManager.sceneLoaded += ChangeSong;
+        move.action.performed += CheckTime; // Adds the function check time to the LeftRight action so it only checks when pressed
+        SceneManager.sceneLoaded += ChangeSong; // Should change the current song once scene is loaded
         StartCoroutine(StartMusic());
     }
     #endregion
@@ -65,20 +69,23 @@ public class Timing : MonoBehaviour
     // Starts playing the music and sets up the timing for inputs
     IEnumerator StartMusic()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(startWaitTime); // Waits for startWaitTime amount of seconds before finishing function
 
-        songStartTime = (float)AudioSettings.dspTime;
-        musicPlayer.clip = currentSong.song;
-        musicPlayer.Play();
+        playerControllerLevel.enabled = true; // Lets players move
+        songStartTime = (float)AudioSettings.dspTime; // Sets songStartTime based on AudioSettings clock
+        musicPlayer.clip = currentSong.song; // Sets current clip to current song clip
+        musicPlayer.Play(); // Players music
     }
     #endregion
 
     // SongPosition
+    #region
     void SongPosition(out float songPosition, out float songPositionInBeats)
     {
-        songPosition = (float)(AudioSettings.dspTime - songStartTime);
-        songPositionInBeats = 1 + songPosition / currentSong.bps;
+        songPosition = (float)(AudioSettings.dspTime - songStartTime - rewindTimeUsed); //Calculate song position in seconds by subtracting the time the song started and how much time was rewound by the current clock in AudioSettings
+        songPositionInBeats = 1 + songPosition / currentSong.bps; // Calculate song in beats by dividing song position by the sec per beat of the song
     }
+    #endregion
 
     // ChangeSong
     #region
@@ -97,12 +104,12 @@ public class Timing : MonoBehaviour
 
     // CheckTiming
     #region
-    // Check if input if hit at correct time
+    // Check if input is hit at correct time
     void CheckTime(InputAction.CallbackContext context)
     {
-        float positionDecimal = GetDecimal(songPositionInBeats); // Getting position
-        Debug.Log(positionDecimal);
-        if (positionDecimal <= messUpRange || positionDecimal >= 1 - messUpRange)
+        float positionDecimal = GetDecimal(songPositionInBeats); // Getting decimals of beat position
+        //Debug.Log(positionDecimal);
+        if (positionDecimal <= messUpRange || positionDecimal >= 1 - messUpRange) // checks if action takes place in the mess up range.
         {
             // Do correct movement
             // Check player speed, if not at max speed go faster
@@ -110,13 +117,16 @@ public class Timing : MonoBehaviour
             {
                 playerControllerLevel.forwardSpeed *= 2;
             }
+            // Add combo
             gameManager.combo++;
             Debug.Log("Good");
         }
         else
         {
             // Else bad move
+            // camera shakes intensify
             gameManager.LoseLife();
+            // reset combo and speed
             gameManager.combo = 0;
             playerControllerLevel.forwardSpeed = playerControllerLevel.minSpeed;
             Debug.Log("Bad");
@@ -128,7 +138,7 @@ public class Timing : MonoBehaviour
     #region
     float GetDecimal(float position)
     {
-        return Mathf.Abs(position - Mathf.Floor(position));
+        return Mathf.Abs(position - Mathf.Floor(position)); // produces only the decimal
     }
     #endregion
 }
