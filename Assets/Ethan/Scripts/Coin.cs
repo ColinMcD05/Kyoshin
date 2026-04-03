@@ -8,7 +8,7 @@ public class Coin : MonoBehaviour
     void Start()
     {
         if(gameManager == null){
-            gameManager = FindObjectOfType<GameManager>();
+            gameManager = FindFirstObjectByType<GameManager>();
         }
     }
 

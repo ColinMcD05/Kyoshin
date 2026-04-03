@@ -16,13 +16,7 @@ public class GameManager : MonoBehaviour
     {
         
     }
-    public void LoseLife(){
-        lives--;
-        //Debug.Log("Lives: " + lives);
-        if(lives <= 0){
-            GameOver();
-        }
-    }
+    
     public void GameOver(){
         //Debug.Log("Game Over");
     }
