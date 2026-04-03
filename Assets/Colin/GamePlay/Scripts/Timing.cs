@@ -125,7 +125,7 @@ public class Timing : MonoBehaviour
         {
             // Else bad move
             // camera shakes intensify
-            gameManager.LoseLife();
+            playerControllerLevel.LoseLife();
             // reset combo and speed
             gameManager.combo = 0;
             playerControllerLevel.forwardSpeed = playerControllerLevel.minSpeed;
