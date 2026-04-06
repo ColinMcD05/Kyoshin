@@ -190,6 +190,8 @@ MonoBehaviour:
   centerLaneX: 0
   rightLaneX: 5
   forwardSpeed: 8
+  maxSpeed: 0
+  minSpeed: 0
   laneChangeSpeed: 20
   jumpForce: 7
   inputThreshold: 0.5
@@ -213,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rewind
   playerController: {fileID: 3403870942742053944}
-  rigidbody: {fileID: 4101899570415419720}
+  playerRigidbody: {fileID: 4101899570415419720}
   rewindTime: 3
   positions: []
   rewinding: 0

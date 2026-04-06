@@ -1,14 +1,17 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using Unity.Cinemachine;
 public class PlayerControllerLevel : MonoBehaviour
 {
-    // This is the x position of the left lane, center lane, and right lane
+    [SerializeField] private Rewind rewind;
+    #region Lane Variables | This is the x position of the left lane, center lane, and right lane
     public float lefLaneX = -5.0f;
     public float centerLaneX = 0.0f;
     public float rightLaneX = 5.0f;
-    // Move Speed
+    #endregion
     public float forwardSpeed = 8.0f;
+    [HideInInspector] public float maxSpeed;
+    [HideInInspector] public float minSpeed;
     // Lane Change Speed
     public float laneChangeSpeed = 20.0f;
     // Jump Variables
@@ -25,7 +28,17 @@ public class PlayerControllerLevel : MonoBehaviour
 
     public int currentLane = 1; // This is the current lane of the player
     private bool canReadLaneInput = true;
+// Collision Variables | This is the amount of times the player has collided with an obstacle
+    private int collidedAmout = 0;
+    public int maxCollisions = 3;
+
+
+    #region Lives
+    public int lives = 3;
+    #endregion
     void Awake(){
+        maxSpeed = forwardSpeed * 4;
+        minSpeed = forwardSpeed;
         groundLayers = LayerMask.GetMask("Ground"); // Get the layer mask for the ground
         if(playerRigidbody == null){
             playerRigidbody = GetComponent<Rigidbody>();
@@ -90,5 +103,35 @@ public class PlayerControllerLevel : MonoBehaviour
     bool IsGrounded(){ // This is a function that is called to check if the player is grounded
         Vector3 rayStart = transform.position + Vector3.up * groundCheckStartHeight; // Get the start of the ray by adding the up vector to the position of the player and the ground check start height
         return Physics.Raycast(rayStart, Vector3.down, groundCheckDistance, groundLayers); // Cast a ray down from the start of the ray to the ground check distance and check if the ray hits the ground layers
+    }
+
+    #region Lose Life | This is a function that is called to lose a life
+    // lose a life function will only be called after player collides with an obstacle x amount of times each collison will cause the camera to shake
+    public void LoseLife(){
+        collidedAmout++; // Increment the collided amount
+        // Debug.Log("Collided Amount: " + collidedAmout); // Log the collided amount
+        if(collidedAmout >= maxCollisions){ // If the collided amount is greater than or equal to the max collisions
+            lives--; // Decrement the lives
+            // Debug.Log("Lives: " + lives);
+            collidedAmout = 0; // Reset the collided amount
+        // call rewind time function
+        if (rewind != null)
+        {
+            // disable player collider
+            rewind.StartRewind();
+        }
+        
+    }
+        if(lives <= 0){
+            GameOver();
+        }
+    }
+    public void ShakeCamera(int shakeIntensity){
+        // shake the camera by using the CinemachineShake script
+        CineMachineShake.Instance.ShakeCamera(shakeIntensity);
+    } // end of ShakeCamera function
+    #endregion
+    public void GameOver(){
+        // Debug.Log("Game Over");
     }
 }

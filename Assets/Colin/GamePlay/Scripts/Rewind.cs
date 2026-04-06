@@ -10,6 +10,9 @@ public class Rewind : MonoBehaviour
     // References
     [SerializeField] PlayerControllerLevel playerController;
     [SerializeField] Rigidbody playerRigidbody;
+    [SerializeField] AudioSource musicPlayer;
+    [SerializeField] Timing timing;
+    [SerializeField] Collider playerCollider;
 
     // Mutable Variables in Inspector
     public float rewindTime = 3f; // How far back does the player rewind
@@ -55,11 +58,11 @@ public class Rewind : MonoBehaviour
     #region
     void RewindTime()
     {
-        if (positions.Count > 0)
+        if (positions.Count > 0) // Checks if there are still places to go
         {
-            int nextPosition = positions.Count - 1;
-            playerRigidbody.MovePosition(positions[nextPosition]);
-            positions.Remove(positions[nextPosition]);
+            int nextPosition = positions.Count - 1; // Gets last position in list index
+            playerRigidbody.MovePosition(positions[nextPosition]); // Moves player to last position in list index
+            positions.Remove(positions[nextPosition]); // Removes last position from list index
         }
         else
         {
@@ -73,10 +76,11 @@ public class Rewind : MonoBehaviour
     // Function gets called when the rewind button is pressed
     public void OnRewind(InputValue input)
     {
-        if (input.isPressed)
+        if (input.isPressed && !rewinding)
         {
             rewinding = !rewinding;
             playerController.enabled = !playerController.enabled;
+            musicPlayer.pitch = -1; // Reverses music
         }
     }
     #endregion
@@ -90,6 +94,8 @@ public class Rewind : MonoBehaviour
     {
         rewinding = true;
         playerController.enabled = false;
+        playerCollider.enabled = false;
+        GetComponent<Rigidbody>().isKinematic = true;
     }
 
     // Lets other scripts more easily stop rewind mechanic
@@ -97,6 +103,10 @@ public class Rewind : MonoBehaviour
     {
         rewinding = false;
         playerController.enabled = true;
+        musicPlayer.pitch = 1; // Music plays normally
+        timing.rewindTimeUsed += rewindTime; // Adds time that was rewound to get accurate position of song
+        GetComponent<Rigidbody>().isKinematic = false;
+        playerCollider.enabled = true;
     }
     #endregion
 }
