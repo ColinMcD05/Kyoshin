@@ -150,6 +150,6 @@ public class PlayerControllerLevel : MonoBehaviour
     } // end of ShakeCamera function
     #endregion
     public void GameOver(){
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 }
