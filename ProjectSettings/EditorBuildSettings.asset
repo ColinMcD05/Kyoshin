@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Landon/WB Hakone.unity
+    guid: 04b1539a8d3e7f94d942e3d14bdbeaa1
+  - enabled: 1
     path: Assets/Ethan/EthanTestScene.unity
     guid: 6e84b27b5c220074ea2cc0f1d3b0e358
   - enabled: 1
