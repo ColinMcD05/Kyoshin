@@ -16,13 +16,13 @@ public class Timing : MonoBehaviour
     Rewind rewind;
     PlayerControllerLevel playerControllerLevel;
     [SerializeField] Songs songClass;
-    Songs.SongData currentSong;
+    [HideInInspector] public Songs.SongData currentSong;
     [SerializeField] AudioSource musicPlayer;
 
     // Variables for timing
     float songStartTime; // Time when the song started playing
     float songPosition; // Rough position of the song position of the song
-    float songPositionInBeats; // find where it lands on the beat for correct timing
+    [HideInInspector] public float songPositionInBeats = 0; // find where it lands on the beat for correct timing
     float songTimePassed; // How much time has passsed since the song has played
     [Range(0, 0.33f)] public float messUpRange = 0.33f;
     public float rewindTimeUsed; // How much time has been rewinded
@@ -51,7 +51,7 @@ public class Timing : MonoBehaviour
         }
         move.action.performed += CheckTime; // Adds the function check time to the LeftRight action so it only checks when pressed
         SceneManager.sceneLoaded += ChangeSong; // Should change the current song once scene is loaded
-        StartCoroutine(StartMusic());
+        Invoke("StartMusic", startWaitTime);
     }
     #endregion
 
@@ -67,10 +67,8 @@ public class Timing : MonoBehaviour
     // StartMusic
     #region
     // Starts playing the music and sets up the timing for inputs
-    IEnumerator StartMusic()
+    void StartMusic()
     {
-        yield return new WaitForSeconds(startWaitTime); // Waits for startWaitTime amount of seconds before finishing function
-
         playerControllerLevel.enabled = true; // Lets players move
         songStartTime = (float)AudioSettings.dspTime; // Sets songStartTime based on AudioSettings clock
         musicPlayer.clip = currentSong.song; // Sets current clip to current song clip

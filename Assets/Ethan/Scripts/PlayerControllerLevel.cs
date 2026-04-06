@@ -109,10 +109,10 @@ public class PlayerControllerLevel : MonoBehaviour
     // lose a life function will only be called after player collides with an obstacle x amount of times each collison will cause the camera to shake
     public void LoseLife(){
         collidedAmout++; // Increment the collided amount
-        Debug.Log("Collided Amount: " + collidedAmout); // Log the collided amount
+        // Debug.Log("Collided Amount: " + collidedAmout); // Log the collided amount
         if(collidedAmout >= maxCollisions){ // If the collided amount is greater than or equal to the max collisions
             lives--; // Decrement the lives
-            Debug.Log("Lives: " + lives);
+            // Debug.Log("Lives: " + lives);
             collidedAmout = 0; // Reset the collided amount
         // call rewind time function
         if (rewind != null)
@@ -132,6 +132,6 @@ public class PlayerControllerLevel : MonoBehaviour
     } // end of ShakeCamera function
     #endregion
     public void GameOver(){
-        Debug.Log("Game Over");
+        // Debug.Log("Game Over");
     }
 }

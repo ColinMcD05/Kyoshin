@@ -12,7 +12,6 @@ public class Rewind : MonoBehaviour
     [SerializeField] Rigidbody playerRigidbody;
     [SerializeField] AudioSource musicPlayer;
     [SerializeField] Timing timing;
-    [SerializeField] Rigidbody rigidbody;
     [SerializeField] Collider playerCollider;
 
     // Mutable Variables in Inspector
@@ -96,7 +95,7 @@ public class Rewind : MonoBehaviour
         rewinding = true;
         playerController.enabled = false;
         playerCollider.enabled = false;
-        rigidbody.isKinematic = true;
+        GetComponent<Rigidbody>().isKinematic = true;
     }
 
     // Lets other scripts more easily stop rewind mechanic
@@ -106,7 +105,7 @@ public class Rewind : MonoBehaviour
         playerController.enabled = true;
         musicPlayer.pitch = 1; // Music plays normally
         timing.rewindTimeUsed += rewindTime; // Adds time that was rewound to get accurate position of song
-        rigidbody.isKinematic = false;
+        GetComponent<Rigidbody>().isKinematic = false;
         playerCollider.enabled = true;
     }
     #endregion
