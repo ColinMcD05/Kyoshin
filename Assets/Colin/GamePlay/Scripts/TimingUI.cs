@@ -36,7 +36,7 @@ public class TimingUI : MonoBehaviour
             {
                 movingImage.transform.localScale -= Vector3.one * Time.deltaTime / currentSong.bps;
                 yield return null;
-                Debug.Log("Bad");
+                //Debug.Log("Bad");
             }
             else
             {
@@ -44,22 +44,13 @@ public class TimingUI : MonoBehaviour
                 {
                     movingImage.transform.localScale -= Vector3.one * Time.deltaTime / currentSong.bps;
                 }
-                Debug.Log("Good");
+                //Debug.Log("Good");
                 stillImage.color = Color.green;
                 yield return new WaitForSeconds(waitPeriod);
                 movingImage.transform.localScale = new Vector3(1.5f, 1.5f ,1.5f);
                 stillImage.color = Color.red;
-                Debug.Log("Reset");
+                //ebug.Log("Reset");
             }
         }
-    }
-
-    IEnumerator GetSong()
-    {
-        while (timing.currentSong == null)
-        {
-            yield return null;
-        }
-        currentSong = timing.currentSong;
     }
 }

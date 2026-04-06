@@ -3,6 +3,7 @@ using System;
 public class Coin : MonoBehaviour
 {
     public int coinValue = 1;
+    public int dashValue = 10;
     public GameManager gameManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,6 +24,7 @@ public class Coin : MonoBehaviour
         {
             Destroy(gameObject);
             gameManager.AddScore(coinValue);
+            //other.GetComponent<Dash>().AddDash(1 / dashValue);
         }
     }
 }

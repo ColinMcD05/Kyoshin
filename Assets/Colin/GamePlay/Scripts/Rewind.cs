@@ -8,6 +8,7 @@ public class Rewind : MonoBehaviour
     // Variables
     #region
     // References
+    GameManager gameManager;
     [SerializeField] PlayerControllerLevel playerController;
     [SerializeField] Rigidbody playerRigidbody;
     [SerializeField] AudioSource musicPlayer;
@@ -16,6 +17,7 @@ public class Rewind : MonoBehaviour
 
     // Mutable Variables in Inspector
     public float rewindTime = 3f; // How far back does the player rewind
+    public int rewindAmount;
 
     // Mutable Variables in script
     public List<Vector3> positions; // List holding players last known position between 0 and rewindTime seconds
@@ -23,6 +25,11 @@ public class Rewind : MonoBehaviour
     // Mutable Variables in other scripts
     public bool rewinding = false;
     #endregion
+
+    private void Start()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
 
     // FixedUpdate
     #region
@@ -78,9 +85,7 @@ public class Rewind : MonoBehaviour
     {
         if (input.isPressed && !rewinding)
         {
-            rewinding = !rewinding;
-            playerController.enabled = !playerController.enabled;
-            musicPlayer.pitch = -1; // Reverses music
+            StartRewind();
         }
     }
     #endregion
@@ -93,9 +98,11 @@ public class Rewind : MonoBehaviour
     public void StartRewind()
     {
         rewinding = true;
+        musicPlayer.pitch = -1;
         playerController.enabled = false;
         playerCollider.enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
+        gameManager.lives--;
     }
 
     // Lets other scripts more easily stop rewind mechanic
