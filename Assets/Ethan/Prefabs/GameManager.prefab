@@ -9,6 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 639693919853825175}
+  - component: {fileID: 1224426949046964733}
+  - component: {fileID: 213474859250481102}
+  - component: {fileID: 164877018207217803}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -31,3 +34,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1224426949046964733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7777911891889704523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48a4809abb33fab45a7c5bd33683875b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  score: 0
+  combo: 0
+--- !u!114 &213474859250481102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7777911891889704523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb23d801ad656747ade6d8b0c632e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Songs
+  songClips:
+  - {fileID: 8300000, guid: 9ea27a37948c09445a78fa28eee3baff, type: 3}
+--- !u!114 &164877018207217803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7777911891889704523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2961b16090e814e44b3c70a2a41fec30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TimingUI
+  timing: {fileID: 0}
+  movingImage: {fileID: 0}
+  stillImage: {fileID: 0}
