@@ -21207,6 +21207,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 246598503}
     - target: {fileID: 6020978682391003714, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
+      propertyPath: messUpRange
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 6020978682391003714, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
       propertyPath: musicPlayer
       value: 
       objectReference: {fileID: 1108785620}

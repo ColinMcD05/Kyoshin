@@ -49,7 +49,6 @@ public class Timing : MonoBehaviour
                 currentSong = song;
             }
         }
-        move.action.performed += CheckTime; // Adds the function check time to the LeftRight action so it only checks when pressed
         SceneManager.sceneLoaded += ChangeSong; // Should change the current song once scene is loaded
         Invoke("StartMusic", startWaitTime);
     }
@@ -69,6 +68,7 @@ public class Timing : MonoBehaviour
     // Starts playing the music and sets up the timing for inputs
     void StartMusic()
     {
+        move.action.performed += CheckTime; // Adds the function check time to the LeftRight action so it only checks when pressed
         playerControllerLevel.enabled = true; // Lets players move
         songStartTime = (float)AudioSettings.dspTime; // Sets songStartTime based on AudioSettings clock
         musicPlayer.clip = currentSong.song; // Sets current clip to current song clip

@@ -182,7 +182,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5700681849272917398}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec453f3d6cf71514b9f145b642b1fc7a, type: 3}
   m_Name: 
@@ -205,7 +205,7 @@ MonoBehaviour:
   playerRigidbody: {fileID: 4101899570415419720}
   currentLane: 0
   maxCollisions: 3
-  lives: 3
+  regenTime: 2
 --- !u!114 &4535084694414337032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +224,7 @@ MonoBehaviour:
   timing: {fileID: 6020978682391003714}
   playerCollider: {fileID: 3663179470139874644}
   rewindTime: 3
+  rewindAmount: 0
   positions: []
   rewinding: 0
 --- !u!114 &6020978682391003714
