@@ -44,16 +44,20 @@ public class Dash : MonoBehaviour
 
     public void AddDash(float added)
     {
+        Debug.Log(added);
         if (dashMeter >= dashMax)
         {
+            Debug.Log("No gain");
             return;
         }
         else if (dashMeter+added > dashMax)
         {
+            Debug.Log("Set");
             dashMeter = dashMax;
         }
         else if (dashMeter < dashMax)
         {
+            Debug.Log("Add");
             dashMeter += added;
         }
     }
