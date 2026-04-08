@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour, IPointerEnterHandler
+public class MainMenu : MonoBehaviour
 {
     [SerializeField] Button playButton;
     [SerializeField] EventSystem eventSystem;
@@ -40,10 +40,5 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler
             yield return null;
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    public void OnPointerEnter(PointerEventData pointer)
-    {
-        eventSystem.SetSelectedGameObject(pointer.pointerEnter);
     }
 }
