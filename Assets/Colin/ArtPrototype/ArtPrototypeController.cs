@@ -23,8 +23,8 @@ public class ArtPrototypeController : MonoBehaviour
         Vector2 mouseInput = look.action.ReadValue<Vector2>();
 
         //get mouse or right stick input, seperate to 2 floats for x and y.
-        float mouseX = mouseInput.x * sensX;
-        float mouseY = mouseInput.y * sensY;
+        float mouseX = mouseInput.x * sensX * Time.deltaTime;
+        float mouseY = mouseInput.y * sensY * Time.deltaTime;
         //use inputs to turn
         xRotation += mouseX;
         yRotation -= mouseY;

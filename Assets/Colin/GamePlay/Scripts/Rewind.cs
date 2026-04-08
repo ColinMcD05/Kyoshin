@@ -83,7 +83,7 @@ public class Rewind : MonoBehaviour
     // Function gets called when the rewind button is pressed
     public void OnRewind(InputValue input)
     {
-        if (input.isPressed && !rewinding)
+        if (input.isPressed && !rewinding && Time.timeSinceLevelLoad >=4)
         {
             StartRewind();
         }

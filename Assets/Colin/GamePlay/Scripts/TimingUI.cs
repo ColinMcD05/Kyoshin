@@ -23,7 +23,6 @@ public class TimingUI : MonoBehaviour
             yield return null;
         }
         stillImage.transform.localScale = Vector3.one * (currentSong.bps+0.5f);
-        StartCoroutine(ResetCircle());
     }
 
     public IEnumerator ResetCircle()
