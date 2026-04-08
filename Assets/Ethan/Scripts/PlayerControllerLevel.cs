@@ -113,7 +113,7 @@ public class PlayerControllerLevel : MonoBehaviour
     #region Lose Life | This is a function that is called to lose a life
     // lose a life function will only be called after player collides with an obstacle x amount of times each collison will cause the camera to shake
     public void LoseLife(){
-        if (Time.time >= 4)
+        if (Time.timeSinceLevelLoad >= 4)
         {
             if (collidedAmout == 0)
             {

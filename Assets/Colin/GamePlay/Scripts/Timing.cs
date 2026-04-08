@@ -13,6 +13,7 @@ public class Timing : MonoBehaviour
     GameManager gameManager;
     [SerializeField] InputActionReference move;
     [SerializeField] GameObject player;
+    [SerializeField] TimingUI timingUI;
     Rewind rewind;
     PlayerControllerLevel playerControllerLevel;
     [SerializeField] Songs songClass;
@@ -31,6 +32,20 @@ public class Timing : MonoBehaviour
     public int comboNeeded = 3;
     public float startWaitTime = 1;
     #endregion
+
+    // OnEnable and OnDisble
+    private void OnEnable()
+    {
+        if (Time.timeSinceLevelLoad > startWaitTime + 1)
+        {
+            move.action.performed += CheckTime;
+        }
+    }
+
+    private void OnDisable()
+    {
+        move.action.performed -= CheckTime;
+    }
 
     // Start
     #region
@@ -73,6 +88,7 @@ public class Timing : MonoBehaviour
         songStartTime = (float)AudioSettings.dspTime; // Sets songStartTime based on AudioSettings clock
         musicPlayer.clip = currentSong.song; // Sets current clip to current song clip
         musicPlayer.Play(); // Players music
+        StartCoroutine(timingUI.ResetCircle());
     }
     #endregion
 
@@ -110,13 +126,13 @@ public class Timing : MonoBehaviour
         if (positionDecimal <= messUpRange || positionDecimal >= 1 - messUpRange) // checks if action takes place in the mess up range.
         {
             // Do correct movement
+            // Add combo
+            gameManager.combo++;
             // Check player speed, if not at max speed go faster
             if (playerControllerLevel.forwardSpeed <= playerControllerLevel.maxSpeed && gameManager.combo % comboNeeded == 0)
             {
                 playerControllerLevel.forwardSpeed *= 2;
             }
-            // Add combo
-            gameManager.combo++;
             Debug.Log("Good");
         }
         else
