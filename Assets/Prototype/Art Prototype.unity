@@ -1520,7 +1520,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 9ea27a37948c09445a78fa28eee3baff, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2703,8 +2703,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42500cd90a48e33429052739481c0ef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArtPrototypeController
-  sensX: 1
-  sensY: 1
+  sensX: 50
+  sensY: 50
   orientation: {fileID: 469869203}
   look: {fileID: 7217126125964850000, guid: 0d49c08b2b78e334f8c75dcb04a1f59f, type: 3}
   xRotation: 0
