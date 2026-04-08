@@ -51,7 +51,7 @@ public class Timing : MonoBehaviour
     #region
     private void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.FindWithTag("Player");
         rewind = player.GetComponent<Rewind>();
         playerControllerLevel = player.GetComponent<PlayerControllerLevel>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
