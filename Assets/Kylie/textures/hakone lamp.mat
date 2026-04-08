@@ -110,15 +110,15 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RimIntensity: 2
+    - _RimIntensity: 0
     - _RimPower: 8
     - _ShadowSoftness: 0.109
     - _ShadowThreshold: 0.184
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpecularIntensity: 1
-    - _SpecularThreshold: 0.712
+    - _SpecularIntensity: 0.57
+    - _SpecularThreshold: 0.999
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
