@@ -33,6 +33,6 @@ public class Win : MonoBehaviour
             image.color = color;
             yield return null;
         }
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene("WinScene");
     }
 }
