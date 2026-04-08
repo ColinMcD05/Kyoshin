@@ -105,7 +105,7 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _BackLightStrength: 0.35
+    - _BackLightStrength: 0.184
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -124,14 +124,14 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _OutlineShadowDarken: 0.557
-    - _OutlineThickness: 0.0124
+    - _OutlineThickness: 0.0104
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RimIntensity: 0.39
     - _RimPower: 4.63
-    - _ShadowSoftness: 0.05
-    - _ShadowThreshold: 0.564
+    - _ShadowSoftness: 0.052
+    - _ShadowThreshold: 0.563
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
