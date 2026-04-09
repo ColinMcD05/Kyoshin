@@ -25,6 +25,10 @@ public class Win : MonoBehaviour
             stillImage.enabled = false;
             Songs.SongData currentSong = other.GetComponent<Timing>().currentSong;
             gameManager.levels[currentSong.level].progress = Levels.Progress.completed;
+            if (gameManager.score > gameManager.levels[currentSong.level]
+            {
+                gameManager.levels[currentSong.level].highScore = gameManager.score;
+            }
             if (gameManager.levels[4].lockStatus == Levels.LockStatus.Locked) 
             {
                 int levelsCompleted = 0;

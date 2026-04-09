@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public int score = 0;
@@ -14,9 +15,18 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public Levels[] levels = new Levels[4];
     LevelList levelList = new LevelList();
+    static GameManager instance;
 
     public void Start()
     {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
         filePath = Application.persistentDataPath + "/Player_Data/";
         Load();
     }
