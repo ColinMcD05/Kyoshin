@@ -120,10 +120,10 @@ public class PlayerControllerLevel : MonoBehaviour
                 StartCoroutine(RegainLives());
             }
             collidedAmout++; // Increment the collided amount
-                             // Debug.Log("Collided Amount: " + collidedAmout); // Log the collided amount
+            Debug.Log("Collided Amount: " + collidedAmout); // Log the collided amount
             if (collidedAmout >= maxCollisions)
             { // If the collided amount is greater than or equal to the max collisions
-              // Debug.Log("Lives: " + lives);
+                //Debug.Log("Lives: " + lives);
                 collidedAmout = 0; // Reset the collided amount
                                    // call rewind time function
                 if (rewind != null)
@@ -146,6 +146,7 @@ public class PlayerControllerLevel : MonoBehaviour
         { 
             yield return new WaitForSeconds(regenTime);
             collidedAmout--;
+            Debug.Log("Regained");
         }
     }
 
