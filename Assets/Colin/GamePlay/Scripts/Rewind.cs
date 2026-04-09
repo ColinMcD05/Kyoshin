@@ -17,7 +17,6 @@ public class Rewind : MonoBehaviour
 
     // Mutable Variables in Inspector
     public float rewindTime = 3f; // How far back does the player rewind
-    public int rewindAmount;
 
     // Mutable Variables in script
     public List<Vector3> positions; // List holding players last known position between 0 and rewindTime seconds
@@ -51,13 +50,13 @@ public class Rewind : MonoBehaviour
     // Records the position of the player
     private void RecordPos()
     {
-        int maxHeld = Mathf.RoundToInt(rewindTime / Time.fixedDeltaTime);
+        int maxHeld = Mathf.RoundToInt(rewindTime / Time.fixedDeltaTime); // Variable used to incicate how many positions can be held
 
+        positions.Add(playerRigidbody.position); // Adds current player position to the list
         if (positions.Count > maxHeld)
         {
-            positions.RemoveAt(0);
+            positions.RemoveAt(0); // Remove the first position if list is greater than max held
         }
-        positions.Add(playerRigidbody.position);
     }
     #endregion
 
@@ -83,6 +82,7 @@ public class Rewind : MonoBehaviour
     // Function gets called when the rewind button is pressed
     public void OnRewind(InputValue input)
     {
+        // Rewind starts if not currently rewinding and enough time has passed
         if (input.isPressed && !rewinding && Time.timeSinceLevelLoad >=4)
         {
             StartRewind();
@@ -98,10 +98,15 @@ public class Rewind : MonoBehaviour
     public void StartRewind()
     {
         rewinding = true;
-        musicPlayer.pitch = -1;
+
+        musicPlayer.pitch = -1; // Reverses music
+
+        // Disables parts of player
         playerController.enabled = false;
         playerCollider.enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
+
+        // Lose a life when rewinding
         gameManager.lives--;
     }
 
@@ -109,11 +114,14 @@ public class Rewind : MonoBehaviour
     public void StopRewind()
     {
         rewinding = false;
-        playerController.enabled = true;
+
         musicPlayer.pitch = 1; // Music plays normally
         timing.rewindTimeUsed += rewindTime; // Adds time that was rewound to get accurate position of song
+        
+        // Enables parts of player
         GetComponent<Rigidbody>().isKinematic = false;
         playerCollider.enabled = true;
+        playerController.enabled = true;
     }
     #endregion
 }

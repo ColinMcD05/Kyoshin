@@ -74,6 +74,10 @@ public class Timing : MonoBehaviour
     private void Update()
     {
         SongPosition(out songPosition, out songPositionInBeats);
+        if (songPosition >= currentSong.length)
+        {
+            SceneManager.LoadScene("LoseScreen");
+        }
     }
     #endregion
 

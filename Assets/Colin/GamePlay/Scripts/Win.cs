@@ -15,6 +15,7 @@ public class Win : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            other.GetComponent<PlayerControllerLevel>().forwardSpeed = other.GetComponent<PlayerControllerLevel>().maxSpeed;
             moveImage.enabled = false;
             stillImage.enabled = false;
             other.GetComponent<Timing>().enabled = false;
