@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a4809abb33fab45a7c5bd33683875b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  score: 0
+  score: 100
   combo: 0
   lives: 3
 --- !u!114 &213474859250481102

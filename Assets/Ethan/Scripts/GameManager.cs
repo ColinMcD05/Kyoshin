@@ -26,9 +26,11 @@ public class GameManager : MonoBehaviour
         else
         {
             instance = this;
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         filePath = Application.persistentDataPath + "/Player_Data/";
         Load();
+        Debug.Log(levels[1]);
     }
 
     public void GameOver(){
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("Doing This");
             levels = new Levels[4]
             {
                 new Levels
@@ -123,5 +126,11 @@ public class GameManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         Save();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        score = 0;
     }
 }

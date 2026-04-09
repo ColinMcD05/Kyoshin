@@ -11,7 +11,7 @@ public class Win : MonoBehaviour
     [SerializeField] Image image;
     public float fadeOutTime;
 
-    void Start()
+    void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
@@ -24,12 +24,13 @@ public class Win : MonoBehaviour
             moveImage.enabled = false;
             stillImage.enabled = false;
             Songs.SongData currentSong = other.GetComponent<Timing>().currentSong;
+            Debug.Log(gameManager.levels[currentSong.level - 1]);
             gameManager.levels[currentSong.level].progress = Levels.Progress.completed;
-            if (gameManager.score > gameManager.levels[currentSong.level]
+            if (gameManager.score > gameManager.levels[currentSong.level - 1].highScore)
             {
                 gameManager.levels[currentSong.level].highScore = gameManager.score;
             }
-            if (gameManager.levels[4].lockStatus == Levels.LockStatus.Locked) 
+            if (gameManager.levels[3].lockStatus == Levels.LockStatus.Locked) 
             {
                 int levelsCompleted = 0;
                 for (int i = 0; i < gameManager.levels.Length - 1; i++)
