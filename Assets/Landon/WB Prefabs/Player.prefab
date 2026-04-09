@@ -8,6 +8,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3403870942742053944, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
+      propertyPath: rewind
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3403870942742053944, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
+      propertyPath: forwardSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3403870942742053944, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
+      propertyPath: groundCheckDistance
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3403870942742053944, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
+      propertyPath: groundLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 4535084694414337032, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
+      propertyPath: playerRigidbody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6020978682391003714, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
+      propertyPath: messUpRange
+      value: 0.33
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 19bed16e927a2ca4e95cdb15a3c222e4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -59,30 +83,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 19bed16e927a2ca4e95cdb15a3c222e4, type: 3}
       propertyPath: m_TagString
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3403870942742053944, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
-      propertyPath: rewind
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3403870942742053944, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
-      propertyPath: forwardSpeed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3403870942742053944, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
-      propertyPath: groundCheckDistance
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3403870942742053944, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
-      propertyPath: groundLayers.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 4535084694414337032, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
-      propertyPath: playerRigidbody
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6020978682391003714, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
-      propertyPath: messUpRange
-      value: 0.33
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -244,7 +244,6 @@ MonoBehaviour:
   timing: {fileID: 1567925838254450578}
   playerCollider: {fileID: 449509456027308778}
   rewindTime: 3
-  rewindAmount: 0
   positions: []
   rewinding: 0
 --- !u!114 &1567925838254450578
@@ -286,4 +285,4 @@ MonoBehaviour:
   dashMult: 2
   dashBarLength: 3
   dashing: 0
-  playerControllerLevel: {fileID: 0}
+  playerControllerLevel: {fileID: 4074926366466159053}

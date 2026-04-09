@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   score: 0
   combo: 0
+  lives: 3
 --- !u!114 &213474859250481102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,6 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Songs
   songClips:
   - {fileID: 8300000, guid: 9ea27a37948c09445a78fa28eee3baff, type: 3}
+  - {fileID: 8300000, guid: 35a96f732b4d3704e8ccbbb658e0188d, type: 3}
 --- !u!114 &164877018207217803
 MonoBehaviour:
   m_ObjectHideFlags: 0

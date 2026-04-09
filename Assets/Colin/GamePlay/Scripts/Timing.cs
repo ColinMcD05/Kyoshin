@@ -1,5 +1,3 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -22,7 +20,7 @@ public class Timing : MonoBehaviour
 
     // Variables for timing
     float songStartTime; // Time when the song started playing
-    float songPosition; // Rough position of the song position of the song
+    float songPosition = 0; // Rough position of the song position of the song
     [HideInInspector] public float songPositionInBeats = 0; // find where it lands on the beat for correct timing
     float songTimePassed; // How much time has passsed since the song has played
     [Range(0, 0.33f)] public float messUpRange = 0.33f;
@@ -51,6 +49,8 @@ public class Timing : MonoBehaviour
     #region
     private void Start()
     {
+        songStartTime = 0;
+        Debug.Log((float)AudioSettings.dspTime);
         player = GameObject.FindWithTag("Player");
         rewind = player.GetComponent<Rewind>();
         playerControllerLevel = player.GetComponent<PlayerControllerLevel>();
@@ -74,8 +74,9 @@ public class Timing : MonoBehaviour
     private void Update()
     {
         SongPosition(out songPosition, out songPositionInBeats);
-        if (songPosition >= currentSong.length)
+        if (songPosition >= currentSong.length && songStartTime != 0)
         {
+            Debug.Log(songPosition);
             SceneManager.LoadScene("LoseScreen");
         }
     }

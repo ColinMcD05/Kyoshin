@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Unity.Cinemachine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 public class PlayerControllerLevel : MonoBehaviour
