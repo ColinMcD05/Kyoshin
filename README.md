@@ -5,8 +5,4 @@ Contributions:
 Colin McDaniel - Programmer:
   Programmed the timing mechanic where you must do an action on time in order for it to be successful
   Programmed the rewind mechanic where if you hit enough object or fail you will revert x number of seconds
-  Programmed the dash mechanic
-
-Ethan Handler - Programmer:
-  Programmed player movement between lanes in level
-  
+  Programmed the dash mechanic  
