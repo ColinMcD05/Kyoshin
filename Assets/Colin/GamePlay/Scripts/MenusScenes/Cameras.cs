@@ -2,8 +2,14 @@ using UnityEngine;
 
 public class Cameras : MonoBehaviour
 {
-    public Camera thisCamera;
-    public Camera mainCamera;
+    Camera thisCamera;
+    Camera mainCamera;
+
+    void Start()
+    {
+        thisCamera = gameObject.GetComponentInParent<Camera>();
+        mainCamera = Camera.main;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
