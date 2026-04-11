@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     // Variables needed for saving and loading
     [HideInInspector] public Levels[] levels = new Levels[4]; // An array holding levels data
     LevelList levelList = new LevelList(); // A class holding a list of the levels for saving
+
+    // Making gamemanager permanent
     static GameManager instance; // instance for persistant objects
 
     public void Awake()
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            DontDestroyOnLoad(gameObject);
             instance = this;
             SceneManager.sceneLoaded += OnSceneLoaded;
         }

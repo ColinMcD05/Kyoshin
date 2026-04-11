@@ -20,16 +20,27 @@ public class Win : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            // Set player speed to max speed
             other.GetComponent<PlayerControllerLevel>().forwardSpeed = other.GetComponent<PlayerControllerLevel>().maxSpeed;
+
+            // Disable timing based mechanics
+            other.GetComponent<Timing>().enabled = false;
             moveImage.enabled = false;
             stillImage.enabled = false;
+            // Get current song
             Songs.SongData currentSong = other.GetComponent<Timing>().currentSong;
-            Debug.Log(gameManager.levels[currentSong.level - 1]);
-            gameManager.levels[currentSong.level].progress = Levels.Progress.completed;
-            if (gameManager.score > gameManager.levels[currentSong.level - 1].highScore)
+            // Get current level
+            Levels currentLevel = gameManager.levels[currentSong.level - 1];
+
+            // Set current levels progress to completed
+            currentLevel.progress = Levels.Progress.completed;
+
+            // If score is higher than level highscore, set highscore to score
+            if (gameManager.score > currentLevel.highScore)
             {
-                gameManager.levels[currentSong.level].highScore = gameManager.score;
+                currentLevel.highScore = gameManager.score;
             }
+            // If Unlimited mode is lcoked, checked if all three other levels have been completed and unlock it.
             if (gameManager.levels[3].lockStatus == Levels.LockStatus.Locked) 
             {
                 int levelsCompleted = 0;
@@ -41,19 +52,21 @@ public class Win : MonoBehaviour
                     }
                     if (levelsCompleted >= 3)
                     {
-                        gameManager.levels[4].lockStatus = Levels.LockStatus.Unlocked;
+                        gameManager.levels[3].lockStatus = Levels.LockStatus.Unlocked;
                     }
                 }
             }
-            other.GetComponent<Timing>().enabled = false;
+            // Start fadeout
             StartCoroutine(FadeOut());
         }
     }
 
     IEnumerator FadeOut()
     {
+        // Variables for the color to change
         float alpha = 0;
         Color color = image.color;
+        // While alpha is less than 1, slowly increase alpha
         while (image.color.a <= 1)
         {
             alpha += Time.deltaTime / fadeOutTime;
