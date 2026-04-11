@@ -483,18 +483,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 164877018207217803, guid: d713011faa9f5964d9fc906740cdfa56, type: 3}
-      propertyPath: timing
-      value: 
-      objectReference: {fileID: 746549445}
-    - target: {fileID: 164877018207217803, guid: d713011faa9f5964d9fc906740cdfa56, type: 3}
-      propertyPath: stillImage
-      value: 
-      objectReference: {fileID: 291835685}
-    - target: {fileID: 164877018207217803, guid: d713011faa9f5964d9fc906740cdfa56, type: 3}
-      propertyPath: movingImage
-      value: 
-      objectReference: {fileID: 291835686}
     - target: {fileID: 639693919853825175, guid: d713011faa9f5964d9fc906740cdfa56, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.838
@@ -1438,6 +1426,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7145286482678232311, guid: f2f280d2783593448a76a6841b41fcf6, type: 3}
+      propertyPath: timing
+      value: 
+      objectReference: {fileID: 746549445}
     - target: {fileID: 8768029285048940112, guid: f2f280d2783593448a76a6841b41fcf6, type: 3}
       propertyPath: m_LocalScale.x
       value: 24.688
@@ -10266,17 +10258,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 459dce46211c54544a40abde73b11228, type: 3}
---- !u!114 &1030621277 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 164877018207217803, guid: d713011faa9f5964d9fc906740cdfa56, type: 3}
-  m_PrefabInstance: {fileID: 122800782}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2961b16090e814e44b3c70a2a41fec30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TimingUI
 --- !u!43 &1054155711
 Mesh:
   m_ObjectHideFlags: 0
@@ -15675,6 +15656,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7757324406659165243, guid: 7d76545bf47ad2d41b53601841effe4d, type: 3}
   m_PrefabInstance: {fileID: 1283409901}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1292056808 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7145286482678232311, guid: f2f280d2783593448a76a6841b41fcf6, type: 3}
+  m_PrefabInstance: {fileID: 291835684}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2961b16090e814e44b3c70a2a41fec30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TimingUI
 --- !u!1001 &1324122755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24160,7 +24152,7 @@ PrefabInstance:
     - target: {fileID: 6020978682391003714, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
       propertyPath: timingUI
       value: 
-      objectReference: {fileID: 1030621277}
+      objectReference: {fileID: 0}
     - target: {fileID: 6020978682391003714, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
       propertyPath: songClass
       value: 
@@ -25385,7 +25377,7 @@ PrefabInstance:
     - target: {fileID: 1567925838254450578, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
       propertyPath: timingUI
       value: 
-      objectReference: {fileID: 1030621277}
+      objectReference: {fileID: 1292056808}
     - target: {fileID: 1567925838254450578, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
       propertyPath: songClass
       value: 

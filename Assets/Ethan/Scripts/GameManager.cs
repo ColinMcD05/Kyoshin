@@ -10,12 +10,14 @@ public class GameManager : MonoBehaviour
     public int combo = 0;
     public int lives = 3;
 
-    string filePath;
-    string dataPath;
+    // Variables to get correct file pathing
+    string filePath; // Path to directory
+    string dataPath; // Path to specific file
 
-    [HideInInspector] public Levels[] levels = new Levels[4];
-    LevelList levelList = new LevelList();
-    static GameManager instance;
+    // Variables needed for saving and loading
+    [HideInInspector] public Levels[] levels = new Levels[4]; // An array holding levels data
+    LevelList levelList = new LevelList(); // A class holding a list of the levels for saving
+    static GameManager instance; // instance for persistant objects
 
     public void Awake()
     {
@@ -30,7 +32,6 @@ public class GameManager : MonoBehaviour
         }
         filePath = Application.persistentDataPath + "/Player_Data/";
         Load();
-        Debug.Log(levels[1]);
     }
 
     public void GameOver(){
@@ -45,28 +46,31 @@ public class GameManager : MonoBehaviour
         //Debug.Log("Score: " + score);
     }
 
+    // Load
+    #region
     void Load()
     {
-        dataPath = filePath + "Level_Data.json";
+        dataPath = filePath + "Level_Data.json"; // Set dataPath to where Level_Data is held
+        // If directory and file exists, set level list to the level data saved
         if (Directory.Exists(filePath))
         {
             if (File.Exists(dataPath))
             {
                 using (StreamReader stream = new StreamReader(dataPath))
                 {
-                    var levelString = stream.ReadToEnd();
-                    var levelData = JsonUtility.FromJson<LevelList>(levelString);
+                    var levelString = stream.ReadToEnd(); // Reads data
+                    var levelData = JsonUtility.FromJson<LevelList>(levelString); // sets data into lists to distrubute
 
                     for (int i = 0; i < levelData.levelList.Length; i++)
                     {
-                        levels[i] = levelData.levelList[i];
+                        levels[i] = levelData.levelList[i]; // correctly assigns data to the correct list
                     }
                 }
             }
         }
         else
         {
-            Debug.Log("Doing This");
+            // If this is the first time opening the game set up levels information
             levels = new Levels[4]
             {
                 new Levels
@@ -107,24 +111,31 @@ public class GameManager : MonoBehaviour
             };
         }
     }
+    #endregion
 
+    // Save
+    #region
     public void Save()
     {
-        dataPath = filePath + "Level_Data.json";
-        levelList.levelList = levels;
+        dataPath = filePath + "Level_Data.json"; // set dataPath to where levels data is held
+        levelList.levelList = levels; // Set the levelList list in the class levelList to the list levels in order to save properly
+        // Checks if the directory exists
         if (!Directory.Exists(filePath))
         {
             Directory.CreateDirectory(filePath);
         }
+        // Overwrite level data with current level data
         string levelString = JsonUtility.ToJson(levelList, true);
         using (StreamWriter stream = File.CreateText(dataPath))
         {
             stream.WriteLine(levelString);
         }
     }
+    #endregion
 
     private void OnApplicationQuit()
     {
+        // Save game once application ends
         Save();
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
