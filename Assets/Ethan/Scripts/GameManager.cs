@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     LevelList levelList = new LevelList();
     static GameManager instance;
 
-    public void Start()
+    public void Awake()
     {
         if (instance != null)
         {
