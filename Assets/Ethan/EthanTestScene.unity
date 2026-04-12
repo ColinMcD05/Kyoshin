@@ -432,7 +432,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4535084694414337032, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
   m_PrefabInstance: {fileID: 3848446327473552623}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 3848446327473552624}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2037d2795bc34941b72e57faaf14b74, type: 3}
@@ -1058,7 +1058,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6020978682391003714, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
   m_PrefabInstance: {fileID: 3848446327473552623}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 3848446327473552624}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85635816ead61e947bf89007773eaa49, type: 3}
@@ -1236,8 +1236,44 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5700681849272917398, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3848446327473552625}
   m_SourcePrefab: {fileID: 100100000, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
+--- !u!1 &3848446327473552624 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5700681849272917398, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
+  m_PrefabInstance: {fileID: 3848446327473552623}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3848446327473552625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3848446327473552624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c780242a5f3f43f489da9fa3f99a1571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLevelMovement
+  forwardSpeed: 8
+  maxSpeed: 0
+  minSpeed: 0
+  jumpForce: 7
+  inputThreshold: 0.5
+  groundCheckDistance: 1.5
+  groundCheckStartHeight: 0.5
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  playerRigidbody: {fileID: 1871260108}
+  currentLane: 1
+  lefLaneX: -5
+  centerLaneX: 0
+  rightLaneX: 5
+  laneChangeSpeed: 20
 --- !u!1001 &5285660206617030631
 PrefabInstance:
   m_ObjectHideFlags: 0
