@@ -22,7 +22,7 @@ public class Obstacle : MonoBehaviour
         
     }
     void OnTriggerEnter(Collider other){
-        if(other.gameObject.CompareTag("Player")){
+        if(other.gameObject.CompareTag("Player") /*&& !other.GetComponent<Dash>().dashing*/){
             playerControllerLevel.ShakeCamera(10); // Shake the camera by 10 units
             playerControllerLevel.LoseLife();
         }

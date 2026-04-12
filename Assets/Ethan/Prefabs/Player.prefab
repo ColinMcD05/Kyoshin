@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3276353842319540466}
   - component: {fileID: 3403870942742053944}
   - component: {fileID: 4535084694414337032}
+  - component: {fileID: 6020978682391003714}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -181,15 +182,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5700681849272917398}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec453f3d6cf71514b9f145b642b1fc7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControllerLevel
+  rewind: {fileID: 0}
   lefLaneX: -5
   centerLaneX: 0
   rightLaneX: 5
   forwardSpeed: 8
+  maxSpeed: 0
+  minSpeed: 0
   laneChangeSpeed: 20
   jumpForce: 7
   inputThreshold: 0.5
@@ -200,6 +204,8 @@ MonoBehaviour:
     m_Bits: 0
   playerRigidbody: {fileID: 4101899570415419720}
   currentLane: 0
+  maxCollisions: 3
+  regenTime: 2
 --- !u!114 &4535084694414337032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,7 +219,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rewind
   playerController: {fileID: 3403870942742053944}
-  rigidbody: {fileID: 4101899570415419720}
+  playerRigidbody: {fileID: 4101899570415419720}
+  musicPlayer: {fileID: 0}
+  timing: {fileID: 6020978682391003714}
+  playerCollider: {fileID: 3663179470139874644}
   rewindTime: 3
+  rewindAmount: 0
   positions: []
   rewinding: 0
+--- !u!114 &6020978682391003714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5700681849272917398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85635816ead61e947bf89007773eaa49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Timing
+  move: {fileID: 2440090981901601583, guid: a1fa9bfeab0d76b4994c5ae431a6888a, type: 3}
+  player: {fileID: 5700681849272917398}
+  songClass: {fileID: 0}
+  musicPlayer: {fileID: 0}
+  songPositionInBeats: 0
+  messUpRange: 0.25
+  rewindTimeUsed: 0
+  comboNeeded: 3
+  startWaitTime: 1

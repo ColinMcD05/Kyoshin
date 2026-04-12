@@ -5,7 +5,6 @@ public class PlayerInput : MonoBehaviour
 {
     // Input Actions needed for Hub movement and actions
     public InputActionReference move;
-    public InputActionReference look;
 
     // Other script references
     public PlayerHubMovement player;
