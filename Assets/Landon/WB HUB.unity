@@ -8507,6 +8507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e649fbba42c15546acda2f6cb1a8109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cameras
+  rotationChange: -90
 --- !u!1001 &788118066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9434,6 +9435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e649fbba42c15546acda2f6cb1a8109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cameras
+  rotationChange: 90
 --- !u!65 &901272240
 BoxCollider:
   m_ObjectHideFlags: 0

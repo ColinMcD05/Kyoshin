@@ -12,19 +12,19 @@ public class Songs : MonoBehaviour
     public class SongData
     {
         public string name;
+        public string levelName;
         public AudioClip song;
         public int level;
-        public int levelIndex;
         public int bpm;
         public float bps; // time between beats. should really be called spb but too late now.
         public float length; // in seconds  
 
-        public SongData(string name, AudioClip song, int level, int levelIndex, int bpm, float length) // When new class instantiated assign variables correctly
+        public SongData(string name, string levelName, AudioClip song, int level, int bpm, float length) // When new class instantiated assign variables correctly
         {
             this.name = name;
+            this.levelName = levelName;
             this.song = song;
             this.level = level;
-            this.levelIndex = levelIndex;
             this.bpm = bpm;
             this.bps = 60f / bpm; // Calculates bps
             this.length = length;
@@ -36,8 +36,8 @@ public class Songs : MonoBehaviour
     {
         songs = new List<SongData>()
         {
-            new SongData("Bullet Train", songClips[0], 4, 0, 155, 137),
-            new SongData("Hakone", songClips[1], 1, 1, 125, 146)
+            new SongData("Hakone", "Hakone", songClips[0], 1, 125, 146),
+            new SongData("Bullet Train", "Tokyo", songClips[1], 3, 155, 137)
         };
     }
 }

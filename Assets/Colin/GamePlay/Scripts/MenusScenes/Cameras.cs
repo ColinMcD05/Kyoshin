@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Cameras : MonoBehaviour
@@ -7,6 +8,13 @@ public class Cameras : MonoBehaviour
     // References
     Camera thisCamera;
     Camera mainCamera;
+    GameObject player;
+    PlayerHubMovement playerMovement;
+
+    // Rotation
+    public int rotationChange;
+    Quaternion originalRotation;
+    Quaternion newRotation;
     #endregion
 
    void Start()
@@ -14,6 +22,10 @@ public class Cameras : MonoBehaviour
         // Set Camera references
         thisCamera = gameObject.GetComponentInParent<Camera>();
         mainCamera = Camera.main;
+        player = GameObject.Find("Player_Hub");
+        playerMovement = player.GetComponent<PlayerHubMovement>();
+        originalRotation = player.transform.rotation;
+        newRotation = originalRotation * Quaternion.Euler(0, rotationChange, 0);
     }
 
     // When entering area switch camera
@@ -23,6 +35,7 @@ public class Cameras : MonoBehaviour
         {
             thisCamera.enabled = true;
             mainCamera.enabled = false;
+            StartCoroutine(ChangeRotation(newRotation));
         }
     }
 
@@ -33,6 +46,16 @@ public class Cameras : MonoBehaviour
         {
             thisCamera.enabled = false;
             mainCamera.enabled = true;
+            StartCoroutine(ChangeRotation(originalRotation));
         }
+    }
+
+    IEnumerator ChangeRotation(Quaternion change)
+    {
+        while (playerMovement.direction.x != 0 || playerMovement.direction.z != 0)
+        {
+            yield return null;
+        }
+        player.transform.rotation = change;
     }
 }

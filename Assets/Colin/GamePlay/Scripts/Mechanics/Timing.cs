@@ -62,7 +62,7 @@ public class Timing : MonoBehaviour
         // Changing current song based on the build index. May change
         foreach (Songs.SongData song in songClass.songs)
         {
-            if (SceneManager.GetActiveScene().buildIndex == song.levelIndex)
+            if (SceneManager.GetActiveScene().name == song.levelName)
             {
                 currentSong = song;
             }
@@ -116,7 +116,7 @@ public class Timing : MonoBehaviour
     {
         foreach (Songs.SongData song in songClass.songs)
         {
-            if (scene.buildIndex == song.levelIndex)
+            if (scene.name == song.levelName)
             {
                 currentSong = song;
             }

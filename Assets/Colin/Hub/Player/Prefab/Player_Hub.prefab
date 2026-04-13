@@ -219,7 +219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInput
   move: {fileID: 7262952768987543960, guid: 575d171b48a2812499036859774dec5b, type: 3}
-  look: {fileID: 8063910938247117474, guid: 575d171b48a2812499036859774dec5b, type: 3}
   player: {fileID: 7964936376232254391}
 --- !u!114 &7964936376232254391
 MonoBehaviour:
