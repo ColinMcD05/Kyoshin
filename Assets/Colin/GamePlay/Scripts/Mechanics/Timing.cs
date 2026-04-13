@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -18,6 +19,9 @@ public class Timing : MonoBehaviour
     [SerializeField] Songs songClass;
     [HideInInspector] public Songs.SongData currentSong;
     [SerializeField] AudioSource musicPlayer;
+
+    // IEnumerators
+    IEnumerator resetCircle;
 
     // Variables for timing
     float songStartTime; // Time when the song started playing
@@ -50,6 +54,7 @@ public class Timing : MonoBehaviour
     #region
     private void Start()
     {
+        resetCircle = timingUI.ResetCircle();
         songStartTime = 0;
         Debug.Log((float)AudioSettings.dspTime);
         if (player == null)
@@ -96,7 +101,7 @@ public class Timing : MonoBehaviour
         songStartTime = (float)AudioSettings.dspTime; // Sets songStartTime based on AudioSettings clock
         musicPlayer.clip = currentSong.song; // Sets current clip to current song clip
         musicPlayer.Play(); // Players music
-        StartCoroutine(timingUI.ResetCircle());
+        StartCoroutine(resetCircle);
     }
     #endregion
 
@@ -121,6 +126,16 @@ public class Timing : MonoBehaviour
                 currentSong = song;
             }
         }
+    }
+
+    public void ChangeSong()
+    {
+        int newSong = Random.Range(0, songClass.songs.Count);
+        while (songClass.songs[newSong].name == currentSong.name)
+        {
+            newSong = Random.Range(0, songClass.songs.Count);
+        }
+        currentSong = songClass.songs[newSong];
     }
     #endregion
 

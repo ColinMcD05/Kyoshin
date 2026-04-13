@@ -109,6 +109,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 19bed16e927a2ca4e95cdb15a3c222e4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 40669738938003321}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 19bed16e927a2ca4e95cdb15a3c222e4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8146030246671798739}
   m_SourcePrefab: {fileID: 100100000, guid: 19bed16e927a2ca4e95cdb15a3c222e4, type: 3}
 --- !u!1 &2902578447622799134 stripped
 GameObject:
@@ -202,28 +205,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2902578447622799134}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec453f3d6cf71514b9f145b642b1fc7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControllerLevel
   rewind: {fileID: 3233316654364501501}
-  lefLaneX: -5
-  centerLaneX: 0
-  rightLaneX: 5
-  forwardSpeed: 8
-  maxSpeed: 0
-  minSpeed: 0
-  laneChangeSpeed: 20
-  jumpForce: 7
-  inputThreshold: 0.5
-  groundCheckDistance: 1.2
-  groundCheckStartHeight: 0.1
-  groundLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  playerRigidbody: {fileID: 8025993684956010781}
-  currentLane: 0
   maxCollisions: 3
   regenTime: 2
 --- !u!114 &3233316654364501501
@@ -285,4 +272,33 @@ MonoBehaviour:
   dashMult: 2
   dashBarLength: 3
   dashing: 0
-  playerControllerLevel: {fileID: 4074926366466159053}
+  playerLevelMovement: {fileID: 8146030246671798739}
+--- !u!114 &8146030246671798739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2902578447622799134}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c780242a5f3f43f489da9fa3f99a1571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLevelMovement
+  forwardSpeed: 8
+  maxSpeed: 0
+  minSpeed: 0
+  jumpForce: 7
+  inputThreshold: 0.5
+  groundCheckDistance: 1.5
+  groundCheckStartHeight: 0.5
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  playerRigidbody: {fileID: 8025993684956010781}
+  currentLane: 1
+  lefLaneX: -5
+  centerLaneX: 0
+  rightLaneX: 5
+  laneChangeSpeed: 20
+  wallRunDelay: 0.2
