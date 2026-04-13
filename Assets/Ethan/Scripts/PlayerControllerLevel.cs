@@ -6,25 +6,11 @@ public class PlayerControllerLevel : MonoBehaviour
 {
     [SerializeField] private Rewind rewind;
     GameManager gameManager;
-    PlayerLevelMovement playerLevelMovement;
-   
-// Collision Variables | This is the amount of times the player has collided with an obstacle
-    private int collidedAmout = 0;
+    
+    int collidedAmout = 0;
     public int maxCollisions = 4;
     public float regenTime = 2.0f;
-
-    void Awake(){
-        playerLevelMovement = GetComponent<PlayerLevelMovement>();
-    }
-
-    private void Start()
-    {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
-    }
-
-    
-
+   
     #region Lose Life | This is a function that is called to lose a life
     // lose a life function will only be called after player collides with an obstacle x amount of times each collison will cause the camera to shake
     public void LoseLife(){
