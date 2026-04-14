@@ -8,6 +8,7 @@ public class Cameras : MonoBehaviour
     // References
     Camera thisCamera;
     Camera mainCamera;
+    Transform orientation;
     GameObject player;
     PlayerHubMovement playerMovement;
 
@@ -23,8 +24,10 @@ public class Cameras : MonoBehaviour
         thisCamera = gameObject.GetComponentInParent<Camera>();
         mainCamera = Camera.main;
         player = GameObject.Find("Player_Hub");
+        orientation = player.transform.GetChild(0);
+        Debug.Log(orientation.gameObject.name);
         playerMovement = player.GetComponent<PlayerHubMovement>();
-        originalRotation = player.transform.rotation;
+        originalRotation = orientation.transform.rotation;
         newRotation = originalRotation * Quaternion.Euler(0, rotationChange, 0);
     }
 
@@ -56,6 +59,6 @@ public class Cameras : MonoBehaviour
         {
             yield return null;
         }
-        player.transform.rotation = change;
+        orientation.transform.rotation = change;
     }
 }
