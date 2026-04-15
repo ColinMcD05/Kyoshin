@@ -83,4 +83,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Songs
   songClips:
   - {fileID: 8300000, guid: 35a96f732b4d3704e8ccbbb658e0188d, type: 3}
+  - {fileID: 8300000, guid: 52fa32fa877288245a02b318d76fa00c, type: 3}
   - {fileID: 8300000, guid: 9ea27a37948c09445a78fa28eee3baff, type: 3}
