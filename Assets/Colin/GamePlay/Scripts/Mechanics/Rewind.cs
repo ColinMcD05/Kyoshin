@@ -10,15 +10,19 @@ public class Rewind : MonoBehaviour
     GameManager gameManager;
     [SerializeField] PlayerControllerLevel playerController;
     [SerializeField] Rigidbody playerRigidbody;
+    [SerializeField] PlayerLevelMovement playerMovement;
+    [SerializeField] PlayerMoveForward playerForward;
     [SerializeField] AudioSource musicPlayer;
     [SerializeField] Timing timing;
     [SerializeField] Collider playerCollider;
 
     // Mutable Variables in Inspector
     public float rewindTime = 3f; // How far back does the player rewind
+    public float invincibility;
 
     // Mutable Variables in script
     public List<Vector3> positions; // List holding players last known position between 0 and rewindTime seconds
+    public List<int> lane;
 
     // Mutable Variables in other scripts
     public bool rewinding = false;
@@ -52,9 +56,11 @@ public class Rewind : MonoBehaviour
         int maxHeld = Mathf.RoundToInt(rewindTime / Time.fixedDeltaTime); // Variable used to incicate how many positions can be held
 
         positions.Add(playerRigidbody.position); // Adds current player position to the list
+        lane.Add(playerMovement.currentLane);
         if (positions.Count > maxHeld)
         {
             positions.RemoveAt(0); // Remove the first position if list is greater than max held
+            lane.RemoveAt(0);
         }
     }
     #endregion
@@ -102,8 +108,8 @@ public class Rewind : MonoBehaviour
 
         // Disables parts of player
         playerController.enabled = false;
-        playerCollider.enabled = false;
-        GetComponent<Rigidbody>().isKinematic = true;
+        playerForward.enabled = false;
+        playerMovement.enabled = false;
 
         // Lose a life when rewinding
         gameManager.lives--;
@@ -116,11 +122,18 @@ public class Rewind : MonoBehaviour
 
         musicPlayer.pitch = 1; // Music plays normally
         timing.rewindTimeUsed += rewindTime; // Adds time that was rewound to get accurate position of song
-        
+
         // Enables parts of player
-        GetComponent<Rigidbody>().isKinematic = false;
-        playerCollider.enabled = true;
-        playerController.enabled = true;
+        Invoke("BecomeVulnerable", invincibility);
+        playerForward.enabled = true;
+        playerMovement.enabled = true;
+        playerMovement.currentLane = lane[lane.Count - 1];
+        lane.Clear();
     }
     #endregion
+
+    void BecomeVulnerable()
+    {
+        playerController.enabled = true;
+    }
 }

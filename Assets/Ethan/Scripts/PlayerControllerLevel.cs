@@ -6,11 +6,16 @@ public class PlayerControllerLevel : MonoBehaviour
 {
     [SerializeField] private Rewind rewind;
     GameManager gameManager;
-    
+
     int collidedAmout = 0;
     public int maxCollisions = 4;
     public float regenTime = 2.0f;
-   
+
+    private void Awake()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
     #region Lose Life | This is a function that is called to lose a life
     // lose a life function will only be called after player collides with an obstacle x amount of times each collison will cause the camera to shake
     public void LoseLife(){
@@ -18,9 +23,13 @@ public class PlayerControllerLevel : MonoBehaviour
         {
             if (collidedAmout == 0)
             {
+                collidedAmout++;
                 StartCoroutine(RegainLives());
             }
-            collidedAmout++; // Increment the collided amount
+            else
+            {
+                collidedAmout++; // Increment the collided amount
+            }
             Debug.Log("Collided Amount: " + collidedAmout); // Log the collided amount
             if (collidedAmout >= maxCollisions)
             { // If the collided amount is greater than or equal to the max collisions

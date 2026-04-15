@@ -16,6 +16,7 @@ public class Timing : MonoBehaviour
     Rewind rewind;
     PlayerLevelMovement playerLevelMovement;
     PlayerControllerLevel playerControllerLevel;
+    PlayerMoveForward playerForward;
     [SerializeField] Songs songClass;
     [HideInInspector] public Songs.SongData currentSong;
     [SerializeField] AudioSource musicPlayer;
@@ -34,6 +35,9 @@ public class Timing : MonoBehaviour
     // Other variables
     public int comboNeeded = 3;
     public float startWaitTime = 1;
+    public int maxMult = 10;
+    public int comboNeededMult = 5;
+    public int goodScore = 5;
     #endregion
 
     // OnEnable and OnDisble
@@ -62,6 +66,7 @@ public class Timing : MonoBehaviour
         playerControllerLevel = player.GetComponent<PlayerControllerLevel>();
         rewind = player.GetComponent<Rewind>();
         playerLevelMovement = player.GetComponent<PlayerLevelMovement>();
+        playerForward = player.GetComponent<PlayerMoveForward>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         // Changing current song based on the build index. May change
@@ -144,6 +149,11 @@ public class Timing : MonoBehaviour
     // Check if input is hit at correct time
     void CheckTime(InputAction.CallbackContext context)
     {
+        int mult = goodScore + gameManager.combo / comboNeededMult;
+        if (mult > maxMult)
+        {
+            mult = maxMult;
+        }
         float positionDecimal = GetDecimal(songPositionInBeats); // Getting decimals of beat position
         //Debug.Log(positionDecimal);
         if (positionDecimal <= messUpRange || positionDecimal >= 1 - messUpRange) // checks if action takes place in the mess up range.
@@ -152,10 +162,11 @@ public class Timing : MonoBehaviour
             // Add combo
             gameManager.combo++;
             // Check player speed, if not at max speed go faster
-            if (playerLevelMovement.forwardSpeed <= playerLevelMovement.maxSpeed && gameManager.combo % comboNeeded == 0)
+            if (playerForward.forwardSpeed < playerForward.maxSpeed && gameManager.combo % comboNeeded == 0)
             {
-                playerLevelMovement.forwardSpeed *= 2;
+                playerForward.forwardSpeed *= 2;
             }
+            gameManager.AddScore(mult);
             Debug.Log("Good");
         }
         else
@@ -165,7 +176,7 @@ public class Timing : MonoBehaviour
             playerControllerLevel.LoseLife();
             // reset combo and speed
             gameManager.combo = 0;
-            playerLevelMovement.forwardSpeed = playerLevelMovement.minSpeed;
+            playerForward.forwardSpeed = playerForward.minSpeed;
             Debug.Log("Bad");
         }
     }

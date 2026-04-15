@@ -27,7 +27,7 @@ public class TimingUI : MonoBehaviour
 
     public IEnumerator ResetCircle()
     {
-        float waitPeriod = currentSong.bps * messUp * 2;
+        float waitPeriod = currentSong.bps * messUp;
         float checkPeriod = 1 - messUp;
         while (enabled) 
         {

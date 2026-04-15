@@ -21,7 +21,7 @@ public class Win : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             // Set player speed to max speed
-            other.GetComponent<PlayerLevelMovement>().forwardSpeed = other.GetComponent<PlayerLevelMovement>().maxSpeed;
+            other.GetComponent<PlayerMoveForward>().forwardSpeed = other.GetComponent<PlayerMoveForward>().maxSpeed;
 
             // Disable timing based mechanics
             other.GetComponent<Timing>().enabled = false;
