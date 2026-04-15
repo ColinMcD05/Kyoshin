@@ -9,6 +9,7 @@ public class Dash : MonoBehaviour
     public float dashBarLength;
     public bool dashing;
     [SerializeField] PlayerMoveForward playerForward;
+    [SerializeField] PlayerLevelMovement playerMovement;
 
     private void Update()
     {
@@ -21,6 +22,7 @@ public class Dash : MonoBehaviour
             dashMeter = 0;
             dashing = false;
             playerForward.forwardSpeed /= dashMult;
+            playerMovement.enabled = true;
         }
     }
 
@@ -34,10 +36,12 @@ public class Dash : MonoBehaviour
             if (dashing)
             {
                 playerForward.forwardSpeed *= dashMult;
+                playerMovement.enabled = false;
             }
             else
             {
                 playerForward.forwardSpeed /= dashMult;
+                playerMovement.enabled = true;
             }
         }
     }

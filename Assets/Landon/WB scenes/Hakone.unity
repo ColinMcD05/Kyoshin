@@ -984,7 +984,7 @@ GameObject:
   m_Component:
   - component: {fileID: 218463029}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: LeftWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19351,7 +19351,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1562333704}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: RightWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24977,6 +24977,7 @@ MonoBehaviour:
   dashBarLength: 0
   dashing: 0
   playerForward: {fileID: 0}
+  playerControl: {fileID: 0}
 --- !u!43 &2131523355
 Mesh:
   m_ObjectHideFlags: 0
@@ -25518,6 +25519,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 449509456027308778, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 6a34e09246f080b4da4d829620d951ca, type: 2}
     - target: {fileID: 1567925838254450578, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
       propertyPath: timingUI
       value: 
