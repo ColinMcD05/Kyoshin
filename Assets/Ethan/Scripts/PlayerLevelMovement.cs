@@ -119,9 +119,13 @@ public class PlayerLevelMovement : MonoBehaviour
                     Debug.Log("Doing This");
                     if (currentLane == 2)
                     {
-                        isWallRunning = true;
-                        playerRigidbody.useGravity = false;
-                        wallType = WallType.rightWall;
+                        if (rightWallPosition != null)
+                        {
+                            isWallRunning = true;
+                            playerRigidbody.useGravity = false;
+                            wallType = WallType.rightWall;
+                        }
+                        else return;
                     }
                     Debug.Log(xInput);
                     currentLane++;
@@ -130,9 +134,13 @@ public class PlayerLevelMovement : MonoBehaviour
                 {
                     if (currentLane == 0)
                     {
-                        isWallRunning = true;
-                        playerRigidbody.useGravity = false;
-                        wallType = WallType.leftWall;
+                        if (leftWallPosition != null)
+                        {
+                            isWallRunning = true;
+                            playerRigidbody.useGravity = false;
+                            wallType = WallType.leftWall;
+                        }
+                        else return;
                     }
                     currentLane--;
                 }
@@ -290,7 +298,11 @@ public class PlayerLevelMovement : MonoBehaviour
         velocity.x = xVelocity; // Set the x velocity of the player to the x velocity
         playerRigidbody.linearVelocity = velocity; // Set the velocity of the player to the velocity
     }
+    #endregion
 
+
+    // Get info functions
+    #region
     float GetTargetLaneX(){ // This is a function that is called to get the target x position of the player
         if (areaType != AreaType.closeWallRunning)
         {
@@ -304,40 +316,69 @@ public class PlayerLevelMovement : MonoBehaviour
             }
             if (currentLane == -1)
             {
-                return leftWallPosition.x;
+                Vector2 leftPosition = Vector2.right * lefLaneX;
+                if (leftWallPosition != null)
+                {
+                    leftPosition = (Vector2)leftWallPosition;
+                }
+                else currentLane = 0;
+                return leftPosition.x;
             }
             if (currentLane == 3)
             {
-                return rightWallPosition.x;
+                Vector2 rightPosition = Vector2.right * rightLaneX;
+                if (rightWallPosition != null)
+                {
+                    rightPosition = (Vector2)rightWallPosition;
+                }
+                return rightPosition.x;
             }
             return rightLaneX; // If the current lane is 2, then return the right lane x position
         }
         else
         {
-            if (currentLane == 0 && leftWallPosition != null)
+            if (currentLane == 0)
             {
-                return leftWallPosition.x;
+                Vector2 leftPosition = Vector2.right * centerLaneX;
+                if (leftWallPosition != null)
+                {
+                    leftPosition = (Vector2)leftWallPosition;
+                }
+                else currentLane = 1;
+                return leftPosition.x;
             }
             if (currentLane == 2)
             {
-                return rightWallPosition.x;
+                Vector2 rightPosition = Vector2.right * centerLaneX;
+                if (rightWallPosition != null)
+                {
+                    rightPosition = (Vector2)rightWallPosition;
+                }
+                return rightPosition.x;
             }
             return centerLaneX;
         }
     }
-    #endregion
 
-    // Get info functions
-    #region
     float GetTartgetLaneY()
     {
         switch (wallType)
         {
             default:
             case WallType.leftWall:
-                return leftWallPosition.y;
+                Vector2 leftPosition = Vector2.up;
+                if (leftWallPosition != null)
+                {
+                    leftPosition = (Vector2)leftWallPosition;
+                }
+                return leftPosition.y;
             case WallType.rightWall:
-                return rightWallPosition.y;
+                Vector2 rightPosition = Vector2.up;
+                if (rightWallPosition != null)
+                {
+                    rightPosition = (Vector2)rightWallPosition;
+                }
+                return rightPosition.y;
         }
     }
 
@@ -374,8 +415,8 @@ public class PlayerLevelMovement : MonoBehaviour
     void StopSliding()
     {
         isSliding = false;
-        GetComponent<Collider>().height /= shrinkPercentage;
-        GetComponent<Collider>().center += Vector3.up * (1 - shrinkPercentage);
+        capsuleCollider.height /= shrinkPercentage;
+        capsuleCollider.center += Vector3.up * (1 - shrinkPercentage);
     }
     #endregion
 }
