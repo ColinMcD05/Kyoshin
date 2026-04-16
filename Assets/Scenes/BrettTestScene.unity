@@ -969,11 +969,11 @@ MonoBehaviour:
   - {fileID: 2049089756}
   - {fileID: 1874902083}
   - {fileID: 1598192989}
-  frequencyFocusWindow: 1
-  amplification: 512
-  baseHeight: 0.0625
-  fftWindow: 1
-  useDecibels: 1
+  frequencyFocusWindow: 16
+  amplification: 162.3
+  baseHeight: 1.15
+  fftWindow: 5
+  useDecibels: 0
   spectrumData: []
 --- !u!1 &454499500
 GameObject:
