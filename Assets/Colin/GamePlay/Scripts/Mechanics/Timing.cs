@@ -12,6 +12,7 @@ public class Timing : MonoBehaviour
     GameManager gameManager;
     [SerializeField] InputActionReference move;
     [SerializeField] InputActionReference jump;
+    [SerializeField] InputActionReference slide;
     [SerializeField] GameObject player;
     [SerializeField] TimingUI timingUI;
     Rewind rewind;
@@ -48,6 +49,7 @@ public class Timing : MonoBehaviour
         {
             move.action.performed += CheckTime;
             jump.action.performed += CheckTime;
+            slide.action.performed += CheckTime;
         }
     }
 
@@ -55,6 +57,7 @@ public class Timing : MonoBehaviour
     {
         move.action.performed -= CheckTime;
         jump.action.performed -= CheckTime;
+        slide.action.performed -= CheckTime;
     }
 
     // Start
@@ -105,6 +108,7 @@ public class Timing : MonoBehaviour
     {
         move.action.performed += CheckTime; // Adds the function check time to the LeftRight action so it only checks when pressed
         jump.action.performed += CheckTime;
+        slide.action.performed += CheckTime;
         playerLevelMovement.enabled = true; // Lets players move
         songStartTime = (float)AudioSettings.dspTime; // Sets songStartTime based on AudioSettings clock
         musicPlayer.clip = currentSong.song; // Sets current clip to current song clip

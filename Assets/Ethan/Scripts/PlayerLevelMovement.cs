@@ -20,7 +20,6 @@ public class PlayerLevelMovement : MonoBehaviour
     public LayerMask groundLayers; // This is the layer mask for the ground
 
     public Rigidbody playerRigidbody; // This is the rigidbody component of the player
-    private Collider playerCollider; // Cached for Physics.IgnoreCollision with walls
     private Collider activeWallCollider; // Wall we're currently touching (set on enter, used when jumping off)
 
     // Lane Variables
@@ -38,10 +37,13 @@ public class PlayerLevelMovement : MonoBehaviour
     [HideInInspector] public Vector2 leftWallPosition;
     public float wallRunDelay = 0.2f; // This is the delay for the wall run
     public WallType wallType;
+    public AreaType areaType = AreaType.normal;
 
     // Sliding Variables
     public float slidingLength;
     public bool isSliding;
+    [Range(0,1)]public float shrinkPercentage;
+    CapsuleCollider collider;
 
     public enum WallType
     {
@@ -57,30 +59,34 @@ public class PlayerLevelMovement : MonoBehaviour
         wallRunning,
         closeWallRunning
     }
-    public AreaType areaType = AreaType.normal;
+
     #endregion
 
     void Awake(){
-        playerCollider = GetComponent<Collider>();
         groundLayers = LayerMask.GetMask("Ground"); // Get the layer mask for the ground
         if(playerRigidbody == null){
             playerRigidbody = GetComponent<Rigidbody>();
         }
+        collider = gameObject.GetComponent<CapsuleCollider>();
     }
 
     void OnEnable()
     {
         leftRight.action.performed += LeftRight;
         jump.action.performed += Jump;
+        slide.action.performed += Slide;
     }
 
     private void OnDisable()
     {
         leftRight.action.performed -= LeftRight;
         jump.action.performed -= Jump;
+        slide.action.performed -= Slide;
     }
 
-
+    // Action functions
+    #region
+    // Move action
     public void LeftRight(InputAction.CallbackContext value){ // This is a function that is called when the leftRightInput is pressed
         leftRightInput = value.ReadValue<Vector2>(); // Get the value of the leftRightInput
         float xInput = leftRightInput.x; // Get the x input
@@ -165,21 +171,31 @@ public class PlayerLevelMovement : MonoBehaviour
                 break;
         }
     }
+
+    // Jump action
     public void Jump(InputAction.CallbackContext value){ // This is a function that is called when the jump button is pressed argument is the value of the input
-        if(value.ReadValueAsButton() && goodMove){ // If the jump button is pressed, then set the jumpPressed to true
+        if(value.ReadValueAsButton() && goodMove && !isSliding){ // If the jump button is pressed, then set the jumpPressed to true
             jumpPressed = true;// Set the jumpPressed to true
         }
     }
 
+    // Slide action
     public void Slide(InputAction.CallbackContext value)
     {
-        if (isSliding)
+        // If already sliding return
+        if (isSliding || !goodMove)
         {
             return;
         }
-        isSliding = true;
+        isSliding = true; // Set sliding equal to true
+        collider.height *= shrinkPercentage; // multiply collider hieght by shrink percentage to shrink height
+        collider.center -= Vector3.up * (1 - shrinkPercentage); // move the center to keep collider touching the ground
+        Invoke("StopSliding", slidingLength); // Invoke StopSliding after the slidingLength
     }
+    #endregion
 
+    // FixedUpdate
+    #region
     void FixedUpdate(){// This is a function that is called every fixed delta time
         if (isWallRunning && jumpPressed)
         {
@@ -213,7 +229,10 @@ public class PlayerLevelMovement : MonoBehaviour
             jumpPressed = false;
         }
     }
-    
+    #endregion
+
+    // Movement Functions
+    #region
     public void NormalMove()
     {
         float targetX = GetTargetLaneX(); // Get the target x position
@@ -306,7 +325,10 @@ public class PlayerLevelMovement : MonoBehaviour
             return centerLaneX;
         }
     }
+    #endregion
 
+    // Get info functions
+    #region
     float GetTartgetLaneY()
     {
         switch (wallType)
@@ -323,6 +345,10 @@ public class PlayerLevelMovement : MonoBehaviour
         Vector3 rayStart = transform.position + Vector3.up * groundCheckStartHeight; // Get the start of the ray by adding the up vector to the position of the player and the ground check start height
         return Physics.Raycast(rayStart, Vector3.down, groundCheckDistance, groundLayers); // Cast a ray down from the start of the ray to the ground check distance and check if the ray hits the ground layers
     }
+    #endregion
+
+    // Halt mechanics functions
+    #region
     void StopWallRun(){
         isWallRunning = false;
         playerRigidbody.useGravity = true;
@@ -345,13 +371,11 @@ public class PlayerLevelMovement : MonoBehaviour
         wallType = WallType.none;
     }
 
-    void ReenableWallCollisionAfterDelay(Collider wall){ // This is a coroutine that is called to reenable the wall collision after a delay
-        if (playerCollider != null && wall != null)
-            Physics.IgnoreCollision(playerCollider, wall, false);
-    }
-
     void StopSliding()
     {
         isSliding = false;
+        collider.height /= shrinkPercentage;
+        collider.center += Vector3.up * (1 - shrinkPercentage);
     }
+    #endregion
 }

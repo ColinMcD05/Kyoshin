@@ -254,6 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Timing
   move: {fileID: 2440090981901601583, guid: a1fa9bfeab0d76b4994c5ae431a6888a, type: 3}
   jump: {fileID: 6851118241580235466, guid: a1fa9bfeab0d76b4994c5ae431a6888a, type: 3}
+  slide: {fileID: -1996505084464716345, guid: a1fa9bfeab0d76b4994c5ae431a6888a, type: 3}
   player: {fileID: 2902578447622799134}
   timingUI: {fileID: 0}
   songClass: {fileID: 0}
@@ -299,6 +300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLevelMovement
   leftRight: {fileID: 2440090981901601583, guid: a1fa9bfeab0d76b4994c5ae431a6888a, type: 3}
   jump: {fileID: 6851118241580235466, guid: a1fa9bfeab0d76b4994c5ae431a6888a, type: 3}
+  slide: {fileID: -1996505084464716345, guid: a1fa9bfeab0d76b4994c5ae431a6888a, type: 3}
   jumpForce: 7
   inputThreshold: 0.5
   groundCheckDistance: 1.5
@@ -319,6 +321,9 @@ MonoBehaviour:
   wallRunDelay: 0.2
   wallType: 0
   areaType: 0
+  slidingLength: 3
+  isSliding: 0
+  shrinkPercentage: 0.5
 --- !u!114 &8994823767774791926
 MonoBehaviour:
   m_ObjectHideFlags: 0
