@@ -163,7 +163,7 @@ public class Timing : MonoBehaviour
         }
         float positionDecimal = GetDecimal(songPositionInBeats); // Getting decimals of beat position
         //Debug.Log(positionDecimal);
-        if (positionDecimal <= messUpRange || positionDecimal >= 1 - messUpRange) // checks if action takes place in the mess up range.
+        if (positionDecimal <= messUpRange*0.5 || positionDecimal >= 1 - messUpRange) // checks if action takes place in the mess up range.
         {
             // Do correct movement
             // Add combo

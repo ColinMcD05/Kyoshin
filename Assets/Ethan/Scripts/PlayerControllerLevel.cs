@@ -2,10 +2,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using Unity.Cinemachine;
 public class PlayerControllerLevel : MonoBehaviour
 {
-    [SerializeField] private Rewind rewind;
+    [SerializeField] Rewind rewind;
     GameManager gameManager;
+    CinemachineBasicMultiChannelPerlin cineMachineNoise;
 
     int collidedAmout = 0;
     public int maxCollisions = 4;
@@ -14,6 +16,8 @@ public class PlayerControllerLevel : MonoBehaviour
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        cineMachineNoise = GameObject.Find("CinemachineCamera").GetComponent<CinemachineBasicMultiChannelPerlin>();
+        Debug.Log(cineMachineNoise != null);
     }
 
     #region Lose Life | This is a function that is called to lose a life
@@ -30,17 +34,13 @@ public class PlayerControllerLevel : MonoBehaviour
             {
                 collidedAmout++; // Increment the collided amount
             }
+            cineMachineNoise.AmplitudeGain += 1;
+            cineMachineNoise.FrequencyGain += 1;
             Debug.Log("Collided Amount: " + collidedAmout); // Log the collided amount
             if (collidedAmout >= maxCollisions)
             { // If the collided amount is greater than or equal to the max collisions
                 //Debug.Log("Lives: " + lives);
-                collidedAmout = 0; // Reset the collided amount
-                                   // call rewind time function
-                if (rewind != null)
-                {
-                    // disable player collider
-                    rewind.StartRewind();
-                }
+                Death();
 
             }
             if (gameManager.lives <= 0)
@@ -50,19 +50,28 @@ public class PlayerControllerLevel : MonoBehaviour
         }
     }
 
+    public void Death()
+    {
+        collidedAmout = 0;
+        cineMachineNoise.AmplitudeGain = 0;
+        cineMachineNoise.FrequencyGain = 0;
+        rewind.StartRewind();
+    }
+
     IEnumerator RegainLives()
     {
         while (collidedAmout > 0)
         { 
             yield return new WaitForSeconds(regenTime);
             collidedAmout--;
+            cineMachineNoise.AmplitudeGain -= 1;
+            cineMachineNoise.FrequencyGain -= 1;
             Debug.Log("Regained");
         }
     }
 
     public void ShakeCamera(int shakeIntensity){
         // shake the camera by using the CinemachineShake script
-        CineMachineShake.Instance.ShakeCamera(shakeIntensity);
     } // end of ShakeCamera function
     #endregion
     public void GameOver(){

@@ -13,7 +13,7 @@ public class PlayerMoveForward : MonoBehaviour
 
     void Start()
     {
-        maxSpeed = forwardSpeed; //* 4;
+        maxSpeed = forwardSpeed * 4;
         minSpeed = forwardSpeed;
         playerRigidbody = gameObject.GetComponent<Rigidbody>();
     }

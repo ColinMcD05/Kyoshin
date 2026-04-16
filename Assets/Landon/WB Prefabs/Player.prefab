@@ -316,8 +316,6 @@ MonoBehaviour:
   laneChangeSpeed: 20
   goodMove: 0
   isWallRunning: 0
-  rightWallPosition: {x: 0, y: 0}
-  leftWallPosition: {x: 0, y: 0}
   wallRunDelay: 0.2
   wallType: 0
   areaType: 0
