@@ -11,7 +11,7 @@ public class NpcMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>(); // get agent
         if(targets != null){
-            agent.SetDestination(targets.position);
+            //agent.SetDestination(targets.position);
         }
     }
 

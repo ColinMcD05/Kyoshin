@@ -21,8 +21,8 @@ public class Rewind : MonoBehaviour
     public float invincibility;
 
     // Mutable Variables in script
-    public List<Vector3> positions; // List holding players last known position between 0 and rewindTime seconds
-    public List<int> lane;
+    [HideInInspector] public List<Vector3> positions; // List holding players last known position between 0 and rewindTime seconds
+    [HideInInspector] public List<int> lane;
 
     // Mutable Variables in other scripts
     public bool rewinding = false;

@@ -9,6 +9,7 @@ public class PlayerLevelMovement : MonoBehaviour
     // Input Action Variables
     public InputActionReference leftRight;
     public InputActionReference jump;
+    public InputActionReference slide;
 
     // Jump Variables
     public float jumpForce = 7.0f; // This is the force of the jump
@@ -37,6 +38,11 @@ public class PlayerLevelMovement : MonoBehaviour
     [HideInInspector] public Vector2 leftWallPosition;
     public float wallRunDelay = 0.2f; // This is the delay for the wall run
     public WallType wallType;
+
+    // Sliding Variables
+    public float slidingLength;
+    public bool isSliding;
+
     public enum WallType
     {
         none,
@@ -164,6 +170,16 @@ public class PlayerLevelMovement : MonoBehaviour
             jumpPressed = true;// Set the jumpPressed to true
         }
     }
+
+    public void Slide(InputAction.CallbackContext value)
+    {
+        if (isSliding)
+        {
+            return;
+        }
+        isSliding = true;
+    }
+
     void FixedUpdate(){// This is a function that is called every fixed delta time
         if (isWallRunning && jumpPressed)
         {
@@ -332,5 +348,10 @@ public class PlayerLevelMovement : MonoBehaviour
     void ReenableWallCollisionAfterDelay(Collider wall){ // This is a coroutine that is called to reenable the wall collision after a delay
         if (playerCollider != null && wall != null)
             Physics.IgnoreCollision(playerCollider, wall, false);
+    }
+
+    void StopSliding()
+    {
+        isSliding = false;
     }
 }
