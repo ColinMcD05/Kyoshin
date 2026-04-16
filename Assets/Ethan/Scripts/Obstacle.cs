@@ -21,7 +21,7 @@ public class Obstacle : MonoBehaviour
             switch (type)
             {
                 case ObstacleType.Kill:
-                    if (playerRigidbody.linearVelocity.y >= 0)
+                    if (playerRigidbody.linearVelocity.y >= -0.001)
                     {
                         if (playerRigidbody.linearVelocity.x > 0.01)
                         {
