@@ -11,6 +11,7 @@ public class Timing : MonoBehaviour
     // References
     GameManager gameManager;
     [SerializeField] InputActionReference move;
+    [SerializeField] InputActionReference jump;
     [SerializeField] GameObject player;
     [SerializeField] TimingUI timingUI;
     Rewind rewind;
@@ -46,12 +47,14 @@ public class Timing : MonoBehaviour
         if (Time.timeSinceLevelLoad > startWaitTime + 1)
         {
             move.action.performed += CheckTime;
+            jump.action.performed += CheckTime;
         }
     }
 
     private void OnDisable()
     {
         move.action.performed -= CheckTime;
+        jump.action.performed -= CheckTime;
     }
 
     // Start
@@ -60,7 +63,6 @@ public class Timing : MonoBehaviour
     {
         resetCircle = timingUI.ResetCircle();
         songStartTime = 0;
-        Debug.Log((float)AudioSettings.dspTime);
         if (player == null)
             player = GameObject.FindWithTag("Player");
         playerControllerLevel = player.GetComponent<PlayerControllerLevel>();
@@ -102,6 +104,7 @@ public class Timing : MonoBehaviour
     void StartMusic()
     {
         move.action.performed += CheckTime; // Adds the function check time to the LeftRight action so it only checks when pressed
+        jump.action.performed += CheckTime;
         playerLevelMovement.enabled = true; // Lets players move
         songStartTime = (float)AudioSettings.dspTime; // Sets songStartTime based on AudioSettings clock
         musicPlayer.clip = currentSong.song; // Sets current clip to current song clip
@@ -167,7 +170,8 @@ public class Timing : MonoBehaviour
                 playerForward.forwardSpeed *= 2;
             }
             gameManager.AddScore(mult);
-            Debug.Log("Good");
+            playerLevelMovement.goodMove = true;
+            //Debug.Log("Good");
         }
         else
         {
@@ -177,6 +181,7 @@ public class Timing : MonoBehaviour
             // reset combo and speed
             gameManager.combo = 0;
             playerForward.forwardSpeed = playerForward.minSpeed;
+            playerLevelMovement.goodMove = false;
             Debug.Log("Bad");
         }
     }

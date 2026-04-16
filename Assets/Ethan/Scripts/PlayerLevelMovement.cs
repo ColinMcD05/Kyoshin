@@ -7,8 +7,8 @@ public class PlayerLevelMovement : MonoBehaviour
     //Variables
     #region
     // Input Action Variables
-    [SerializeField] InputActionReference leftRight;
-    [SerializeField] InputActionReference jump;
+    public InputActionReference leftRight;
+    public InputActionReference jump;
 
     // Jump Variables
     public float jumpForce = 7.0f; // This is the force of the jump
@@ -28,11 +28,11 @@ public class PlayerLevelMovement : MonoBehaviour
     public float lefLaneX = -5.0f;
     public float centerLaneX = 0.0f;
     public float rightLaneX = 5.0f;
-    private bool canReadLaneInput = true;
     public float laneChangeSpeed = 20.0f;// Lane Change Speed
+    [HideInInspector] public bool goodMove;
 
     // Wall Run Variables
-    private bool isWallRunning = false; // This is a boolean that is used to check if the player is wall running
+    public bool isWallRunning = false; // This is a boolean that is used to check if the player is wall running
     [HideInInspector] public Vector2 rightWallPosition;
     [HideInInspector] public Vector2 leftWallPosition;
     public float wallRunDelay = 0.2f; // This is the delay for the wall run
@@ -60,26 +60,29 @@ public class PlayerLevelMovement : MonoBehaviour
         if(playerRigidbody == null){
             playerRigidbody = GetComponent<Rigidbody>();
         }
-        leftRight.action.performed += LeftRight;
     }
-    
+
+    void OnEnable()
+    {
+        leftRight.action.performed += LeftRight;
+        jump.action.performed += Jump;
+    }
+
+    private void OnDisable()
+    {
+        leftRight.action.performed -= LeftRight;
+        jump.action.performed -= Jump;
+    }
+
 
     public void LeftRight(InputAction.CallbackContext value){ // This is a function that is called when the leftRightInput is pressed
         leftRightInput = value.ReadValue<Vector2>(); // Get the value of the leftRightInput
         float xInput = leftRightInput.x; // Get the x input
-        if (isWallRunning)
-        { // If the player is wall running, then return
-            if (areaType == AreaType.closeWallRunning)
-            {
-
-            }
-            return;
-        }
         if (Mathf.Abs(xInput) < inputThreshold){ // If the x input is less than the input threshold, then the player can read the lane input
-            canReadLaneInput = true;
             return;
         }
-        if(!canReadLaneInput){ // If the player cannot read the lane input, then return
+        if (!goodMove)
+        {
             return;
         }
         switch (areaType)
@@ -95,14 +98,20 @@ public class PlayerLevelMovement : MonoBehaviour
                 currentLane = Mathf.Clamp(currentLane, 0, 2); // Clamp the current lane between 0 and 2
                 break;
             case AreaType.wallRunning:
+                if (currentLane ==3 || currentLane == -1)
+                {
+                    return;
+                }
                 if (xInput > 0f)
                 {
+                    Debug.Log("Doing This");
                     if (currentLane == 2)
                     {
                         isWallRunning = true;
                         playerRigidbody.useGravity = false;
                         wallType = WallType.rightWall;
                     }
+                    Debug.Log(xInput);
                     currentLane++;
                 }
                 else if (xInput < 0f)
@@ -126,6 +135,10 @@ public class PlayerLevelMovement : MonoBehaviour
                         playerRigidbody.useGravity = false;
                         wallType = WallType.rightWall;
                     }
+                    else if (currentLane == 0)
+                    {
+                        currentLane++;
+                    }
                     currentLane++;
                 }
                 else if (xInput < 0f)
@@ -136,15 +149,18 @@ public class PlayerLevelMovement : MonoBehaviour
                         playerRigidbody.useGravity = false;
                         wallType = WallType.leftWall;
                     }
+                    else if (currentLane == 2)
+                    {
+                        currentLane--;
+                    }
                     currentLane--;
                 }
                 currentLane = Mathf.Clamp(currentLane, 0, 2);
                 break;
         }
-        canReadLaneInput = false; // Set the canReadLaneInput to false
     }
-    public void Jump(InputValue value){ // This is a function that is called when the jump button is pressed argument is the value of the input
-        if(value.isPressed){ // If the jump button is pressed, then set the jumpPressed to true
+    public void Jump(InputAction.CallbackContext value){ // This is a function that is called when the jump button is pressed argument is the value of the input
+        if(value.ReadValueAsButton() && goodMove){ // If the jump button is pressed, then set the jumpPressed to true
             jumpPressed = true;// Set the jumpPressed to true
         }
     }
@@ -176,9 +192,13 @@ public class PlayerLevelMovement : MonoBehaviour
             playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // Add a force to the player to make them jump by using the AddForce function which uses the arguments force, force mode, force being the force to apply to the player, and the force mode being the mode to apply the force in impulse mode which is a force that is applied instantly
             jumpPressed = false; // Set the jumpPressed to false
         }
+        else if (jumpPressed)
+        {
+            jumpPressed = false;
+        }
     }
     
-    void NormalMove()
+    public void NormalMove()
     {
         float targetX = GetTargetLaneX(); // Get the target x position
 

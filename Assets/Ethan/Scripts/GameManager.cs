@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour
     }
     public void AddScore(int value){
         score += value;
-        Debug.Log(score % 100);
         if (score % 100 == 0)
         {
             lives++;

@@ -214,9 +214,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControllerLevel
   rewind: {fileID: 3233316654364501501}
-  forwardSpeed: 8
-  maxSpeed: 0
-  minSpeed: 0
   maxCollisions: 3
   regenTime: 2
 --- !u!114 &3233316654364501501
@@ -241,6 +238,7 @@ MonoBehaviour:
   rewindTime: 3
   invincibility: 0
   positions: []
+  lane: 
   rewinding: 0
 --- !u!114 &1567925838254450578
 MonoBehaviour:
@@ -255,6 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timing
   move: {fileID: 2440090981901601583, guid: a1fa9bfeab0d76b4994c5ae431a6888a, type: 3}
+  jump: {fileID: 6851118241580235466, guid: a1fa9bfeab0d76b4994c5ae431a6888a, type: 3}
   player: {fileID: 2902578447622799134}
   timingUI: {fileID: 0}
   songClass: {fileID: 0}
@@ -264,6 +263,9 @@ MonoBehaviour:
   rewindTimeUsed: 0
   comboNeeded: 3
   startWaitTime: 1
+  maxMult: 10
+  comboNeededMult: 5
+  goodScore: 5
 --- !u!114 &40669738938003321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,7 +283,8 @@ MonoBehaviour:
   dashMult: 2
   dashBarLength: 3
   dashing: 0
-  playerControllerLevel: {fileID: 4074926366466159053}
+  playerForward: {fileID: 8994823767774791926}
+  playerMovement: {fileID: 8146030246671798739}
 --- !u!114 &8146030246671798739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,6 +297,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c780242a5f3f43f489da9fa3f99a1571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLevelMovement
+  leftRight: {fileID: 2440090981901601583, guid: a1fa9bfeab0d76b4994c5ae431a6888a, type: 3}
+  jump: {fileID: 6851118241580235466, guid: a1fa9bfeab0d76b4994c5ae431a6888a, type: 3}
   jumpForce: 7
   inputThreshold: 0.5
   groundCheckDistance: 1.5
@@ -307,6 +312,8 @@ MonoBehaviour:
   centerLaneX: 0
   rightLaneX: 5
   laneChangeSpeed: 20
+  goodMove: 0
+  isWallRunning: 0
   rightWallPosition: {x: 0, y: 0}
   leftWallPosition: {x: 0, y: 0}
   wallRunDelay: 0.2

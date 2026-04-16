@@ -22,7 +22,7 @@ public class Dash : MonoBehaviour
             dashMeter = 0;
             dashing = false;
             playerForward.forwardSpeed /= dashMult;
-            playerMovement.enabled = true;
+            playerMovement.leftRight.action.performed += playerMovement.LeftRight;
         }
     }
 
@@ -36,12 +36,13 @@ public class Dash : MonoBehaviour
             if (dashing)
             {
                 playerForward.forwardSpeed *= dashMult;
-                playerMovement.enabled = false;
+                playerMovement.currentLane = 1;
+                playerMovement.leftRight.action.performed -= playerMovement.LeftRight;
             }
             else
             {
                 playerForward.forwardSpeed /= dashMult;
-                playerMovement.enabled = true;
+                playerMovement.leftRight.action.performed += playerMovement.LeftRight;
             }
         }
     }
