@@ -33,8 +33,8 @@ public class PlayerLevelMovement : MonoBehaviour
 
     // Wall Run Variables
     public bool isWallRunning = false; // This is a boolean that is used to check if the player is wall running
-    [HideInInspector] public Vector2 rightWallPosition;
-    [HideInInspector] public Vector2 leftWallPosition;
+    [HideInInspector] public Vector2? rightWallPosition;
+    [HideInInspector] public Vector2? leftWallPosition;
     public float wallRunDelay = 0.2f; // This is the delay for the wall run
     public WallType wallType;
     public AreaType areaType = AreaType.normal;
@@ -43,7 +43,7 @@ public class PlayerLevelMovement : MonoBehaviour
     public float slidingLength;
     public bool isSliding;
     [Range(0,1)]public float shrinkPercentage;
-    CapsuleCollider collider;
+    CapsuleCollider capsuleCollider;
 
     public enum WallType
     {
@@ -67,7 +67,7 @@ public class PlayerLevelMovement : MonoBehaviour
         if(playerRigidbody == null){
             playerRigidbody = GetComponent<Rigidbody>();
         }
-        collider = gameObject.GetComponent<CapsuleCollider>();
+        capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
     }
 
     void OnEnable()
@@ -188,8 +188,8 @@ public class PlayerLevelMovement : MonoBehaviour
             return;
         }
         isSliding = true; // Set sliding equal to true
-        collider.height *= shrinkPercentage; // multiply collider hieght by shrink percentage to shrink height
-        collider.center -= Vector3.up * (1 - shrinkPercentage); // move the center to keep collider touching the ground
+        capsuleCollider.height *= shrinkPercentage; // multiply collider hieght by shrink percentage to shrink height
+        capsuleCollider.center -= Vector3.up * (1 - shrinkPercentage); // move the center to keep collider touching the ground
         Invoke("StopSliding", slidingLength); // Invoke StopSliding after the slidingLength
     }
     #endregion
@@ -314,7 +314,7 @@ public class PlayerLevelMovement : MonoBehaviour
         }
         else
         {
-            if (currentLane == 0)
+            if (currentLane == 0 && leftWallPosition != null)
             {
                 return leftWallPosition.x;
             }
@@ -374,8 +374,8 @@ public class PlayerLevelMovement : MonoBehaviour
     void StopSliding()
     {
         isSliding = false;
-        collider.height /= shrinkPercentage;
-        collider.center += Vector3.up * (1 - shrinkPercentage);
+        GetComponent<Collider>().height /= shrinkPercentage;
+        GetComponent<Collider>().center += Vector3.up * (1 - shrinkPercentage);
     }
     #endregion
 }
