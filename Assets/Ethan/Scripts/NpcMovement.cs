@@ -1,17 +1,16 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class NpcMovement : MonoBehaviour
 {
-    public Transform[] targets;
+    public Transform target;
     private NavMeshAgent agent; //Navmesh Agent
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         agent = GetComponent<NavMeshAgent>(); // get agent
-        if(targets != null){
-            agent.SetDestination(targets.position);
+        if(target != null){
+            agent.SetDestination(target.position);
         }
     }
 
