@@ -10,8 +10,17 @@ public class MoveBackwards : MonoBehaviour
 
     void Start()
     {
-        maxSpeed = forwardSpeed * 4;
-        minSpeed = forwardSpeed;
+        if (SceneManager.GetActiveScene().name != "Infinite")
+        {
+            maxSpeed = forwardSpeed * 4;
+            minSpeed = forwardSpeed;
+        }
+        else
+        {
+            forwardSpeed = 32;
+            maxSpeed = forwardSpeed;
+            minSpeed = forwardSpeed;
+        }
     }
 
     private void Update()

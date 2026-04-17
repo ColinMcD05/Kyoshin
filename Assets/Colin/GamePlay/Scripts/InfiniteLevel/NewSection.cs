@@ -1,16 +1,26 @@
 using System.Collections;
 using UnityEngine;
+using static System.Collections.Specialized.BitVector32;
 
 public class NewSection : MonoBehaviour
 {
     public GameObject nextSection;
+    static GameObject lastSection;
+    GameObject parent;
 
     IEnumerator destroySelf;
-    int waitPeriod = 8;
+    float waitPeriod = 6.2f;
 
-    bool destroying = false;
+    public bool destroying = false;
+    public bool alreadySpawned = false;
 
     void Awake()
+    {
+        lastSection = null;
+        parent = GameObject.Find("SectionManager");
+    }
+
+    void OnEnable()
     {
         destroySelf = SelfDestroy();
     }
@@ -19,31 +29,59 @@ public class NewSection : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Timing timing = other.GetComponent<Timing>();
-            Songs.SongData currentSong = timing.currentSong;
-            if (timing.songPosition - currentSong.length > 4)
+            if (!alreadySpawned)
             {
-                // Do not create new parts go through two more gates on second gate choose new song and start building based on next gate position, on third gate start music
+                SpawnNewSection(other);
             }
-            Instantiate(nextSection, new Vector3(0, 0, 80), Quaternion.Euler(0, -90, 0));
+            Debug.Log(destroying);
             if (!destroying)
             {
                 StartCoroutine(destroySelf);
-                destroying = true;
             }
             else
             {
-                StopCoroutine(destroySelf);
                 destroying = false;
             }
         }
     }
+
+    void SpawnNewSection(Collider other)
+    {
+        Timing timing = other.GetComponent<Timing>();
+        Songs.SongData currentSong = timing.currentSong;
+        if (lastSection == null)
+        {
+            lastSection = parent.transform.GetChild(2).gameObject;
+        }
+        Vector3 spawnPosition = lastSection.transform.position + new Vector3(0, 0, 32);
+        GameObject section = ObjectPool.sharedInstance.GetPooledObject();
+        if (section != null)
+        {
+            section.transform.parent = parent.transform;
+            section.transform.position = spawnPosition;
+            section.transform.rotation = parent.transform.rotation;
+            section.SetActive(true);
+            lastSection = section;
+        }
+        alreadySpawned = true;
+    }
+
     IEnumerator SelfDestroy()
     {
+        destroying = true;
         yield return new WaitForSeconds(waitPeriod);
         if (destroying)
         {
-            Destroy(gameObject.transform.parent.gameObject);
+            alreadySpawned = false;
+            destroying = false;
+            transform.parent.gameObject.SetActive(false);
         }
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+        destroying = false;
+        alreadySpawned = false;
     }
 }

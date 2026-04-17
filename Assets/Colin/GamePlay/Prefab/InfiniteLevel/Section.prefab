@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2263357749951238936}
   - component: {fileID: 8474448892679623350}
   - component: {fileID: 2062096931744099043}
-  - component: {fileID: 5359782356776953087}
   m_Layer: 6
   m_Name: Section
   m_TagString: Untagged
@@ -35,7 +34,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2416019430232920661}
+  - {fileID: 8758826265079316248}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &781502772701232296
@@ -1161,7 +1160,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 107
+  m_VersionIndex: 120
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1181,7 +1180,7 @@ MonoBehaviour:
   m_Shape:
     rid: 8642808287113510994
   m_ShapeRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_UnmodifiedMeshVersion: 101
+  m_UnmodifiedMeshVersion: 120
   m_Size: {x: 32, y: 1, z: 25.97246}
   m_LocalCenter: {x: 0, y: 0, z: 0}
   references:
@@ -1270,22 +1269,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!114 &5359782356776953087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5010261799482120410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18e069973875d4c4fa875763be65eae3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MoveBackwards
-  forwardSpeed: 8
-  maxSpeed: 0
-  minSpeed: 0
---- !u!1 &7264646777390108419
+--- !u!1 &7561722898421548900
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1293,38 +1277,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2416019430232920661}
-  - component: {fileID: 7524336327735424031}
-  - component: {fileID: 1566028043300067027}
-  m_Layer: 6
+  - component: {fileID: 8758826265079316248}
+  - component: {fileID: 2225882636038191465}
+  - component: {fileID: 7438202695979396984}
+  m_Layer: 0
   m_Name: NewSectionTrigger
   m_TagString: NewSectionTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2416019430232920661
+--- !u!4 &8758826265079316248
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7264646777390108419}
+  m_GameObject: {fileID: 7561722898421548900}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2174103791142549420}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7524336327735424031
+--- !u!65 &2225882636038191465
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7264646777390108419}
+  m_GameObject: {fileID: 7561722898421548900}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1337,15 +1321,15 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.417213, y: 13.988726, z: 29.29079}
-  m_Center: {x: 0.06567007, y: 5.71861, z: 0.56378937}
---- !u!114 &1566028043300067027
+  m_Size: {x: 26.03933, y: 13.266436, z: 4.324794}
+  m_Center: {x: -0.014749523, y: 6.133218, z: 16.021914}
+--- !u!114 &7438202695979396984
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7264646777390108419}
+  m_GameObject: {fileID: 7561722898421548900}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 664f5418624219b47a1fecdb30cf6c25, type: 3}
