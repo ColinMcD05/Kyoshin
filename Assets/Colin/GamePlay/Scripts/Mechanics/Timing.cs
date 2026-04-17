@@ -18,7 +18,7 @@ public class Timing : MonoBehaviour
     Rewind rewind;
     PlayerLevelMovement playerLevelMovement;
     PlayerControllerLevel playerControllerLevel;
-    PlayerMoveForward playerForward;
+    [SerializeField] MoveBackwards moveBackwards;
     [SerializeField] Songs songClass;
     [HideInInspector] public Songs.SongData currentSong;
     [SerializeField] AudioSource musicPlayer;
@@ -73,7 +73,6 @@ public class Timing : MonoBehaviour
         playerControllerLevel = player.GetComponent<PlayerControllerLevel>();
         rewind = player.GetComponent<Rewind>();
         playerLevelMovement = player.GetComponent<PlayerLevelMovement>();
-        playerForward = player.GetComponent<PlayerMoveForward>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         // Changing current song based on the build index. May change
@@ -165,9 +164,9 @@ public class Timing : MonoBehaviour
             // Add combo
             gameManager.combo++;
             // Check player speed, if not at max speed go faster
-            if (playerForward.forwardSpeed < playerForward.maxSpeed && gameManager.combo % comboNeeded == 0)
+            if (moveBackwards.forwardSpeed < moveBackwards.maxSpeed && gameManager.combo % comboNeeded == 0)
             {
-                playerForward.forwardSpeed *= 2;
+                moveBackwards.forwardSpeed *= 2;
             }
             gameManager.AddScore(mult);
             playerLevelMovement.goodMove = true;
@@ -180,7 +179,7 @@ public class Timing : MonoBehaviour
             playerControllerLevel.LoseLife();
             // reset combo and speed
             gameManager.combo = 0;
-            playerForward.forwardSpeed = playerForward.minSpeed;
+            moveBackwards.forwardSpeed = moveBackwards.minSpeed;
             playerLevelMovement.goodMove = false;
             Debug.Log("Bad");
         }

@@ -8,6 +8,7 @@ public class PlayerControllerLevel : MonoBehaviour
     [SerializeField] Rewind rewind;
     GameManager gameManager;
     CinemachineBasicMultiChannelPerlin cineMachineNoise;
+    [SerializeField] MoveBackwards moveBackwards;
 
     int collidedAmout = 0;
     public int maxCollisions = 4;
@@ -42,6 +43,10 @@ public class PlayerControllerLevel : MonoBehaviour
                 //Debug.Log("Lives: " + lives);
                 Death();
 
+            }
+            else
+            {
+                moveBackwards.forwardSpeed = moveBackwards.minSpeed;
             }
             if (gameManager.lives <= 0)
             {

@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 public class MoveBackwards : MonoBehaviour
 {
     public int forwardSpeed;
-    int maxSpeed;
-    int minSpeed;
+    [HideInInspector] public int maxSpeed;
+    [HideInInspector] public int minSpeed;
 
     IEnumerator delete;
     int countDown = 4;

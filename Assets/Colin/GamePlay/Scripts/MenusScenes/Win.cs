@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Win : MonoBehaviour
 {
     GameManager gameManager;
+    [SerializeField] MoveBackwards moveBackwards;
     [SerializeField] Image moveImage;
     [SerializeField] Image stillImage;
     [SerializeField] Image image;
@@ -21,7 +22,7 @@ public class Win : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             // Set player speed to max speed
-            other.GetComponent<PlayerMoveForward>().forwardSpeed = other.GetComponent<PlayerMoveForward>().maxSpeed;
+            moveBackwards.forwardSpeed = moveBackwards.maxSpeed;
 
             // Disable timing based mechanics
             other.GetComponent<Timing>().enabled = false;

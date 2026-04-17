@@ -11,7 +11,6 @@ public class Rewind : MonoBehaviour
     [SerializeField] PlayerControllerLevel playerController;
     [SerializeField] Rigidbody playerRigidbody;
     [SerializeField] PlayerLevelMovement playerMovement;
-    [SerializeField] PlayerMoveForward playerForward;
     [SerializeField] MoveBackwards moveBackwards;
     [SerializeField] AudioSource musicPlayer;
     [SerializeField] Timing timing;
@@ -109,7 +108,7 @@ public class Rewind : MonoBehaviour
 
         // Disables parts of player
         playerController.enabled = false;
-        playerForward.enabled = false;
+        moveBackwards.enabled = false;
         playerMovement.UnSubscribeActions();
         timing.UnSubscribeActions();
         moveBackwards.forwardSpeed *= -1;
@@ -128,10 +127,11 @@ public class Rewind : MonoBehaviour
 
         // Enables parts of player
         Invoke("BecomeVulnerable", invincibility);
-        playerForward.enabled = true;
+        moveBackwards.enabled = true;
         timing.SubscribeActions();
         playerMovement.currentLane = lane[lane.Count - 1];
         moveBackwards.forwardSpeed *= -1;
+        moveBackwards.forwardSpeed = moveBackwards.minSpeed;
         lane.Clear();
     }
     #endregion

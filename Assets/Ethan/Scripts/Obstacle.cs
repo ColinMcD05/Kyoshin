@@ -16,8 +16,6 @@ public class Obstacle : MonoBehaviour
             Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
             PlayerLevelMovement playerMovement = other.GetComponent<PlayerLevelMovement>();
             PlayerControllerLevel playerController = other.GetComponent<PlayerControllerLevel>();
-            PlayerMoveForward playerForward = other.GetComponent<PlayerMoveForward>();
-            playerForward.forwardSpeed = playerForward.minSpeed;
             switch (type)
             {
                 case ObstacleType.Kill:

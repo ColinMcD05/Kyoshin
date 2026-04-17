@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            SceneManager.sceneLoaded += SceneLoaded;
         }
         filePath = Application.persistentDataPath + "/Player_Data/";
         Load();
@@ -141,10 +141,10 @@ public class GameManager : MonoBehaviour
     {
         // Save game once application ends
         Save();
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded -= SceneLoaded;
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    void SceneLoaded(Scene scene, LoadSceneMode mode)
     {
         score = 0;
     }
