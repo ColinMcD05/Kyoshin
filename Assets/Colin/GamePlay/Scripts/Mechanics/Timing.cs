@@ -54,7 +54,7 @@ public class Timing : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         move.action.performed -= CheckTime;
         jump.action.performed -= CheckTime;
@@ -111,9 +111,7 @@ public class Timing : MonoBehaviour
     // Starts playing the music and sets up the timing for inputs
     void StartMusic()
     {
-        move.action.performed += CheckTime; // Adds the function check time to the LeftRight action so it only checks when pressed
-        jump.action.performed += CheckTime;
-        slide.action.performed += CheckTime;
+        SubscribeActions();
         playerLevelMovement.enabled = true; // Lets players move
         songStartTime = (float)AudioSettings.dspTime; // Sets songStartTime based on AudioSettings clock
         musicPlayer.clip = currentSong.song; // Sets current clip to current song clip
@@ -196,4 +194,20 @@ public class Timing : MonoBehaviour
         return Mathf.Abs(position - Mathf.Floor(position)); // produces only the decimal
     }
     #endregion
+
+    public void SubscribeActions()
+    {
+        move.action.performed += CheckTime;
+        jump.action.performed += CheckTime;
+        slide.action.performed += CheckTime;
+        playerLevelMovement.UnSubscribeActions();
+        playerLevelMovement.SubscribeActions();
+    }
+
+    public void UnSubscribeActions()
+    {
+        move.action.performed -= CheckTime;
+        jump.action.performed -= CheckTime;
+        slide.action.performed -= CheckTime;
+    }
 }

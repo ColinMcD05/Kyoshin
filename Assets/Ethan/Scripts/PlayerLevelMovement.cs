@@ -72,16 +72,12 @@ public class PlayerLevelMovement : MonoBehaviour
 
     void OnEnable()
     {
-        leftRight.action.performed += LeftRight;
-        jump.action.performed += Jump;
-        slide.action.performed += Slide;
+        SubscribeActions();
     }
 
     private void OnDisable()
     {
-        leftRight.action.performed -= LeftRight;
-        jump.action.performed -= Jump;
-        slide.action.performed -= Slide;
+        UnSubscribeActions();
     }
 
     // Action functions
@@ -420,4 +416,18 @@ public class PlayerLevelMovement : MonoBehaviour
         capsuleCollider.center += Vector3.up * (1 - shrinkPercentage);
     }
     #endregion
+
+    public void SubscribeActions()
+    {
+        leftRight.action.performed += LeftRight;
+        jump.action.performed += Jump;
+        slide.action.performed += Slide;
+    }
+
+    public void UnSubscribeActions()
+    {
+        leftRight.action.performed -= LeftRight;
+        jump.action.performed -= Jump;
+        slide.action.performed -= Slide;
+    }
 }

@@ -23,12 +23,7 @@ public class Dash : MonoBehaviour
             dashMeter = 0;
             dashing = false;
             playerForward.forwardSpeed /= dashMult;
-            playerMovement.leftRight.action.performed += timing.CheckTime;
-            playerMovement.jump.action.performed += timing.CheckTime;
-            playerMovement.slide.action.performed += timing.CheckTime;
-            playerMovement.leftRight.action.performed += playerMovement.LeftRight;
-            playerMovement.jump.action.performed += playerMovement.Jump;
-            playerMovement.slide.action.performed += playerMovement.Slide;
+            timing.SubscribeActions();
         }
     }
 
@@ -43,22 +38,13 @@ public class Dash : MonoBehaviour
             {
                 playerForward.forwardSpeed *= dashMult;
                 playerMovement.currentLane = 1;
-                playerMovement.leftRight.action.performed -= timing.CheckTime;
-                playerMovement.jump.action.performed -= timing.CheckTime;
-                playerMovement.slide.action.performed -= timing.CheckTime;
-                playerMovement.leftRight.action.performed -= playerMovement.LeftRight;
-                playerMovement.jump.action.performed -= playerMovement.Jump;
-                playerMovement.slide.action.performed -= playerMovement.Slide;
+                timing.UnSubscribeActions();
+                playerMovement.UnSubscribeActions();
             }
             else
             {
                 playerForward.forwardSpeed /= dashMult;
-                playerMovement.leftRight.action.performed += timing.CheckTime;
-                playerMovement.jump.action.performed += timing.CheckTime;
-                playerMovement.slide.action.performed += timing.CheckTime;
-                playerMovement.leftRight.action.performed += playerMovement.LeftRight;
-                playerMovement.jump.action.performed += playerMovement.Jump;
-                playerMovement.slide.action.performed += playerMovement.Slide;
+                timing.SubscribeActions();
             }
         }
     }

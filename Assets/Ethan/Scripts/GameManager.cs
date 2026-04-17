@@ -37,8 +37,9 @@ public class GameManager : MonoBehaviour
         Load();
     }
 
-    public void GameOver(){
-        //Debug.Log("Game Over");
+    public void GameOver()
+    {
+        SceneManager.LoadScene("LoseScreen");
     }
     public void AddScore(int value){
         score += value;

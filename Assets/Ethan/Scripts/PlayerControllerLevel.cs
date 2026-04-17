@@ -45,7 +45,7 @@ public class PlayerControllerLevel : MonoBehaviour
             }
             if (gameManager.lives <= 0)
             {
-                GameOver();
+                gameManager.GameOver();
             }
         }
     }
@@ -74,7 +74,4 @@ public class PlayerControllerLevel : MonoBehaviour
         // shake the camera by using the CinemachineShake script
     } // end of ShakeCamera function
     #endregion
-    public void GameOver(){
-        SceneManager.LoadScene("LoseScreen");
-    }
 }

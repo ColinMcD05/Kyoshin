@@ -12,16 +12,17 @@ public class Rewind : MonoBehaviour
     [SerializeField] Rigidbody playerRigidbody;
     [SerializeField] PlayerLevelMovement playerMovement;
     [SerializeField] PlayerMoveForward playerForward;
+    [SerializeField] MoveBackwards moveBackwards;
     [SerializeField] AudioSource musicPlayer;
     [SerializeField] Timing timing;
     [SerializeField] Collider playerCollider;
 
     // Mutable Variables in Inspector
     public float rewindTime = 3f; // How far back does the player rewind
-    public float invincibility;
+    public float invincibility = 2f;
 
     // Mutable Variables in script
-    [HideInInspector] public List<Vector3> positions; // List holding players last known position between 0 and rewindTime seconds
+    [HideInInspector] public List<Vector2> positions; // List holding players last known position between 0 and rewindTime seconds
     [HideInInspector] public List<int> lane;
 
     // Mutable Variables in other scripts
@@ -109,7 +110,9 @@ public class Rewind : MonoBehaviour
         // Disables parts of player
         playerController.enabled = false;
         playerForward.enabled = false;
-        playerMovement.enabled = false;
+        playerMovement.UnSubscribeActions();
+        timing.UnSubscribeActions();
+        moveBackwards.forwardSpeed *= -1;
 
         // Lose a life when rewinding
         gameManager.lives--;
@@ -126,8 +129,9 @@ public class Rewind : MonoBehaviour
         // Enables parts of player
         Invoke("BecomeVulnerable", invincibility);
         playerForward.enabled = true;
-        playerMovement.enabled = true;
+        timing.SubscribeActions();
         playerMovement.currentLane = lane[lane.Count - 1];
+        moveBackwards.forwardSpeed *= -1;
         lane.Clear();
     }
     #endregion
