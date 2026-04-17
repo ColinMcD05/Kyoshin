@@ -112,9 +112,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 19bed16e927a2ca4e95cdb15a3c222e4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8146030246671798739}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 19bed16e927a2ca4e95cdb15a3c222e4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8994823767774791926}
   m_SourcePrefab: {fileID: 100100000, guid: 19bed16e927a2ca4e95cdb15a3c222e4, type: 3}
 --- !u!1 &2902578447622799134 stripped
 GameObject:
@@ -214,6 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControllerLevel
   rewind: {fileID: 3233316654364501501}
+  moveBackwards: {fileID: 0}
   maxCollisions: 3
   regenTime: 2
 --- !u!114 &3233316654364501501
@@ -231,7 +229,7 @@ MonoBehaviour:
   playerController: {fileID: 4074926366466159053}
   playerRigidbody: {fileID: 8025993684956010781}
   playerMovement: {fileID: 8146030246671798739}
-  playerForward: {fileID: 8994823767774791926}
+  moveBackwards: {fileID: 0}
   musicPlayer: {fileID: 0}
   timing: {fileID: 1567925838254450578}
   playerCollider: {fileID: 449509456027308778}
@@ -257,8 +255,10 @@ MonoBehaviour:
   slide: {fileID: -1996505084464716345, guid: a1fa9bfeab0d76b4994c5ae431a6888a, type: 3}
   player: {fileID: 2902578447622799134}
   timingUI: {fileID: 0}
+  moveBackwards: {fileID: 0}
   songClass: {fileID: 0}
   musicPlayer: {fileID: 0}
+  songPosition: 0
   songPositionInBeats: 0
   messUpRange: 0.33
   rewindTimeUsed: 0
@@ -284,8 +284,9 @@ MonoBehaviour:
   dashMult: 2
   dashBarLength: 3
   dashing: 0
-  playerForward: {fileID: 8994823767774791926}
+  moveBackwards: {fileID: 0}
   playerMovement: {fileID: 8146030246671798739}
+  timing: {fileID: 1567925838254450578}
 --- !u!114 &8146030246671798739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,18 +323,3 @@ MonoBehaviour:
   slidingLength: 3
   isSliding: 0
   shrinkPercentage: 0.5
---- !u!114 &8994823767774791926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2902578447622799134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8306b01687cfbf04e91edcc617afe8ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMoveForward
-  forwardSpeed: 8
-  maxSpeed: 0
-  minSpeed: 0

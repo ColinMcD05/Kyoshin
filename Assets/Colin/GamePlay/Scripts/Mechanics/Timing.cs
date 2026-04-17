@@ -28,7 +28,7 @@ public class Timing : MonoBehaviour
 
     // Variables for timing
     float songStartTime; // Time when the song started playing
-    float songPosition = 0; // Rough position of the song position of the song
+    [HideInInspector] public float songPosition = 0; // Rough position of the song position of the song
     [HideInInspector] public float songPositionInBeats = 0; // find where it lands on the beat for correct timing
     float songTimePassed; // How much time has passsed since the song has played
     [Range(0, 0.33f)] public float messUpRange = 0.33f;
