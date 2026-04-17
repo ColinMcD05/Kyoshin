@@ -40,6 +40,7 @@ public class Timing : MonoBehaviour
     public int maxMult = 10;
     public int comboNeededMult = 5;
     public int goodScore = 5;
+    string currentScene;
     #endregion
 
     // OnEnable and OnDisble
@@ -64,6 +65,7 @@ public class Timing : MonoBehaviour
     #region
     private void Start()
     {
+        currentScene = SceneManager.GetActiveScene().name;
         resetCircle = timingUI.ResetCircle();
         songStartTime = 0;
         if (player == null)
@@ -80,9 +82,13 @@ public class Timing : MonoBehaviour
             if (SceneManager.GetActiveScene().name == song.levelName)
             {
                 currentSong = song;
+                break;
             }
         }
-        SceneManager.sceneLoaded += ChangeSong; // Should change the current song once scene is loaded
+        if (currentSong == null)
+        {
+            ChangeSong(currentSong != null);
+        }
         Invoke("StartMusic", startWaitTime);
     }
     #endregion
@@ -92,9 +98,8 @@ public class Timing : MonoBehaviour
     private void Update()
     {
         SongPosition(out songPosition, out songPositionInBeats);
-        if (songPosition >= currentSong.length && songStartTime != 0)
+        if (songPosition >= currentSong.length && songStartTime != 0 && currentScene != "Infinite")
         {
-            Debug.Log(songPosition);
             SceneManager.LoadScene("LoseScreen");
         }
     }
@@ -129,23 +134,16 @@ public class Timing : MonoBehaviour
     // ChangeSong
     #region
     // Changes song once a new scene is loaded allowing for this script to be permanent
-    void ChangeSong(Scene scene, LoadSceneMode mode)
-    {
-        foreach (Songs.SongData song in songClass.songs)
-        {
-            if (scene.name == song.levelName)
-            {
-                currentSong = song;
-            }
-        }
-    }
 
-    public void ChangeSong()
+    public void ChangeSong(bool hasSong)
     {
         int newSong = Random.Range(0, songClass.songs.Count);
-        while (songClass.songs[newSong].name == currentSong.name)
+        if (hasSong)
         {
-            newSong = Random.Range(0, songClass.songs.Count);
+            while (songClass.songs[newSong].name == currentSong.name)
+            {
+                newSong = Random.Range(0, songClass.songs.Count);
+            }
         }
         currentSong = songClass.songs[newSong];
     }
@@ -154,7 +152,7 @@ public class Timing : MonoBehaviour
     // CheckTiming
     #region
     // Check if input is hit at correct time
-    void CheckTime(InputAction.CallbackContext context)
+    public void CheckTime(InputAction.CallbackContext context)
     {
         int mult = goodScore + gameManager.combo / comboNeededMult;
         if (mult > maxMult)
