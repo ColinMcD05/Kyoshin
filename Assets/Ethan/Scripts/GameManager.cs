@@ -19,7 +19,9 @@ public class GameManager : MonoBehaviour
     LevelList levelList = new LevelList(); // A class holding a list of the levels for saving
 
     // Making gamemanager permanent
+    [Header("Persistant Objects")]
     static GameManager instance; // instance for persistant objects
+    [SerializeField] GameObject[] persistantObjects;
 
     public void Awake()
     {
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
+            MarkObjects();
             SceneManager.sceneLoaded += SceneLoaded;
         }
         filePath = Application.persistentDataPath + "/Player_Data/";
@@ -137,6 +140,27 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    private void MarkObjects()
+    {
+        foreach (GameObject obj in persistantObjects)
+        {
+            if (obj != null)
+            {
+                DontDestroyOnLoad(obj);
+            }
+        }
+    }
+
+    private void CleanAndDestroy()
+    {
+        foreach (GameObject obj in persistantObjects)
+        {
+            Destroy(obj);
+        }
+        instance = null;
+        Destroy(gameObject);
+    }
+
     private void OnApplicationQuit()
     {
         // Save game once application ends
@@ -146,6 +170,12 @@ public class GameManager : MonoBehaviour
 
     void SceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Save();
         score = 0;
+        if (scene.name == "TitleScreen")
+        {
+            CleanAndDestroy();
+            SceneManager.sceneLoaded -= SceneLoaded;
+        }
     }
 }

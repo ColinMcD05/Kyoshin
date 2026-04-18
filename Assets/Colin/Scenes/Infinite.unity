@@ -604,11 +604,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
---- !u!1 &816455866 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7777911891889704523, guid: d713011faa9f5964d9fc906740cdfa56, type: 3}
-  m_PrefabInstance: {fileID: 1004570089}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1004570089
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -664,35 +659,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7777911891889704523, guid: d713011faa9f5964d9fc906740cdfa56, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1004570093}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d713011faa9f5964d9fc906740cdfa56, type: 3}
 --- !u!114 &1004570090 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 213474859250481102, guid: d713011faa9f5964d9fc906740cdfa56, type: 3}
   m_PrefabInstance: {fileID: 1004570089}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 816455866}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcb23d801ad656747ade6d8b0c632e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Songs
---- !u!114 &1004570093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 816455866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1da51d491baa0bf41bf4638ff7c24956, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
-  pause: {fileID: -80611357765666335, guid: a1fa9bfeab0d76b4994c5ae431a6888a, type: 3}
 --- !u!1 &1138808849
 GameObject:
   m_ObjectHideFlags: 0

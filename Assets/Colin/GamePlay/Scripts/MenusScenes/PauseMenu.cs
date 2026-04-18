@@ -34,6 +34,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void Pause()
     {
+
         Time.timeScale = 0.0001f;
         AudioListener.pause = true;
     }
