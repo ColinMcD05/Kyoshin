@@ -7,10 +7,12 @@ public class NewSection : MonoBehaviour
     public GameObject nextSection;
     static GameObject lastSection;
     GameObject parent;
+    SectionManager sectionManager;
 
     IEnumerator destroySelf;
     float waitPeriod = 6.2f;
 
+    static int hit = 0;
     public bool destroying = false;
     public bool alreadySpawned = false;
 
@@ -18,6 +20,7 @@ public class NewSection : MonoBehaviour
     {
         lastSection = null;
         parent = GameObject.Find("SectionManager");
+        sectionManager = parent.GetComponent<SectionManager>();
     }
 
     void OnEnable()
@@ -29,11 +32,23 @@ public class NewSection : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            Timing timing = other.GetComponent<Timing>();
+            if (timing.currentSong.length - timing.songPosition <= 3)
+            {
+                hit++;
+            }
+            else if (hit != 0)
+            {
+                hit = 0;
+            }
+            if (hit == 4)
+            {
+                timing.ChangeSong();
+            }
             if (!alreadySpawned)
             {
                 SpawnNewSection(other);
             }
-            Debug.Log(destroying);
             if (!destroying)
             {
                 StartCoroutine(destroySelf);
@@ -51,7 +66,7 @@ public class NewSection : MonoBehaviour
         Songs.SongData currentSong = timing.currentSong;
         if (lastSection == null)
         {
-            lastSection = parent.transform.GetChild(2).gameObject;
+            lastSection = parent.transform.GetChild(6).gameObject;
         }
         Vector3 spawnPosition = lastSection.transform.position + new Vector3(0, 0, 32);
         GameObject section = ObjectPool.sharedInstance.GetPooledObject();

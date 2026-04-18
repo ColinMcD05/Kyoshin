@@ -18,7 +18,6 @@ public class PlayerControllerLevel : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         cineMachineNoise = GameObject.Find("CinemachineCamera").GetComponent<CinemachineBasicMultiChannelPerlin>();
-        Debug.Log(cineMachineNoise != null);
     }
 
     #region Lose Life | This is a function that is called to lose a life

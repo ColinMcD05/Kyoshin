@@ -86,7 +86,7 @@ public class Timing : MonoBehaviour
         }
         if (currentSong == null)
         {
-            ChangeSong(currentSong != null);
+            ChangeSong();
         }
         Invoke("StartMusic", startWaitTime);
     }
@@ -108,10 +108,13 @@ public class Timing : MonoBehaviour
     // StartMusic
     #region
     // Starts playing the music and sets up the timing for inputs
-    void StartMusic()
+    public void StartMusic()
     {
         SubscribeActions();
-        playerLevelMovement.enabled = true; // Lets players move
+        if (!playerLevelMovement.enabled)
+        {
+            playerLevelMovement.enabled = true; // Lets players move
+        }
         songStartTime = (float)AudioSettings.dspTime; // Sets songStartTime based on AudioSettings clock
         musicPlayer.clip = currentSong.song; // Sets current clip to current song clip
         musicPlayer.Play(); // Players music
@@ -132,17 +135,27 @@ public class Timing : MonoBehaviour
     #region
     // Changes song once a new scene is loaded allowing for this script to be permanent
 
-    public void ChangeSong(bool hasSong)
+    public void ChangeSong()
     {
         int newSong = Random.Range(0, songClass.songs.Count);
-        if (hasSong)
+        Debug.Log(newSong);
+        Debug.Log(songClass.songs.Count);
+        if (currentSong != null)
         {
             while (songClass.songs[newSong].name == currentSong.name)
             {
                 newSong = Random.Range(0, songClass.songs.Count);
+                Debug.Log(newSong);
             }
+            StopCoroutine(resetCircle);
+            UnSubscribeActions();
+            currentSong = songClass.songs[newSong];
+            StartMusic();
         }
-        currentSong = songClass.songs[newSong];
+        else
+        {
+            currentSong = songClass.songs[newSong];
+        }
     }
     #endregion
 

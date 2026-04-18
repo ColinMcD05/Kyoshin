@@ -796,7 +796,7 @@ GameObject:
   - component: {fileID: 1138808851}
   - component: {fileID: 1138808850}
   m_Layer: 6
-  m_Name: Plane (1)
+  m_Name: HoldPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -992,7 +992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
   pooledObjects: []
   objectToPool: {fileID: 5010261799482120410, guid: 2ff0fd1613d453d4eacf5959211efe3d, type: 3}
-  amountToPool: 10
+  amountToPool: 12
 --- !u!114 &1547309013
 MonoBehaviour:
   m_ObjectHideFlags: 0
