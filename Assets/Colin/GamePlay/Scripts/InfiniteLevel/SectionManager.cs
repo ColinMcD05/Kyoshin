@@ -9,7 +9,7 @@ public class SectionManager : MonoBehaviour
     void Start()
     {
         Vector3 spawnPosition = new Vector3(0, 0, 16);
-        GameObject section = ObjectPool.sharedInstance.GetPooledObject();
+        GameObject section = ObjectPool.sharedInstance.GetPooledSections();
         if (section != null)
         {
             section.transform.parent = gameObject.transform;
@@ -19,7 +19,7 @@ public class SectionManager : MonoBehaviour
         }
 
         spawnPosition += new Vector3(0, 0, 32);
-        section = ObjectPool.sharedInstance.GetPooledObject();
+        section = ObjectPool.sharedInstance.GetPooledSections();
         if (section != null)
         {
             section.transform.parent = gameObject.transform;
@@ -29,7 +29,7 @@ public class SectionManager : MonoBehaviour
         }
 
         spawnPosition += new Vector3(0, 0, 32);
-        section = ObjectPool.sharedInstance.GetPooledObject();
+        section = ObjectPool.sharedInstance.GetPooledSections();
         if (section != null)
         {
             section.transform.parent = gameObject.transform;
@@ -39,7 +39,7 @@ public class SectionManager : MonoBehaviour
         }
 
         spawnPosition += new Vector3(0, 0, 32);
-        section = ObjectPool.sharedInstance.GetPooledObject();
+        section = ObjectPool.sharedInstance.GetPooledSections();
         if (section != null)
         {
             section.transform.parent = gameObject.transform;

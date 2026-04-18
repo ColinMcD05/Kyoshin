@@ -138,8 +138,6 @@ public class Timing : MonoBehaviour
     public void ChangeSong()
     {
         int newSong = Random.Range(0, songClass.songs.Count);
-        Debug.Log(newSong);
-        Debug.Log(songClass.songs.Count);
         if (currentSong != null)
         {
             while (songClass.songs[newSong].name == currentSong.name)

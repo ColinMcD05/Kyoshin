@@ -108,7 +108,6 @@ public class Rewind : MonoBehaviour
 
         // Disables parts of player
         playerController.enabled = false;
-        moveBackwards.enabled = false;
         playerMovement.UnSubscribeActions();
         timing.UnSubscribeActions();
         moveBackwards.forwardSpeed *= -1;
@@ -127,7 +126,6 @@ public class Rewind : MonoBehaviour
 
         // Enables parts of player
         Invoke("BecomeVulnerable", invincibility);
-        moveBackwards.enabled = true;
         timing.SubscribeActions();
         playerMovement.currentLane = lane[lane.Count - 1];
         moveBackwards.forwardSpeed *= -1;

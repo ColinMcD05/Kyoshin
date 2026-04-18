@@ -55,6 +55,8 @@ public class NewSection : MonoBehaviour
             }
             else
             {
+                StopAllCoroutines();
+                destroySelf = SelfDestroy();
                 destroying = false;
             }
         }
@@ -69,7 +71,7 @@ public class NewSection : MonoBehaviour
             lastSection = parent.transform.GetChild(6).gameObject;
         }
         Vector3 spawnPosition = lastSection.transform.position + new Vector3(0, 0, 32);
-        GameObject section = ObjectPool.sharedInstance.GetPooledObject();
+        GameObject section = ObjectPool.sharedInstance.GetPooledSections();
         if (section != null)
         {
             section.transform.parent = parent.transform;
