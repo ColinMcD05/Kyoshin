@@ -27,7 +27,11 @@ public class GameManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Destroy(gameObject);
+            if (instance != null)
+            {
+                CleanAndDestroy();
+                return;
+            }
         }
         else
         {
@@ -157,7 +161,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(obj);
         }
-        instance = null;
         Destroy(gameObject);
     }
 
@@ -174,8 +177,9 @@ public class GameManager : MonoBehaviour
         score = 0;
         if (scene.name == "TitleScreen")
         {
-            CleanAndDestroy();
+            instance = null;
             SceneManager.sceneLoaded -= SceneLoaded;
+            CleanAndDestroy();
         }
     }
 }
