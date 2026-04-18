@@ -1280,6 +1280,7 @@ GameObject:
   - component: {fileID: 8758826265079316248}
   - component: {fileID: 2225882636038191465}
   - component: {fileID: 7438202695979396984}
+  - component: {fileID: 6748865541338958860}
   m_Layer: 0
   m_Name: NewSectionTrigger
   m_TagString: NewSectionTrigger
@@ -1336,3 +1337,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewSection
   nextSection: {fileID: 5010261799482120410}
+  destroying: 0
+  alreadySpawned: 0
+--- !u!114 &6748865541338958860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7561722898421548900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfb938590d454f3419f4dac28e8b73ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnObjects

@@ -5,9 +5,16 @@ using UnityEngine.Pool;
 public class ObjectPool : MonoBehaviour
 {
     public static ObjectPool sharedInstance;
-    public List<GameObject> pooledSections, obstaclesToPool, pooledObstacles;
+    [Header("Pooled Objects")]
+    public List<GameObject> pooledSections, pooledObstacles;
+
+    [Header("Section Info")]
     public GameObject sectionToPool;
-    public int amountSectionsToPool, amountObstaclesToPool;
+    public int amountSectionsToPool;
+
+    [Header("Obstacles Info")]
+    public GameObject[] obstaclesToPool;
+    public int[] amountObstaclesToPool;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -20,6 +27,17 @@ public class ObjectPool : MonoBehaviour
             tmp = Instantiate(sectionToPool);
             tmp.SetActive(false);
             pooledSections.Add(tmp);
+        }
+
+        pooledObstacles = new List<GameObject>();
+        for (int i = 0; i < amountObstaclesToPool.Length; i++)
+        {
+            for (int j = 0; j < amountObstaclesToPool[i]; j++)
+            {
+                tmp = Instantiate(obstaclesToPool[i]);
+                tmp.SetActive(false);
+                pooledObstacles.Add(tmp);
+            }
         }
     }
     public GameObject GetPooledSections()
