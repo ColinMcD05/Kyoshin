@@ -51,4 +51,16 @@ public class ObjectPool : MonoBehaviour
         }
         return null;
     }
+
+    public GameObject GetPooledObstacles()
+    {
+        for (int i = 0; i < amountObstaclesToPool[0]; i++)
+        {
+            if (!pooledObstacles[i].activeInHierarchy)
+            {
+                return pooledObstacles[i];
+            }
+        }
+        return null;
+    }
 }

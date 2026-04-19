@@ -46,19 +46,15 @@ public class Timing : MonoBehaviour
     // OnEnable and OnDisble
     private void OnEnable()
     {
-        if (Time.timeSinceLevelLoad > startWaitTime + 1)
+        if (songPosition > startWaitTime + 1)
         {
-            move.action.performed += CheckTime;
-            jump.action.performed += CheckTime;
-            slide.action.performed += CheckTime;
+            SubscribeActions();
         }
     }
 
     private void OnDestroy()
     {
-        move.action.performed -= CheckTime;
-        jump.action.performed -= CheckTime;
-        slide.action.performed -= CheckTime;
+        UnSubscribeActions();
     }
 
     // Start
@@ -84,11 +80,14 @@ public class Timing : MonoBehaviour
                 break;
             }
         }
-        if (currentSong == null)
+        if (currentScene == "Infinite")
         {
             ChangeSong();
         }
-        Invoke("StartMusic", startWaitTime);
+        else
+        {
+            Invoke("StartMusic", startWaitTime);
+        }
     }
     #endregion
 
@@ -117,6 +116,7 @@ public class Timing : MonoBehaviour
         }
         songStartTime = (float)AudioSettings.dspTime; // Sets songStartTime based on AudioSettings clock
         musicPlayer.clip = currentSong.song; // Sets current clip to current song clip
+        Debug.Log(currentSong.name);
         musicPlayer.Play(); // Players music
         StartCoroutine(resetCircle);
     }
@@ -190,9 +190,7 @@ public class Timing : MonoBehaviour
             playerControllerLevel.LoseLife();
             // reset combo and speed
             gameManager.combo = 0;
-            moveBackwards.forwardSpeed = moveBackwards.minSpeed;
             playerLevelMovement.goodMove = false;
-            Debug.Log("Bad");
         }
     }
     #endregion

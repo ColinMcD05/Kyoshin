@@ -8,6 +8,8 @@ public class NewSection : MonoBehaviour
     static GameObject lastSection;
     GameObject parent;
     SectionManager sectionManager;
+    SpawnObjects spawnObjects;
+    Timing timing;
 
     IEnumerator destroySelf;
     float waitPeriod = 6.2f;
@@ -21,6 +23,13 @@ public class NewSection : MonoBehaviour
         lastSection = null;
         parent = GameObject.Find("SectionManager");
         sectionManager = parent.GetComponent<SectionManager>();
+        spawnObjects = sectionManager.GetComponent<SpawnObjects>();
+        timing = GameObject.Find("Player").GetComponent<Timing>();
+    }
+
+    void Start()
+    {
+
     }
 
     void OnEnable()
@@ -32,18 +41,22 @@ public class NewSection : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Timing timing = other.GetComponent<Timing>();
             if (timing.currentSong.length - timing.songPosition <= 3)
             {
                 hit++;
             }
-            else if (hit != 0)
+            else 
             {
-                hit = 0;
+                if (hit != 0)
+                {
+                    hit = 0;
+                }
+                Debug.Log("Doing This");
             }
             if (hit == 4)
             {
                 timing.ChangeSong();
+                spawnObjects.ChangeVariables(timing.currentSong, other.transform.position);
             }
             if (!alreadySpawned)
             {

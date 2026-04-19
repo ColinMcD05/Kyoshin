@@ -105,12 +105,13 @@ public class Rewind : MonoBehaviour
         rewinding = true;
 
         musicPlayer.pitch = -1; // Reverses music
+        Debug.Log("Doing this");
+        moveBackwards.forwardSpeed *= -1;
 
         // Disables parts of player
         playerController.enabled = false;
         playerMovement.UnSubscribeActions();
         timing.UnSubscribeActions();
-        moveBackwards.forwardSpeed *= -1;
 
         // Lose a life when rewinding
         gameManager.lives--;
