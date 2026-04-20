@@ -11,12 +11,14 @@ public class Timing : MonoBehaviour
     // References
     GameManager gameManager;
     [SerializeField] InputActionReference move;
+    [SerializeField] InputActionReference jump;
+    [SerializeField] InputActionReference slide;
     [SerializeField] GameObject player;
     [SerializeField] TimingUI timingUI;
     Rewind rewind;
     PlayerLevelMovement playerLevelMovement;
     PlayerControllerLevel playerControllerLevel;
-    PlayerMoveForward playerForward;
+    [SerializeField] MoveBackwards moveBackwards;
     [SerializeField] Songs songClass;
     [HideInInspector] public Songs.SongData currentSong;
     [SerializeField] AudioSource musicPlayer;
@@ -26,7 +28,7 @@ public class Timing : MonoBehaviour
 
     // Variables for timing
     float songStartTime; // Time when the song started playing
-    float songPosition = 0; // Rough position of the song position of the song
+    [HideInInspector] public float songPosition = 0; // Rough position of the song position of the song
     [HideInInspector] public float songPositionInBeats = 0; // find where it lands on the beat for correct timing
     float songTimePassed; // How much time has passsed since the song has played
     [Range(0, 0.33f)] public float messUpRange = 0.33f;
@@ -38,35 +40,36 @@ public class Timing : MonoBehaviour
     public int maxMult = 10;
     public int comboNeededMult = 5;
     public int goodScore = 5;
+    string currentScene;
     #endregion
 
     // OnEnable and OnDisble
     private void OnEnable()
     {
-        if (Time.timeSinceLevelLoad > startWaitTime + 1)
+        if (songPosition > startWaitTime + 1)
         {
-            move.action.performed += CheckTime;
+            SubscribeActions();
         }
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        move.action.performed -= CheckTime;
+        UnSubscribeActions();
     }
 
     // Start
     #region
     private void Start()
     {
+        currentScene = SceneManager.GetActiveScene().name;
         resetCircle = timingUI.ResetCircle();
         songStartTime = 0;
-        Debug.Log((float)AudioSettings.dspTime);
+        songPosition = 0;
         if (player == null)
             player = GameObject.FindWithTag("Player");
         playerControllerLevel = player.GetComponent<PlayerControllerLevel>();
         rewind = player.GetComponent<Rewind>();
         playerLevelMovement = player.GetComponent<PlayerLevelMovement>();
-        playerForward = player.GetComponent<PlayerMoveForward>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         // Changing current song based on the build index. May change
@@ -75,10 +78,17 @@ public class Timing : MonoBehaviour
             if (SceneManager.GetActiveScene().name == song.levelName)
             {
                 currentSong = song;
+                break;
             }
         }
-        SceneManager.sceneLoaded += ChangeSong; // Should change the current song once scene is loaded
-        Invoke("StartMusic", startWaitTime);
+        if (currentScene == "Infinite")
+        {
+            ChangeSong();
+        }
+        else
+        {
+            Invoke("StartMusic", startWaitTime);
+        }
     }
     #endregion
 
@@ -87,9 +97,8 @@ public class Timing : MonoBehaviour
     private void Update()
     {
         SongPosition(out songPosition, out songPositionInBeats);
-        if (songPosition >= currentSong.length && songStartTime != 0)
+        if (songPosition >= currentSong.length && songStartTime != 0 && currentScene != "Infinite")
         {
-            Debug.Log(songPosition);
             SceneManager.LoadScene("LoseScreen");
         }
     }
@@ -99,10 +108,13 @@ public class Timing : MonoBehaviour
     // StartMusic
     #region
     // Starts playing the music and sets up the timing for inputs
-    void StartMusic()
+    public void StartMusic()
     {
-        move.action.performed += CheckTime; // Adds the function check time to the LeftRight action so it only checks when pressed
-        playerLevelMovement.enabled = true; // Lets players move
+        SubscribeActions();
+        if (!playerLevelMovement.enabled)
+        {
+            playerLevelMovement.enabled = true; // Lets players move
+        }
         songStartTime = (float)AudioSettings.dspTime; // Sets songStartTime based on AudioSettings clock
         musicPlayer.clip = currentSong.song; // Sets current clip to current song clip
         musicPlayer.Play(); // Players music
@@ -114,40 +126,47 @@ public class Timing : MonoBehaviour
     #region
     void SongPosition(out float songPosition, out float songPositionInBeats)
     {
-        songPosition = (float)(AudioSettings.dspTime - songStartTime - rewindTimeUsed); //Calculate song position in seconds by subtracting the time the song started and how much time was rewound by the current clock in AudioSettings
-        songPositionInBeats = 1 + songPosition / currentSong.bps; // Calculate song in beats by dividing song position by the sec per beat of the song
+        if (musicPlayer.isPlaying) {
+            songPosition = (float)(AudioSettings.dspTime - songStartTime - rewindTimeUsed); //Calculate song position in seconds by subtracting the time the song started and how much time was rewound by the current clock in AudioSettings
+            songPositionInBeats = 1 + songPosition / currentSong.bps; // Calculate song in beats by dividing song position by the sec per beat of the song
+        }
+        else
+        {
+            songPosition = 0;
+            songPositionInBeats = 0;
+        }
     }
     #endregion
 
     // ChangeSong
     #region
     // Changes song once a new scene is loaded allowing for this script to be permanent
-    void ChangeSong(Scene scene, LoadSceneMode mode)
-    {
-        foreach (Songs.SongData song in songClass.songs)
-        {
-            if (scene.name == song.levelName)
-            {
-                currentSong = song;
-            }
-        }
-    }
 
     public void ChangeSong()
     {
         int newSong = Random.Range(0, songClass.songs.Count);
-        while (songClass.songs[newSong].name == currentSong.name)
+        if (currentSong != null)
         {
-            newSong = Random.Range(0, songClass.songs.Count);
+            while (songClass.songs[newSong].name == currentSong.name)
+            {
+                newSong = Random.Range(0, songClass.songs.Count);
+            }
+            StopCoroutine(resetCircle);
+            UnSubscribeActions();
+            currentSong = songClass.songs[newSong];
+            StartMusic();
         }
-        currentSong = songClass.songs[newSong];
+        else
+        {
+            currentSong = songClass.songs[newSong];
+        }
     }
     #endregion
 
     // CheckTiming
     #region
     // Check if input is hit at correct time
-    void CheckTime(InputAction.CallbackContext context)
+    public void CheckTime(InputAction.CallbackContext context)
     {
         int mult = goodScore + gameManager.combo / comboNeededMult;
         if (mult > maxMult)
@@ -156,18 +175,19 @@ public class Timing : MonoBehaviour
         }
         float positionDecimal = GetDecimal(songPositionInBeats); // Getting decimals of beat position
         //Debug.Log(positionDecimal);
-        if (positionDecimal <= messUpRange || positionDecimal >= 1 - messUpRange) // checks if action takes place in the mess up range.
+        if (positionDecimal <= messUpRange*0.5 || positionDecimal >= 1 - messUpRange) // checks if action takes place in the mess up range.
         {
             // Do correct movement
             // Add combo
             gameManager.combo++;
             // Check player speed, if not at max speed go faster
-            if (playerForward.forwardSpeed < playerForward.maxSpeed && gameManager.combo % comboNeeded == 0)
+            if (moveBackwards.forwardSpeed < moveBackwards.maxSpeed && gameManager.combo % comboNeeded == 0)
             {
-                playerForward.forwardSpeed *= 2;
+                moveBackwards.forwardSpeed *= 2;
             }
             gameManager.AddScore(mult);
-            Debug.Log("Good");
+            playerLevelMovement.goodMove = true;
+            //Debug.Log("Good");
         }
         else
         {
@@ -176,8 +196,7 @@ public class Timing : MonoBehaviour
             playerControllerLevel.LoseLife();
             // reset combo and speed
             gameManager.combo = 0;
-            playerForward.forwardSpeed = playerForward.minSpeed;
-            Debug.Log("Bad");
+            playerLevelMovement.goodMove = false;
         }
     }
     #endregion
@@ -189,4 +208,20 @@ public class Timing : MonoBehaviour
         return Mathf.Abs(position - Mathf.Floor(position)); // produces only the decimal
     }
     #endregion
+
+    public void SubscribeActions()
+    {
+        move.action.performed += CheckTime;
+        jump.action.performed += CheckTime;
+        slide.action.performed += CheckTime;
+        playerLevelMovement.UnSubscribeActions();
+        playerLevelMovement.SubscribeActions();
+    }
+
+    public void UnSubscribeActions()
+    {
+        move.action.performed -= CheckTime;
+        jump.action.performed -= CheckTime;
+        slide.action.performed -= CheckTime;
+    }
 }

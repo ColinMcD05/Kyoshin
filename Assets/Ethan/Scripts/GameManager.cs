@@ -19,30 +19,37 @@ public class GameManager : MonoBehaviour
     LevelList levelList = new LevelList(); // A class holding a list of the levels for saving
 
     // Making gamemanager permanent
+    [Header("Persistant Objects")]
     static GameManager instance; // instance for persistant objects
+    [SerializeField] GameObject[] persistantObjects;
 
     public void Awake()
     {
         if (instance != null)
         {
-            Destroy(gameObject);
+            if (instance != null)
+            {
+                CleanAndDestroy();
+                return;
+            }
         }
         else
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            MarkObjects();
+            SceneManager.sceneLoaded += SceneLoaded;
         }
         filePath = Application.persistentDataPath + "/Player_Data/";
         Load();
     }
 
-    public void GameOver(){
-        //Debug.Log("Game Over");
+    public void GameOver()
+    {
+        SceneManager.LoadScene("LoseScreen");
     }
     public void AddScore(int value){
         score += value;
-        Debug.Log(score % 100);
         if (score % 100 == 0)
         {
             lives++;
@@ -137,15 +144,42 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    private void MarkObjects()
+    {
+        foreach (GameObject obj in persistantObjects)
+        {
+            if (obj != null)
+            {
+                DontDestroyOnLoad(obj);
+            }
+        }
+    }
+
+    private void CleanAndDestroy()
+    {
+        foreach (GameObject obj in persistantObjects)
+        {
+            Destroy(obj);
+        }
+        Destroy(gameObject);
+    }
+
     private void OnApplicationQuit()
     {
         // Save game once application ends
         Save();
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded -= SceneLoaded;
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    void SceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Save();
         score = 0;
+        if (scene.name == "TitleScreen")
+        {
+            instance = null;
+            SceneManager.sceneLoaded -= SceneLoaded;
+            CleanAndDestroy();
+        }
     }
 }

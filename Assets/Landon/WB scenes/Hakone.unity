@@ -1649,7 +1649,7 @@ PrefabInstance:
       objectReference: {fileID: 618154431}
     - target: {fileID: 8844556020789058898, guid: 12310d5c27850784c914b7b19a0f1b39, type: 3}
       propertyPath: m_VersionIndex
-      value: 3667
+      value: 3670
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13149,7 +13149,7 @@ PrefabInstance:
       objectReference: {fileID: 525480112}
     - target: {fileID: 8844556020789058898, guid: 12310d5c27850784c914b7b19a0f1b39, type: 3}
       propertyPath: m_VersionIndex
-      value: 3667
+      value: 3670
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19132,7 +19132,7 @@ PrefabInstance:
       objectReference: {fileID: 639693900}
     - target: {fileID: 8844556020789058898, guid: 12310d5c27850784c914b7b19a0f1b39, type: 3}
       propertyPath: m_VersionIndex
-      value: 3667
+      value: 3670
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22492,7 +22492,7 @@ PrefabInstance:
       objectReference: {fileID: 578722396}
     - target: {fileID: 8844556020789058898, guid: 12310d5c27850784c914b7b19a0f1b39, type: 3}
       propertyPath: m_VersionIndex
-      value: 3667
+      value: 3670
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22519,6 +22519,18 @@ PrefabInstance:
     - target: {fileID: 1321607435560748508, guid: 459dce46211c54544a40abde73b11228, type: 3}
       propertyPath: m_Name
       value: CinemachineCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 5326989317241871624, guid: 459dce46211c54544a40abde73b11228, type: 3}
+      propertyPath: m_NoiseOffsets.x
+      value: -727.67236
+      objectReference: {fileID: 0}
+    - target: {fileID: 5326989317241871624, guid: 459dce46211c54544a40abde73b11228, type: 3}
+      propertyPath: m_NoiseOffsets.y
+      value: -198.49768
+      objectReference: {fileID: 0}
+    - target: {fileID: 5326989317241871624, guid: 459dce46211c54544a40abde73b11228, type: 3}
+      propertyPath: m_NoiseOffsets.z
+      value: -660.0447
       objectReference: {fileID: 0}
     - target: {fileID: 6975411035422619735, guid: 459dce46211c54544a40abde73b11228, type: 3}
       propertyPath: m_LocalPosition.x
@@ -45388,7 +45400,7 @@ PrefabInstance:
       objectReference: {fileID: 1911230562}
     - target: {fileID: 8844556020789058898, guid: 12310d5c27850784c914b7b19a0f1b39, type: 3}
       propertyPath: m_VersionIndex
-      value: 3667
+      value: 3670
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -47876,7 +47888,7 @@ PrefabInstance:
       objectReference: {fileID: 1611501984}
     - target: {fileID: 8844556020789058898, guid: 12310d5c27850784c914b7b19a0f1b39, type: 3}
       propertyPath: m_VersionIndex
-      value: 3670
+      value: 3673
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

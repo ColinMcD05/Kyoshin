@@ -6,6 +6,11 @@ public class PlayerLevelMovement : MonoBehaviour
 {
     //Variables
     #region
+    // Input Action Variables
+    public InputActionReference leftRight;
+    public InputActionReference jump;
+    public InputActionReference slide;
+
     // Jump Variables
     public float jumpForce = 7.0f; // This is the force of the jump
     private bool jumpPressed; // This is a boolean that is used to check if the jump button is pressed
@@ -15,7 +20,6 @@ public class PlayerLevelMovement : MonoBehaviour
     public LayerMask groundLayers; // This is the layer mask for the ground
 
     public Rigidbody playerRigidbody; // This is the rigidbody component of the player
-    private Collider playerCollider; // Cached for Physics.IgnoreCollision with walls
     private Collider activeWallCollider; // Wall we're currently touching (set on enter, used when jumping off)
 
     // Lane Variables
@@ -24,15 +28,23 @@ public class PlayerLevelMovement : MonoBehaviour
     public float lefLaneX = -5.0f;
     public float centerLaneX = 0.0f;
     public float rightLaneX = 5.0f;
-    private bool canReadLaneInput = true;
     public float laneChangeSpeed = 20.0f;// Lane Change Speed
+    [HideInInspector] public bool goodMove;
 
     // Wall Run Variables
-    private bool isWallRunning = false; // This is a boolean that is used to check if the player is wall running
-    [HideInInspector] public Vector2 rightWallPosition;
-    [HideInInspector] public Vector2 leftWallPosition;
+    public bool isWallRunning = false; // This is a boolean that is used to check if the player is wall running
+    [HideInInspector] public Vector2? rightWallPosition;
+    [HideInInspector] public Vector2? leftWallPosition;
     public float wallRunDelay = 0.2f; // This is the delay for the wall run
     public WallType wallType;
+    public AreaType areaType = AreaType.normal;
+
+    // Sliding Variables
+    public float slidingLength;
+    public bool isSliding;
+    [Range(0,1)]public float shrinkPercentage;
+    CapsuleCollider capsuleCollider;
+
     public enum WallType
     {
         none,
@@ -47,34 +59,38 @@ public class PlayerLevelMovement : MonoBehaviour
         wallRunning,
         closeWallRunning
     }
-    public AreaType areaType = AreaType.normal;
+
     #endregion
 
     void Awake(){
-        playerCollider = GetComponent<Collider>();
         groundLayers = LayerMask.GetMask("Ground"); // Get the layer mask for the ground
         if(playerRigidbody == null){
             playerRigidbody = GetComponent<Rigidbody>();
         }
+        capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
     }
-    
 
-    public void OnLeftRight(InputValue value){ // This is a function that is called when the leftRightInput is pressed
-        leftRightInput = value.Get<Vector2>(); // Get the value of the leftRightInput
+    void OnEnable()
+    {
+        SubscribeActions();
+    }
+
+    private void OnDisable()
+    {
+        UnSubscribeActions();
+    }
+
+    // Action functions
+    #region
+    // Move action
+    public void LeftRight(InputAction.CallbackContext value){ // This is a function that is called when the leftRightInput is pressed
+        leftRightInput = value.ReadValue<Vector2>(); // Get the value of the leftRightInput
         float xInput = leftRightInput.x; // Get the x input
-        if (isWallRunning)
-        { // If the player is wall running, then return
-            if (areaType == AreaType.closeWallRunning)
-            {
-
-            }
-            return;
-        }
         if (Mathf.Abs(xInput) < inputThreshold){ // If the x input is less than the input threshold, then the player can read the lane input
-            canReadLaneInput = true;
             return;
         }
-        if(!canReadLaneInput){ // If the player cannot read the lane input, then return
+        if (!goodMove)
+        {
             return;
         }
         switch (areaType)
@@ -90,67 +106,105 @@ public class PlayerLevelMovement : MonoBehaviour
                 currentLane = Mathf.Clamp(currentLane, 0, 2); // Clamp the current lane between 0 and 2
                 break;
             case AreaType.wallRunning:
+                if (currentLane ==3 || currentLane == -1)
+                {
+                    return;
+                }
                 if (xInput > 0f)
                 {
+                    Debug.Log("Doing This");
                     if (currentLane == 2)
                     {
-                        isWallRunning = true;
-                        playerRigidbody.useGravity = false;
-                        wallType = WallType.rightWall;
+                        if (rightWallPosition != null)
+                        {
+                            isWallRunning = true;
+                            playerRigidbody.useGravity = false;
+                            wallType = WallType.rightWall;
+                        }
+                        else return;
                     }
+                    Debug.Log(xInput);
                     currentLane++;
                 }
                 else if (xInput < 0f)
                 {
                     if (currentLane == 0)
                     {
-                        isWallRunning = true;
-                        playerRigidbody.useGravity = false;
-                        wallType = WallType.leftWall;
+                        if (leftWallPosition != null)
+                        {
+                            isWallRunning = true;
+                            playerRigidbody.useGravity = false;
+                            wallType = WallType.leftWall;
+                        }
+                        else return;
                     }
                     currentLane--;
                 }
                 currentLane = Mathf.Clamp(currentLane, -1, 3); // Clamp the current lane between 0 and 2
                 break;
             case AreaType.closeWallRunning:
+                if (xInput > 0f)
+                {
+                    if (currentLane == 1)
+                    {
+                        isWallRunning = true;
+                        playerRigidbody.useGravity = false;
+                        wallType = WallType.rightWall;
+                    }
+                    else if (currentLane == 0)
+                    {
+                        currentLane++;
+                    }
+                    currentLane++;
+                }
+                else if (xInput < 0f)
+                {
+                    if (currentLane == 1)
+                    {
+                        isWallRunning = true;
+                        playerRigidbody.useGravity = false;
+                        wallType = WallType.leftWall;
+                    }
+                    else if (currentLane == 2)
+                    {
+                        currentLane--;
+                    }
+                    currentLane--;
+                }
+                currentLane = Mathf.Clamp(currentLane, 0, 2);
                 break;
         }
-        canReadLaneInput = false; // Set the canReadLaneInput to false
     }
-    public void OnJump(InputValue value){ // This is a function that is called when the jump button is pressed argument is the value of the input
-        if(value.isPressed){ // If the jump button is pressed, then set the jumpPressed to true
+
+    // Jump action
+    public void Jump(InputAction.CallbackContext value){ // This is a function that is called when the jump button is pressed argument is the value of the input
+        if(value.ReadValueAsButton() && goodMove && !isSliding){ // If the jump button is pressed, then set the jumpPressed to true
             jumpPressed = true;// Set the jumpPressed to true
         }
     }
+
+    // Slide action
+    public void Slide(InputAction.CallbackContext value)
+    {
+        // If already sliding return
+        if (isSliding || !goodMove)
+        {
+            return;
+        }
+        isSliding = true; // Set sliding equal to true
+        capsuleCollider.height *= shrinkPercentage; // multiply collider hieght by shrink percentage to shrink height
+        capsuleCollider.center -= Vector3.up * (1 - shrinkPercentage); // move the center to keep collider touching the ground
+        Invoke("StopSliding", slidingLength); // Invoke StopSliding after the slidingLength
+    }
+    #endregion
+
+    // FixedUpdate
+    #region
     void FixedUpdate(){// This is a function that is called every fixed delta time
-        if(isWallRunning){// If the player is wall running, then check if the jump button is pressed
-            if(jumpPressed){// If the jump button is pressed, then stop the wall run
-                StopWallRun();// Stop the wall run
-                Vector3 playerV = playerRigidbody.linearVelocity; // Get the velocity of the player by getting the velocity of the player's rigidbody
-                playerV.y = 0f; // Set the y velocity of the player to 0
-                playerRigidbody.linearVelocity = playerV; // Set the velocity of the player to the velocity
-                playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // Add a force to the player to make them jump by using the AddForce function which uses the arguments force, force mode, force being the force to apply to the player, and the force mode being the mode to apply the force in impulse mode which is a force that is applied instantly
-                wallType = WallType.none;
-                /*if (playerCollider != null && activeWallCollider != null)
-                {
-                    Physics.IgnoreCollision(playerCollider, activeWallCollider, true);
-                    StartCoroutine(ReenableWallCollisionAfterDelay(activeWallCollider));
-                }*/
-                jumpPressed = false; // Set the jumpPressed to false
-                return;// Return from the function
-            }
-            // Wall Run Movement
-            Vector3 playerP = playerRigidbody.position; // Get the position of the player by getting the position of the player's rigidbody
-            playerRigidbody.position = playerP; // Set the position of the player to the position
-
-            // only allow movement along the z axis when the player is wall running
-            Vector3 vel = playerRigidbody.linearVelocity; // Get the velocity of the player by getting the velocity of the player's rigidbody
-            vel.x = 0f; // Set the x velocity of the player to 0
-            vel.y = 0f; // Set the y velocity of the player to 0
-            playerRigidbody.linearVelocity = vel; // Set the velocity of the player to the velocity
-
-            jumpPressed = false; // Set the jumpPressed to false
-            return; // Return from the function
+        if (isWallRunning && jumpPressed)
+        {
+            StopWallRun();
+            jumpPressed = false;
         }
         switch (areaType)
         {
@@ -162,6 +216,7 @@ public class PlayerLevelMovement : MonoBehaviour
                 WallRunMove();
                 break;
             case AreaType.closeWallRunning:
+                CloseWallRunMove();
                 break;
         }
 
@@ -173,9 +228,16 @@ public class PlayerLevelMovement : MonoBehaviour
             playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // Add a force to the player to make them jump by using the AddForce function which uses the arguments force, force mode, force being the force to apply to the player, and the force mode being the mode to apply the force in impulse mode which is a force that is applied instantly
             jumpPressed = false; // Set the jumpPressed to false
         }
+        else if (jumpPressed)
+        {
+            jumpPressed = false;
+        }
     }
-    
-    void NormalMove()
+    #endregion
+
+    // Movement Functions
+    #region
+    public void NormalMove()
     {
         float targetX = GetTargetLaneX(); // Get the target x position
 
@@ -193,42 +255,106 @@ public class PlayerLevelMovement : MonoBehaviour
 
         float newX = Mathf.MoveTowards(playerRigidbody.position.x, targetX, laneChangeSpeed * Time.fixedDeltaTime); // Move the player to the target x position by using the MoveTowards function which uses the arguments current position, target position, and the speed
         float xVelocity = (newX - playerRigidbody.position.x) / Time.fixedDeltaTime; // Calculate the x velocity by the difference between the new x position and the current x position divided by the fixed delta time which is the time it takes to complete one frame
+        Debug.Log(xVelocity);
         
         Vector3 velocity = playerRigidbody.linearVelocity; // Get the velocity of the player by getting the velocity of the player's rigidbody
 
-        if (currentLane == 3 || currentLane == 4)
+        if (currentLane == 3 || currentLane == -1)
         {
             float targetY = GetTartgetLaneY();
 
             float newY = Mathf.MoveTowards(playerRigidbody.position.y, targetY, laneChangeSpeed * Time.fixedDeltaTime);
             float yVelocity = (newY - playerRigidbody.position.y) / Time.fixedDeltaTime;
             velocity.y = yVelocity;
+            Debug.Log("Doing this");
         }
 
         velocity.x = xVelocity; // Set the x velocity of the player to the x velocity
         playerRigidbody.linearVelocity = velocity; // Set the velocity of the player to the velocity
     }
 
+    void CloseWallRunMove()
+    {
+        float targetX = GetTargetLaneX(); // Get the target x position
+
+        float newX = Mathf.MoveTowards(playerRigidbody.position.x, targetX, laneChangeSpeed * Time.fixedDeltaTime); // Move the player to the target x position by using the MoveTowards function which uses the arguments current position, target position, and the speed
+        float xVelocity = (newX - playerRigidbody.position.x) / Time.fixedDeltaTime; // Calculate the x velocity by the difference between the new x position and the current x position divided by the fixed delta time which is the time it takes to complete one frame
+
+        Vector3 velocity = playerRigidbody.linearVelocity; // Get the velocity of the player by getting the velocity of the player's rigidbody
+
+        if (currentLane == 0 || currentLane == 2)
+        {
+            float targetY = GetTartgetLaneY();
+
+            float newY = Mathf.MoveTowards(playerRigidbody.position.y, targetY, laneChangeSpeed * Time.fixedDeltaTime);
+            float yVelocity = (newY - playerRigidbody.position.y) / Time.fixedDeltaTime;
+            velocity.y = yVelocity;
+            Debug.Log("Doing this");
+        }
+
+        velocity.x = xVelocity; // Set the x velocity of the player to the x velocity
+        playerRigidbody.linearVelocity = velocity; // Set the velocity of the player to the velocity
+    }
+    #endregion
+
+
+    // Get info functions
+    #region
     float GetTargetLaneX(){ // This is a function that is called to get the target x position of the player
-       if (areaType != AreaType.closeWallRunning)
-       {
-            if (currentLane == 0) { // If the current lane is 0, then return the left lane x position
+        if (areaType != AreaType.closeWallRunning)
+        {
+            if (currentLane == 0)
+            { // If the current lane is 0, then return the left lane x position
                 return lefLaneX;
             }
-            if (currentLane == 1) { // If the current lane is 1, then return the center lane x position
+            if (currentLane == 1)
+            { // If the current lane is 1, then return the center lane x position
                 return centerLaneX;
             }
             if (currentLane == -1)
             {
-                return leftWallPosition.x;
+                Vector2 leftPosition = Vector2.right * lefLaneX;
+                if (leftWallPosition != null)
+                {
+                    leftPosition = (Vector2)leftWallPosition;
+                }
+                else currentLane = 0;
+                return leftPosition.x;
             }
             if (currentLane == 3)
             {
-                return rightWallPosition.x;
+                Vector2 rightPosition = Vector2.right * rightLaneX;
+                if (rightWallPosition != null)
+                {
+                    rightPosition = (Vector2)rightWallPosition;
+                }
+                return rightPosition.x;
             }
             return rightLaneX; // If the current lane is 2, then return the right lane x position
         }
-        return 0;
+        else
+        {
+            if (currentLane == 0)
+            {
+                Vector2 leftPosition = Vector2.right * centerLaneX;
+                if (leftWallPosition != null)
+                {
+                    leftPosition = (Vector2)leftWallPosition;
+                }
+                else currentLane = 1;
+                return leftPosition.x;
+            }
+            if (currentLane == 2)
+            {
+                Vector2 rightPosition = Vector2.right * centerLaneX;
+                if (rightWallPosition != null)
+                {
+                    rightPosition = (Vector2)rightWallPosition;
+                }
+                return rightPosition.x;
+            }
+            return centerLaneX;
+        }
     }
 
     float GetTartgetLaneY()
@@ -237,9 +363,19 @@ public class PlayerLevelMovement : MonoBehaviour
         {
             default:
             case WallType.leftWall:
-                return leftWallPosition.y;
+                Vector2 leftPosition = Vector2.up;
+                if (leftWallPosition != null)
+                {
+                    leftPosition = (Vector2)leftWallPosition;
+                }
+                return leftPosition.y;
             case WallType.rightWall:
-                return rightWallPosition.y;
+                Vector2 rightPosition = Vector2.up;
+                if (rightWallPosition != null)
+                {
+                    rightPosition = (Vector2)rightWallPosition;
+                }
+                return rightPosition.y;
         }
     }
 
@@ -247,14 +383,51 @@ public class PlayerLevelMovement : MonoBehaviour
         Vector3 rayStart = transform.position + Vector3.up * groundCheckStartHeight; // Get the start of the ray by adding the up vector to the position of the player and the ground check start height
         return Physics.Raycast(rayStart, Vector3.down, groundCheckDistance, groundLayers); // Cast a ray down from the start of the ray to the ground check distance and check if the ray hits the ground layers
     }
+    #endregion
+
+    // Halt mechanics functions
+    #region
     void StopWallRun(){
         isWallRunning = false;
         playerRigidbody.useGravity = true;
+        if (areaType == AreaType.wallRunning)
+        {
+            switch (wallType)
+            {
+                case WallType.leftWall:
+                    currentLane = 0;
+                    break;
+                case WallType.rightWall:
+                    currentLane = 2;
+                    break;
+            }
+        }
+        else
+        {
+            currentLane = 1;
+        }
+        wallType = WallType.none;
     }
 
-    IEnumerator ReenableWallCollisionAfterDelay(Collider wall){ // This is a coroutine that is called to reenable the wall collision after a delay
-        yield return new WaitForSeconds(wallRunDelay);
-        if (playerCollider != null && wall != null)
-            Physics.IgnoreCollision(playerCollider, wall, false);
+    void StopSliding()
+    {
+        isSliding = false;
+        capsuleCollider.height /= shrinkPercentage;
+        capsuleCollider.center += Vector3.up * (1 - shrinkPercentage);
+    }
+    #endregion
+
+    public void SubscribeActions()
+    {
+        leftRight.action.performed += LeftRight;
+        jump.action.performed += Jump;
+        slide.action.performed += Slide;
+    }
+
+    public void UnSubscribeActions()
+    {
+        leftRight.action.performed -= LeftRight;
+        jump.action.performed -= Jump;
+        slide.action.performed -= Slide;
     }
 }

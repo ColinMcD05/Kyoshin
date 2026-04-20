@@ -27,7 +27,7 @@ public class TimingUI : MonoBehaviour
 
     public IEnumerator ResetCircle()
     {
-        float waitPeriod = currentSong.bps * messUp;
+        float waitPeriod = 0;
         float checkPeriod = 1 - messUp;
         while (enabled) 
         {
@@ -43,6 +43,7 @@ public class TimingUI : MonoBehaviour
                 {
                     movingImage.transform.localScale -= Vector3.one * Time.deltaTime / currentSong.bps;
                 }
+                waitPeriod = currentSong.bps * (1 - Mathf.Floor(timing.songPositionInBeats));
                 //Debug.Log("Good");
                 stillImage.color = Color.green;
                 yield return new WaitForSeconds(waitPeriod);

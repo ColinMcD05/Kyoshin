@@ -37,7 +37,8 @@ public class Songs : MonoBehaviour
         songs = new List<SongData>()
         {
             new SongData("Hakone", "Hakone", songClips[0], 1, 125, 146),
-            new SongData("Bullet Train", "Tokyo", songClips[1], 3, 155, 137)
+            new SongData("Adrift", "Kyoto", songClips[1], 2, 133, 130),
+            new SongData("Bullet Train", "Tokyo", songClips[2], 3, 155, 137)
         };
     }
 }

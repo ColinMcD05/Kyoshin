@@ -8,7 +8,9 @@ public class Dash : MonoBehaviour
     public int dashMult = 2;
     public float dashBarLength;
     public bool dashing;
-    [SerializeField] PlayerMoveForward playerForward;
+    [SerializeField] MoveBackwards moveBackwards;
+    [SerializeField] PlayerLevelMovement playerMovement;
+    [SerializeField] Timing timing;
 
     private void Update()
     {
@@ -20,7 +22,8 @@ public class Dash : MonoBehaviour
         {
             dashMeter = 0;
             dashing = false;
-            playerForward.forwardSpeed /= dashMult;
+            moveBackwards.forwardSpeed /= dashMult;
+            timing.SubscribeActions();
         }
     }
 
@@ -33,11 +36,15 @@ public class Dash : MonoBehaviour
             //playerControllerLevel.enabled = !playerControllerLevel.enabled;
             if (dashing)
             {
-                playerForward.forwardSpeed *= dashMult;
+                moveBackwards.forwardSpeed *= dashMult;
+                playerMovement.currentLane = 1;
+                timing.UnSubscribeActions();
+                playerMovement.UnSubscribeActions();
             }
             else
             {
-                playerForward.forwardSpeed /= dashMult;
+                moveBackwards.forwardSpeed /= dashMult;
+                timing.SubscribeActions();
             }
         }
     }

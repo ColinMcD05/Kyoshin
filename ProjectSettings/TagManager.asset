@@ -7,6 +7,8 @@ TagManager:
   - Obstacle
   - Button
   - WallRunning
+  - NewSectionTrigger
+  - Target
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - UI
   - Ground
   - WallRun
-  - 
+  - NavMesh
   - 
   - 
   - 
