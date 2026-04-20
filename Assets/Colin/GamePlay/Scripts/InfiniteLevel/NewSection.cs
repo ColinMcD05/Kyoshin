@@ -13,6 +13,7 @@ public class NewSection : MonoBehaviour
 
     IEnumerator destroySelf;
     float waitPeriod = 6.2f;
+    static float twoMeasures;
 
     static int hit = 0;
     public bool destroying = false;
@@ -55,13 +56,20 @@ public class NewSection : MonoBehaviour
                     {
                         hit = 0;
                     }
-                    spawnObjects.SpawnObject(sectionTransform);
+                    Debug.Log(timing.songPosition > twoMeasures);
+                    if (timing.songPosition > twoMeasures)
+                    {
+                        spawnObjects.SpawnObject(sectionTransform);
+                    }
                 }
             }
             if (hit == 4)
             {
                 timing.ChangeSong();
                 spawnObjects.ChangeVariables(timing.currentSong, other.transform.position);
+                twoMeasures = timing.currentSong.bps * 12;
+                Debug.Log(twoMeasures);
+                Debug.Log(timing.songPosition);
             }
             if (!destroying)
             {
