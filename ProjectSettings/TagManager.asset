@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - Obstacle
+  - Button
+  - WallRunning
+  - NewSectionTrigger
+  - Target
   layers:
   - Default
   - TransparentFX
@@ -13,8 +17,8 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
+  - WallRun
+  - NavMesh
   - 
   - 
   - 

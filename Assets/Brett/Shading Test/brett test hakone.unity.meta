@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Brett/Shading Test/brett test hakone.unity.meta
 guid: 5e254eb1766144f438d270e313e68ead
+========
+guid: c17cbf4db4897d74c9ddf2b2b7cdcae9
+>>>>>>>> origin/Design:Assets/Scenes/TitleScreen.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
