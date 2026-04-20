@@ -1,6 +1,6 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Win : MonoBehaviour
@@ -14,12 +14,14 @@ public class Win : MonoBehaviour
     public Transform playerWinPosition, otherCharWinPosition;
     GameObject player, otherChar;
     public Camera winCamera;
+    public GameObject winScreen;
 
     void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         otherChar = GameObject.Find("OtherChar");
         player = GameObject.Find("Player");
+        winScreen = GameObject.Find("WinScreen");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -114,7 +116,10 @@ public class Win : MonoBehaviour
         // Spawn in whats needed
 
         // Play Animation, win music, show score
+        winScreen.SetActive(true);
+        TextMeshProUGUI score = winScreen.transform.Find("Score").GetComponent<TextMeshProUGUI>();
+        score.text = "Score: " + gameManager.score;
 
-        (StartCoroutine(FadeIn()));
+        StartCoroutine(FadeIn());
     }
 }

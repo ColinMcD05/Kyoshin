@@ -74,6 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1462858010241498341}
   - component: {fileID: 7321377504695544839}
+  - component: {fileID: 7978691407585558763}
   - component: {fileID: 2716984882662628188}
   m_Layer: 0
   m_Name: PlayerEnd
@@ -118,6 +119,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 12.86, y: 4.357765, z: 1}
   m_Center: {x: 0, y: 1.6788826, z: 0}
+--- !u!114 &7978691407585558763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7458933351557191109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e19691cc8a41942be7e86a61322281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Win
+  moveBackwards: {fileID: 0}
+  moveImage: {fileID: 0}
+  stillImage: {fileID: 0}
+  image: {fileID: 0}
+  fadeOutTime: 5
+  playerWinPosition: {fileID: 0}
+  otherCharWinPosition: {fileID: 0}
+  winCamera: {fileID: 0}
+  winScreen: {fileID: 0}
 --- !u!114 &2716984882662628188
 MonoBehaviour:
   m_ObjectHideFlags: 0
