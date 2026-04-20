@@ -7,7 +7,8 @@ public class Ramp : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.GetComponent<Rigidbody>().AddForce(Vector3.up*addedForce, ForceMode.Impulse);
+            Vector3 forceAdded = new Vector3(0, addedForce, 0);
+            other.GetComponent<Rigidbody>().AddForce(forceAdded, ForceMode.Impulse);
         }
     }
 }
