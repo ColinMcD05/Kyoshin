@@ -1,11 +1,12 @@
-
 using UnityEngine;
+
 public class PlayerHubMovement : MonoBehaviour
 {
 
     public int moveSpeed;
     public int rotationSpeed;
     public Vector3 direction;
+    [SerializeField] Transform orientation;
 
     void Start()
     {
@@ -25,6 +26,8 @@ public class PlayerHubMovement : MonoBehaviour
 
     public void SetDirection(Vector2 movement)
     {
-        direction = new Vector3(movement.x, 0, movement.y);
+        Vector3 xInput = movement.x * orientation.right;
+        Vector3 yInput = movement.y * orientation.forward;
+        direction = xInput + yInput;
     }
 }

@@ -125,4 +125,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Coin
   coinValue: 1
-  score: 0
+  dashValue: 5
+  gameManager: {fileID: 0}
