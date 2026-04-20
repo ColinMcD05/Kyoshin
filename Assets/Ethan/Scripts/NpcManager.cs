@@ -8,15 +8,18 @@ public class NpcManager : MonoBehaviour
     public int maxNpcs = 10; // max number of npcs to spawn
 
     public Transform currentTarget; // current target for npc to move to
-
+    public int npcCount = 0; // number of npcs spawned
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
         // Spawn max number of NPCs
         for (int i = 0; i < maxNpcs; i++)
         {
             SpawnNpc();
+            npcCount++;
         }
+
     }
 
     void SpawnNpc()

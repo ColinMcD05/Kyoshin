@@ -12,7 +12,6 @@ public class NpcMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>(); // get agent
         if(target != null){
             agent.SetDestination(target.position); // set agent destination to target position
-            npcManager.currentTarget = target; // set current target to target
         }
     }
 
@@ -26,7 +25,7 @@ public class NpcMovement : MonoBehaviour
 // Destroys the npc when it collides with the target
 void OnTriggerEnter(Collider other)
 {
-    if (other.CompareTag("Target") && npcManager.currentTarget == target)
+    if (other.CompareTag("Target") && target != null && other.transform == target)
     {
         Destroy(gameObject); // destroy npc
     }
