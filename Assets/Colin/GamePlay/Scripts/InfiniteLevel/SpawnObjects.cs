@@ -34,7 +34,11 @@ public class SpawnObjects : MonoBehaviour
             }
             if (isNewSong)
             {
-                nextPosition.z = lastPosition.z + distanceBetween * 16;
+                nextPosition.z = lastPosition.z + distanceBetween;
+                while (nextPosition.z < closeRange.z)
+                {
+                    nextPosition.z += distanceBetween;
+                }
                 isNewSong = false;
             }
             else
