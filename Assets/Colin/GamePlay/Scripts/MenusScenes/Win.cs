@@ -11,10 +11,15 @@ public class Win : MonoBehaviour
     [SerializeField] Image stillImage;
     [SerializeField] Image image;
     public float fadeOutTime;
+    public Transform playerWinPosition, otherCharWinPosition;
+    GameObject player, otherChar;
+    public Camera winCamera;
 
     void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        otherChar = GameObject.Find("OtherChar");
+        player = GameObject.Find("Player");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -75,6 +80,41 @@ public class Win : MonoBehaviour
             image.color = color;
             yield return null;
         }
-        SceneManager.LoadScene("WinScene");
+        Transition();
+    }
+
+    IEnumerator FadeIn()
+    {
+        // Variables for the color to change
+        float alpha = 0;
+        Color color = image.color;
+        // While alpha is greater than 0, slowly decrease alpha
+        while (image.color.a >= 0)
+        {
+            alpha += Time.deltaTime/2;
+            color.a = alpha;
+            image.color = color;
+            yield return null;
+        }
+    }
+
+    void Transition()
+    {
+        // Stops move backwards scripts
+        moveBackwards.enabled = false;
+
+        // Set position of both characters to win positions
+        player.transform.position = playerWinPosition.position;
+        otherChar.transform.position = otherCharWinPosition.position;
+
+        // Change camera
+        Camera.main.enabled = false;
+        winCamera.enabled = true;
+
+        // Spawn in whats needed
+
+        // Play Animation, win music, show score
+
+        (StartCoroutine(FadeIn()));
     }
 }
