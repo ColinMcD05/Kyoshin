@@ -8390,7 +8390,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3826dfac84630744b9982b9c20aa6fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  nextLevel: Hakone
+  nextLevel: Kyoto
+--- !u!65 &575073073
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575073071}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &590192140 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2931080477694350192, guid: 7d53fff3e65835b4a88e2c65af55d287, type: 3}
@@ -10258,7 +10279,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3826dfac84630744b9982b9c20aa6fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  nextLevel: Hakone
+  nextLevel: Tokyo
+--- !u!65 &922442109
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590192140}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &951684291
 GameObject:
   m_ObjectHideFlags: 0
@@ -15127,6 +15169,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2931080477694350192, guid: 7d53fff3e65835b4a88e2c65af55d287, type: 3}
       insertIndex: -1
       addedObject: {fileID: 575073072}
+    - targetCorrespondingSourceObject: {fileID: 2931080477694350192, guid: 7d53fff3e65835b4a88e2c65af55d287, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 575073073}
   m_SourcePrefab: {fileID: 100100000, guid: 7d53fff3e65835b4a88e2c65af55d287, type: 3}
 --- !u!1 &1421931975
 GameObject:
@@ -20169,6 +20214,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: hubGate (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2931080477694350192, guid: 7d53fff3e65835b4a88e2c65af55d287, type: 3}
+      propertyPath: m_TagString
+      value: Target
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20176,6 +20225,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2931080477694350192, guid: 7d53fff3e65835b4a88e2c65af55d287, type: 3}
       insertIndex: -1
       addedObject: {fileID: 922442108}
+    - targetCorrespondingSourceObject: {fileID: 2931080477694350192, guid: 7d53fff3e65835b4a88e2c65af55d287, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 922442109}
   m_SourcePrefab: {fileID: 100100000, guid: 7d53fff3e65835b4a88e2c65af55d287, type: 3}
 --- !u!1001 &2037113883
 PrefabInstance:
@@ -20803,6 +20855,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: hubGate
       objectReference: {fileID: 0}
+    - target: {fileID: 2931080477694350192, guid: 7d53fff3e65835b4a88e2c65af55d287, type: 3}
+      propertyPath: m_TagString
+      value: Target
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21044,6 +21100,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1042489903}
+    - target: {fileID: 1016539931788671838, guid: abbf6c2c5a8df4a4b9dbca177f35a089, type: 3}
+      propertyPath: npcManager
+      value: 
+      objectReference: {fileID: 90645524}
     - target: {fileID: 4723348113693037866, guid: abbf6c2c5a8df4a4b9dbca177f35a089, type: 3}
       propertyPath: m_Name
       value: NPC
