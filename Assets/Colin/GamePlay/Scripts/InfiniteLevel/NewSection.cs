@@ -39,28 +39,29 @@ public class NewSection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Transform sectionTransform = null;
         if (other.gameObject.CompareTag("Player"))
         {
-            if (timing.currentSong.length - timing.songPosition <= 3)
-            {
-                hit++;
-            }
-            else 
-            {
-                if (hit != 0)
+            if (!alreadySpawned)
+            {                
+                sectionTransform = SpawnNewSection(other);
+                if (timing.currentSong.length - timing.songPosition <= 3 || timing.songPosition <= 1)
                 {
-                    hit = 0;
+                    hit++;
                 }
-                Debug.Log("Doing This");
+                else
+                {
+                    if (hit != 0)
+                    {
+                        hit = 0;
+                    }
+                    spawnObjects.SpawnObject(sectionTransform);
+                }
             }
             if (hit == 4)
             {
                 timing.ChangeSong();
                 spawnObjects.ChangeVariables(timing.currentSong, other.transform.position);
-            }
-            if (!alreadySpawned)
-            {
-                SpawnNewSection(other);
             }
             if (!destroying)
             {
@@ -75,7 +76,7 @@ public class NewSection : MonoBehaviour
         }
     }
 
-    void SpawnNewSection(Collider other)
+    Transform SpawnNewSection(Collider other)
     {
         Timing timing = other.GetComponent<Timing>();
         Songs.SongData currentSong = timing.currentSong;
@@ -94,6 +95,8 @@ public class NewSection : MonoBehaviour
             lastSection = section;
         }
         alreadySpawned = true;
+
+        return section.transform;
     }
 
     IEnumerator SelfDestroy()
@@ -104,6 +107,14 @@ public class NewSection : MonoBehaviour
         {
             alreadySpawned = false;
             destroying = false;
+            for (int i = 1; i < transform.parent.childCount; i++)
+            {
+                Transform child = transform.parent.transform.GetChild(i);
+                if (child.gameObject.CompareTag("NormalObs"))
+                {
+                    child.gameObject.SetActive(false);
+                }
+            }
             transform.parent.gameObject.SetActive(false);
         }
     }

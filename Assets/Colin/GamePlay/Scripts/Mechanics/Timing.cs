@@ -64,6 +64,7 @@ public class Timing : MonoBehaviour
         currentScene = SceneManager.GetActiveScene().name;
         resetCircle = timingUI.ResetCircle();
         songStartTime = 0;
+        songPosition = 0;
         if (player == null)
             player = GameObject.FindWithTag("Player");
         playerControllerLevel = player.GetComponent<PlayerControllerLevel>();
@@ -116,7 +117,6 @@ public class Timing : MonoBehaviour
         }
         songStartTime = (float)AudioSettings.dspTime; // Sets songStartTime based on AudioSettings clock
         musicPlayer.clip = currentSong.song; // Sets current clip to current song clip
-        Debug.Log(currentSong.name);
         musicPlayer.Play(); // Players music
         StartCoroutine(resetCircle);
     }
@@ -126,8 +126,15 @@ public class Timing : MonoBehaviour
     #region
     void SongPosition(out float songPosition, out float songPositionInBeats)
     {
-        songPosition = (float)(AudioSettings.dspTime - songStartTime - rewindTimeUsed); //Calculate song position in seconds by subtracting the time the song started and how much time was rewound by the current clock in AudioSettings
-        songPositionInBeats = 1 + songPosition / currentSong.bps; // Calculate song in beats by dividing song position by the sec per beat of the song
+        if (musicPlayer.isPlaying) {
+            songPosition = (float)(AudioSettings.dspTime - songStartTime - rewindTimeUsed); //Calculate song position in seconds by subtracting the time the song started and how much time was rewound by the current clock in AudioSettings
+            songPositionInBeats = 1 + songPosition / currentSong.bps; // Calculate song in beats by dividing song position by the sec per beat of the song
+        }
+        else
+        {
+            songPosition = 0;
+            songPositionInBeats = 0;
+        }
     }
     #endregion
 
@@ -143,7 +150,6 @@ public class Timing : MonoBehaviour
             while (songClass.songs[newSong].name == currentSong.name)
             {
                 newSong = Random.Range(0, songClass.songs.Count);
-                Debug.Log(newSong);
             }
             StopCoroutine(resetCircle);
             UnSubscribeActions();

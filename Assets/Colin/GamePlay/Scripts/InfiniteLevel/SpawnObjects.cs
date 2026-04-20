@@ -18,38 +18,46 @@ public class SpawnObjects : MonoBehaviour
         sectionManager = GameObject.Find("SectionManager");
     }
 
-    IEnumerator SpawnObject()
+    public void SpawnObject(Transform newParent)
     {
-        while (true)
-        {
+        Vector3 farRange = newParent.position;
+        Vector3 closeRange = newParent.position;
+
+        farRange.z += 16;
+        closeRange.z -= 16;
+
+        for (int i = 0; i < 4; i++) 
+        { 
             if (lastObject != null)
             {
                 lastPosition = lastObject.transform.position;
             }
             if (isNewSong)
             {
-                nextPosition.z = lastPosition.z + distanceBetween * 8;
+                nextPosition.z = lastPosition.z + distanceBetween * 16;
                 isNewSong = false;
             }
             else
             {
                 nextPosition.z = lastPosition.z + distanceBetween;
             }
-            int randomLane = Random.Range(0, spawns.Length);
-            GameObject obstacle = ObjectPool.sharedInstance.GetPooledObstacles();
-            if (obstacle != null)
+            if (nextPosition.z > closeRange.z && nextPosition.z < farRange.z)
             {
-                obstacle.transform.parent = sectionManager.transform.GetChild(randomLane);
-                float obstacleWidth = obstacle.GetComponent<MeshRenderer>().bounds.extents.y;
-                // nextPosition.z += obstacleWidth;
-                nextPosition.y = 0.5f;
-                nextPosition.x = spawns[randomLane].transform.position.x;
-                obstacle.transform.position = nextPosition;
-                obstacle.SetActive(true);
+                int randomLane = Random.Range(0, spawns.Length);
+                GameObject obstacle = ObjectPool.sharedInstance.GetPooledObstacles();
+                if (obstacle != null)
+                {
+                    obstacle.transform.parent = newParent;
+                    float obstacleWidth = obstacle.GetComponent<MeshRenderer>().bounds.extents.y;
+                    // nextPosition.z += obstacleWidth;
+                    nextPosition.y = 0.5f;
+                    nextPosition.x = spawns[randomLane].transform.position.x;
+                    obstacle.transform.position = nextPosition;
+                    obstacle.SetActive(true);
 
-                lastObject = obstacle;
+                    lastObject = obstacle;
+                }
             }
-            yield return null;
         }
     }
 
@@ -59,6 +67,5 @@ public class SpawnObjects : MonoBehaviour
         lastPosition = newPosition;
         isNewSong = true;
         lastObject = null;
-        StartCoroutine(SpawnObject());
     }
 }
