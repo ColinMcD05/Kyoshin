@@ -115,6 +115,7 @@ public class Timing : MonoBehaviour
         {
             playerLevelMovement.enabled = true; // Lets players move
         }
+        playerControllerLevel.enabled = true;
         songStartTime = (float)AudioSettings.dspTime; // Sets songStartTime based on AudioSettings clock
         musicPlayer.clip = currentSong.song; // Sets current clip to current song clip
         musicPlayer.Play(); // Players music
@@ -186,7 +187,6 @@ public class Timing : MonoBehaviour
                 moveBackwards.forwardSpeed *= 2;
             }
             gameManager.AddScore(mult);
-            playerLevelMovement.goodMove = true;
             //Debug.Log("Good");
         }
         else
@@ -196,7 +196,6 @@ public class Timing : MonoBehaviour
             playerControllerLevel.LoseLife();
             // reset combo and speed
             gameManager.combo = 0;
-            playerLevelMovement.goodMove = false;
         }
     }
     #endregion

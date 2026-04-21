@@ -140,7 +140,7 @@ public class Rewind : MonoBehaviour
     }
     #endregion
 
-    void BecomeVulnerable()
+    public void BecomeVulnerable()
     {
         playerController.enabled = true;
     }

@@ -16,6 +16,7 @@ public class PlayerControllerLevel : MonoBehaviour
     int collidedAmout = 0;
     public int maxCollisions = 4;
     public float regenTime = 2.0f;
+    public bool invincible = false;
 
     private void Awake()
     {
@@ -24,12 +25,23 @@ public class PlayerControllerLevel : MonoBehaviour
         livesText = gameManager.transform.Find("Canvas").transform.Find("RewindCounter").GetComponent<RewindTracker>();
     }
 
+    private void OnEnable()
+    {
+        invincible = false;
+    }
+
+    void OnDisable()
+    {
+        invincible = true;
+    }
+
     //Lose Life | This is a function that is called to lose a life
     #region
     // lose a life function will only be called after player collides with an obstacle x amount of times each collison will cause the camera to shake
     public void LoseLife(){
         if (timing.songPosition >= 4)
         {
+            if (invincible) return;
             if (collidedAmout == 0)
             {
                 collidedAmout++;
