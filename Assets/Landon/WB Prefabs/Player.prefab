@@ -215,6 +215,7 @@ MonoBehaviour:
   moveBackwards: {fileID: 0}
   maxCollisions: 3
   regenTime: 2
+  invincible: 0
 --- !u!114 &3233316654364501501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +324,6 @@ MonoBehaviour:
   wallRunDelay: 0.2
   wallType: 0
   areaType: 0
-  slidingLength: 3
+  slidingLength: 1.5
   isSliding: 0
   shrinkPercentage: 0.5
