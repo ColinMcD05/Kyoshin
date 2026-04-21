@@ -187,8 +187,7 @@ public class PlayerLevelMovement : MonoBehaviour
             return;
         }
         isSliding = true; // Set sliding equal to true
-        capsuleCollider.height *= shrinkPercentage; // multiply collider hieght by shrink percentage to shrink height
-        capsuleCollider.center -= Vector3.up * (1 - shrinkPercentage); // move the center to keep collider touching the ground
+        gameObject.transform.localScale *= shrinkPercentage;
         Invoke("StopSliding", slidingLength); // Invoke StopSliding after the slidingLength
     }
     #endregion
@@ -407,8 +406,9 @@ public class PlayerLevelMovement : MonoBehaviour
     void StopSliding()
     {
         isSliding = false;
-        capsuleCollider.height /= shrinkPercentage;
-        capsuleCollider.center += Vector3.up * (1 - shrinkPercentage);
+        gameObject.transform.localScale /= shrinkPercentage;
+        //capsuleCollider.height /= shrinkPercentage;
+        //capsuleCollider.center += Vector3.up * (1 - shrinkPercentage);
     }
     #endregion
 
