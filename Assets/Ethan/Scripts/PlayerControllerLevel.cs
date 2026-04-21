@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using Unity.Cinemachine;
+using TMPro;
 public class PlayerControllerLevel : MonoBehaviour
 {
     [SerializeField] Rewind rewind;
@@ -10,6 +11,7 @@ public class PlayerControllerLevel : MonoBehaviour
     GameManager gameManager;
     CinemachineBasicMultiChannelPerlin cineMachineNoise;
     [SerializeField] MoveBackwards moveBackwards;
+    RewindTracker livesText;
 
     int collidedAmout = 0;
     public int maxCollisions = 4;
@@ -19,9 +21,11 @@ public class PlayerControllerLevel : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         cineMachineNoise = GameObject.Find("CinemachineCamera").GetComponent<CinemachineBasicMultiChannelPerlin>();
+        livesText = GameObject.Find("Canvas").transform.Find("RewindCounter").GetComponent<RewindTracker>();
     }
 
-    #region Lose Life | This is a function that is called to lose a life
+    //Lose Life | This is a function that is called to lose a life
+    #region
     // lose a life function will only be called after player collides with an obstacle x amount of times each collison will cause the camera to shake
     public void LoseLife(){
         if (timing.songPosition >= 4)
@@ -42,7 +46,6 @@ public class PlayerControllerLevel : MonoBehaviour
             { // If the collided amount is greater than or equal to the max collisions
                 //Debug.Log("Lives: " + lives);
                 Death();
-
             }
             else
             {
@@ -61,6 +64,8 @@ public class PlayerControllerLevel : MonoBehaviour
         cineMachineNoise.AmplitudeGain = 0;
         cineMachineNoise.FrequencyGain = 0;
         rewind.StartRewind();
+        gameManager.lives--;
+        livesText.ChangeText();
         if (gameManager.lives <= 0)
         {
             gameManager.GameOver();

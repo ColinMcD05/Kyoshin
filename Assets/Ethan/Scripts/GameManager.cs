@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     static GameManager instance; // instance for persistant objects
     [SerializeField] GameObject[] persistantObjects;
 
+    static public string lastScene;
+
     public void Awake()
     {
         if (instance != null)
@@ -36,6 +38,7 @@ public class GameManager : MonoBehaviour
             instance = this;
             MarkObjects();
             SceneManager.sceneLoaded += SceneLoaded;
+            SceneManager.sceneUnloaded += SceneUnLoaded;
         }
         filePath = Application.persistentDataPath + "/Player_Data/";
         Load();
@@ -172,11 +175,23 @@ public class GameManager : MonoBehaviour
     {
         Save();
         score = 0;
+        lives = 3;
         if (scene.name == "TitleScreen")
         {
             instance = null;
             SceneManager.sceneLoaded -= SceneLoaded;
+            SceneManager.sceneUnloaded -= SceneUnLoaded;
             CleanAndDestroy();
         }
+    }
+
+    void SceneUnLoaded(Scene scene)
+    {
+        lastScene = scene.name;
+    }
+
+    public string GetLastScene()
+    {
+        return lastScene;
     }
 }

@@ -235,9 +235,10 @@ MonoBehaviour:
   timing: {fileID: 1567925838254450578}
   playerCollider: {fileID: 449509456027308778}
   rewindTime: 3
-  invincibility: 0
+  invincibility: 3
   positions: []
   lane: 
+  laneSpeed: 
   rewinding: 0
 --- !u!114 &1567925838254450578
 MonoBehaviour:

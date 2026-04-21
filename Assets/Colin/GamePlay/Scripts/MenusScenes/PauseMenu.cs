@@ -21,6 +21,7 @@ public class PauseMenu : MonoBehaviour
     GameObject winScreen;
     public EventSystem eventSystem;
     public Button resume;
+    PlayerLevelMovement playerMovement;
 
     private void Awake()
     {
@@ -47,7 +48,9 @@ public class PauseMenu : MonoBehaviour
     {
         if (winScreen != null && winScreen.transform.Find("WinScreen").gameObject.activeInHierarchy == false)
         {
+            if (SceneManager.GetActiveScene().name == "LoseScreen") return;
             if (Time.realtimeSinceStartup - lastToggleTime < toggleCooldown) return;
+            if (Time.timeSinceLevelLoad < 2) return;
 
             lastToggleTime = Time.realtimeSinceStartup;
 
@@ -63,6 +66,15 @@ public class PauseMenu : MonoBehaviour
     }
     public void Pause()
     {
+        if (timing != null)
+        {
+            timing.UnSubscribeActions();
+        }
+
+        if (playerMovement != null)
+        {
+            playerMovement.UnSubscribeActions();
+        }
 
         Time.timeScale = 0.0001f;
         startPauseTime = (float)AudioSettings.dspTime;
@@ -85,6 +97,10 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        if (timing != null)
+        {
+            timing.SubscribeActions();
+        }
         Time.timeScale = 1;
         endPauseTime = (float)AudioSettings.dspTime;
         if (timing != null)
@@ -129,7 +145,8 @@ public class PauseMenu : MonoBehaviour
         music = GameObject.Find("Audio").transform.Find("Music").GetComponent<AudioSource>();
         if (scene.name != "Hub")
         {
-            timing = GameObject.Find("Player").GetComponent<Timing>();
+            timing = GameObject.Find("Player").GetComponent<Timing>(); 
+            playerMovement = GameObject.Find("Player").GetComponent<PlayerLevelMovement>();
             timingUI = GameObject.Find("TimingUI");
             if (scene.name == "Infinite")
             {

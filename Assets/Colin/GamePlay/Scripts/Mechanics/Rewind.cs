@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Rewind : MonoBehaviour
 {
@@ -97,7 +98,7 @@ public class Rewind : MonoBehaviour
         // Rewind starts if not currently rewinding and enough time has passed
         if (input.isPressed && !rewinding && Time.timeSinceLevelLoad >=4)
         {
-            StartRewind();
+            playerController.Death();
         }
     }
     #endregion
@@ -119,9 +120,6 @@ public class Rewind : MonoBehaviour
         playerController.enabled = false;
         playerMovement.UnSubscribeActions();
         timing.UnSubscribeActions();
-
-        // Lose a life when rewinding
-        gameManager.lives--;
     }
 
     // Lets other scripts more easily stop rewind mechanic
