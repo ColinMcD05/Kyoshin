@@ -115,6 +115,7 @@ public class Timing : MonoBehaviour
         {
             playerLevelMovement.enabled = true; // Lets players move
         }
+        playerControllerLevel.enabled = true;
         songStartTime = (float)AudioSettings.dspTime; // Sets songStartTime based on AudioSettings clock
         musicPlayer.clip = currentSong.song; // Sets current clip to current song clip
         musicPlayer.Play(); // Players music

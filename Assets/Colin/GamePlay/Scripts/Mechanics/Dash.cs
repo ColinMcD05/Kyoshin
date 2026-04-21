@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Dash : MonoBehaviour
 {
@@ -13,12 +14,20 @@ public class Dash : MonoBehaviour
     [SerializeField] PlayerControllerLevel playerController;
     [SerializeField] Timing timing;
     [SerializeField] Rewind rewind;
+    Slider dashSlider;
+
+    void Start()
+    {
+        dashSlider = GameObject.Find("GameManager").transform.Find("Canvas").transform.Find("Dash").GetComponent<Slider>();
+    }
 
     private void Update()
     {
         if (dashing)
         {
             dashMeter -= Time.deltaTime / dashBarLength;
+            dashSlider.value -= Time.deltaTime / dashBarLength;
+
         }
         if (dashMeter <= 0 && dashing)
         {

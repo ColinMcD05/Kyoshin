@@ -2884,6 +2884,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4268208206172521445, guid: d713011faa9f5964d9fc906740cdfa56, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7357313172076332684, guid: d713011faa9f5964d9fc906740cdfa56, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -86370,7 +86374,7 @@ PrefabInstance:
       objectReference: {fileID: 129578519}
     - target: {fileID: 4074926366466159053, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4074926366466159053, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
       propertyPath: gameManager

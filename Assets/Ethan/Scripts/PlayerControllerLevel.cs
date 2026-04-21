@@ -16,12 +16,23 @@ public class PlayerControllerLevel : MonoBehaviour
     int collidedAmout = 0;
     public int maxCollisions = 4;
     public float regenTime = 2.0f;
+    public bool invincible = false;
 
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         cineMachineNoise = GameObject.Find("CinemachineCamera").GetComponent<CinemachineBasicMultiChannelPerlin>();
         livesText = gameManager.transform.Find("Canvas").transform.Find("RewindCounter").GetComponent<RewindTracker>();
+    }
+
+    private void OnEnable()
+    {
+        invincible = false;
+    }
+
+    void OnDisable()
+    {
+        invincible = true;
     }
 
     //Lose Life | This is a function that is called to lose a life
