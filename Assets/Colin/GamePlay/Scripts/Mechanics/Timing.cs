@@ -23,6 +23,7 @@ public class Timing : MonoBehaviour
     [SerializeField] Songs songClass;
     [HideInInspector] public Songs.SongData currentSong;
     [SerializeField] AudioSource musicPlayer;
+    [SerializeField] AudioSource countDownSound;
 
     // IEnumerators
     IEnumerator resetCircle;
@@ -232,6 +233,7 @@ public class Timing : MonoBehaviour
         TextMeshProUGUI countDown = timingUI.transform.Find("Countdown").GetComponent<TextMeshProUGUI>();
         yield return new WaitForSeconds(currentSong.bps * 13);
         countDown.enabled = true;
+        countDownSound.Play();
         countDown.text = "3";
         yield return new WaitForSeconds(currentSong.bps);
         countDown.text = "2";

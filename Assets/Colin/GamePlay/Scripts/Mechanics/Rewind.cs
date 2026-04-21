@@ -113,7 +113,6 @@ public class Rewind : MonoBehaviour
         rewinding = true;
 
         musicPlayer.pitch = -1; // Reverses music
-        Debug.Log("Doing this");
         moveBackwards.forwardSpeed *= -1;
 
         // Disables parts of player
