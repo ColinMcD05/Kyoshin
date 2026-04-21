@@ -41,6 +41,7 @@ public class PlayerControllerLevel : MonoBehaviour
     public void LoseLife(){
         if (timing.songPosition >= 4)
         {
+            if (invincible) return;
             if (collidedAmout == 0)
             {
                 collidedAmout++;
