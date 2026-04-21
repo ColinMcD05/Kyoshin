@@ -1,8 +1,10 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -16,6 +18,9 @@ public class PauseMenu : MonoBehaviour
     AudioSource music;
     Timing timing;
     GameObject timingUI;
+    GameObject winScreen;
+    public EventSystem eventSystem;
+    public Button resume;
 
     private void Awake()
     {
@@ -40,17 +45,20 @@ public class PauseMenu : MonoBehaviour
 
     void PausePerformed(InputAction.CallbackContext context)
     {
-        if (Time.realtimeSinceStartup - lastToggleTime < toggleCooldown) return;
-
-        lastToggleTime = Time.realtimeSinceStartup;
-
-        if (Time.timeScale != 0.0001f)
+        if (winScreen != null && winScreen.transform.Find("WinScreen").gameObject.activeInHierarchy == false)
         {
-            Pause();
-        }
-        else
-        {
-            Resume();
+            if (Time.realtimeSinceStartup - lastToggleTime < toggleCooldown) return;
+
+            lastToggleTime = Time.realtimeSinceStartup;
+
+            if (Time.timeScale != 0.0001f)
+            {
+                Pause();
+            }
+            else
+            {
+                Resume();
+            }
         }
     }
     public void Pause()
@@ -72,6 +80,7 @@ public class PauseMenu : MonoBehaviour
             timingUI.SetActive(false);
         }
         music.Pause();
+        eventSystem.firstSelectedGameObject = resume.gameObject;
     }
 
     public void Resume()
@@ -122,11 +131,17 @@ public class PauseMenu : MonoBehaviour
         {
             timing = GameObject.Find("Player").GetComponent<Timing>();
             timingUI = GameObject.Find("TimingUI");
+            if (scene.name == "Infinite")
+            {
+                winScreen = null;
+            }
+            winScreen = GameObject.Find("WinScreen");
         }
         else
         {
             timing = null;
             timingUI = null;
+            winScreen = null;
         }
     }
 }

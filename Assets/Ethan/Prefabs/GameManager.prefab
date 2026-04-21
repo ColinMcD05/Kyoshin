@@ -69,6 +69,9 @@ MonoBehaviour:
     highScore: 0
     progress: 0
     lockStatus: 0
+  persistantObjects:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &213474859250481102
 MonoBehaviour:
   m_ObjectHideFlags: 0

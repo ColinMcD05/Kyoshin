@@ -1,6 +1,8 @@
+using NUnit.Framework;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Win : MonoBehaviour
@@ -16,12 +18,16 @@ public class Win : MonoBehaviour
     public Camera mainCamera;
     public Camera winCamera;
     public GameObject winScreen;
+    EventSystem eventSystem;
+    GameObject retry;
 
     void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         otherChar = GameObject.Find("OtherChar");
         player = GameObject.Find("Player");
+        eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+        retry = winScreen.transform.Find("Retry").gameObject;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -101,6 +107,10 @@ public class Win : MonoBehaviour
             image.color = color;
             yield return null;
         }
+        winScreen.SetActive(true);
+        eventSystem.firstSelectedGameObject = retry;
+        TextMeshProUGUI score = winScreen.transform.Find("Score").GetComponent<TextMeshProUGUI>();
+        score.text = "Score: " + gameManager.score;
     }
 
     void Transition()
@@ -119,9 +129,6 @@ public class Win : MonoBehaviour
         // Spawn in whats needed
 
         // Play Animation, win music, show score
-        winScreen.SetActive(true);
-        TextMeshProUGUI score = winScreen.transform.Find("Score").GetComponent<TextMeshProUGUI>();
-        score.text = "Score: " + gameManager.score;
 
         StartCoroutine(FadeIn());
     }
