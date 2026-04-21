@@ -12,7 +12,8 @@ public class Win : MonoBehaviour
     [SerializeField] Image image;
     public float fadeOutTime;
     public Transform playerWinPosition, otherCharWinPosition;
-    GameObject player, otherChar;
+    public GameObject player, otherChar;
+    public Camera mainCamera;
     public Camera winCamera;
     public GameObject winScreen;
 
@@ -21,7 +22,6 @@ public class Win : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         otherChar = GameObject.Find("OtherChar");
         player = GameObject.Find("Player");
-        winScreen = GameObject.Find("WinScreen");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,6 +33,7 @@ public class Win : MonoBehaviour
 
             // Disable timing based mechanics
             other.GetComponent<Timing>().enabled = false;
+            other.GetComponent<PlayerLevelMovement>().enabled = false;
             moveImage.enabled = false;
             stillImage.enabled = false;
             // Get current song
@@ -83,17 +84,19 @@ public class Win : MonoBehaviour
             yield return null;
         }
         Transition();
+        otherChar.GetComponent<FollowScript>().enabled = false;
     }
 
     IEnumerator FadeIn()
     {
+        yield return new WaitForSeconds(1);
         // Variables for the color to change
-        float alpha = 0;
+        float alpha = 1;
         Color color = image.color;
         // While alpha is greater than 0, slowly decrease alpha
         while (image.color.a >= 0)
         {
-            alpha += Time.deltaTime/2;
+            alpha -= Time.deltaTime/2;
             color.a = alpha;
             image.color = color;
             yield return null;
@@ -110,7 +113,7 @@ public class Win : MonoBehaviour
         otherChar.transform.position = otherCharWinPosition.position;
 
         // Change camera
-        Camera.main.enabled = false;
+        mainCamera.enabled = false;
         winCamera.enabled = true;
 
         // Spawn in whats needed
