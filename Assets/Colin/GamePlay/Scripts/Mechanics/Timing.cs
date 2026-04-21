@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -110,7 +111,9 @@ public class Timing : MonoBehaviour
     // Starts playing the music and sets up the timing for inputs
     public void StartMusic()
     {
-        SubscribeActions();
+        Invoke("SubscribeActions", currentSong.bps * 16);
+        StartCoroutine(CountDown());
+        playerLevelMovement.SubscribeActions();
         if (!playerLevelMovement.enabled)
         {
             playerLevelMovement.enabled = true; // Lets players move
@@ -222,5 +225,21 @@ public class Timing : MonoBehaviour
         move.action.performed -= CheckTime;
         jump.action.performed -= CheckTime;
         slide.action.performed -= CheckTime;
+    }
+
+    IEnumerator CountDown()
+    {
+        TextMeshProUGUI countDown = timingUI.transform.Find("Countdown").GetComponent<TextMeshProUGUI>();
+        yield return new WaitForSeconds(currentSong.bps * 13);
+        countDown.enabled = true;
+        countDown.text = "3";
+        yield return new WaitForSeconds(currentSong.bps);
+        countDown.text = "2";
+        yield return new WaitForSeconds(currentSong.bps);
+        countDown.text = "1";
+        yield return new WaitForSeconds(currentSong.bps);
+        countDown.text = "GO!";
+        yield return new WaitForSeconds(currentSong.bps);
+        countDown.enabled = false;
     }
 }

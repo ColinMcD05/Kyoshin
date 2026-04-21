@@ -89,8 +89,12 @@ public class Win : MonoBehaviour
             image.color = color;
             yield return null;
         }
-        Transition();
+        //Transition();
         otherChar.GetComponent<FollowScript>().enabled = false;
+        winScreen.SetActive(true);
+        eventSystem.firstSelectedGameObject = retry;
+        TextMeshProUGUI score = winScreen.transform.Find("Score").GetComponent<TextMeshProUGUI>();
+        score.text = "Score: " + gameManager.score;
     }
 
     IEnumerator FadeIn()
@@ -107,10 +111,6 @@ public class Win : MonoBehaviour
             image.color = color;
             yield return null;
         }
-        winScreen.SetActive(true);
-        eventSystem.firstSelectedGameObject = retry;
-        TextMeshProUGUI score = winScreen.transform.Find("Score").GetComponent<TextMeshProUGUI>();
-        score.text = "Score: " + gameManager.score;
     }
 
     void Transition()
