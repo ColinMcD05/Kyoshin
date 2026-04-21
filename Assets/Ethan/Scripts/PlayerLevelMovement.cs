@@ -29,7 +29,6 @@ public class PlayerLevelMovement : MonoBehaviour
     public float centerLaneX = 0.0f;
     public float rightLaneX = 5.0f;
     public float laneChangeSpeed = 20.0f;// Lane Change Speed
-    [HideInInspector] public bool goodMove;
 
     // Wall Run Variables
     public bool isWallRunning = false; // This is a boolean that is used to check if the player is wall running
@@ -87,10 +86,6 @@ public class PlayerLevelMovement : MonoBehaviour
         leftRightInput = value.ReadValue<Vector2>(); // Get the value of the leftRightInput
         float xInput = leftRightInput.x; // Get the x input
         if (Mathf.Abs(xInput) < inputThreshold){ // If the x input is less than the input threshold, then the player can read the lane input
-            return;
-        }
-        if (!goodMove)
-        {
             return;
         }
         switch (areaType)
@@ -178,7 +173,7 @@ public class PlayerLevelMovement : MonoBehaviour
 
     // Jump action
     public void Jump(InputAction.CallbackContext value){ // This is a function that is called when the jump button is pressed argument is the value of the input
-        if(value.ReadValueAsButton() && goodMove && !isSliding){ // If the jump button is pressed, then set the jumpPressed to true
+        if(value.ReadValueAsButton() && !isSliding){ // If the jump button is pressed, then set the jumpPressed to true
             jumpPressed = true;// Set the jumpPressed to true
         }
     }
@@ -187,7 +182,7 @@ public class PlayerLevelMovement : MonoBehaviour
     public void Slide(InputAction.CallbackContext value)
     {
         // If already sliding return
-        if (isSliding || !goodMove)
+        if (isSliding)
         {
             return;
         }

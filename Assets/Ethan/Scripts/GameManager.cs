@@ -6,6 +6,8 @@ using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 using TMPro;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 public class GameManager : MonoBehaviour
 {
     public int score = 0;
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject[] persistantObjects;
     public TextMeshProUGUI scoreText, rewindText;
     public RewindTracker rewindTracker;
+    public GameObject dashSlider;
 
     static public string lastScene;
 
@@ -190,16 +193,28 @@ public class GameManager : MonoBehaviour
             CleanAndDestroy();
             scoreText.enabled = false;
             rewindText.enabled = false;
+            for (int i = 0; i < dashSlider.transform.childCount; i++)
+            {
+                dashSlider.transform.GetChild(i).gameObject.SetActive(false);
+            }
         }
         else if (scene.name == "LoseScreen" || scene.name == "HUB")
         {
             scoreText.enabled = false;
             rewindText.enabled = false;
+            for (int i = 0; i < dashSlider.transform.childCount; i++)
+            {
+                dashSlider.transform.GetChild(i).gameObject.SetActive(false);
+            }
         }
         else
         {
             scoreText.enabled = true;
             rewindText.enabled = true;
+            for (int i = 0; i < dashSlider.transform.childCount; i++)
+            {
+                dashSlider.transform.GetChild(i).gameObject.SetActive(true);
+            }
         }
     }
 

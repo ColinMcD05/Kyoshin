@@ -10,7 +10,9 @@ public class Dash : MonoBehaviour
     public bool dashing;
     [SerializeField] MoveBackwards moveBackwards;
     [SerializeField] PlayerLevelMovement playerMovement;
+    [SerializeField] PlayerControllerLevel playerController;
     [SerializeField] Timing timing;
+    [SerializeField] Rewind rewind;
 
     private void Update()
     {
@@ -23,6 +25,7 @@ public class Dash : MonoBehaviour
             dashMeter = 0;
             dashing = false;
             moveBackwards.forwardSpeed /= dashMult;
+            rewind.Invoke("BecomeVulnerable", rewind.invincibility);
             timing.SubscribeActions();
         }
     }
@@ -38,12 +41,14 @@ public class Dash : MonoBehaviour
             {
                 moveBackwards.forwardSpeed *= dashMult;
                 playerMovement.currentLane = 1;
+                playerController.enabled = false;
                 timing.UnSubscribeActions();
                 playerMovement.UnSubscribeActions();
             }
             else
             {
                 moveBackwards.forwardSpeed /= dashMult;
+                rewind.Invoke("BecomeVulnerable", rewind.invincibility);
                 timing.SubscribeActions();
             }
         }
