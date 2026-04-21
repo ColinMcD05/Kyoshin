@@ -23,6 +23,7 @@ public class Rewind : MonoBehaviour
     // Mutable Variables in script
     [HideInInspector] public List<Vector2> positions; // List holding players last known position between 0 and rewindTime seconds
     [HideInInspector] public List<int> lane;
+    [HideInInspector] public List<int> laneSpeed;
 
     // Mutable Variables in other scripts
     public bool rewinding = false;
@@ -57,10 +58,12 @@ public class Rewind : MonoBehaviour
 
         positions.Add(playerRigidbody.position); // Adds current player position to the list
         lane.Add(playerMovement.currentLane);
+        laneSpeed.Add(moveBackwards.forwardSpeed);
         if (positions.Count > maxHeld)
         {
             positions.RemoveAt(0); // Remove the first position if list is greater than max held
             lane.RemoveAt(0);
+            laneSpeed.RemoveAt(0);
         }
     }
     #endregion
@@ -74,6 +77,10 @@ public class Rewind : MonoBehaviour
             int nextPosition = positions.Count - 1; // Gets last position in list index
             playerRigidbody.MovePosition(positions[nextPosition]); // Moves player to last position in list index
             positions.Remove(positions[nextPosition]); // Removes last position from list index
+
+            nextPosition = laneSpeed.Count - 1;
+            moveBackwards.forwardSpeed = laneSpeed[nextPosition] * -1;
+            laneSpeed.RemoveAt(nextPosition);
         }
         else
         {
@@ -128,7 +135,7 @@ public class Rewind : MonoBehaviour
         // Enables parts of player
         Invoke("BecomeVulnerable", invincibility);
         timing.SubscribeActions();
-        playerMovement.currentLane = lane[lane.Count - 1];
+        playerMovement.currentLane = lane[0];
         moveBackwards.forwardSpeed *= -1;
         moveBackwards.forwardSpeed = moveBackwards.minSpeed;
         lane.Clear();

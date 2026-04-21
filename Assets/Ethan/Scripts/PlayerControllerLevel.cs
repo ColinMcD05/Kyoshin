@@ -61,6 +61,10 @@ public class PlayerControllerLevel : MonoBehaviour
         cineMachineNoise.AmplitudeGain = 0;
         cineMachineNoise.FrequencyGain = 0;
         rewind.StartRewind();
+        if (gameManager.lives <= 0)
+        {
+            gameManager.GameOver();
+        }
     }
 
     IEnumerator RegainLives()
