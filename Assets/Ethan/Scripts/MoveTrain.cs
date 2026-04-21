@@ -20,7 +20,6 @@ public class MoveTrain : MonoBehaviour
         if (PosZ == null || NegZ == null)
         {
             Debug.Log("MoveTrain needs both PosZ and NegZ assigned.");
-            enabled = false;
             return;
         }
 
