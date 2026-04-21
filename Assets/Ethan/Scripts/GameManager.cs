@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
+using TMPro;
 public class GameManager : MonoBehaviour
 {
     public int score = 0;
@@ -22,6 +24,8 @@ public class GameManager : MonoBehaviour
     [Header("Persistant Objects")]
     static GameManager instance; // instance for persistant objects
     [SerializeField] GameObject[] persistantObjects;
+    public TextMeshProUGUI scoreText, rewindText;
+    public RewindTracker rewindTracker;
 
     static public string lastScene;
 
@@ -50,9 +54,11 @@ public class GameManager : MonoBehaviour
     }
     public void AddScore(int value){
         score += value;
-        if (score % 100 == 0)
+        scoreText.text = "Score: " + score;
+        if (score % 100 < (score - value) % 100)
         {
             lives++;
+            rewindTracker.ChangeText();
         }
         //Debug.Log("Score: " + score);
     }
@@ -182,6 +188,18 @@ public class GameManager : MonoBehaviour
             SceneManager.sceneLoaded -= SceneLoaded;
             SceneManager.sceneUnloaded -= SceneUnLoaded;
             CleanAndDestroy();
+            scoreText.enabled = false;
+            rewindText.enabled = false;
+        }
+        else if (scene.name == "LoseScreen" || scene.name == "HUB")
+        {
+            scoreText.enabled = false;
+            rewindText.enabled = false;
+        }
+        else
+        {
+            scoreText.enabled = true;
+            rewindText.enabled = true;
         }
     }
 

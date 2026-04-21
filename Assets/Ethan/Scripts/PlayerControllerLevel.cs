@@ -21,7 +21,7 @@ public class PlayerControllerLevel : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         cineMachineNoise = GameObject.Find("CinemachineCamera").GetComponent<CinemachineBasicMultiChannelPerlin>();
-        livesText = GameObject.Find("Canvas").transform.Find("RewindCounter").GetComponent<RewindTracker>();
+        livesText = gameManager.transform.Find("Canvas").transform.Find("RewindCounter").GetComponent<RewindTracker>();
     }
 
     //Lose Life | This is a function that is called to lose a life

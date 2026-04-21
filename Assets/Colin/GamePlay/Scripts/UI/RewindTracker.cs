@@ -8,13 +8,13 @@ public class RewindTracker : MonoBehaviour
 
     private void Awake()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = transform.parent.GetComponentInParent<GameManager>();
         rewindText = GetComponent<TextMeshProUGUI>();
         ChangeText();
     }
 
     public void ChangeText()
     {
-        rewindText.text = "Lives: " + gameManager.lives;
+        rewindText.text = "Rewinds: " + gameManager.lives;
     }
 }
