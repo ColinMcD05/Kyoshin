@@ -35,7 +35,7 @@ public class PlayerHubMovement : MonoBehaviour
         Quaternion target = moveFacing * modelOffset; //multiply the two quaternions to get the target rotation
         // // rotate the child to the target rotation
         // playerVisual is the child of the parent, Quaternion.RotateTowards is used to rotate the child to the target rotationm, playerVisual.rotation is the current rotation of the child, target is the target rotation, rotationSpeed is the speed of the rotation
-            playerVisual.rotation = Quaternion.RotateTowards(playerVisual.rotation,target, rotationSpeed * Time.deltaTime );
+        playerVisual.rotation = Quaternion.RotateTowards(playerVisual.rotation,target, rotationSpeed * Time.deltaTime );
         }
         
     }
