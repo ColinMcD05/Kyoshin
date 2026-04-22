@@ -41,7 +41,7 @@ public class Dash : MonoBehaviour
 
     public void OnDash(InputValue input)
     {
-        if (dashMeter >= 1)
+        if (dashMeter >= 1 && !rewind.rewinding)
         {
             dashing = !dashing;
             // Player should still move forward, but not have any control
