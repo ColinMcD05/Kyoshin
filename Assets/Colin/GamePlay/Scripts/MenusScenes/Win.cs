@@ -71,6 +71,7 @@ public class Win : MonoBehaviour
                     }
                 }
             }
+            gameManager.transform.Find("Canvas").GetComponent<Canvas>().enabled = false;
             // Start fadeout
             StartCoroutine(FadeOut());
         }

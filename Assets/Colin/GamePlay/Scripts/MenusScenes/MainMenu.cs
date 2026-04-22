@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] Button playButton;
+    [SerializeField] Button playButton, returnButton;
     [SerializeField] EventSystem eventSystem;
     [SerializeField] Image blackScreen;
-    [SerializeField] Canvas howToPlayCanvas;
+    [SerializeField] Canvas howToPlayCanvas, titleScreen;
 
     public float fadeOutTime;
 
@@ -33,11 +33,15 @@ public class MainMenu : MonoBehaviour
     public void HowToPlay()
     {
         howToPlayCanvas.enabled = true;
+        titleScreen.enabled = false;
+        eventSystem.SetSelectedGameObject(returnButton.gameObject);
     }
 
     public void Return()
     {
         howToPlayCanvas.enabled = false;
+        titleScreen.enabled = true;
+        eventSystem.SetSelectedGameObject(playButton.gameObject);
     }
 
     IEnumerator FadeOut()
