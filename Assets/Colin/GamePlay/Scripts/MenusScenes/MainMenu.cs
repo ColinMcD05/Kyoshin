@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Button playButton;
     [SerializeField] EventSystem eventSystem;
     [SerializeField] Image blackScreen;
+    [SerializeField] Canvas howToPlayCanvas;
 
     public float fadeOutTime;
 
@@ -26,6 +28,16 @@ public class MainMenu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void HowToPlay()
+    {
+        howToPlayCanvas.enabled = true;
+    }
+
+    public void Return()
+    {
+        howToPlayCanvas.enabled = false;
     }
 
     IEnumerator FadeOut()
