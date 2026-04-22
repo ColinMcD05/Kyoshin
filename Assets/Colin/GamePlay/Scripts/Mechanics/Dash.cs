@@ -53,6 +53,7 @@ public class Dash : MonoBehaviour
                 playerController.enabled = false;
                 timing.UnSubscribeActions();
                 playerMovement.UnSubscribeActions();
+                playerMovement.gameObject.GetComponent<Rigidbody>().useGravity = true;
             }
             else
             {
