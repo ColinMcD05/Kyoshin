@@ -25,6 +25,7 @@ public class NpcMovement : MonoBehaviour
 // Destroys the npc when it collides with the target
 void OnTriggerEnter(Collider other)
 {
+    
     if (other.CompareTag("Target") && target != null && other.transform == target)
     {
         Destroy(gameObject); // destroy npc
