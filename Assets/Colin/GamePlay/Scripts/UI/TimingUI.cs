@@ -22,7 +22,8 @@ public class TimingUI : MonoBehaviour
             currentSong = timing.currentSong; 
             yield return null;
         }
-        stillImage.transform.localScale = Vector3.one * (currentSong.bps+0.5f);
+        stillImage.transform.localScale = new Vector3(0.69f, 0.69f, 0.69f) * (currentSong.bps+0.5f);
+        movingImage.transform.localScale = new Vector3(1.035f, 1.035f, 1.035f);
     }
 
     public IEnumerator ResetCircle()
@@ -47,7 +48,7 @@ public class TimingUI : MonoBehaviour
                 //Debug.Log("Good");
                 stillImage.color = Color.green;
                 yield return new WaitForSeconds(waitPeriod);
-                movingImage.transform.localScale = new Vector3(1.5f, 1.5f ,1.5f);
+                movingImage.transform.localScale = new Vector3(1.035f, 1.035f, 1.035f);
                 stillImage.color = Color.red;
                 //ebug.Log("Reset");
             }
