@@ -56,7 +56,7 @@ public class MainMenu : MonoBehaviour
             blackScreen.color = color;
             yield return null;
         }
-        blackScreen.enabled = true;
+        blackScreen.enabled = false;
     }
 
     IEnumerator FadeOut()
