@@ -7,11 +7,9 @@ public class Coin : MonoBehaviour
     public GameManager gameManager;
     Slider dashSlider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    void Start()
     {
-        if(gameManager == null){
-            gameManager = FindFirstObjectByType<GameManager>();
-        }
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         dashSlider = gameManager.gameObject.transform.Find("Canvas").transform.Find("Dash").GetComponent<Slider>();
     }
 
