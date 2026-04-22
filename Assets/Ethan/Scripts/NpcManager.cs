@@ -6,7 +6,7 @@ public class NpcManager : MonoBehaviour
     public Transform[] targets; // array of targets for npc to move to
     public Transform[] spawnPoints; // array of spawn points for npc to spawn at
     public int maxNpcs = 10; // max number of npcs to spawn
-    public float speed;
+    
 
     public Transform currentTarget; // current target for npc to move to
     public int npcCount = 0; // number of npcs spawned

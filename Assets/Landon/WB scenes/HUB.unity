@@ -17094,7 +17094,8 @@ MonoBehaviour:
   - {fileID: 1484253923}
   - {fileID: 404859303}
   - {fileID: 922442107}
-  maxNpcs: 20
+  maxNpcs: 100
+  speed: 0
   currentTarget: {fileID: 0}
   npcCount: 0
 --- !u!4 &1614981644
@@ -21606,6 +21607,10 @@ PrefabInstance:
     - target: {fileID: 4503478344024585178, guid: b151383e0d445ae40ab16de6a3f4ecc3, type: 3}
       propertyPath: m_Name
       value: dela
+      objectReference: {fileID: 0}
+    - target: {fileID: 6533641101079018982, guid: b151383e0d445ae40ab16de6a3f4ecc3, type: 3}
+      propertyPath: m_Speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6533641101079018982, guid: b151383e0d445ae40ab16de6a3f4ecc3, type: 3}
       propertyPath: m_AutoBraking
