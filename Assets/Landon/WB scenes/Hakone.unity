@@ -66227,6 +66227,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2492839730629696533, guid: e1ddf480164cd6e449823c126d857ad9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.000000018218998
+      objectReference: {fileID: 0}
+    - target: {fileID: 2492839730629696533, guid: e1ddf480164cd6e449823c126d857ad9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0015186934
+      objectReference: {fileID: 0}
+    - target: {fileID: 2492839730629696533, guid: e1ddf480164cd6e449823c126d857ad9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.000000500877
+      objectReference: {fileID: 0}
+    - target: {fileID: 2492839730629696533, guid: e1ddf480164cd6e449823c126d857ad9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.47363225
+      objectReference: {fileID: 0}
+    - target: {fileID: 2492839730629696533, guid: e1ddf480164cd6e449823c126d857ad9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.31820086
+      objectReference: {fileID: 0}
+    - target: {fileID: 2492839730629696533, guid: e1ddf480164cd6e449823c126d857ad9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6192411
+      objectReference: {fileID: 0}
+    - target: {fileID: 2492839730629696533, guid: e1ddf480164cd6e449823c126d857ad9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5394082
+      objectReference: {fileID: 0}
+    - target: {fileID: 2492839730629696533, guid: e1ddf480164cd6e449823c126d857ad9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 21.508
+      objectReference: {fileID: 0}
+    - target: {fileID: 2492839730629696533, guid: e1ddf480164cd6e449823c126d857ad9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 88.117
+      objectReference: {fileID: 0}
+    - target: {fileID: 2492839730629696533, guid: e1ddf480164cd6e449823c126d857ad9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -76.602
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
