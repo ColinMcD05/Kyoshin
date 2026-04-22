@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TitleScreen.unity
+    path: Assets/Scenes/Title Screen.unity
     guid: c17cbf4db4897d74c9ddf2b2b7cdcae9
   - enabled: 1
     path: Assets/Landon/WB scenes/HUB.unity
