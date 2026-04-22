@@ -69,11 +69,6 @@ public class PlayerLevelMovement : MonoBehaviour
         capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
     }
 
-    void OnEnable()
-    {
-        SubscribeActions();
-    }
-
     private void OnDisable()
     {
         UnSubscribeActions();

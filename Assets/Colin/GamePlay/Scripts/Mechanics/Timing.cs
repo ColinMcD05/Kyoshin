@@ -114,7 +114,6 @@ public class Timing : MonoBehaviour
     {
         Invoke("SubscribeActions", currentSong.bps * 16);
         StartCoroutine(CountDown());
-        playerLevelMovement.SubscribeActions();
         if (!playerLevelMovement.enabled)
         {
             playerLevelMovement.enabled = true; // Lets players move
