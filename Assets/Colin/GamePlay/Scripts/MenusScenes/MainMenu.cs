@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -17,6 +16,7 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         eventSystem.firstSelectedGameObject = playButton.gameObject;
+        StartCoroutine(FadeIn());
     }
 
     public void Play()
@@ -42,6 +42,21 @@ public class MainMenu : MonoBehaviour
         howToPlayCanvas.enabled = false;
         titleScreen.enabled = true;
         eventSystem.SetSelectedGameObject(playButton.gameObject);
+    }
+
+    IEnumerator FadeIn()
+    {
+        blackScreen.enabled = true;
+        Color color = blackScreen.color;
+        float alpha = 1;
+        while (blackScreen.color.a >= 0)
+        {
+            alpha -= Time.deltaTime / 2;
+            color.a = alpha;
+            blackScreen.color = color;
+            yield return null;
+        }
+        blackScreen.enabled = true;
     }
 
     IEnumerator FadeOut()
