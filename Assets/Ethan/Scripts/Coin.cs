@@ -1,16 +1,18 @@
 using UnityEngine;
-using System;
+using UnityEngine.UI;
 public class Coin : MonoBehaviour
 {
     public int coinValue = 1;
-    public int dashValue = 10;
+    public float dashValue = 10;
     public GameManager gameManager;
+    Slider dashSlider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         if(gameManager == null){
             gameManager = FindFirstObjectByType<GameManager>();
         }
+        dashSlider = gameManager.gameObject.transform.Find("Canvas").transform.Find("Dash").GetComponent<Slider>();
     }
 
     // Update is called once per frame
@@ -22,9 +24,11 @@ public class Coin : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            float addedValue = 1 / dashValue;
             gameManager.AddScore(coinValue);
-            //other.GetComponent<Dash>().AddDash(1 / dashValue);
+            other.GetComponent<Dash>().AddDash(addedValue);
+            dashSlider.value += addedValue;
+            Destroy(gameObject);
         }
     }
 }

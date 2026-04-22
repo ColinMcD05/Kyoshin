@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 584516146022472044}
   - component: {fileID: 899933235902448538}
   - component: {fileID: 7136606802427550247}
+  - component: {fileID: 5326989317241871624}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -27,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321607435560748508}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08828583, y: 0, z: 0, w: 0.9960952}
+  m_LocalRotation: {x: 0.0882858, y: 0, z: 0, w: 0.9960952}
   m_LocalPosition: {x: 0.15, y: 2.1000001, z: -3.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10.13, y: 0, z: 0}
 --- !u!114 &584516146022472044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,3 +138,20 @@ MonoBehaviour:
       Wait: 1
       Time: 2
     Restrictions: 0
+--- !u!114 &5326989317241871624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321607435560748508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
+  NoiseProfile: {fileID: 11400000, guid: 3fd1c4a079bddd94ab081b8fad654f9a, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 0
+  FrequencyGain: 0
+  m_NoiseOffsets: {x: -727.67236, y: -198.49768, z: -660.0447}

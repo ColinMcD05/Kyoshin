@@ -6,19 +6,28 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Landon/WB Hakone.unity
+    path: Assets/Scenes/TitleScreen.unity
+    guid: c17cbf4db4897d74c9ddf2b2b7cdcae9
+  - enabled: 1
+    path: Assets/Landon/WB scenes/HUB.unity
+    guid: 8bf2079a54613a14c98d6b80db0d3592
+  - enabled: 1
+    path: Assets/Landon/WB scenes/Hakone.unity
     guid: 04b1539a8d3e7f94d942e3d14bdbeaa1
   - enabled: 1
-    path: Assets/Ethan/EthanTestScene.unity
-    guid: 6e84b27b5c220074ea2cc0f1d3b0e358
+    path: Assets/Landon/WB scenes/Kyoto.unity
+    guid: e5667ef2308e4a8409b2063688d0251e
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Landon/WB scenes/Tokyo.unity
+    guid: 6bc5ac809aaff7c43a6372d8417e7b97
   - enabled: 1
-    path: Assets/Colin/Scenes/Lose Screen.unity
+    path: Assets/Colin/Scenes/Infinite.unity
+    guid: 98857decdb76e44479a379ec5f3a85ac
+  - enabled: 1
+    path: Assets/Colin/Scenes/LoseScreen.unity
     guid: 811e16393c15b83408d3acc4c44c2441
   - enabled: 1
-    path: Assets/Colin/Scenes/Win Scene.unity
+    path: Assets/Colin/Scenes/WinScene.unity
     guid: a32d18c5e1cddaa4a97b82d7518d7ceb
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6659954358707509816}
   - component: {fileID: 3685110182410248740}
   - component: {fileID: 1090602072966021512}
+  - component: {fileID: 3644500381138021988}
   m_Layer: 0
   m_Name: Jumpable
   m_TagString: Obstacle
@@ -1322,3 +1323,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &3644500381138021988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8156718091196867868}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Obstacle
+  type: 1

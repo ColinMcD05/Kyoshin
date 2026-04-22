@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2649803074083696719}
   - component: {fileID: 3287525079328523261}
   - component: {fileID: 3796687255829952864}
+  - component: {fileID: -7397718227329110913}
   m_Layer: 0
   m_Name: Car
   m_TagString: Obstacle
@@ -1322,3 +1323,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &-7397718227329110913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7995616152323829463}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Obstacle
+  type: 0
