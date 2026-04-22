@@ -106,14 +106,14 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _OutlineShadowDarken: 0.741
-    - _OutlineThickness: 0.0161
+    - _OutlineThickness: 0.03
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RimIntensity: 0
     - _RimPower: 8
-    - _ShadowSoftness: 0.109
-    - _ShadowThreshold: 0.184
+    - _ShadowSoftness: 0.3
+    - _ShadowThreshold: 0.507
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

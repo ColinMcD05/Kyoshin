@@ -70,21 +70,21 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _BackLightStrength: 0.318
-    - _OutlineShadowDarken: 0.411
+    - _BackLightStrength: 0.581
+    - _OutlineShadowDarken: 0.875
     - _OutlineThickness: 0.03
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RimIntensity: 1
-    - _RimPower: 3
+    - _RimIntensity: 0.08
+    - _RimPower: 8
     - _ShadowSoftness: 0.05
     - _ShadowThreshold: 0.285
-    - _SpecularIntensity: 1
-    - _SpecularThreshold: 0.75
+    - _SpecularIntensity: 2
+    - _SpecularThreshold: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RimColor: {r: 0, g: 0, b: 0, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

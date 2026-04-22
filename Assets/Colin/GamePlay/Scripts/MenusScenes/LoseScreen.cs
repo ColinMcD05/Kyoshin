@@ -3,14 +3,23 @@ using UnityEngine.SceneManagement;
 
 public class LoseScreen : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    GameManager gameManager;
+    string lastScene;
+
+    private void Start()
     {
-        Invoke("Reset", 2);
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        lastScene = gameManager.GetLastScene();
+        Debug.Log(lastScene);
     }
 
-    private void Reset()
+    public void Retry()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

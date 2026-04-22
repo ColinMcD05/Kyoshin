@@ -2,25 +2,46 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using Unity.Cinemachine;
+using TMPro;
 public class PlayerControllerLevel : MonoBehaviour
 {
-    [SerializeField] private Rewind rewind;
+    [SerializeField] Rewind rewind;
+    [SerializeField] Timing timing;
     GameManager gameManager;
+    CinemachineBasicMultiChannelPerlin cineMachineNoise;
+    [SerializeField] MoveBackwards moveBackwards;
+    RewindTracker livesText;
 
     int collidedAmout = 0;
     public int maxCollisions = 4;
     public float regenTime = 2.0f;
+    public bool invincible = false;
 
-    private void Awake()
+    private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        cineMachineNoise = GameObject.Find("CinemachineCamera").GetComponent<CinemachineBasicMultiChannelPerlin>();
+        livesText = gameManager.transform.Find("Canvas").transform.Find("RewindCounter").GetComponent<RewindTracker>();
     }
 
-    #region Lose Life | This is a function that is called to lose a life
+    private void OnEnable()
+    {
+        invincible = false;
+    }
+
+    void OnDisable()
+    {
+        invincible = true;
+    }
+
+    //Lose Life | This is a function that is called to lose a life
+    #region
     // lose a life function will only be called after player collides with an obstacle x amount of times each collison will cause the camera to shake
     public void LoseLife(){
-        if (Time.timeSinceLevelLoad >= 4)
+        if (timing.songPosition >= 4)
         {
+            if (invincible) return;
             if (collidedAmout == 0)
             {
                 collidedAmout++;
@@ -30,23 +51,36 @@ public class PlayerControllerLevel : MonoBehaviour
             {
                 collidedAmout++; // Increment the collided amount
             }
+            cineMachineNoise.AmplitudeGain += 1;
+            cineMachineNoise.FrequencyGain += 1;
             Debug.Log("Collided Amount: " + collidedAmout); // Log the collided amount
             if (collidedAmout >= maxCollisions)
             { // If the collided amount is greater than or equal to the max collisions
                 //Debug.Log("Lives: " + lives);
-                collidedAmout = 0; // Reset the collided amount
-                                   // call rewind time function
-                if (rewind != null)
-                {
-                    // disable player collider
-                    rewind.StartRewind();
-                }
-
+                Death();
+            }
+            else
+            {
+                moveBackwards.forwardSpeed = moveBackwards.minSpeed;
             }
             if (gameManager.lives <= 0)
             {
-                GameOver();
+                gameManager.GameOver();
             }
+        }
+    }
+
+    public void Death()
+    {
+        collidedAmout = 0;
+        cineMachineNoise.AmplitudeGain = 0;
+        cineMachineNoise.FrequencyGain = 0;
+        rewind.StartRewind();
+        gameManager.lives--;
+        livesText.ChangeText();
+        if (gameManager.lives <= 0)
+        {
+            gameManager.GameOver();
         }
     }
 
@@ -56,16 +90,14 @@ public class PlayerControllerLevel : MonoBehaviour
         { 
             yield return new WaitForSeconds(regenTime);
             collidedAmout--;
+            cineMachineNoise.AmplitudeGain -= 1;
+            cineMachineNoise.FrequencyGain -= 1;
             Debug.Log("Regained");
         }
     }
 
     public void ShakeCamera(int shakeIntensity){
         // shake the camera by using the CinemachineShake script
-        CineMachineShake.Instance.ShakeCamera(shakeIntensity);
     } // end of ShakeCamera function
     #endregion
-    public void GameOver(){
-        SceneManager.LoadScene("LoseScreen");
-    }
 }

@@ -14,8 +14,14 @@ public class WallAreas : MonoBehaviour
         {
             // Once player enters wall running area, it sets the position of where the walls are, and what type.
             PlayerLevelMovement playerMovement = other.GetComponent<PlayerLevelMovement>();
-            playerMovement.leftWallPosition = leftWallPosition.position;
-            playerMovement.rightWallPosition = rightWallPosition.position;
+            if (leftWallPosition != null)
+            {
+                playerMovement.leftWallPosition = leftWallPosition.position;
+            }
+            if (rightWallPosition != null)
+            {
+                playerMovement.rightWallPosition = rightWallPosition.position;
+            }
             playerMovement.areaType = areaType;
         }
     }
@@ -26,8 +32,8 @@ public class WallAreas : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             PlayerLevelMovement playerMovement = other.GetComponent<PlayerLevelMovement>();
-            playerMovement.leftWallPosition = Vector2.zero;
-            playerMovement.rightWallPosition = Vector2.zero;
+            playerMovement.leftWallPosition = null;
+            playerMovement.rightWallPosition = null;
             playerMovement.areaType = PlayerLevelMovement.AreaType.normal;
             if (!playerMovement.IsGrounded())
             {

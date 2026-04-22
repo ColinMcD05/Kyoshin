@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Rewind : MonoBehaviour
 {
@@ -11,18 +12,19 @@ public class Rewind : MonoBehaviour
     [SerializeField] PlayerControllerLevel playerController;
     [SerializeField] Rigidbody playerRigidbody;
     [SerializeField] PlayerLevelMovement playerMovement;
-    [SerializeField] PlayerMoveForward playerForward;
+    [SerializeField] MoveBackwards moveBackwards;
     [SerializeField] AudioSource musicPlayer;
     [SerializeField] Timing timing;
     [SerializeField] Collider playerCollider;
 
     // Mutable Variables in Inspector
     public float rewindTime = 3f; // How far back does the player rewind
-    public float invincibility;
+    public float invincibility = 2f;
 
     // Mutable Variables in script
-    public List<Vector3> positions; // List holding players last known position between 0 and rewindTime seconds
-    public List<int> lane;
+    [HideInInspector] public List<Vector2> positions; // List holding players last known position between 0 and rewindTime seconds
+    [HideInInspector] public List<int> lane;
+    [HideInInspector] public List<int> laneSpeed;
 
     // Mutable Variables in other scripts
     public bool rewinding = false;
@@ -57,10 +59,12 @@ public class Rewind : MonoBehaviour
 
         positions.Add(playerRigidbody.position); // Adds current player position to the list
         lane.Add(playerMovement.currentLane);
+        laneSpeed.Add(moveBackwards.forwardSpeed);
         if (positions.Count > maxHeld)
         {
             positions.RemoveAt(0); // Remove the first position if list is greater than max held
             lane.RemoveAt(0);
+            laneSpeed.RemoveAt(0);
         }
     }
     #endregion
@@ -74,6 +78,10 @@ public class Rewind : MonoBehaviour
             int nextPosition = positions.Count - 1; // Gets last position in list index
             playerRigidbody.MovePosition(positions[nextPosition]); // Moves player to last position in list index
             positions.Remove(positions[nextPosition]); // Removes last position from list index
+
+            nextPosition = laneSpeed.Count - 1;
+            moveBackwards.forwardSpeed = laneSpeed[nextPosition] * -1;
+            laneSpeed.RemoveAt(nextPosition);
         }
         else
         {
@@ -90,7 +98,7 @@ public class Rewind : MonoBehaviour
         // Rewind starts if not currently rewinding and enough time has passed
         if (input.isPressed && !rewinding && Time.timeSinceLevelLoad >=4)
         {
-            StartRewind();
+            playerController.Death();
         }
     }
     #endregion
@@ -105,14 +113,12 @@ public class Rewind : MonoBehaviour
         rewinding = true;
 
         musicPlayer.pitch = -1; // Reverses music
+        moveBackwards.forwardSpeed *= -1;
 
         // Disables parts of player
         playerController.enabled = false;
-        playerForward.enabled = false;
-        playerMovement.enabled = false;
-
-        // Lose a life when rewinding
-        gameManager.lives--;
+        playerMovement.UnSubscribeActions();
+        timing.UnSubscribeActions();
     }
 
     // Lets other scripts more easily stop rewind mechanic
@@ -121,18 +127,19 @@ public class Rewind : MonoBehaviour
         rewinding = false;
 
         musicPlayer.pitch = 1; // Music plays normally
-        timing.rewindTimeUsed += rewindTime; // Adds time that was rewound to get accurate position of song
+        timing.rewindTimeUsed += rewindTime * 2; // Adds time that was rewound to get accurate position of song
 
         // Enables parts of player
         Invoke("BecomeVulnerable", invincibility);
-        playerForward.enabled = true;
-        playerMovement.enabled = true;
-        playerMovement.currentLane = lane[lane.Count - 1];
+        timing.SubscribeActions();
+        playerMovement.currentLane = lane[0];
+        moveBackwards.forwardSpeed *= -1;
+        moveBackwards.forwardSpeed = moveBackwards.minSpeed;
         lane.Clear();
     }
     #endregion
 
-    void BecomeVulnerable()
+    public void BecomeVulnerable()
     {
         playerController.enabled = true;
     }

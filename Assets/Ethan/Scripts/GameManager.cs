@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
+using TMPro;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 public class GameManager : MonoBehaviour
 {
     public int score = 0;
@@ -19,33 +23,45 @@ public class GameManager : MonoBehaviour
     LevelList levelList = new LevelList(); // A class holding a list of the levels for saving
 
     // Making gamemanager permanent
+    [Header("Persistant Objects")]
     static GameManager instance; // instance for persistant objects
+    [SerializeField] GameObject[] persistantObjects;
+    public TextMeshProUGUI scoreText, rewindText;
+    public RewindTracker rewindTracker;
+    public GameObject dashSlider;
+
+    static public string lastScene;
 
     public void Awake()
     {
         if (instance != null)
         {
-            Destroy(gameObject);
+            CleanAndDestroy();
+            return;
         }
         else
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            MarkObjects();
+            SceneManager.sceneLoaded += SceneLoaded;
+            SceneManager.sceneUnloaded += SceneUnLoaded;
         }
         filePath = Application.persistentDataPath + "/Player_Data/";
         Load();
     }
 
-    public void GameOver(){
-        //Debug.Log("Game Over");
+    public void GameOver()
+    {
+        SceneManager.LoadScene("LoseScreen");
     }
     public void AddScore(int value){
         score += value;
-        Debug.Log(score % 100);
-        if (score % 100 == 0)
+        scoreText.text = "Score: " + score;
+        if (score % 100 < (score - value) % 100)
         {
             lives++;
+            rewindTracker.ChangeText();
         }
         //Debug.Log("Score: " + score);
     }
@@ -137,15 +153,80 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    private void MarkObjects()
+    {
+        foreach (GameObject obj in persistantObjects)
+        {
+            if (obj != null)
+            {
+                DontDestroyOnLoad(obj);
+            }
+        }
+    }
+
+    private void CleanAndDestroy()
+    {
+        foreach (GameObject obj in persistantObjects)
+        {
+            Destroy(obj);
+        }
+        Destroy(gameObject);
+    }
+
     private void OnApplicationQuit()
     {
         // Save game once application ends
         Save();
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded -= SceneLoaded;
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    void SceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Save();
         score = 0;
+        lives = 3;
+        if (scene.name == "TitleScreen")
+        {
+            instance = null;
+            SceneManager.sceneLoaded -= SceneLoaded;
+            SceneManager.sceneUnloaded -= SceneUnLoaded;
+            CleanAndDestroy();
+            scoreText.enabled = false;
+            rewindText.enabled = false;
+            for (int i = 0; i < dashSlider.transform.childCount; i++)
+            {
+                dashSlider.transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
+        else if (scene.name == "LoseScreen" || scene.name == "HUB")
+        {
+            scoreText.enabled = false;
+            rewindText.enabled = false;
+            for (int i = 0; i < dashSlider.transform.childCount; i++)
+            {
+                dashSlider.transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            scoreText.enabled = true;
+            scoreText.text = "Score: " + score;
+            rewindTracker.ChangeText();
+            rewindText.enabled = true;
+            for (int i = 0; i < dashSlider.transform.childCount; i++)
+            {
+                dashSlider.transform.GetChild(i).gameObject.SetActive(true);
+            }
+        }
+    }
+
+    void SceneUnLoaded(Scene scene)
+    {
+        lastScene = scene.name;
+    }
+
+    public string GetLastScene()
+    {
+        return lastScene;
     }
 }

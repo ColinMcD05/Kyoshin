@@ -3,28 +3,49 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    public GameManager gameManager;
-    public PlayerControllerLevel playerControllerLevel;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public ObstacleType type;
+    public enum ObstacleType
     {
-        if(gameManager == null){
-            gameManager = FindFirstObjectByType<GameManager>();
-        }
-        if(playerControllerLevel == null){
-            playerControllerLevel = FindFirstObjectByType<PlayerControllerLevel>();
-        }
+        Kill,
+        Hurt
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     void OnTriggerEnter(Collider other){
-        if(other.gameObject.CompareTag("Player") /*&& !other.GetComponent<Dash>().dashing*/){
-            playerControllerLevel.ShakeCamera(10); // Shake the camera by 10 units
-            playerControllerLevel.LoseLife();
+        if(other.gameObject.CompareTag("Player") /*&& !other.GetComponent<Dash>().dashing*/)
+        {
+            if (!other.GetComponent<Dash>().dashing)
+            {
+                Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
+                PlayerLevelMovement playerMovement = other.GetComponent<PlayerLevelMovement>();
+                PlayerControllerLevel playerController = other.GetComponent<PlayerControllerLevel>();
+                if (!playerController.invincible)
+                {
+                    switch (type)
+                    {
+                        case ObstacleType.Kill:
+                            if (playerRigidbody.linearVelocity.y >= -0.001)
+                            {
+                                if (playerRigidbody.linearVelocity.x > 0.01)
+                                {
+                                    playerController.LoseLife();
+                                    playerMovement.currentLane--;
+                                    return;
+                                }
+                                else if (playerRigidbody.linearVelocity.x < -0.01)
+                                {
+                                    playerController.LoseLife();
+                                    playerMovement.currentLane++;
+                                    return;
+                                }
+                            }
+                            playerController.Death();
+                            break;
+                        case ObstacleType.Hurt:
+                            playerController.LoseLife();
+                            break;
+                    }
+                }
+            }
         }
     } // end of OnTriggerEnter function
 }

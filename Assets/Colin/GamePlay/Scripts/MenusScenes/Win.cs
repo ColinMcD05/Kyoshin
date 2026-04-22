@@ -1,19 +1,36 @@
+using NUnit.Framework;
 using System.Collections;
+using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Win : MonoBehaviour
 {
     GameManager gameManager;
+    [SerializeField] MoveBackwards moveBackwards;
     [SerializeField] Image moveImage;
     [SerializeField] Image stillImage;
     [SerializeField] Image image;
     public float fadeOutTime;
+    public Transform playerWinPosition, otherCharWinPosition;
+    public GameObject player, otherChar;
+    public Camera mainCamera;
+    public Camera winCamera;
+    public GameObject winScreen;
+    EventSystem eventSystem;
+    GameObject retry;
+    AudioSource music;
+    public AudioClip win;
 
-    void Awake()
+    void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        otherChar = GameObject.Find("OtherChar");
+        player = GameObject.Find("Player");
+        eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+        retry = winScreen.transform.Find("Retry").gameObject;
+        music = GameObject.Find("Audio").transform.Find("Music").GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -21,10 +38,11 @@ public class Win : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             // Set player speed to max speed
-            other.GetComponent<PlayerMoveForward>().forwardSpeed = other.GetComponent<PlayerMoveForward>().maxSpeed;
+            moveBackwards.forwardSpeed = moveBackwards.maxSpeed;
 
             // Disable timing based mechanics
             other.GetComponent<Timing>().enabled = false;
+            other.GetComponent<PlayerLevelMovement>().enabled = false;
             moveImage.enabled = false;
             stillImage.enabled = false;
             // Get current song
@@ -34,6 +52,9 @@ public class Win : MonoBehaviour
 
             // Set current levels progress to completed
             currentLevel.progress = Levels.Progress.completed;
+
+            music.Stop();
+            music.PlayOneShot(win);
 
             // If score is higher than level highscore, set highscore to score
             if (gameManager.score > currentLevel.highScore)
@@ -56,6 +77,7 @@ public class Win : MonoBehaviour
                     }
                 }
             }
+            gameManager.transform.Find("Canvas").GetComponent<Canvas>().enabled = false;
             // Start fadeout
             StartCoroutine(FadeOut());
         }
@@ -74,6 +96,47 @@ public class Win : MonoBehaviour
             image.color = color;
             yield return null;
         }
-        SceneManager.LoadScene("WinScene");
+        //Transition();
+        otherChar.GetComponent<FollowScript>().enabled = false;
+        winScreen.SetActive(true);
+        eventSystem.firstSelectedGameObject = retry;
+        TextMeshProUGUI score = winScreen.transform.Find("Score").GetComponent<TextMeshProUGUI>();
+        score.text = "Score: " + gameManager.score;
+    }
+
+    IEnumerator FadeIn()
+    {
+        yield return new WaitForSeconds(1);
+        // Variables for the color to change
+        float alpha = 1;
+        Color color = image.color;
+        // While alpha is greater than 0, slowly decrease alpha
+        while (image.color.a >= 0)
+        {
+            alpha -= Time.deltaTime/2;
+            color.a = alpha;
+            image.color = color;
+            yield return null;
+        }
+    }
+
+    void Transition()
+    {
+        // Stops move backwards scripts
+        moveBackwards.enabled = false;
+
+        // Set position of both characters to win positions
+        player.transform.position = playerWinPosition.position;
+        otherChar.transform.position = otherCharWinPosition.position;
+
+        // Change camera
+        mainCamera.enabled = false;
+        winCamera.enabled = true;
+
+        // Spawn in whats needed
+
+        // Play Animation, win music, show score
+
+        StartCoroutine(FadeIn());
     }
 }

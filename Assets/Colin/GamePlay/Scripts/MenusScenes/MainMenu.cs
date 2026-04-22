@@ -6,15 +6,17 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] Button playButton;
+    [SerializeField] Button playButton, returnButton;
     [SerializeField] EventSystem eventSystem;
     [SerializeField] Image blackScreen;
+    [SerializeField] Canvas howToPlayCanvas, titleScreen;
 
     public float fadeOutTime;
 
     private void Start()
     {
         eventSystem.firstSelectedGameObject = playButton.gameObject;
+        StartCoroutine(FadeIn());
     }
 
     public void Play()
@@ -28,8 +30,38 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    public void HowToPlay()
+    {
+        howToPlayCanvas.enabled = true;
+        titleScreen.enabled = false;
+        eventSystem.SetSelectedGameObject(returnButton.gameObject);
+    }
+
+    public void Return()
+    {
+        howToPlayCanvas.enabled = false;
+        titleScreen.enabled = true;
+        eventSystem.SetSelectedGameObject(playButton.gameObject);
+    }
+
+    IEnumerator FadeIn()
+    {
+        blackScreen.enabled = true;
+        Color color = blackScreen.color;
+        float alpha = 1;
+        while (blackScreen.color.a >= 0)
+        {
+            alpha -= Time.deltaTime / 2;
+            color.a = alpha;
+            blackScreen.color = color;
+            yield return null;
+        }
+        blackScreen.enabled = false;
+    }
+
     IEnumerator FadeOut()
     {
+        blackScreen.enabled = true;
         Color color = blackScreen.color;
         float alpha = 0;
         while (blackScreen.color.a <= 1)
