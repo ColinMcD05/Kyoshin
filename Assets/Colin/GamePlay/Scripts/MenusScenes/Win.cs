@@ -21,7 +21,7 @@ public class Win : MonoBehaviour
     EventSystem eventSystem;
     GameObject retry;
 
-    void Awake()
+    void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         otherChar = GameObject.Find("OtherChar");
