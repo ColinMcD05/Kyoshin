@@ -8327,6 +8327,14 @@ PrefabInstance:
       propertyPath: orientation
       value: 
       objectReference: {fileID: 420984599}
+    - target: {fileID: 7964936376232254391, guid: 9b63437b9e2fd874c8f56920a25c8880, type: 3}
+      propertyPath: playerVisual
+      value: 
+      objectReference: {fileID: 73952988}
+    - target: {fileID: 7964936376232254391, guid: 9b63437b9e2fd874c8f56920a25c8880, type: 3}
+      propertyPath: rotationSpeed
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 691885348061703317, guid: 9b63437b9e2fd874c8f56920a25c8880, type: 3}
