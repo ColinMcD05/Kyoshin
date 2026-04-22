@@ -46,7 +46,7 @@ public class FollowScript : MonoBehaviour
         {
             int nextPosition = playerRewind.positions.Count - spacing;
             charPosition.x = playerRewind.positions[nextPosition].x;
-            charPosition.y = playerRewind.positions[nextPosition].y;
+            charPosition.y = playerRewind.positions[nextPosition].y - 1;
             charRigidbody.MovePosition(charPosition);
         }
     }

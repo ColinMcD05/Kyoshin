@@ -211,6 +211,7 @@ public class GameManager : MonoBehaviour
         {
             scoreText.enabled = true;
             scoreText.text = "Score: " + score;
+            rewindTracker.ChangeText();
             rewindText.enabled = true;
             for (int i = 0; i < dashSlider.transform.childCount; i++)
             {

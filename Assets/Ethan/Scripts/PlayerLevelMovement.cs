@@ -69,11 +69,6 @@ public class PlayerLevelMovement : MonoBehaviour
         capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
     }
 
-    void OnEnable()
-    {
-        SubscribeActions();
-    }
-
     private void OnDisable()
     {
         UnSubscribeActions();
@@ -173,8 +168,12 @@ public class PlayerLevelMovement : MonoBehaviour
 
     // Jump action
     public void Jump(InputAction.CallbackContext value){ // This is a function that is called when the jump button is pressed argument is the value of the input
-        if(value.ReadValueAsButton() && !isSliding){ // If the jump button is pressed, then set the jumpPressed to true
+        if(value.ReadValueAsButton()){ // If the jump button is pressed, then set the jumpPressed to true
             jumpPressed = true;// Set the jumpPressed to true
+        }
+        if (isSliding)
+        {
+            StopSliding();
         }
     }
 
@@ -405,8 +404,11 @@ public class PlayerLevelMovement : MonoBehaviour
 
     void StopSliding()
     {
-        isSliding = false;
-        gameObject.transform.localScale /= shrinkPercentage;
+        if (isSliding)
+        {
+            isSliding = false;
+            gameObject.transform.localScale /= shrinkPercentage;
+        }
         //capsuleCollider.height /= shrinkPercentage;
         //capsuleCollider.center += Vector3.up * (1 - shrinkPercentage);
     }

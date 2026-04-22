@@ -18,7 +18,7 @@ public class PlayerControllerLevel : MonoBehaviour
     public float regenTime = 2.0f;
     public bool invincible = false;
 
-    private void Awake()
+    private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         cineMachineNoise = GameObject.Find("CinemachineCamera").GetComponent<CinemachineBasicMultiChannelPerlin>();

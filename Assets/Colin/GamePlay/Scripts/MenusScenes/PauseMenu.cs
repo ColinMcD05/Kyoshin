@@ -22,6 +22,7 @@ public class PauseMenu : MonoBehaviour
     public EventSystem eventSystem;
     public Button resume;
     PlayerLevelMovement playerMovement;
+    GameManager gameManager;
 
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class PauseMenu : MonoBehaviour
 
     IEnumerator Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         while (audioMixer == null)
         {
             audioMixer.SetFloat("Volume", Mathf.Log10(PlayerPrefs.GetFloat("Volume", 1)) * 20);
@@ -120,6 +122,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         AudioListener.pause = false;
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        gameManager.transform.Find("Canvas").GetComponent<Canvas>().enabled = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
