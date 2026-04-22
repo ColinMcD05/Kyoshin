@@ -323,6 +323,7 @@ GameObject:
   - component: {fileID: 55868335}
   - component: {fileID: 55868334}
   - component: {fileID: 55868333}
+  - component: {fileID: 55868336}
   m_Layer: 5
   m_Name: HowToPlayButton
   m_TagString: Untagged
@@ -443,6 +444,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55868331}
   m_CullTransparentMesh: 1
+--- !u!114 &55868336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55868331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38ec37740ca85642be6e4952d2d986f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverOver
 --- !u!43 &65491743
 Mesh:
   m_ObjectHideFlags: 0
@@ -7844,6 +7857,7 @@ GameObject:
   - component: {fileID: 846352167}
   - component: {fileID: 846352166}
   - component: {fileID: 846352165}
+  - component: {fileID: 846352168}
   m_Layer: 5
   m_Name: Return
   m_TagString: Untagged
@@ -7965,6 +7979,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 846352163}
   m_CullTransparentMesh: 1
+--- !u!114 &846352168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846352163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38ec37740ca85642be6e4952d2d986f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverOver
 --- !u!1 &854436536
 GameObject:
   m_ObjectHideFlags: 0
@@ -19376,7 +19402,8 @@ MonoBehaviour:
   returnButton: {fileID: 846352165}
   eventSystem: {fileID: 222941648}
   blackScreen: {fileID: 490420123}
-  howToPlayCanvas: {fileID: 0}
+  howToPlayCanvas: {fileID: 854436539}
+  titleScreen: {fileID: 1651538889}
   fadeOutTime: 3
 --- !u!1001 &1677061281
 PrefabInstance:
