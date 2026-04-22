@@ -46,6 +46,7 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator FadeOut()
     {
+        blackScreen.enabled = true;
         Color color = blackScreen.color;
         float alpha = 0;
         while (blackScreen.color.a <= 1)
