@@ -42,6 +42,7 @@ public class PlayerControllerLevel : MonoBehaviour
         if (timing.songPosition >= 4)
         {
             if (invincible) return;
+            gameManager.ClearCombo();
             if (collidedAmout == 0)
             {
                 collidedAmout++;

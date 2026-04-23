@@ -151,6 +151,10 @@ public class PauseMenu : MonoBehaviour
             timing = GameObject.Find("Player").GetComponent<Timing>(); 
             playerMovement = GameObject.Find("Player").GetComponent<PlayerLevelMovement>();
             timingUI = GameObject.Find("TimingUI");
+            if (gameManager != null)
+            {
+                gameManager.transform.Find("Canvas").GetComponent<Canvas>().enabled = true;
+            }
             if (scene.name == "Infinite")
             {
                 winScreen = null;

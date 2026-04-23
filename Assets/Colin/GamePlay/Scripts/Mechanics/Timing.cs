@@ -39,8 +39,6 @@ public class Timing : MonoBehaviour
     // Other variables
     public int comboNeeded = 3;
     public float startWaitTime = 1;
-    public int maxMult = 10;
-    public int comboNeededMult = 5;
     public int goodScore = 5;
     string currentScene;
     #endregion
@@ -64,7 +62,7 @@ public class Timing : MonoBehaviour
     private void Start()
     {
         currentScene = SceneManager.GetActiveScene().name;
-        resetCircle = timingUI.ResetCircle();
+        resetCircle = timingUI.IndicateBeat();
         songStartTime = 0;
         songPosition = 0;
         if (player == null)
@@ -113,6 +111,7 @@ public class Timing : MonoBehaviour
     public void StartMusic()
     {
         Invoke("SubscribeActions", currentSong.bps * 16);
+        playerLevelMovement.SubscribeActions();
         StartCoroutine(CountDown());
         if (!playerLevelMovement.enabled)
         {
@@ -172,24 +171,20 @@ public class Timing : MonoBehaviour
     // Check if input is hit at correct time
     public void CheckTime(InputAction.CallbackContext context)
     {
-        int mult = goodScore + gameManager.combo / comboNeededMult;
-        if (mult > maxMult)
-        {
-            mult = maxMult;
-        }
         float positionDecimal = GetDecimal(songPositionInBeats); // Getting decimals of beat position
+        Debug.Log(positionDecimal);
         //Debug.Log(positionDecimal);
         if (positionDecimal <= messUpRange || positionDecimal >= 1 - messUpRange) // checks if action takes place in the mess up range.
         {
             // Do correct movement
             // Add combo
-            gameManager.combo++;
+            gameManager.IncreaseCombo();
             // Check player speed, if not at max speed go faster
             if (moveBackwards.forwardSpeed < moveBackwards.maxSpeed && gameManager.combo % comboNeeded == 0)
             {
                 moveBackwards.forwardSpeed *= 2;
             }
-            gameManager.AddScore(mult);
+            gameManager.AddScore(goodScore);
             //Debug.Log("Good");
         }
         else
@@ -198,7 +193,6 @@ public class Timing : MonoBehaviour
             // camera shakes intensify
             playerControllerLevel.LoseLife();
             // reset combo and speed
-            gameManager.combo = 0;
         }
     }
     #endregion

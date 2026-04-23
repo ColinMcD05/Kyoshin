@@ -26,11 +26,14 @@ public class GameManager : MonoBehaviour
     [Header("Persistant Objects")]
     static GameManager instance; // instance for persistant objects
     [SerializeField] GameObject[] persistantObjects;
-    public TextMeshProUGUI scoreText, rewindText;
+    public TextMeshProUGUI scoreText, rewindText, comboText, multText;
     public RewindTracker rewindTracker;
     public GameObject dashSlider;
 
     static public string lastScene;
+    int mult;
+    public int maxMult = 10;
+    public int comboNeededMult = 5;
 
     public void Awake()
     {
@@ -56,7 +59,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("LoseScreen");
     }
     public void AddScore(int value){
-        score += value;
+        score += value * mult;
         scoreText.text = "Score: " + score;
         if (score % 100 < (score - value) % 100)
         {
@@ -193,6 +196,8 @@ public class GameManager : MonoBehaviour
             CleanAndDestroy();
             scoreText.enabled = false;
             rewindText.enabled = false;
+            comboText.enabled = false;
+            multText.enabled = false;
             for (int i = 0; i < dashSlider.transform.childCount; i++)
             {
                 dashSlider.transform.GetChild(i).gameObject.SetActive(false);
@@ -202,6 +207,8 @@ public class GameManager : MonoBehaviour
         {
             scoreText.enabled = false;
             rewindText.enabled = false;
+            comboText.enabled = false;
+            multText.enabled = false;
             for (int i = 0; i < dashSlider.transform.childCount; i++)
             {
                 dashSlider.transform.GetChild(i).gameObject.SetActive(false);
@@ -213,11 +220,34 @@ public class GameManager : MonoBehaviour
             scoreText.text = "Score: " + score;
             rewindTracker.ChangeText();
             rewindText.enabled = true;
+            comboText.enabled = true;
+            multText.enabled = true;
+            ClearCombo();
             for (int i = 0; i < dashSlider.transform.childCount; i++)
             {
                 dashSlider.transform.GetChild(i).gameObject.SetActive(true);
             }
         }
+    }
+
+    public void IncreaseCombo()
+    {
+        combo++;
+        mult = mult = combo / comboNeededMult + 1;
+        if (mult > maxMult)
+        {
+            mult = maxMult;
+        }
+        comboText.text = combo + "X";
+        multText.text = "Mult " + mult;
+    }
+
+    public void ClearCombo()
+    {
+        mult = 1;
+        combo = 0;
+        comboText.text = combo + "X";
+        multText.text = "Mult " + mult;
     }
 
     void SceneUnLoaded(Scene scene)
