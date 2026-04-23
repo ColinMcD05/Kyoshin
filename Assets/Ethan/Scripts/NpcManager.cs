@@ -6,20 +6,24 @@ public class NpcManager : MonoBehaviour
     public Transform[] targets; // array of targets for npc to move to
     public Transform[] spawnPoints; // array of spawn points for npc to spawn at
     public int maxNpcs = 10; // max number of npcs to spawn
+    
 
     public Transform currentTarget; // current target for npc to move to
     public int npcCount = 0; // number of npcs spawned
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-        // Spawn max number of NPCs
-        for (int i = 0; i < maxNpcs; i++)
-        {
-            SpawnNpc();
-            npcCount++;
-        }
 
+        SpawnNpcLoop();
+
+    }
+
+    private void Update()
+    {
+        if(npcCount == 0)
+        {
+            SpawnNpcLoop();
+        }
     }
 
     void SpawnNpc()
@@ -59,6 +63,15 @@ public class NpcManager : MonoBehaviour
                 npcMovement.target = chosenTarget; // set npc movement target to chosen target
                 npcMovement.npcManager = this; // set npc movement npc manager to this
             }
+        }
+    }
+    public void SpawnNpcLoop()
+    {
+        // Spawn max number of NPCs
+        for (int i = 0; i < maxNpcs; i++)
+        {
+            SpawnNpc();
+            npcCount++;
         }
     }
 }
