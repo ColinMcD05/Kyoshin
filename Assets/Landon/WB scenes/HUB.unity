@@ -20569,6 +20569,10 @@ PrefabInstance:
       propertyPath: 'persistantObjects.Array.data[2]'
       value: 
       objectReference: {fileID: 66018876}
+    - target: {fileID: 1224426949046964733, guid: d713011faa9f5964d9fc906740cdfa56, type: 3}
+      propertyPath: 'persistantObjects.Array.data[3]'
+      value: 
+      objectReference: {fileID: 66018876}
     - target: {fileID: 3767988387334000793, guid: d713011faa9f5964d9fc906740cdfa56, type: 3}
       propertyPath: audioSource
       value: 

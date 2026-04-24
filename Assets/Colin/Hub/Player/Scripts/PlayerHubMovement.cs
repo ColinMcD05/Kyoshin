@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHubMovement : MonoBehaviour
 {
@@ -9,10 +10,22 @@ public class PlayerHubMovement : MonoBehaviour
     [SerializeField] Transform orientation;
     [SerializeField] Transform playerVisual; // child of this object
 
+    AudioSource music;
+    Songs songs;
+
 
     void Start()
     {
-        
+        music = GameObject.Find("Audio").transform.Find("Music").GetComponent<AudioSource>();
+        songs = GameObject.Find("GameManager").GetComponent<Songs>();
+
+        foreach (Songs.SongData song in songs.songs)
+        {
+            if (song.levelName == SceneManager.GetActiveScene().name)
+            {
+                music.PlayOneShot(song.song);
+            }
+        }
     }
 
 

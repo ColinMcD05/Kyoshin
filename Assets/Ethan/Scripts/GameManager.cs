@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText, rewindText, comboText, multText;
     public RewindTracker rewindTracker;
     public GameObject dashSlider;
+    public RawImage visualizer;
 
     static public string lastScene;
     int mult;
