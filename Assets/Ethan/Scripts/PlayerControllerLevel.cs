@@ -39,6 +39,7 @@ public class PlayerControllerLevel : MonoBehaviour
     #region
     // lose a life function will only be called after player collides with an obstacle x amount of times each collison will cause the camera to shake
     public void LoseLife(){
+        Debug.Log("Active");
         if (timing.songPosition >= 4)
         {
             if (invincible) return;
@@ -54,7 +55,7 @@ public class PlayerControllerLevel : MonoBehaviour
             }
             cineMachineNoise.AmplitudeGain += 1;
             cineMachineNoise.FrequencyGain += 1;
-            Debug.Log("Collided Amount: " + collidedAmout); // Log the collided amount
+            //Debug.Log("Collided Amount: " + collidedAmout); // Log the collided amount
             if (collidedAmout >= maxCollisions)
             { // If the collided amount is greater than or equal to the max collisions
                 //Debug.Log("Lives: " + lives);
@@ -91,9 +92,12 @@ public class PlayerControllerLevel : MonoBehaviour
         { 
             yield return new WaitForSeconds(regenTime);
             collidedAmout--;
-            cineMachineNoise.AmplitudeGain -= 1;
-            cineMachineNoise.FrequencyGain -= 1;
-            Debug.Log("Regained");
+            if (cineMachineNoise.AmplitudeGain > 0)
+            {
+                cineMachineNoise.AmplitudeGain -= 1;
+                cineMachineNoise.FrequencyGain -= 1;
+            }
+            //Debug.Log("Regained");
         }
     }
 

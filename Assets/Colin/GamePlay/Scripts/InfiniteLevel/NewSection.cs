@@ -56,7 +56,7 @@ public class NewSection : MonoBehaviour
                     {
                         hit = 0;
                     }
-                    Debug.Log(timing.songPosition > twoMeasures);
+                    //Debug.Log(timing.songPosition > twoMeasures);
                     if (timing.songPosition > twoMeasures)
                     {
                         spawnObjects.SpawnObject(sectionTransform);
@@ -68,8 +68,8 @@ public class NewSection : MonoBehaviour
                 timing.ChangeSong();
                 spawnObjects.ChangeVariables(timing.currentSong, other.transform.position);
                 twoMeasures = timing.currentSong.bps * 12;
-                Debug.Log(twoMeasures);
-                Debug.Log(timing.songPosition);
+                //Debug.Log(twoMeasures);
+                //Debug.Log(timing.songPosition);
             }
             if (!destroying)
             {

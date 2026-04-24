@@ -52,7 +52,7 @@ public class SpawnObjects : MonoBehaviour
                 if (obstacle != null)
                 {
                     obstacle.transform.parent = newParent;
-                    float obstacleWidth = obstacle.GetComponent<MeshRenderer>().bounds.extents.y;
+                    //float obstacleWidth = obstacle.GetComponent<MeshRenderer>().bounds.extents.y;
                     // nextPosition.z += obstacleWidth;
                     nextPosition.y = 0.5f;
                     nextPosition.x = spawns[randomLane].transform.position.x;

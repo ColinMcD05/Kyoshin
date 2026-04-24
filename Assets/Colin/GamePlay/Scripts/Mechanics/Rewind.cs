@@ -15,7 +15,6 @@ public class Rewind : MonoBehaviour
     [SerializeField] MoveBackwards moveBackwards;
     AudioSource musicPlayer;
     [SerializeField] Timing timing;
-    [SerializeField] TimingUI timingUI;
     [SerializeField] Collider playerCollider;
 
     // Mutable Variables in Inspector
@@ -138,7 +137,6 @@ public class Rewind : MonoBehaviour
         moveBackwards.forwardSpeed *= -1;
         moveBackwards.forwardSpeed = moveBackwards.minSpeed;
         lane.Clear();
-        timingUI.lastBeat = timing.songPositionInBeats;
     }
     #endregion
 

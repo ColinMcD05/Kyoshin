@@ -173,7 +173,6 @@ public class Timing : MonoBehaviour
     public void CheckTime(InputAction.CallbackContext context)
     {
         float positionDecimal = GetDecimal(songPositionInBeats); // Getting decimals of beat position
-        Debug.Log(positionDecimal);
         //Debug.Log(positionDecimal);
         if (positionDecimal <= messUpRange || positionDecimal >= 1 - messUpRange) // checks if action takes place in the mess up range.
         {

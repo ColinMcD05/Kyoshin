@@ -73,7 +73,7 @@ public class TimingUI : MonoBehaviour
             float floorBeat = Mathf.Floor(timing.songPositionInBeats);
             float beat = timing.songPositionInBeats;
             float positionDecimal = beat - floorBeat;
-            if (positionDecimal > checkPeriod && floorBeat > lastBeat)
+            if (positionDecimal > checkPeriod )
             {
                 waitPeriod = currentSong.bps * (1 - positionDecimal);
                 stillImage.color = Color.white;
