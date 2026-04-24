@@ -28,6 +28,10 @@ public class PlayerHubMovement : MonoBehaviour
         }
     }
 
+    void OnDestroy()
+    {
+        music.Stop();
+    }
 
     void Update()
     {
