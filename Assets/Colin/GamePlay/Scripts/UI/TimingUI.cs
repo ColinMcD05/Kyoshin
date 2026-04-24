@@ -78,7 +78,6 @@ public class TimingUI : MonoBehaviour
                 waitPeriod = currentSong.bps * (1 - positionDecimal);
                 stillImage.color = Color.white;
                 yield return new WaitForSeconds(waitPeriod);
-                Debug.Log("Yes");
                 stillImage.sprite = ChangeSprite();
                 stillImage.transform.localScale *= sizeMultiplier;
                 yield return new WaitForSeconds(messUp * timing.currentSong.bps);

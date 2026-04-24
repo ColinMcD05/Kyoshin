@@ -15,7 +15,7 @@ public class LoseScreen : MonoBehaviour
 
     public void Retry()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(lastScene);
     }
 
     public void Quit()

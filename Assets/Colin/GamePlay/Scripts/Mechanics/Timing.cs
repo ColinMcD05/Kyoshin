@@ -227,6 +227,8 @@ public class Timing : MonoBehaviour
         TextMeshProUGUI countDown = timingUI.transform.Find("Countdown").GetComponent<TextMeshProUGUI>();
         yield return new WaitForSeconds(currentSong.bps * 13);
         countDown.enabled = true;
+        float pitch = ((float)currentSong.bpm / 125f) * 2f;
+        countDownSound.pitch = pitch;
         countDownSound.Play();
         countDown.text = "3";
         yield return new WaitForSeconds(currentSong.bps);
