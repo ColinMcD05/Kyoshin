@@ -7933,85 +7933,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3164813810061704556, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3164813810061704556, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4614581518317326760, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
       propertyPath: eventSystem
       value: 
       objectReference: {fileID: 217204015}
-    - target: {fileID: 5287514313449928051, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5287514313449928051, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-      propertyPath: m_Navigation.m_SelectOnUp
-      value: 
-      objectReference: {fileID: 535100704}
-    - target: {fileID: 5287514313449928051, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-      propertyPath: m_Navigation.m_SelectOnDown
-      value: 
-      objectReference: {fileID: 535100705}
-    - target: {fileID: 5287514313449928051, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-      propertyPath: m_Navigation.m_SelectOnRight
-      value: 
-      objectReference: {fileID: 535100705}
-    - target: {fileID: 5358624168218139795, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5358624168218139795, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5358624168218139795, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5512300034498962590, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5512300034498962590, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-      propertyPath: m_Navigation.m_SelectOnUp
-      value: 
-      objectReference: {fileID: 535100705}
-    - target: {fileID: 5512300034498962590, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-      propertyPath: m_Navigation.m_SelectOnDown
-      value: 
-      objectReference: {fileID: 535100707}
-    - target: {fileID: 5512300034498962590, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-      propertyPath: m_Navigation.m_SelectOnRight
-      value: 
-      objectReference: {fileID: 535100705}
-    - target: {fileID: 6966349306516701221, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6966349306516701221, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-      propertyPath: m_Navigation.m_SelectOnUp
-      value: 
-      objectReference: {fileID: 535100707}
-    - target: {fileID: 6966349306516701221, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-      propertyPath: m_Navigation.m_SelectOnDown
-      value: 
-      objectReference: {fileID: 535100706}
-    - target: {fileID: 6966349306516701221, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-      propertyPath: m_Navigation.m_SelectOnRight
-      value: 
-      objectReference: {fileID: 535100705}
     - target: {fileID: 8511903877688896299, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
       propertyPath: m_Name
       value: PauseMenu
       objectReference: {fileID: 0}
     - target: {fileID: 8943642119182764954, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 3
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeMusicVolume
       objectReference: {fileID: 0}
     - target: {fileID: 9004442011163770624, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8063,50 +7995,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8511903877688896299, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
   m_PrefabInstance: {fileID: 535100702}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &535100704 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6966349306516701221, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-  m_PrefabInstance: {fileID: 535100702}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &535100705 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8943642119182764954, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-  m_PrefabInstance: {fileID: 535100702}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
---- !u!114 &535100706 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5287514313449928051, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-  m_PrefabInstance: {fileID: 535100702}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &535100707 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5829247877263551259, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
-  m_PrefabInstance: {fileID: 535100702}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &535904684
 GameObject:
   m_ObjectHideFlags: 0
@@ -11017,7 +10905,7 @@ AudioSource:
   m_GameObject: {fileID: 1027350207}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5291533499962535411, guid: 32f5c99afd17cec4fb215a89044c5078, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1

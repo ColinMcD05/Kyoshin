@@ -23,6 +23,7 @@ public class PauseMenu : MonoBehaviour
     public Button resume;
     PlayerLevelMovement playerMovement;
     GameManager gameManager;
+    [SerializeField] Slider masterVolume, musicVolume;
 
     private void Awake()
     {
@@ -35,9 +36,10 @@ public class PauseMenu : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         while (audioMixer == null)
         {
-            audioMixer.SetFloat("Volume", Mathf.Log10(PlayerPrefs.GetFloat("Volume", 1)) * 20);
             yield return null;
         }
+        audioMixer.SetFloat("MasterVolume", Mathf.Log10(PlayerPrefs.GetFloat("MasterVolume", 1)) * 20);
+        audioMixer.SetFloat("MusicVolume", Mathf.Log10(PlayerPrefs.GetFloat("MusicVolume", 1)) * 20);
     }
 
     private void OnDestroy()
@@ -52,7 +54,7 @@ public class PauseMenu : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().name == "LoseScreen") return;
             if (Time.realtimeSinceStartup - lastToggleTime < toggleCooldown) return;
-            if (Time.timeSinceLevelLoad < 2) return;
+            if (SceneManager.GetActiveScene().name != "HUB" && Time.timeSinceLevelLoad < 2) return;
 
             lastToggleTime = Time.realtimeSinceStartup;
 
@@ -77,7 +79,7 @@ public class PauseMenu : MonoBehaviour
         {
             playerMovement.UnSubscribeActions();
         }
-
+        Debug.Log("Hello");
         Time.timeScale = 0.0001f;
         startPauseTime = (float)AudioSettings.dspTime;
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
@@ -95,6 +97,8 @@ public class PauseMenu : MonoBehaviour
         }
         music.Pause();
         eventSystem.firstSelectedGameObject = resume.gameObject;
+        masterVolume.value = PlayerPrefs.GetFloat("MasterVolume", 1);
+        musicVolume.value = PlayerPrefs.GetFloat("MusicVolume", 1);
     }
 
     public void Resume()
@@ -128,8 +132,15 @@ public class PauseMenu : MonoBehaviour
 
     public void ChangeVolume(float value)
     {
-        audioMixer.SetFloat("Volume", Mathf.Log10(value) * 20);
-        PlayerPrefs.SetFloat("Volume", value);
+        audioMixer.SetFloat("MasterVolume", Mathf.Log10(value) * 20);
+        PlayerPrefs.SetFloat("MasterVolume", value);
+        PlayerPrefs.Save();
+    }
+
+    public void ChangeMusicVolume(float value)
+    {
+        audioMixer.SetFloat("MusicVolume", Mathf.Log10(value) * 20);
+        PlayerPrefs.SetFloat("MusicVolume", value);
         PlayerPrefs.Save();
     }
 

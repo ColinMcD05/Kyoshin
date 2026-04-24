@@ -30,5 +30,5 @@ EditorBuildSettings:
     path: Assets/Colin/Scenes/WinScene.unity
     guid: a32d18c5e1cddaa4a97b82d7518d7ceb
   m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: a1fa9bfeab0d76b4994c5ae431a6888a, type: 3}
   m_UseUCBPForAssetBundles: 0

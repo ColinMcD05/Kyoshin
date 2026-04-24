@@ -4397,6 +4397,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4268208206172521445, guid: d713011faa9f5964d9fc906740cdfa56, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7777911891889704523, guid: d713011faa9f5964d9fc906740cdfa56, type: 3}
       propertyPath: m_Name
       value: GameManager
