@@ -146,7 +146,7 @@ public class PauseMenu : MonoBehaviour
     void GetReferences(Scene scene, LoadSceneMode mode)
     {
         music = GameObject.Find("Audio").transform.Find("Music").GetComponent<AudioSource>();
-        if (scene.name != "Hub")
+        if (scene.name != "HUB")
         {
             timing = GameObject.Find("Player").GetComponent<Timing>(); 
             playerMovement = GameObject.Find("Player").GetComponent<PlayerLevelMovement>();

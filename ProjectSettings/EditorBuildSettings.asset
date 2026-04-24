@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TitleScreen.unity
     guid: 4d59440e2d0ae2443bf8963b088da037
-  - enabled: 0
+  - enabled: 1
     path: Assets/Landon/WB scenes/HUB.unity
     guid: 8bf2079a54613a14c98d6b80db0d3592
   - enabled: 1
@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Landon/WB scenes/Tokyo.unity
     guid: 6bc5ac809aaff7c43a6372d8417e7b97
-  - enabled: 0
+  - enabled: 1
     path: Assets/Colin/Scenes/Infinite.unity
     guid: df24e78b2852b3a4ab530296e3efbb69
   - enabled: 1

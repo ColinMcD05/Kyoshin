@@ -26,10 +26,8 @@ public class DelaMovementHub : MonoBehaviour
         // Need a way to reset the has reached value once the player starts moving again
         if(agent.pathPending == false)
         {
-            Debug.Log("Dela reached Revi");
             agent.isStopped = false;
-            ResetPath();
-            
+            ResetPath();   
         }
 
     }

@@ -22,7 +22,7 @@ public class Timing : MonoBehaviour
     [SerializeField] MoveBackwards moveBackwards;
     [SerializeField] Songs songClass;
     [HideInInspector] public Songs.SongData currentSong;
-    [SerializeField] AudioSource musicPlayer;
+    AudioSource musicPlayer;
     [SerializeField] AudioSource countDownSound;
 
     // IEnumerators
@@ -71,6 +71,7 @@ public class Timing : MonoBehaviour
         rewind = player.GetComponent<Rewind>();
         playerLevelMovement = player.GetComponent<PlayerLevelMovement>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        musicPlayer = GameObject.Find("Audio").transform.Find("Music").GetComponent<AudioSource>();
 
         // Changing current song based on the build index. May change
         foreach (Songs.SongData song in songClass.songs)

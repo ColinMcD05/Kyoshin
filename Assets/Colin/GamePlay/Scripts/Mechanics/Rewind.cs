@@ -13,7 +13,7 @@ public class Rewind : MonoBehaviour
     [SerializeField] Rigidbody playerRigidbody;
     [SerializeField] PlayerLevelMovement playerMovement;
     [SerializeField] MoveBackwards moveBackwards;
-    [SerializeField] AudioSource musicPlayer;
+    AudioSource musicPlayer;
     [SerializeField] Timing timing;
     [SerializeField] TimingUI timingUI;
     [SerializeField] Collider playerCollider;
@@ -34,6 +34,7 @@ public class Rewind : MonoBehaviour
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        musicPlayer = GameObject.Find("Audio").transform.Find("Music").GetComponent<AudioSource>();
     }
 
     // FixedUpdate

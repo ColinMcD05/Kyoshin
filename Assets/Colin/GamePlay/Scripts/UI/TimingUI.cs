@@ -8,6 +8,7 @@ public class TimingUI : MonoBehaviour
     [SerializeField] Timing timing;
     [SerializeField] Image movingImage;
     [SerializeField] Image stillImage;
+    [SerializeField] Image blackImage;
     public Sprite[] sprites;
     public float lastBeat = -1;
 
@@ -22,6 +23,7 @@ public class TimingUI : MonoBehaviour
     {
         messUp = timing.messUpRange;
         currentSong = timing.currentSong;
+        StartCoroutine(FadeIn());
         while (currentSong == null)
         {
             currentSong = timing.currentSong; 
@@ -101,5 +103,20 @@ public class TimingUI : MonoBehaviour
             }
         }
         return null;
+    }
+
+    IEnumerator FadeIn()
+    {
+        float alpha = 1;
+        Color color = blackImage.color;
+        color.a = alpha;
+        blackImage.color = color;
+        while (blackImage.color.a >= 0)
+        {
+            alpha -= Time.deltaTime / 2;
+            color.a = alpha;
+            blackImage.color = color;
+            yield return null;
+        }
     }
 }
