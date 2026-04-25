@@ -260,4 +260,28 @@ public class GameManager : MonoBehaviour
     {
         return lastScene;
     }
+
+    public Levels GetLevel(string name)
+    {
+        foreach (Levels level in levels)
+        {
+            if (name == level.name)
+            {
+                return level;
+            }
+        }
+        return null;
+    }
+
+    public float GetHighScore(string name)
+    {
+        foreach (Levels level in levels)
+        {
+            if (name == level.name)
+            {
+                return level.highScore;
+            }
+        }
+        return 0;
+    }
 }

@@ -3,10 +3,14 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Win : MonoBehaviour
 {
+    // Variables
+    #region
+    // References
     GameManager gameManager;
     [SerializeField] MoveBackwards moveBackwards;
     [SerializeField] Image moveImage;
@@ -22,6 +26,8 @@ public class Win : MonoBehaviour
     GameObject retry;
     AudioSource music;
     public AudioClip win;
+    bool newHighScore;
+    #endregion
 
     void Start()
     {
@@ -48,7 +54,7 @@ public class Win : MonoBehaviour
             // Get current song
             Songs.SongData currentSong = other.GetComponent<Timing>().currentSong;
             // Get current level
-            Levels currentLevel = gameManager.levels[currentSong.level - 1];
+            Levels currentLevel = gameManager.GetLevel(SceneManager.GetActiveScene().name);
 
             // Set current levels progress to completed
             currentLevel.progress = Levels.Progress.completed;
@@ -59,6 +65,7 @@ public class Win : MonoBehaviour
             // If score is higher than level highscore, set highscore to score
             if (gameManager.score > currentLevel.highScore)
             {
+                newHighScore = true;
                 currentLevel.highScore = gameManager.score;
             }
             // If Unlimited mode is lcoked, checked if all three other levels have been completed and unlock it.
@@ -79,11 +86,11 @@ public class Win : MonoBehaviour
             }
             gameManager.transform.Find("Canvas").GetComponent<Canvas>().enabled = false;
             // Start fadeout
-            StartCoroutine(FadeOut());
+            StartCoroutine(FadeOut(currentLevel));
         }
     }
 
-    IEnumerator FadeOut()
+    IEnumerator FadeOut(Levels currentLevel)
     {
         // Variables for the color to change
         float alpha = 0;
@@ -100,8 +107,17 @@ public class Win : MonoBehaviour
         otherChar.GetComponent<FollowScript>().enabled = false;
         winScreen.SetActive(true);
         eventSystem.firstSelectedGameObject = retry;
+
+        // Show score and High Score
         TextMeshProUGUI score = winScreen.transform.Find("Score").GetComponent<TextMeshProUGUI>();
         score.text = "Score: " + gameManager.score;
+        TextMeshProUGUI highScore = winScreen.transform.Find("HighScore").GetComponent<TextMeshProUGUI>();
+        highScore.text = "High Score: " + currentLevel.highScore;
+        // if it is a new high score, create the text of a new highscore
+        if (newHighScore)
+        {
+            // NEW HIGH SCORE
+        }
     }
 
     IEnumerator FadeIn()
