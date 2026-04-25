@@ -3,26 +3,38 @@ using UnityEngine;
 
 public class SpawnObjects : MonoBehaviour
 {
+    // Variables
+    #region
+    // References
     GameObject sectionManager;
-    public GameObject[] spawns;
 
+    // Array holding to position of the three lanes
+    public GameObject[] spawns;
+    // static object holding the last obstacle spawned in
     static GameObject lastObject;
+    // Vectors holding last and next position
     Vector3 lastPosition;
     Vector3 nextPosition;
+    // Holds distance between each obstacle
     float distanceBetween;
+    // Check if song is new
     bool isNewSong;
-    public float buffer = 2;
+    #endregion
 
     void Awake()
     {
         sectionManager = GameObject.Find("SectionManager");
     }
 
+    // SpawnObject
+    #region
+    // Function that spawns in the obstacles
     public void SpawnObject(Transform newParent)
     {
+        // Set the range objects can spawn in
         Vector3 farRange = newParent.position;
         Vector3 closeRange = newParent.position;
-
+        
         farRange.z += 16;
         closeRange.z -= 16;
 
@@ -64,7 +76,10 @@ public class SpawnObjects : MonoBehaviour
             }
         }
     }
+    #endregion
 
+    // ChangeVariables
+    #region
     public void ChangeVariables(Songs.SongData newSong, Vector3 newPosition)
     {
         distanceBetween = 32 * newSong.bps;
@@ -72,4 +87,5 @@ public class SpawnObjects : MonoBehaviour
         isNewSong = true;
         lastObject = null;
     }
+    #endregion
 }
