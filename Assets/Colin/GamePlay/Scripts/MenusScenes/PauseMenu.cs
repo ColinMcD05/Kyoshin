@@ -13,6 +13,7 @@ public class PauseMenu : MonoBehaviour
     // Variables to check how long game has been paused
     private float startPauseTime;
     private float endPauseTime;
+    bool hasStarted;
 
     // Toggle variables to avoid pausing too often in a short time
     private float lastToggleTime;
@@ -112,6 +113,14 @@ public class PauseMenu : MonoBehaviour
         // Unsubscribes actions on player if in a level
         if (timing != null)
         {
+            if(timing.songPositionInBeats > 16)
+            {
+                hasStarted = true;
+            }
+            else
+            {
+                hasStarted = false;
+            }
             timing.UnSubscribeActions();
         }
 
@@ -162,7 +171,15 @@ public class PauseMenu : MonoBehaviour
         // Resubscribes actions and turns timing UI back on
         if (timing != null)
         {
-            timing.SubscribeActions();
+            Debug.Log(hasStarted);
+            if (hasStarted)
+            {
+                timing.SubscribeActions();
+            }
+            else
+            {
+                playerMovement.SubscribeActions();
+            }
         }
         if (timingUI != null)
         {
