@@ -9,7 +9,7 @@ public class PlayerLevelMovement : MonoBehaviour
     // Input Action Variables
     public InputActionReference leftRight;
     public InputActionReference jump;
-    public InputActionReference slide;
+    public InputActionReference slide, trick;
 
     // Jump Variables
     public float jumpForce = 7.0f; // This is the force of the jump
@@ -43,6 +43,9 @@ public class PlayerLevelMovement : MonoBehaviour
     public bool isSliding;
     [Range(0,1)]public float shrinkPercentage;
     CapsuleCollider capsuleCollider;
+
+    // Trick Variables
+    bool tricking = false;
 
     public enum WallType
     {
@@ -181,13 +184,25 @@ public class PlayerLevelMovement : MonoBehaviour
     public void Slide(InputAction.CallbackContext value)
     {
         // If already sliding return
-        if (isSliding)
+        if (isSliding || tricking)
         {
             return;
         }
         isSliding = true; // Set sliding equal to true
         gameObject.transform.localScale *= shrinkPercentage;
         Invoke("StopSliding", slidingLength); // Invoke StopSliding after the slidingLength
+    }
+
+    // Trick action
+    public void Trick(InputAction.CallbackContext value)
+    {
+        if (tricking)
+        {
+            return;
+        }
+        tricking = true;
+        // Play animation
+        Invoke("StopTricking", 0.5f);
     }
     #endregion
 
@@ -412,6 +427,14 @@ public class PlayerLevelMovement : MonoBehaviour
         //capsuleCollider.height /= shrinkPercentage;
         //capsuleCollider.center += Vector3.up * (1 - shrinkPercentage);
     }
+
+    void StopTricking()
+    {
+        if (tricking)
+        {
+            tricking = false;
+        }
+    }
     #endregion
 
     public void SubscribeActions()
@@ -419,6 +442,7 @@ public class PlayerLevelMovement : MonoBehaviour
         leftRight.action.performed += LeftRight;
         jump.action.performed += Jump;
         slide.action.performed += Slide;
+        trick.action.performed += Trick;
     }
 
     public void UnSubscribeActions()
@@ -426,5 +450,6 @@ public class PlayerLevelMovement : MonoBehaviour
         leftRight.action.performed -= LeftRight;
         jump.action.performed -= Jump;
         slide.action.performed -= Slide;
+        trick.action.performed -= Trick;
     }
 }

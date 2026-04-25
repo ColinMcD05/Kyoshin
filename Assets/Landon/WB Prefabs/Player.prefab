@@ -454,7 +454,6 @@ MonoBehaviour:
   playerMovement: {fileID: 8146030246671798739}
   moveBackwards: {fileID: 0}
   timing: {fileID: 1567925838254450578}
-  timingUI: {fileID: 0}
   playerCollider: {fileID: 449509456027308778}
   rewindTime: 3
   invincibility: 3
@@ -477,6 +476,7 @@ MonoBehaviour:
   move: {fileID: 2440090981901601583, guid: a1fa9bfeab0d76b4994c5ae431a6888a, type: 3}
   jump: {fileID: 6851118241580235466, guid: a1fa9bfeab0d76b4994c5ae431a6888a, type: 3}
   slide: {fileID: -1996505084464716345, guid: a1fa9bfeab0d76b4994c5ae431a6888a, type: 3}
+  trick: {fileID: -2732259556841915985, guid: a1fa9bfeab0d76b4994c5ae431a6888a, type: 3}
   player: {fileID: 2902578447622799134}
   timingUI: {fileID: 0}
   moveBackwards: {fileID: 0}
