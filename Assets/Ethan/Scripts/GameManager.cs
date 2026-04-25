@@ -314,8 +314,8 @@ public class GameManager : MonoBehaviour
         combo = 0;
         comboText.text = combo + "X";
         multText.text = "Mult " + mult;
-        //comboText.color = colors[0];
-       // multText.color = colors[0];
+        comboText.color = colors[0];
+        multText.color = colors[0];
     }
     #endregion
 

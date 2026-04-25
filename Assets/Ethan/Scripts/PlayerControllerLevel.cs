@@ -67,7 +67,15 @@ public class PlayerControllerLevel : MonoBehaviour
             }
             if (gameManager.lives <= 0)
             {
-                gameManager.GameOver();
+                if (SceneManager.GetActiveScene().name != "Infinite")
+                {
+                    gameManager.GameOver();
+                }
+                else
+                {
+                    Win win = GameObject.Find("SectionManager").GetComponent<Win>();
+                    win.Winning();
+                }
             }
         }
     }
