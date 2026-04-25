@@ -38,14 +38,17 @@ public class SpawnObjects : MonoBehaviour
         farRange.z += 16;
         closeRange.z -= 16;
 
+        // Spawns a max of four obstacles
         for (int i = 0; i < 4; i++) 
         { 
+            // Set last positiion if last position is not null
             if (lastObject != null)
             {
                 lastPosition = lastObject.transform.position;
             }
             if (isNewSong)
             {
+                // If song is new, increase next position until it is between far and close range
                 nextPosition.z = lastPosition.z + distanceBetween;
                 while (nextPosition.z < closeRange.z)
                 {
@@ -55,8 +58,10 @@ public class SpawnObjects : MonoBehaviour
             }
             else
             {
+                // Set next position based on last object position
                 nextPosition.z = lastPosition.z + distanceBetween;
             }
+            // if next position is between close and far range, spawn in new obstacle
             if (nextPosition.z > closeRange.z && nextPosition.z < farRange.z)
             {
                 int randomLane = Random.Range(0, spawns.Length);
@@ -80,10 +85,14 @@ public class SpawnObjects : MonoBehaviour
 
     // ChangeVariables
     #region
+    // Function that changes variables
     public void ChangeVariables(Songs.SongData newSong, Vector3 newPosition)
     {
+        // Sets the distance between each obstacle
         distanceBetween = 32 * newSong.bps;
+        // last position is equal to player posittion at the start of song
         lastPosition = newPosition;
+        // Set variables for spawning logic to start correctly
         isNewSong = true;
         lastObject = null;
     }

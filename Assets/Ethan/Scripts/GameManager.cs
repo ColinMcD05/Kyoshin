@@ -10,6 +10,9 @@ using UnityEngine.UI;
 using Unity.VisualScripting;
 public class GameManager : MonoBehaviour
 {
+    // Variables
+    #region
+    // Important player variables
     public int score = 0;
     public int combo = 0;
     public int lives = 3;
@@ -26,41 +29,66 @@ public class GameManager : MonoBehaviour
     [Header("Persistant Objects")]
     static GameManager instance; // instance for persistant objects
     [SerializeField] GameObject[] persistantObjects;
+
+    // Canvas objects
     public TextMeshProUGUI scoreText, rewindText, comboText, multText;
     public RewindTracker rewindTracker;
     public GameObject dashSlider;
     public RawImage visualizer;
+    [SerializeField] Color[] colors;
 
+    // Variable holding last scene
     static public string lastScene;
+
+    // Multiplier variables
     int mult;
     public int maxMult = 10;
     public int comboNeededMult = 5;
+    #endregion
 
+    // Awake
+    #region
     public void Awake()
     {
+        // If instance is not null destroy any duplicates
         if (instance != null)
         {
             CleanAndDestroy();
             return;
         }
+        // Set game objects to not destroy on load
         else
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
             MarkObjects();
+            // Subscribes actions
             SceneManager.sceneLoaded += SceneLoaded;
             SceneManager.sceneUnloaded += SceneUnLoaded;
         }
+        // Sets file path for saving and loading
         filePath = Application.persistentDataPath + "/Player_Data/";
+        // Load level data
         Load();
     }
+    #endregion
 
+    // GameOver
+    #region
+    // When lost all lives, lood the losing screen
     public void GameOver()
     {
         SceneManager.LoadScene("LoseScreen");
     }
+    #endregion
+
+    // AddScore
+    #region
+    // Adds score to game manager
     public void AddScore(int value){
+        // multipliers score by multiplier
         score += value * mult;
+        // Change text
         scoreText.text = "Score: " + score;
         if (score % 100 < (score - value) % 100)
         {
@@ -69,6 +97,7 @@ public class GameManager : MonoBehaviour
         }
         //Debug.Log("Score: " + score);
     }
+    #endregion
 
     // Load
     #region
@@ -157,6 +186,9 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    // Creating persistant object
+    #region
+    // Mark objects to not destroy on load
     private void MarkObjects()
     {
         foreach (GameObject obj in persistantObjects)
@@ -168,6 +200,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Destroy persistent objects or duplicate objects
     private void CleanAndDestroy()
     {
         foreach (GameObject obj in persistantObjects)
@@ -176,19 +209,32 @@ public class GameManager : MonoBehaviour
         }
         Destroy(gameObject);
     }
+    #endregion
 
+    // ApplicationQuit
+    #region
+    // save game and unsubscribe actions when application quits
     private void OnApplicationQuit()
     {
         // Save game once application ends
         Save();
         SceneManager.sceneLoaded -= SceneLoaded;
     }
+    #endregion
 
+    // Scene loaded scripts
+    #region
+    // Script that runs when scene loads
     void SceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // Saves the game to ensure no data loss
         Save();
+
+        // set score and lives back to normal
         score = 0;
         lives = 3;
+
+        // if title screen, get rid of game manager and all other persistent objects
         if (scene.name == "TitleScreen")
         {
             instance = null;
@@ -204,6 +250,7 @@ public class GameManager : MonoBehaviour
                 dashSlider.transform.GetChild(i).gameObject.SetActive(false);
             }
         }
+        // if on lose screen or hub, set UI to disabled
         else if (scene.name == "LoseScreen" || scene.name == "HUB")
         {
             scoreText.enabled = false;
@@ -215,6 +262,7 @@ public class GameManager : MonoBehaviour
                 dashSlider.transform.GetChild(i).gameObject.SetActive(false);
             }
         }
+        // set UI to active in levels
         else
         {
             scoreText.enabled = true;
@@ -231,36 +279,55 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void SceneUnLoaded(Scene scene)
+    {
+        // Set last scene variables
+        lastScene = scene.name;
+    }
+    #endregion
+
+    // Combo scripts
+    #region
+    // Increases combo
     public void IncreaseCombo()
     {
+        // adds combo
         combo++;
+        //changes mult based on combo
         mult = mult = combo / comboNeededMult + 1;
+        // Ensures mult is not higher than maxMult
         if (mult > maxMult)
         {
             mult = maxMult;
         }
+        // Change combo and mult text and color
         comboText.text = combo + "X";
+        comboText.color = colors[mult - 1];
         multText.text = "Mult " + mult;
+        multText.color = colors[mult - 1];
     }
 
     public void ClearCombo()
     {
+        // Reset mult and combo
         mult = 1;
         combo = 0;
         comboText.text = combo + "X";
         multText.text = "Mult " + mult;
+        //comboText.color = colors[0];
+       // multText.color = colors[0];
     }
+    #endregion
 
-    void SceneUnLoaded(Scene scene)
-    {
-        lastScene = scene.name;
-    }
-
+    // Get data
+    #region
+    // Sends out the last scene variable
     public string GetLastScene()
     {
         return lastScene;
     }
 
+    // Returns level based on scene name
     public Levels GetLevel(string name)
     {
         foreach (Levels level in levels)
@@ -273,6 +340,7 @@ public class GameManager : MonoBehaviour
         return null;
     }
 
+    // returns highscore of level based on scene name
     public float GetHighScore(string name)
     {
         foreach (Levels level in levels)
@@ -284,4 +352,5 @@ public class GameManager : MonoBehaviour
         }
         return 0;
     }
+    #endregion
 }

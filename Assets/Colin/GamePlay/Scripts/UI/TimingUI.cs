@@ -10,7 +10,7 @@ public class TimingUI : MonoBehaviour
     [SerializeField] Image stillImage;
     [SerializeField] Image blackImage;
     public Sprite[] sprites;
-    public float lastBeat = -1;
+    [HideInInspector] public float lastBeat = -1;
 
     // Variables needed
     Songs.SongData currentSong;
