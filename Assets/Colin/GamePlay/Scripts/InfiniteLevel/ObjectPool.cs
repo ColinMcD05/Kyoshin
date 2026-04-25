@@ -4,6 +4,8 @@ using UnityEngine.Pool;
 
 public class ObjectPool : MonoBehaviour
 {
+    // Variables
+    #region
     public static ObjectPool sharedInstance;
     [Header("Pooled Objects")]
     public List<GameObject> pooledSections, pooledObstacles;
@@ -15,11 +17,16 @@ public class ObjectPool : MonoBehaviour
     [Header("Obstacles Info")]
     public GameObject[] obstaclesToPool;
     public int[] amountObstaclesToPool;
+    #endregion
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Awake
+    #region
     void Awake()
     {
+        // Sets shared instance to this instance of game object
         sharedInstance = this;
+
+        // Creating an object pool for all the sections
         pooledSections = new List<GameObject>();
         GameObject tmp;
         for (int i = 0; i < amountSectionsToPool; i++)
@@ -29,6 +36,7 @@ public class ObjectPool : MonoBehaviour
             pooledSections.Add(tmp);
         }
 
+        // Creating an object pool for all obstacles
         pooledObstacles = new List<GameObject>();
         for (int i = 0; i < amountObstaclesToPool.Length; i++)
         {
@@ -40,8 +48,14 @@ public class ObjectPool : MonoBehaviour
             }
         }
     }
+    #endregion
+
+    // Get Pooled Objects
+    #region
+    // Get a section from the object pool
     public GameObject GetPooledSections()
     {
+        // Check for the first section that is not active in the hierarchy and return it
         for (int i = 0; i < amountSectionsToPool; i++)
         {
             if (!pooledSections[i].activeInHierarchy)
@@ -52,8 +66,10 @@ public class ObjectPool : MonoBehaviour
         return null;
     }
 
+    // Get Obstacle from the object pool
     public GameObject GetPooledObstacles()
     {
+        // Check for the first obstacle that is not active in the hierarchy and return it
         for (int i = 0; i < amountObstaclesToPool[0]; i++)
         {
             if (!pooledObstacles[i].activeInHierarchy)
@@ -63,4 +79,5 @@ public class ObjectPool : MonoBehaviour
         }
         return null;
     }
+    #endregion
 }

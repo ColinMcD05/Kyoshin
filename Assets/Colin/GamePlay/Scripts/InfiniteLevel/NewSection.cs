@@ -106,6 +106,7 @@ public class NewSection : MonoBehaviour
 
     // SpawnNewSection
     #region
+    // Function that spawns a new section and returns it's transform for later use
     Transform SpawnNewSection(Collider other)
     {
         // Get the current song
@@ -116,32 +117,44 @@ public class NewSection : MonoBehaviour
             int childNeeded = parent.transform.childCount - 1;
             lastSection = parent.transform.GetChild(childNeeded).gameObject;
         }
-        // Set spawn position based on lastSection current position
+        // Create spawn position based on lastSection current position
         Vector3 spawnPosition = lastSection.transform.position + new Vector3(0, 0, 32);
         // Get a new section from the object pool
         GameObject section = ObjectPool.sharedInstance.GetPooledSections();
+        // Make sure section is not null
         if (section != null)
         {
+            // Set sections parent, position, rotation, and ensure it is set to active
             section.transform.parent = parent.transform;
             section.transform.position = spawnPosition;
             section.transform.rotation = parent.transform.rotation;
             section.SetActive(true);
+            // Set last section to the section just created
             lastSection = section;
         }
+        // Set alreadySpawned to true to avoid two sections from spawning in one area.
         alreadySpawned = true;
 
         return section.transform;
     }
     #endregion
 
+    // SelfDestroy
+    #region
+    // Function that puts the section back into the object pool
     IEnumerator SelfDestroy()
     {
+        // Sets destroy to true
         destroying = true;
+        // Hold for the wait period
         yield return new WaitForSeconds(waitPeriod);
+        // Check if destroying as destroying can be set back to false
         if (destroying)
         {
+            // Once destroyed set vairables to false
             alreadySpawned = false;
             destroying = false;
+            // Deactivate all children of object to send them back to object pool
             for (int i = 1; i < transform.parent.childCount; i++)
             {
                 Transform child = transform.parent.transform.GetChild(i);
@@ -150,14 +163,20 @@ public class NewSection : MonoBehaviour
                     child.gameObject.SetActive(false);
                 }
             }
+            // Send object back to object pool
             transform.parent.gameObject.SetActive(false);
         }
     }
+    #endregion
 
+    // OnDisable
+    #region
+    // Saftey incase something failed in prvious code
     private void OnDisable()
     {
         StopAllCoroutines();
         destroying = false;
         alreadySpawned = false;
     }
+    #endregion
 }
