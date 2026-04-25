@@ -30,7 +30,7 @@ public class PlayerHubMovement : MonoBehaviour
 
     void OnDestroy()
     {
-        music.Stop();
+        if (music != null) music.Stop();
     }
 
     void Update()

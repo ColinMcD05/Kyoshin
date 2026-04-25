@@ -8551,7 +8551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3826dfac84630744b9982b9c20aa6fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  nextLevel: Kyoto
+  nextLevel: Tokyo
 --- !u!65 &575073073
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10520,7 +10520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3826dfac84630744b9982b9c20aa6fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  nextLevel: Tokyo
+  nextLevel: Kyoto
 --- !u!65 &922442109
 BoxCollider:
   m_ObjectHideFlags: 0

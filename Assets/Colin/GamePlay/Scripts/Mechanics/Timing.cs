@@ -192,7 +192,6 @@ public class Timing : MonoBehaviour
             // Else bad move
             // camera shakes intensify
             playerControllerLevel.LoseLife();
-            // reset combo and speed
         }
     }
     #endregion
@@ -205,31 +204,50 @@ public class Timing : MonoBehaviour
     }
     #endregion
 
+    // Subscribe and Unsubscribe actions
+    #region
+    // Subscribes actions for both timing and player movement, ensureing CheckTime is infront
     public void SubscribeActions()
     {
         move.action.performed += CheckTime;
         jump.action.performed += CheckTime;
         slide.action.performed += CheckTime;
+        // Unsubscribes player movement actions and subscribes them ensuring CheckTime happens first
         playerLevelMovement.UnSubscribeActions();
         playerLevelMovement.SubscribeActions();
     }
 
+    // Unsubcribes timing actions only
     public void UnSubscribeActions()
     {
         move.action.performed -= CheckTime;
         jump.action.performed -= CheckTime;
         slide.action.performed -= CheckTime;
     }
+    #endregion
 
+    // CountDown
+    #region
+    // Function that handles that count down UI
     IEnumerator CountDown()
     {
+        // Gets the countDown text component
         TextMeshProUGUI countDown = timingUI.transform.Find("Countdown").GetComponent<TextMeshProUGUI>();
+        // Waits 3 measures
         yield return new WaitForSeconds(currentSong.bps * 13);
+
+        // enabled countdown text
         countDown.enabled = true;
+
+        // Changes countdown pitch based on bpm of the song
         float pitch = ((float)currentSong.bpm / 125f) * 2f;
         countDownSound.pitch = pitch;
+
+        // Play count down sound and displays #
         countDownSound.Play();
         countDown.text = "3";
+
+        // Waits one beat then changes text until it shows GO
         yield return new WaitForSeconds(currentSong.bps);
         countDown.text = "2";
         yield return new WaitForSeconds(currentSong.bps);
@@ -237,6 +255,8 @@ public class Timing : MonoBehaviour
         yield return new WaitForSeconds(currentSong.bps);
         countDown.text = "GO!";
         yield return new WaitForSeconds(currentSong.bps);
+        // Disables countdown
         countDown.enabled = false;
     }
+    #endregion
 }

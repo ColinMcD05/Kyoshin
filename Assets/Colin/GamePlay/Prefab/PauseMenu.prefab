@@ -2093,10 +2093,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
   pause: {fileID: -80611357765666335, guid: a1fa9bfeab0d76b4994c5ae431a6888a, type: 3}
+  pauseHub: {fileID: 0}
   audioMixer: {fileID: 24100000, guid: 32f5c99afd17cec4fb215a89044c5078, type: 2}
   eventSystem: {fileID: 0}
   resume: {fileID: 6966349306516701221}
-  masterVolume: {fileID: 0}
+  masterVolume: {fileID: 3424967377042933509}
   musicVolume: {fileID: 8943642119182764954}
 --- !u!1 &8552709039122629678
 GameObject:
