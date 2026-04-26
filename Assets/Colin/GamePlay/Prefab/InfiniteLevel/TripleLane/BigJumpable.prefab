@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 661124621974209202}
   - component: {fileID: 1914701276613714816}
-  - component: {fileID: 7895854678355030603}
+  - component: {fileID: 4225424394795353221}
   m_Layer: 0
   m_Name: BigJumpable
   m_TagString: Untagged
@@ -55,7 +55,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 18.189732, y: 0.9999999, z: 0.9999999}
   m_Center: {x: 1.3007324, y: 0, z: 0}
---- !u!114 &7895854678355030603
+--- !u!114 &4225424394795353221
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,9 +67,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  type: 1
+  type: 0
   obstacleLaneType: 4
-  areaType: 1
+  whichLevel: 0
+  areaType: 0
 --- !u!1001 &4700258007787940291
 PrefabInstance:
   m_ObjectHideFlags: 0

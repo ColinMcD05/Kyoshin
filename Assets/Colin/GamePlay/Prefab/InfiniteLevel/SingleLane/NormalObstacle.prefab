@@ -99,7 +99,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6221259002462749194}
   - component: {fileID: 5182539001753924851}
-  - component: {fileID: 1457928515142349198}
+  - component: {fileID: 6515273669546793169}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -143,7 +143,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1457928515142349198
+--- !u!114 &6515273669546793169
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -318,7 +318,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
   type: 0
   obstacleLaneType: 0
-  areaType: 1
+  whichLevel: 0
+  areaType: 0
 --- !u!1 &7321203004578786208
 GameObject:
   m_ObjectHideFlags: 0

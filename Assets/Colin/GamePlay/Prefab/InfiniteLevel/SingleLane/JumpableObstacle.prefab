@@ -67,8 +67,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  type: 0
+  type: 1
   obstacleLaneType: 0
+  whichLevel: 0
   areaType: 1
 --- !u!1001 &6396643117389978000
 PrefabInstance:

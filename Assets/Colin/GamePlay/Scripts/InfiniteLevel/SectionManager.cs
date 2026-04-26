@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class SectionManager : MonoBehaviour
 {
+    public AreaType currentArea;
     public enum AreaType
     {
         AllOpen,

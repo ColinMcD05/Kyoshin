@@ -18,7 +18,7 @@ public class Obstacle : MonoBehaviour
     public SpawnObjects.Level whichLevel;
     public SectionManager.AreaType areaType;
 
-    void OnTriggerEnter(Collider other){
+    /*void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("Player") && !other.GetComponent<Dash>().dashing)
         {
             if (!other.GetComponent<Dash>().dashing)
@@ -55,5 +55,5 @@ public class Obstacle : MonoBehaviour
                 }
             }
         }
-    } // end of OnTriggerEnter function
+    } // end of OnTriggerEnter function*/
 }
