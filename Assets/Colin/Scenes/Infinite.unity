@@ -1014,13 +1014,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
   pooledSections: []
-  pooledObstacles: []
+  pooledKyotoObstacles: []
+  pooledTokyoObstacles: []
+  pooledHakoneObstacles: []
   sectionToPool: {fileID: 5010261799482120410, guid: 2ff0fd1613d453d4eacf5959211efe3d, type: 3}
   amountSectionsToPool: 15
-  obstaclesToPool:
-  - {fileID: 4769365822002906001, guid: b06c54d409caaea4a9b5a39311e8e0ad, type: 3}
+  KyotoToPool:
   - {fileID: 2394988146648867748, guid: 62449037c23ab594892723ddd711de8e, type: 3}
-  amountObstaclesToPool: 3200000032000000
+  - {fileID: 4769365822002906001, guid: b06c54d409caaea4a9b5a39311e8e0ad, type: 3}
+  - {fileID: 3318075963410257482, guid: 1183cf3b58b5834468ab6757e095eea8, type: 3}
+  amountKyotoToPool: 190000001900000005000000
+  TokyoToPool: []
+  amountTokyoToPool: 
+  HakoneToPool: []
+  amountHakoneToPool: 
+  currentLevel: 0
 --- !u!114 &1547309013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1319,10 +1327,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NormalObstacle
       objectReference: {fileID: 0}
-    - target: {fileID: 4769365822002906001, guid: b06c54d409caaea4a9b5a39311e8e0ad, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1617,10 +1621,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: JumpableObstacle
       objectReference: {fileID: 0}
-    - target: {fileID: 2394988146648867748, guid: 62449037c23ab594892723ddd711de8e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4455972792500024637, guid: 62449037c23ab594892723ddd711de8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1816,7 +1816,7 @@ SceneRoots:
   - {fileID: 1547309008}
   - {fileID: 5972953409853378556}
   - {fileID: 2063176701}
-  - {fileID: 1888586178}
   - {fileID: 1809079354}
+  - {fileID: 1888586178}
   - {fileID: 184824474471813061}
   - {fileID: 6503882176339258227}
