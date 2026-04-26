@@ -191,6 +191,7 @@ public class Timing : MonoBehaviour
         {
             // Else bad move
             // camera shakes intensify
+            // Put sound effect here
             playerControllerLevel.LoseLife();
         }
     }

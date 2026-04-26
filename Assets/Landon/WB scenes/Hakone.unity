@@ -1696,9 +1696,17 @@ PrefabInstance:
       value: -130.4
       objectReference: {fileID: 0}
     - target: {fileID: 4614581518317326760, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
+      propertyPath: buttonSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 336da40ae5c957b40a38e8c2de3d4f69, type: 3}
+    - target: {fileID: 4614581518317326760, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
       propertyPath: eventSystem
       value: 
       objectReference: {fileID: 1399402704}
+    - target: {fileID: 4614581518317326760, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
+      propertyPath: buttonSource
+      value: 
+      objectReference: {fileID: 1108785620}
     - target: {fileID: 5358624168218139795, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1710,6 +1718,10 @@ PrefabInstance:
     - target: {fileID: 5358624168218139795, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5512300034498962590, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6094280645256420563, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
       propertyPath: m_fontAsset
@@ -1746,6 +1758,10 @@ PrefabInstance:
     - target: {fileID: 6858889590146863266, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -44.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6966349306516701221, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7407356984804516374, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
       propertyPath: m_fontAsset
@@ -2319,6 +2335,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
   type: 0
+  obstacleLaneType: 0
+  whichLevel: 0
+  areaType: 0
+  obstacleSource: {fileID: 0}
+  obstacleSound: {fileID: 0}
 --- !u!65 &58569296
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15843,6 +15864,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
   type: 1
+  obstacleLaneType: 0
+  whichLevel: 0
+  areaType: 0
+  obstacleSource: {fileID: 0}
+  obstacleSound: {fileID: 0}
 --- !u!65 &505409431
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21044,6 +21070,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
   type: 0
+  obstacleLaneType: 0
+  whichLevel: 0
+  areaType: 0
+  obstacleSource: {fileID: 0}
+  obstacleSound: {fileID: 0}
 --- !u!65 &593212913
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -63274,6 +63305,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
   type: 0
+  obstacleLaneType: 0
+  whichLevel: 0
+  areaType: 0
+  obstacleSource: {fileID: 0}
+  obstacleSound: {fileID: 0}
 --- !u!65 &1916132241
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -71114,6 +71150,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 40669738938003321, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
+      propertyPath: dashSound
+      value: 
+      objectReference: {fileID: 8300000, guid: f58e734f8889bf847811e9f8a8d5dc50, type: 3}
+    - target: {fileID: 40669738938003321, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
+      propertyPath: dashSource
+      value: 
+      objectReference: {fileID: 1108785620}
+    - target: {fileID: 40669738938003321, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
       propertyPath: moveBackwards
       value: 
       objectReference: {fileID: 129578519}
@@ -71183,6 +71227,14 @@ PrefabInstance:
       objectReference: {fileID: 1292056808}
     - target: {fileID: 3233316654364501501, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
       propertyPath: musicPlayer
+      value: 
+      objectReference: {fileID: 1108785620}
+    - target: {fileID: 3233316654364501501, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
+      propertyPath: rewindSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d93119819ca1eac4bb174ff715d3bc5a, type: 3}
+    - target: {fileID: 3233316654364501501, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
+      propertyPath: rewindSource
       value: 
       objectReference: {fileID: 1108785620}
     - target: {fileID: 3233316654364501501, guid: 4caea927916c8c3408ead49dc2586298, type: 3}

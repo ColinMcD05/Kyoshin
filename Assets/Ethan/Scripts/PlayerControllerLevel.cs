@@ -101,6 +101,7 @@ public class PlayerControllerLevel : MonoBehaviour
         { 
             yield return new WaitForSeconds(regenTime);
             collidedAmout--;
+            // Put sound effect here
             if (cineMachineNoise.AmplitudeGain > 0)
             {
                 cineMachineNoise.AmplitudeGain -= 1;

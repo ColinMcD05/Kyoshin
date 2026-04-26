@@ -38,6 +38,9 @@ public class PauseMenu : MonoBehaviour
     GameObject winScreen;
     PlayerLevelMovement playerMovement;
     GameManager gameManager;
+
+    public AudioSource buttonSource;
+    public AudioClip buttonSound;
     #endregion
 
     // Awake
@@ -96,10 +99,14 @@ public class PauseMenu : MonoBehaviour
         // Pause and unpause based on timeScale
         if (Time.timeScale != 0.0001f)
         {
+            // Play sound effect
+            buttonSource.PlayOneShot(buttonSound);
             Pause();
         }
         else
         {
+            // Play sound effect
+            buttonSource.PlayOneShot(buttonSound);
             Resume();
         }
     }
@@ -214,6 +221,8 @@ public class PauseMenu : MonoBehaviour
         // Enusres that game UI is active on screen
         gameManager.transform.Find("Canvas").GetComponent<Canvas>().enabled = true;
         // Reloads the game
+        // Play sound effect
+        buttonSource.PlayOneShot(buttonSound);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -240,12 +249,16 @@ public class PauseMenu : MonoBehaviour
     // Quits game
     public void Quit()
     {
+        // Play sound effect
+        buttonSource.PlayOneShot(buttonSound);
         Application.Quit();
     }
 
     // Loads the HUB scene
     public void GoToHub()
     {
+        // Play sound effect
+        buttonSource.PlayOneShot(buttonSound);
         SceneManager.LoadScene("HUB");
     }
     #endregion

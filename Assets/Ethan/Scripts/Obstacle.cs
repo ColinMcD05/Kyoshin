@@ -18,6 +18,9 @@ public class Obstacle : MonoBehaviour
     public SpawnObjects.Level whichLevel;
     public SectionManager.AreaType areaType;
 
+    public AudioSource obstacleSource;
+    public AudioClip obstacleSound;
+
     /*void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("Player") && !other.GetComponent<Dash>().dashing)
         {

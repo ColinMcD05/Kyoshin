@@ -27,6 +27,8 @@ public class Rewind : MonoBehaviour
     [HideInInspector] public List<int> laneSpeed;
     float startRewindTime;
     float totalRewindTime;
+    public AudioSource rewindSource;
+    public AudioClip rewindSound;
 
     // Mutable Variables in other scripts
     public bool rewinding = false;
@@ -124,6 +126,8 @@ public class Rewind : MonoBehaviour
         playerMovement.UnSubscribeActions();
         timing.UnSubscribeActions();
         Time.timeScale = 2;
+        // Play rewind sound
+        rewindSource.PlayOneShot(rewindSound);
     }
 
     // Lets other scripts more easily stop rewind mechanic
@@ -144,6 +148,8 @@ public class Rewind : MonoBehaviour
         moveBackwards.forwardSpeed = moveBackwards.minSpeed;
         lane.Clear();
         Time.timeScale = 1;
+        // Stop rewind sound
+        rewindSource.Stop();
     }
     #endregion
 

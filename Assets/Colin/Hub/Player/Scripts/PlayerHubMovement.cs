@@ -9,7 +9,8 @@ public class PlayerHubMovement : MonoBehaviour
     public Vector3 direction;
     [SerializeField] Transform orientation;
     [SerializeField] Transform playerVisual; // child of this object
-
+    public AudioSource moveSource;
+    public AudioClip movementSound;
     AudioSource music;
     Songs songs;
 
@@ -41,9 +42,12 @@ public class PlayerHubMovement : MonoBehaviour
     public void Movement()
     {
         transform.Translate(direction * moveSpeed * Time.deltaTime, Space.Self);
+        
         // rotate only visual, not root
         if (direction.sqrMagnitude > 0.001f) // if the direction is not 0, then rotate the visual
-        {        
+        {
+            // Play movement sound      
+            PlayMovementSound();
         // get the facing directio
         Quaternion moveFacing = Quaternion.LookRotation(direction, Vector3.up); // using Quaternion.LookRotation to get the facing direction
         // compensate model/prefab forward mismatch
@@ -53,6 +57,10 @@ public class PlayerHubMovement : MonoBehaviour
         // // rotate the child to the target rotation
         // playerVisual is the child of the parent, Quaternion.RotateTowards is used to rotate the child to the target rotationm, playerVisual.rotation is the current rotation of the child, target is the target rotation, rotationSpeed is the speed of the rotation
         playerVisual.rotation = Quaternion.RotateTowards(playerVisual.rotation,target, rotationSpeed * Time.deltaTime );
+        }
+        // stop movement sound
+        else{
+            moveSource.Stop();
         }
         
     }
@@ -64,5 +72,13 @@ public class PlayerHubMovement : MonoBehaviour
         direction = xInput + yInput;
 
       
-}
+    }
+
+    void PlayMovementSound()
+    {
+        if(!moveSource.isPlaying){
+        moveSource.clip = movementSound;
+        moveSource.Play();
+        }
+    }
 }

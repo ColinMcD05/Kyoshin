@@ -16,6 +16,9 @@ public class Dash : MonoBehaviour
     [SerializeField] Rewind rewind;
     Slider dashSlider;
 
+    public AudioSource dashSource;
+    public AudioClip dashSound;
+
     void Start()
     {
         dashSlider = GameObject.Find("GameManager").transform.Find("Canvas").transform.Find("Dash").GetComponent<Slider>();
@@ -48,6 +51,8 @@ public class Dash : MonoBehaviour
             //playerControllerLevel.enabled = !playerControllerLevel.enabled;
             if (dashing)
             {
+                // Play dash sound
+                dashSource.PlayOneShot(dashSound);
                 moveBackwards.forwardSpeed *= dashMult;
                 playerMovement.currentLane = 1;
                 playerController.enabled = false;
@@ -57,6 +62,8 @@ public class Dash : MonoBehaviour
             }
             else
             {
+                // Stop dash sound
+                dashSource.Stop();
                 moveBackwards.forwardSpeed /= dashMult;
                 rewind.Invoke("BecomeVulnerable", rewind.invincibility);
                 timing.SubscribeActions();

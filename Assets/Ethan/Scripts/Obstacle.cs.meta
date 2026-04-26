@@ -1,2 +1,13 @@
 fileFormatVersion: 2
 guid: e2b6a14e97f4c634b9fed5d312944df8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - obstacleSource: {instanceID: 0}
+  - obstacleSound: {fileID: 8300000, guid: 8a3b04111f5a7de4a9eeb0dfd7bc8cdf, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
