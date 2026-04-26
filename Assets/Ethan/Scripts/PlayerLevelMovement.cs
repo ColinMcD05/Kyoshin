@@ -21,6 +21,9 @@ public class PlayerLevelMovement : MonoBehaviour
 
     public Rigidbody playerRigidbody; // This is the rigidbody component of the player
     private Collider activeWallCollider; // Wall we're currently touching (set on enter, used when jumping off)
+    public AudioSource jumpSource;
+    public AudioClip jumpSound;
+    public AudioClip landingSound;
 
     // Lane Variables
     private Vector2 leftRightInput; // This is a vector2 that is used to store the value of the leftRightInput
@@ -29,6 +32,9 @@ public class PlayerLevelMovement : MonoBehaviour
     public float centerLaneX = 0.0f;
     public float rightLaneX = 5.0f;
     public float laneChangeSpeed = 20.0f;// Lane Change Speed
+
+    public AudioSource runningSource;
+    public AudioClip runningSound;
 
     // Wall Run Variables
     public bool isWallRunning = false; // This is a boolean that is used to check if the player is wall running
@@ -43,9 +49,12 @@ public class PlayerLevelMovement : MonoBehaviour
     public bool isSliding;
     [Range(0,1)]public float shrinkPercentage;
     CapsuleCollider capsuleCollider;
+    public AudioSource slideSource;
+    public AudioClip slideSound;
 
     // Trick Variables
     bool tricking = false;
+    private bool wasGrounded;
 
     public enum WallType
     {
@@ -72,9 +81,23 @@ public class PlayerLevelMovement : MonoBehaviour
         capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
     }
 
+    void Start()
+    {
+        wasGrounded = IsGrounded();
+        if (runningSource != null && runningSound != null)
+        {
+            runningSource.clip = runningSound;
+            runningSource.loop = true;
+        }
+    }
+
     private void OnDisable()
     {
         UnSubscribeActions();
+        if (runningSource != null && runningSource.isPlaying)
+        {
+            runningSource.Stop();
+        }
     }
 
     // Action functions
@@ -189,6 +212,10 @@ public class PlayerLevelMovement : MonoBehaviour
             return;
         }
         isSliding = true; // Set sliding equal to true
+        if (slideSource != null && slideSound != null)
+        {
+            slideSource.PlayOneShot(slideSound);
+        }
         gameObject.transform.localScale *= shrinkPercentage;
         Invoke("StopSliding", slidingLength); // Invoke StopSliding after the slidingLength
     }
@@ -230,6 +257,10 @@ public class PlayerLevelMovement : MonoBehaviour
 
         // Jump
         if(jumpPressed && IsGrounded()){
+            if (jumpSource != null && jumpSound != null)
+            {
+                jumpSource.PlayOneShot(jumpSound);
+            }
             Vector3 jumpVelocity = playerRigidbody.linearVelocity;// Get the velocity of the player by getting the velocity of the player's rigidbody
             jumpVelocity.y = 0f; // Set the y velocity of the player to 0
             playerRigidbody.linearVelocity = jumpVelocity; // Set the velocity of the player to the jump velocity
@@ -239,6 +270,33 @@ public class PlayerLevelMovement : MonoBehaviour
         else if (jumpPressed)
         {
             jumpPressed = false;
+        }
+
+        bool groundedNow = IsGrounded();
+        if (!wasGrounded && groundedNow)
+        {
+            if (jumpSource != null && landingSound != null)
+            {
+                jumpSource.PlayOneShot(landingSound);
+            }
+        }
+        wasGrounded = groundedNow;
+
+        // Running loop: on ground, sliding off, and during wall run (stops while sliding)
+        bool shouldPlayRun = !isSliding && (groundedNow || isWallRunning);
+        if (runningSource != null && runningSound != null)
+        {
+            if (shouldPlayRun)
+            {
+                if (!runningSource.isPlaying)
+                {
+                    runningSource.Play();
+                }
+            }
+            else if (runningSource.isPlaying)
+            {
+                runningSource.Stop();
+            }
         }
     }
     #endregion
