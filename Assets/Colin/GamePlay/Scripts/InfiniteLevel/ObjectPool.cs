@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using static SpawnObjects;
 
 public class ObjectPool : MonoBehaviour
 {
@@ -8,16 +10,28 @@ public class ObjectPool : MonoBehaviour
     #region
     public static ObjectPool sharedInstance;
     [Header("Pooled Objects")]
-    public List<GameObject> pooledSections, pooledObstacles;
+    public List<GameObject> pooledSections, pooledKyotoObstacles, pooledTokyoObstacles, pooledHakoneObstacles;
 
     [Header("Section Info")]
     public GameObject sectionToPool;
     public int amountSectionsToPool;
 
     [Header("Obstacles Info")]
-    public GameObject[] obstaclesToPool;
-    public int[] amountObstaclesToPool;
+    [Header("Kyoto Objects")]
+    public GameObject[] KyotoToPool;
+    public int[] amountKyotoToPool;
+    Dictionary<SpawnObjects.ObstacleLaneType, int> kyotoTypeRanges;
+    [Header("Tokyo Objects")]
+    public GameObject[] TokyoToPool;
+    public int[] amountTokyoToPool;
+    Dictionary<SpawnObjects.ObstacleLaneType, int> tokyoTypeRanges;
+    [Header("Hakone Objects")]
+    public GameObject[] HakoneToPool;
+    public int[] amountHakoneToPool;
+    Dictionary<SpawnObjects.ObstacleLaneType, int> hakoneTypeRanges;
     #endregion
+
+    public SpawnObjects.Level currentLevel;
 
     // Awake
     #region
@@ -36,15 +50,72 @@ public class ObjectPool : MonoBehaviour
             pooledSections.Add(tmp);
         }
 
-        // Creating an object pool for all obstacles
-        pooledObstacles = new List<GameObject>();
-        for (int i = 0; i < amountObstaclesToPool.Length; i++)
+        int startPosition = 0;
+        // Creating an object pool for kyoto obstacles
+        pooledKyotoObstacles = new List<GameObject>();
+        kyotoTypeRanges = new Dictionary<ObstacleLaneType, int>();
+        for (int i = 0; i < amountKyotoToPool.Length; i++)
         {
-            for (int j = 0; j < amountObstaclesToPool[i]; j++)
+            for (int j = 0; j < amountKyotoToPool[i]; j++)
             {
-                tmp = Instantiate(obstaclesToPool[i]);
+                tmp = Instantiate(KyotoToPool[i]);
+                ObstacleLaneType laneType = tmp.GetComponent<Obstacle>().obstacleLaneType;
+                try 
+                { 
+                    kyotoTypeRanges.Add(laneType, startPosition); 
+                }
+                catch (ArgumentException)
+                {
+                }
+                startPosition++;
                 tmp.SetActive(false);
-                pooledObstacles.Add(tmp);
+                pooledKyotoObstacles.Add(tmp);
+            }
+        }
+
+        startPosition = 0;
+        // Creating an object pool for Hakone obstacles
+        pooledHakoneObstacles = new List<GameObject>();
+        hakoneTypeRanges = new Dictionary<ObstacleLaneType, int>();
+        for (int i = 0; i < amountHakoneToPool.Length; i++)
+        {
+            for (int j = 0; j < amountHakoneToPool[i]; j++)
+            {
+                tmp = Instantiate(HakoneToPool[i]);
+                ObstacleLaneType laneType = tmp.GetComponent<Obstacle>().obstacleLaneType;
+                try
+                {
+                    hakoneTypeRanges.Add(laneType, startPosition);
+                }
+                catch (ArgumentException)
+                {              
+                }
+                startPosition++;
+                tmp.SetActive(false);
+                pooledHakoneObstacles.Add(tmp);
+            }
+        }
+
+        startPosition = 0;
+        // Creating an object pool for Tokyo obstacles
+        pooledTokyoObstacles = new List<GameObject>();
+        tokyoTypeRanges = new Dictionary<ObstacleLaneType, int>();
+        for (int i = 0; i < amountTokyoToPool.Length; i++)
+        {
+            for (int j = 0; j < amountTokyoToPool[i]; j++)
+            {
+                tmp = Instantiate(TokyoToPool[i]);
+                ObstacleLaneType laneType = tmp.GetComponent<Obstacle>().obstacleLaneType;
+                try
+                {
+                    tokyoTypeRanges.Add(laneType, startPosition);
+                }
+                catch
+                {
+                }
+                startPosition++;
+                tmp.SetActive(false);
+                pooledTokyoObstacles.Add(tmp);
             }
         }
     }
@@ -66,15 +137,39 @@ public class ObjectPool : MonoBehaviour
         return null;
     }
 
+    // Need to limit range by finding area type and last pooled objects lane type
     // Get Obstacle from the object pool
-    public GameObject GetPooledObstacles()
+    public GameObject GetPooledObstacles(GameObject lastObstacles)
     {
-        // Check for the first obstacle that is not active in the hierarchy and return it
-        for (int i = 0; i < amountObstaclesToPool[0]; i++)
+        List<ObstacleLaneType> unavailableLanes = new List<ObstacleLaneType>();
+
+        if (lastObstacles != null)
         {
-            if (!pooledObstacles[i].activeInHierarchy)
+            ObstacleLaneType lastLane = lastObstacles.GetComponent<Obstacle>().obstacleLaneType;
+            switch (lastLane)
             {
-                return pooledObstacles[i];
+                default:
+                case ObstacleLaneType.SingleObject:
+                    break;
+                case ObstacleLaneType.LeftMiddle:
+                    unavailableLanes.Add(ObstacleLaneType.RightMiddle);
+                    unavailableLanes.Add(ObstacleLaneType.ThreeLanes); 
+                    break;
+                case ObstacleLaneType.LeftRight:
+                    unavailableLanes.Add(ObstacleLaneType.ThreeLanes);
+                    break;
+                case ObstacleLaneType.RightMiddle:
+                    unavailableLanes.Add(ObstacleLaneType.LeftMiddle);
+                    unavailableLanes.Add(ObstacleLaneType.ThreeLanes);
+                    break;
+                case ObstacleLaneType.ThreeLanes:
+                    unavailableLanes.Add(ObstacleLaneType.LeftMiddle);
+                    unavailableLanes.Add(ObstacleLaneType.RightMiddle);
+                    break;
+                case ObstacleLaneType.LeftWall:
+                    break;
+                case ObstacleLaneType.RightWall:
+                    break;
             }
         }
         return null;

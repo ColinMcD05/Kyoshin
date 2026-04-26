@@ -2,6 +2,15 @@ using UnityEngine;
 
 public class SectionManager : MonoBehaviour
 {
+    public enum AreaType
+    {
+        AllOpen,
+        LeftClosed,
+        RightClosed,
+        MiddleClosed,
+        WallRun,
+        CloseWallRun
+    }
     void Start()
     {
         // Sets up the original 6 sections at the start

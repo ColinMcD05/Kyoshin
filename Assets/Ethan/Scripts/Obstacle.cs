@@ -10,8 +10,16 @@ public class Obstacle : MonoBehaviour
         Hurt
     }
 
+
+    /// <summary>
+    /// Only used in the infinite level to determine what to spawn
+    /// </summary>
+    public SpawnObjects.ObstacleLaneType obstacleLaneType;
+    public SpawnObjects.Level whichLevel;
+    public SectionManager.AreaType areaType;
+
     void OnTriggerEnter(Collider other){
-        if(other.gameObject.CompareTag("Player") /*&& !other.GetComponent<Dash>().dashing*/)
+        if(other.gameObject.CompareTag("Player") && !other.GetComponent<Dash>().dashing)
         {
             if (!other.GetComponent<Dash>().dashing)
             {

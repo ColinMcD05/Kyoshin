@@ -19,6 +19,30 @@ public class SpawnObjects : MonoBehaviour
     float distanceBetween;
     // Check if song is new
     bool isNewSong;
+
+ 
+
+    // Enumerator used to determine which obstacle types can be spawned
+    public enum ObstacleLaneType
+    {
+        SingleObject,
+        LeftRight,
+        LeftMiddle,
+        RightMiddle,
+        ThreeLanes,
+        LeftWall,
+        RightWall
+    }
+
+    // Which objects to spawn based on level
+    public enum Level
+    {
+        All,
+        Hakone,
+        Kyoto,
+        Tokyo
+    }
+
     #endregion
 
     void Awake()
@@ -65,16 +89,28 @@ public class SpawnObjects : MonoBehaviour
             if (nextPosition.z > closeRange.z && nextPosition.z < farRange.z)
             {
                 int randomLane = Random.Range(0, spawns.Length);
-                GameObject obstacle = ObjectPool.sharedInstance.GetPooledObstacles();
+                GameObject obstacle = ObjectPool.sharedInstance.GetPooledObstacles(lastObject);
                 if (obstacle != null)
                 {
+                    obstacle.SetActive(true);
                     obstacle.transform.parent = newParent;
-                    //float obstacleWidth = obstacle.GetComponent<MeshRenderer>().bounds.extents.y;
-                    // nextPosition.z += obstacleWidth;
+                    float obstacleWidth = obstacle.GetComponent<Collider>().bounds.extents.z;
+                    if (lastObject != null)
+                    {
+                        float lastObstacleWidth = lastObject.GetComponent<Collider>().bounds.extents.z;
+
+                        float changeBasedOnWidth = lastObstacleWidth - obstacleWidth;
+                        //Debug.Log(changeBasedOnWidth);
+
+                        nextPosition.z += changeBasedOnWidth;
+                    }
+                    else
+                    {
+                        nextPosition.z += obstacleWidth;
+                    }
                     nextPosition.y = 0.5f;
                     nextPosition.x = spawns[randomLane].transform.position.x;
                     obstacle.transform.position = nextPosition;
-                    obstacle.SetActive(true);
 
                     lastObject = obstacle;
                 }
@@ -95,6 +131,21 @@ public class SpawnObjects : MonoBehaviour
         // Set variables for spawning logic to start correctly
         isNewSong = true;
         lastObject = null;
+        switch (newSong.levelName)
+        {
+            default:
+                ObjectPool.sharedInstance.currentLevel = Level.All;
+                break;
+            case "Kyoto":
+                ObjectPool.sharedInstance.currentLevel = Level.Kyoto;
+                break;
+            case "Tokyo":
+                ObjectPool.sharedInstance.currentLevel = Level.Tokyo;
+                break;
+            case "Hakone":
+                ObjectPool.sharedInstance.currentLevel = Level.Hakone;
+                break;
+        }
     }
     #endregion
 }

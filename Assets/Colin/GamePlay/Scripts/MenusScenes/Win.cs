@@ -23,7 +23,6 @@ public class Win : MonoBehaviour
     public Camera winCamera;
     public GameObject winScreen;
     EventSystem eventSystem;
-    GameObject retry;
     AudioSource music;
     public AudioClip win;
     bool newHighScore;
@@ -35,7 +34,6 @@ public class Win : MonoBehaviour
         otherChar = GameObject.Find("OtherChar");
         player = GameObject.Find("Player");
         eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
-        retry = winScreen.transform.Find("Retry").gameObject;
         music = GameObject.Find("Audio").transform.Find("Music").GetComponent<AudioSource>();
     }
 
@@ -188,7 +186,7 @@ public class Win : MonoBehaviour
 
         // Set winscreento active and set first button
         winScreen.SetActive(true);
-        eventSystem.firstSelectedGameObject = retry;
+        eventSystem.firstSelectedGameObject = winScreen.transform.Find("Retry").gameObject; ;
 
         // Stops move backwards scripts
         moveBackwards.enabled = false;
