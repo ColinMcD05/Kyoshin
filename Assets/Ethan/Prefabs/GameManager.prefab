@@ -610,8 +610,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Combo:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 08c2ffd62334dac46bb3e37daa9813a4, type: 2}
+  m_sharedMaterial: {fileID: -1920845936667246432, guid: 08c2ffd62334dac46bb3e37daa9813a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -748,8 +748,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 08c2ffd62334dac46bb3e37daa9813a4, type: 2}
+  m_sharedMaterial: {fileID: -1920845936667246432, guid: 08c2ffd62334dac46bb3e37daa9813a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -976,16 +976,16 @@ MonoBehaviour:
   dashSlider: {fileID: 9005737770268303239}
   visualizer: {fileID: 9068424414906722098}
   colors:
-  - {r: 1, g: 1, b: 1, a: 0}
-  - {r: 0.90943396, g: 0.73687387, b: 0.4238305, a: 0}
-  - {r: 0.6679245, g: 0.6464297, b: 0.24070488, a: 0}
-  - {r: 0.4899446, g: 0.7433963, b: 0.43060878, a: 0}
-  - {r: 0.07443929, g: 0.7735849, b: 0.42721918, a: 0}
-  - {r: 0.0051049455, g: 0.90188676, b: 0.89368224, a: 0}
-  - {r: 0.20637229, g: 0.52366203, b: 0.7056604, a: 0}
-  - {r: 0.32866496, g: 0.33799714, b: 0.78113204, a: 0}
-  - {r: 0.23179588, g: 0.18216442, b: 0.4490565, a: 0}
-  - {r: 0.56885237, g: 0.21394801, b: 0.7509433, a: 0}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.90943396, g: 0.73687387, b: 0.4238305, a: 1}
+  - {r: 0.6679245, g: 0.6464297, b: 0.24070488, a: 1}
+  - {r: 0.4899446, g: 0.7433963, b: 0.43060878, a: 1}
+  - {r: 0.07443929, g: 0.7735849, b: 0.42721918, a: 1}
+  - {r: 0.0051049455, g: 0.90188676, b: 0.89368224, a: 1}
+  - {r: 0.20637229, g: 0.52366203, b: 0.7056604, a: 1}
+  - {r: 0.32866496, g: 0.33799714, b: 0.78113204, a: 1}
+  - {r: 0.23179588, g: 0.18216442, b: 0.4490565, a: 1}
+  - {r: 0.56885237, g: 0.21394801, b: 0.7509433, a: 1}
   maxMult: 10
   comboNeededMult: 5
 --- !u!114 &213474859250481102
