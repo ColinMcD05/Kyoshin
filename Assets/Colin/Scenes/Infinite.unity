@@ -1155,7 +1155,10 @@ MonoBehaviour:
   - {fileID: 2394988146648867748, guid: 62449037c23ab594892723ddd711de8e, type: 3}
   - {fileID: 4769365822002906001, guid: b06c54d409caaea4a9b5a39311e8e0ad, type: 3}
   - {fileID: 3318075963410257482, guid: 1183cf3b58b5834468ab6757e095eea8, type: 3}
-  amountHakoneToPool: 190000001900000005000000
+  - {fileID: 3538792088725479090, guid: f0f269b34347606439da8b43bd18cace, type: 3}
+  - {fileID: 3538792088725479090, guid: eb07d01c0ba739b4d990516c702b8163, type: 3}
+  - {fileID: 3538792088725479090, guid: db5c85748a305a34ba74128a45846750, type: 3}
+  amountHakoneToPool: 1900000019000000050000000a0000000a000000
   currentLevel: 0
   aeraType: 0
 --- !u!114 &1547309013
@@ -1187,6 +1190,10 @@ MonoBehaviour:
   - {fileID: 539413276}
   - {fileID: 653886841}
   - {fileID: 140229053}
+  closeLeftWall: {x: 0, y: 0, z: 0}
+  closeRightWall: {x: 0, y: 0, z: 0}
+  leftWall: {x: 0, y: 0, z: 0}
+  rightWall: {x: 0, y: 0, z: 0}
 --- !u!114 &1547309015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1814,7 +1821,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 797489872543924785, guid: f0f269b34347606439da8b43bd18cace, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 49.48702
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 797489872543924785, guid: f0f269b34347606439da8b43bd18cace, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1822,7 +1829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 797489872543924785, guid: f0f269b34347606439da8b43bd18cace, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -25.17785
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 797489872543924785, guid: f0f269b34347606439da8b43bd18cace, type: 3}
       propertyPath: m_LocalRotation.w
