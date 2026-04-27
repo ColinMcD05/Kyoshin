@@ -15,11 +15,22 @@ public class Obstacle : MonoBehaviour
     /// Only used in the infinite level to determine what to spawn
     /// </summary>
     public SpawnObjects.ObstacleLaneType obstacleLaneType;
-    public SpawnObjects.Level whichLevel;
     public SectionManager.AreaType areaType;
 
     AudioSource obstacleSource;
     public AudioClip obstacleSound;
+
+    void OnDisable()
+    {
+        for (int i = 1; i < transform.parent.childCount; i++)
+        {
+            Transform child = transform.parent.transform.GetChild(i);
+            if (child.gameObject.CompareTag("NormalObs"))
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+    }
 
     void Start()
     {
@@ -29,7 +40,7 @@ public class Obstacle : MonoBehaviour
     /*void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("Player") && !other.GetComponent<Dash>().dashing)
         {
-            if (!other.GetComponent<Dash>().dashing)
+            if (!other.GetComponent<Dash>().dashing && obstacleLaneType == ObstacleLaneType.SingleObject)
             {
                 Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
                 PlayerLevelMovement playerMovement = other.GetComponent<PlayerLevelMovement>();

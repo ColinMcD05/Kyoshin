@@ -34,9 +34,6 @@ public class ObjectPool : MonoBehaviour
     public SectionManager.AreaType aeraType;
     #endregion
 
-
-
-
     // Awake
     #region
     void Awake()

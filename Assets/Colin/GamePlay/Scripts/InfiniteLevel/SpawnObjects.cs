@@ -6,15 +6,23 @@ public class SpawnObjects : MonoBehaviour
     // Variables
     #region
     // References
-    GameObject sectionManager;
+    SectionManager sectionManager;
 
     // Array holding to position of the three lanes
     public GameObject[] spawns;
     // static object holding the last obstacle spawned in
     static GameObject lastObject;
+    static float lastObstacleWidth;
     // Vectors holding last and next position
     Vector3 lastPosition;
     Vector3 nextPosition;
+
+    // Wall Positions
+    public Vector3 closeLeftWall;
+    public Vector3 closeRightWall;
+    public Vector3 leftWall;
+    public Vector3 rightWall;
+
     // Holds distance between each obstacle
     float distanceBetween;
     // Check if song is new
@@ -47,7 +55,7 @@ public class SpawnObjects : MonoBehaviour
 
     void Awake()
     {
-        sectionManager = GameObject.Find("SectionManager");
+        sectionManager = GameObject.Find("SectionManager").GetComponent<SectionManager>();
     }
 
     // SpawnObject
@@ -61,6 +69,8 @@ public class SpawnObjects : MonoBehaviour
         
         farRange.z += 16;
         closeRange.z -= 16;
+
+        float obstacleWidth = 0;
 
         // Spawns a max of four obstacles
         for (int i = 0; i < 4; i++) 
@@ -92,12 +102,122 @@ public class SpawnObjects : MonoBehaviour
                 GameObject obstacle = ObjectPool.sharedInstance.GetPooledObstacles(lastObject);
                 if (obstacle != null)
                 {
+                    // Get the obstacle script to get the type of area it is in
+                    Obstacle obstacleScript = obstacle.GetComponent<Obstacle>();
                     obstacle.SetActive(true);
                     obstacle.transform.parent = newParent;
-                    float obstacleWidth = obstacle.GetComponent<Collider>().bounds.extents.z;
+
+                    int firstObject = 0;
+                    int secondObject = 0;
+                    int thirdObject = 0;
+
+                    switch (obstacleScript.obstacleLaneType)
+                    {
+                        default:
+                        case ObstacleLaneType.SingleObject:
+                            switch (sectionManager.currentArea)
+                            {
+                                case SectionManager.AreaType.AllOpen:
+                                case SectionManager.AreaType.WallRun:
+                                case SectionManager.AreaType.CloseWallRun:
+                                    break;
+                                case SectionManager.AreaType.LeftClosed:
+                                    if (randomLane == 0)
+                                    {
+                                        randomLane = Random.Range(1, spawns.Length);
+                                    }
+                                    break;
+                                case SectionManager.AreaType.MiddleClosed:
+                                    while (randomLane == 1)
+                                    {
+                                        randomLane = Random.Range(1, spawns.Length);
+                                    }
+                                    break;
+                                case SectionManager.AreaType.RightClosed:
+                                    if (randomLane == 2)
+                                    {
+                                        randomLane = Random.Range(0, 2);
+                                    }
+                                    break;
+                            }
+                            obstacleWidth = obstacle.GetComponent<Collider>().bounds.extents.z;
+                            nextPosition.x = spawns[randomLane].transform.position.x;
+                            break;
+                        case ObstacleLaneType.LeftRight:
+                            firstObject = Random.Range(0, obstacle.transform.childCount);
+                            secondObject = Random.Range(0, obstacle.transform.childCount);
+                            while (secondObject == firstObject)
+                            {
+                                secondObject = Random.Range(0, obstacle.transform.childCount);
+                            }
+                            obstacle.transform.GetChild(firstObject).gameObject.SetActive(true);
+                            obstacle.transform.GetChild(firstObject).transform.position = new Vector3(spawns[0].transform.position.x, 0, 0);
+                            obstacle.transform.GetChild(secondObject).gameObject.SetActive(true);
+                            obstacle.transform.GetChild(secondObject).transform.position = new Vector3(spawns[2].transform.position.x, 0, 0);
+                            obstacleWidth = obstacle.transform.GetChild(firstObject).GetComponent<Collider>().bounds.extents.z;
+                            break;
+                        case ObstacleLaneType.LeftMiddle:
+                            firstObject = Random.Range(0, obstacle.transform.childCount);
+                            secondObject = Random.Range(0, obstacle.transform.childCount);
+                            while (secondObject == firstObject)
+                            {
+                                secondObject = Random.Range(0, obstacle.transform.childCount);
+                            }
+                            obstacle.transform.GetChild(firstObject).gameObject.SetActive(true);
+                            obstacle.transform.GetChild(firstObject).transform.position = new Vector3(spawns[0].transform.position.x, 0, 0);
+                            obstacle.transform.GetChild(secondObject).gameObject.SetActive(true);
+                            obstacle.transform.GetChild(secondObject).transform.position = new Vector3(spawns[1].transform.position.x, 0, 0);
+                            obstacleWidth = obstacle.transform.GetChild(firstObject).GetComponent<Collider>().bounds.extents.z;
+                            break;
+                        case ObstacleLaneType.RightMiddle:
+                            firstObject = Random.Range(0, obstacle.transform.childCount);
+                            secondObject = Random.Range(0, obstacle.transform.childCount);
+                            while (secondObject == firstObject)
+                            {
+                                secondObject = Random.Range(0, obstacle.transform.childCount);
+                            }
+                            obstacle.transform.GetChild(firstObject).gameObject.SetActive(true);
+                            obstacle.transform.GetChild(firstObject).transform.position = new Vector3(spawns[1].transform.position.x, 0, 0);
+                            obstacle.transform.GetChild(secondObject).gameObject.SetActive(true);
+                            obstacle.transform.GetChild(secondObject).transform.position = new Vector3(spawns[2].transform.position.x, 0, 0);
+                            obstacleWidth = obstacle.transform.GetChild(firstObject).GetComponent<Collider>().bounds.extents.z;
+                            break;
+                        case ObstacleLaneType.ThreeLanes:
+                            if (obstacle.transform.childCount > 1)
+                            {
+                                firstObject = Random.Range(0, obstacle.transform.childCount);
+                                secondObject = Random.Range(0, obstacle.transform.childCount);
+                                while (secondObject == firstObject)
+                                {
+                                    secondObject = Random.Range(0, obstacle.transform.childCount);
+                                }
+                                thirdObject = Random.Range(0, obstacle.transform.childCount);
+                                while (thirdObject == secondObject || thirdObject == firstObject)
+                                {
+                                    thirdObject = Random.Range(0, obstacle.transform.childCount);
+                                }
+                                obstacle.transform.GetChild(firstObject).gameObject.SetActive(true);
+                                obstacle.transform.GetChild(firstObject).transform.position = new Vector3(spawns[0].transform.position.x, 0, 0);
+                                obstacle.transform.GetChild(secondObject).gameObject.SetActive(true);
+                                obstacle.transform.GetChild(secondObject).transform.position = new Vector3(spawns[1].transform.position.x, 0, 0);
+                                obstacle.transform.GetChild(thirdObject).gameObject.SetActive(true);
+                                obstacle.transform.GetChild(thirdObject).transform.position = new Vector3(spawns[2].transform.position.x, 0, 0);
+                                obstacleWidth = obstacle.transform.GetChild(firstObject).GetComponent<Collider>().bounds.extents.z;
+                            }
+                            else
+                            {
+                                nextPosition.x = 0;
+                                obstacleWidth = obstacle.GetComponent<Collider>().bounds.extents.z;
+                            }
+                            break;
+                        case ObstacleLaneType.LeftWall:
+                            break;
+                        case ObstacleLaneType.RightWall:
+                            break;
+                    }
+
                     if (lastObject != null)
                     {
-                        float lastObstacleWidth = lastObject.GetComponent<Collider>().bounds.extents.z;
 
                         float changeBasedOnWidth =  lastObstacleWidth-obstacleWidth;
                         //Debug.Log(changeBasedOnWidth);
@@ -109,10 +229,10 @@ public class SpawnObjects : MonoBehaviour
                         nextPosition.z -= obstacleWidth;
                     }
                     nextPosition.y = 0.5f;
-                    nextPosition.x = spawns[randomLane].transform.position.x;
                     obstacle.transform.position = nextPosition;
 
                     lastObject = obstacle;
+                    lastObstacleWidth = obstacleWidth;
                 }
             }
         }
