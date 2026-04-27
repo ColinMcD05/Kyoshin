@@ -280,7 +280,7 @@ public class PlayerLevelMovement : MonoBehaviour
         // Audio: only trigger landing SFX on this frame if we just landed (was air/non-ground, now grounded)
         if (!wasGrounded && groundedNow)
         {
-            if (jumpSource != null && landingSound != null)
+            if (!IsGamePaused() && jumpSource != null && landingSound != null)
             {
                 // Audio: one-shot on impact when we cross from not grounded to grounded (edge detect, not every grounded frame)
                 jumpSource.PlayOneShot(landingSound);
@@ -288,8 +288,8 @@ public class PlayerLevelMovement : MonoBehaviour
         }
         wasGrounded = groundedNow;
 
-        // Audio: `shouldPlayRun` is true when the run loop SFX is allowed: not sliding, and (on ground or wall running)
-        bool shouldPlayRun = !isSliding && (groundedNow || isWallRunning);
+        // Audio: `shouldPlayRun` is true when the run loop SFX is allowed: not sliding, not paused, and (on ground or wall running)
+        bool shouldPlayRun = !IsGamePaused() && !isSliding && (groundedNow || isWallRunning);
         if (runningSource != null && runningSound != null)
         {
             if (shouldPlayRun)
@@ -517,5 +517,11 @@ public class PlayerLevelMovement : MonoBehaviour
         jump.action.performed -= Jump;
         slide.action.performed -= Slide;
         trick.action.performed -= Trick;
+    }
+
+    // Pause Check
+    public bool IsGamePaused()
+    {
+        return Time.timeScale <= 0.0001f;
     }
 }
