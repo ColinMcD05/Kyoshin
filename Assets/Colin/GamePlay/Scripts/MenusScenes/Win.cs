@@ -20,6 +20,8 @@ public class Win : MonoBehaviour
     public GameObject winScreen;
     EventSystem eventSystem;
     GameObject retry;
+    AudioSource music;
+    public AudioClip win;
 
     void Start()
     {
@@ -28,6 +30,7 @@ public class Win : MonoBehaviour
         player = GameObject.Find("Player");
         eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
         retry = winScreen.transform.Find("Retry").gameObject;
+        music = GameObject.Find("Audio").transform.Find("Music").GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -49,6 +52,9 @@ public class Win : MonoBehaviour
 
             // Set current levels progress to completed
             currentLevel.progress = Levels.Progress.completed;
+
+            music.Stop();
+            music.PlayOneShot(win);
 
             // If score is higher than level highscore, set highscore to score
             if (gameManager.score > currentLevel.highScore)
