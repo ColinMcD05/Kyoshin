@@ -18,6 +18,9 @@ public class PlayerControllerLevel : MonoBehaviour
     public float regenTime = 2.0f;
     public bool invincible = false;
 
+    public AudioSource audioSource;
+    public AudioClip HealthSound;
+
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -103,6 +106,10 @@ public class PlayerControllerLevel : MonoBehaviour
         { 
             collidedAmout--;
             // Put sound effect here
+            if (audioSource != null && HealthSound != null)
+            {
+                audioSource.PlayOneShot(HealthSound);
+            }
             if (cineMachineNoise.AmplitudeGain > 0)
             {
                 cineMachineNoise.AmplitudeGain -= 1;

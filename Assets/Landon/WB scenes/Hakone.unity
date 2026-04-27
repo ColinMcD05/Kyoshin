@@ -36704,7 +36704,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -70961,6 +70961,14 @@ PrefabInstance:
       propertyPath: moveBackwards
       value: 
       objectReference: {fileID: 129578519}
+    - target: {fileID: 4074926366466159053, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
+      propertyPath: HealthSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 25685435d481b2e4cab2dbf4105827df, type: 3}
+    - target: {fileID: 4074926366466159053, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 214350949}
     - target: {fileID: 4074926366466159053, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
       propertyPath: moveBackwards
       value: 
