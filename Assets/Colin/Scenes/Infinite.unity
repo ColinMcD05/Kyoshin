@@ -1856,6 +1856,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoubleObstacleSides
       objectReference: {fileID: 0}
+    - target: {fileID: 3538792088725479090, guid: f0f269b34347606439da8b43bd18cace, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1986,13 +1990,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4571397609242982591, guid: 9d3d38fb4c8c9be4591016974a9be7fd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5257168312923914835, guid: 9d3d38fb4c8c9be4591016974a9be7fd, type: 3}
       propertyPath: m_Name
       value: SlideObstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5257168312923914835, guid: 9d3d38fb4c8c9be4591016974a9be7fd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
