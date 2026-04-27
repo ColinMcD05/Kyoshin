@@ -24,6 +24,8 @@ public class Timing : MonoBehaviour
     [HideInInspector] public Songs.SongData currentSong;
     AudioSource musicPlayer;
     [SerializeField] AudioSource countDownSound;
+    public AudioClip ScratchSound;
+    public AudioSource scratchSource;
 
     // IEnumerators
     IEnumerator resetCircle;
@@ -192,6 +194,7 @@ public class Timing : MonoBehaviour
             // Else bad move
             // camera shakes intensify
             // Put sound effect here
+            scratchSource.PlayOneShot(ScratchSound);
             playerControllerLevel.LoseLife();
         }
     }

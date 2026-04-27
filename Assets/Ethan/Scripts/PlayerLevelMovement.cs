@@ -21,6 +21,9 @@ public class PlayerLevelMovement : MonoBehaviour
 
     public Rigidbody playerRigidbody; // This is the rigidbody component of the player
     private Collider activeWallCollider; // Wall we're currently touching (set on enter, used when jumping off)
+    public AudioSource jumpSource;
+    public AudioClip jumpSound;
+    public AudioClip landingSound;
 
     // Lane Variables
     private Vector2 leftRightInput; // This is a vector2 that is used to store the value of the leftRightInput
@@ -29,6 +32,9 @@ public class PlayerLevelMovement : MonoBehaviour
     public float centerLaneX = 0.0f;
     public float rightLaneX = 5.0f;
     public float laneChangeSpeed = 20.0f;// Lane Change Speed
+
+    public AudioSource runningSource;
+    public AudioClip runningSound;
 
     // Wall Run Variables
     public bool isWallRunning = false; // This is a boolean that is used to check if the player is wall running
@@ -43,9 +49,12 @@ public class PlayerLevelMovement : MonoBehaviour
     public bool isSliding;
     [Range(0,1)]public float shrinkPercentage;
     CapsuleCollider capsuleCollider;
+    public AudioSource slideSource;
+    public AudioClip slideSound;
 
     // Trick Variables
     bool tricking = false;
+    private bool wasGrounded;
 
     public enum WallType
     {
@@ -72,9 +81,26 @@ public class PlayerLevelMovement : MonoBehaviour
         capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
     }
 
+    void Start()
+    {
+        wasGrounded = IsGrounded();
+        if (runningSource != null && runningSound != null)
+        {
+            // Audio: set the run loop’s clip so the source knows what to stream when we call Play() later
+            runningSource.clip = runningSound;
+            // Audio: keep the run SFX continuous until we stop it (driven in FixedUpdate by shouldPlayRun)
+            runningSource.loop = true;
+        }
+    }
+
     private void OnDisable()
     {
         UnSubscribeActions();
+        if (runningSource != null && runningSource.isPlaying)
+        {
+            // Audio: turn off the run loop when the component disables (e.g. scene exit, object off) so it doesn’t keep playing
+            runningSource.Stop();
+        }
     }
 
     // Action functions
@@ -189,8 +215,12 @@ public class PlayerLevelMovement : MonoBehaviour
             return;
         }
         isSliding = true; // Set sliding equal to true
+        // Audio: one-shot layer on slideSource when the slide input fires (independent of the looping run SFX)
+        slideSource.PlayOneShot(slideSound);
+        
         gameObject.transform.localScale *= shrinkPercentage;
         Invoke("StopSliding", slidingLength); // Invoke StopSliding after the slidingLength
+
     }
 
     // Trick action
@@ -230,6 +260,11 @@ public class PlayerLevelMovement : MonoBehaviour
 
         // Jump
         if(jumpPressed && IsGrounded()){
+            if (jumpSource != null && jumpSound != null)
+            {
+                // Audio: one-shot on takeoff the same frame we apply jump impulse, only when a real jump is executed
+                jumpSource.PlayOneShot(jumpSound);
+            }
             Vector3 jumpVelocity = playerRigidbody.linearVelocity;// Get the velocity of the player by getting the velocity of the player's rigidbody
             jumpVelocity.y = 0f; // Set the y velocity of the player to 0
             playerRigidbody.linearVelocity = jumpVelocity; // Set the velocity of the player to the jump velocity
@@ -239,6 +274,37 @@ public class PlayerLevelMovement : MonoBehaviour
         else if (jumpPressed)
         {
             jumpPressed = false;
+        }
+
+        bool groundedNow = IsGrounded();
+        // Audio: only trigger landing SFX on this frame if we just landed (was air/non-ground, now grounded)
+        if (!wasGrounded && groundedNow)
+        {
+            if (jumpSource != null && landingSound != null)
+            {
+                // Audio: one-shot on impact when we cross from not grounded to grounded (edge detect, not every grounded frame)
+                jumpSource.PlayOneShot(landingSound);
+            }
+        }
+        wasGrounded = groundedNow;
+
+        // Audio: `shouldPlayRun` is true when the run loop SFX is allowed: not sliding, and (on ground or wall running)
+        bool shouldPlayRun = !isSliding && (groundedNow || isWallRunning);
+        if (runningSource != null && runningSound != null)
+        {
+            if (shouldPlayRun)
+            {
+                if (!runningSource.isPlaying)
+                {
+                    // Audio: start the looping run clip (already assigned in Start) the first frame we are allowed to “run”
+                    runningSource.Play();
+                }
+            }
+            else if (runningSource.isPlaying)
+            {
+                // Audio: stop the loop when sliding, airborne without wall run, etc., so the run SFX does not play over those states
+                runningSource.Stop();
+            }
         }
     }
     #endregion
