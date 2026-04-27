@@ -217,7 +217,9 @@ public class PlayerLevelMovement : MonoBehaviour
         isSliding = true; // Set sliding equal to true
         // Audio: one-shot layer on slideSource when the slide input fires (independent of the looping run SFX)
         slideSource.PlayOneShot(slideSound);
-        
+
+        Debug.Log(slideSound);
+
         gameObject.transform.localScale *= shrinkPercentage;
         Invoke("StopSliding", slidingLength); // Invoke StopSliding after the slidingLength
 

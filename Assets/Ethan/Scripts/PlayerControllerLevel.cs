@@ -79,6 +79,7 @@ public class PlayerControllerLevel : MonoBehaviour
             }
         }
     }
+    #endregion
 
     public void Death()
     {
@@ -97,9 +98,9 @@ public class PlayerControllerLevel : MonoBehaviour
 
     IEnumerator RegainLives()
     {
+        yield return new WaitForSeconds(regenTime);
         while (collidedAmout > 0)
         { 
-            yield return new WaitForSeconds(regenTime);
             collidedAmout--;
             // Put sound effect here
             if (cineMachineNoise.AmplitudeGain > 0)
@@ -107,6 +108,7 @@ public class PlayerControllerLevel : MonoBehaviour
                 cineMachineNoise.AmplitudeGain -= 1;
                 cineMachineNoise.FrequencyGain -= 1;
             }
+            yield return new WaitForSeconds(regenTime);
             //Debug.Log("Regained");
         }
     }
@@ -114,5 +116,4 @@ public class PlayerControllerLevel : MonoBehaviour
     public void ShakeCamera(int shakeIntensity){
         // shake the camera by using the CinemachineShake script
     } // end of ShakeCamera function
-    #endregion
 }
