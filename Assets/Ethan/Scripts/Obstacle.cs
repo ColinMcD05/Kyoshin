@@ -22,9 +22,9 @@ public class Obstacle : MonoBehaviour
 
     void OnDisable()
     {
-        for (int i = 1; i < transform.parent.childCount; i++)
+        for (int i = 1; i < transform.childCount; i++)
         {
-            Transform child = transform.parent.transform.GetChild(i);
+            Transform child = transform.GetChild(i);
             if (child.gameObject.CompareTag("NormalObs"))
             {
                 child.gameObject.SetActive(false);

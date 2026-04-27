@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 797489872543924785}
   - component: {fileID: 974180539422576070}
   m_Layer: 0
-  m_Name: DoubleObstacleSides
+  m_Name: DoubleObstacleSides 2
   m_TagString: NormalObs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

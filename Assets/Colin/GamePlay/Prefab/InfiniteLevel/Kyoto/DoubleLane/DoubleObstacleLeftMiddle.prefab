@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 797489872543924785}
   - component: {fileID: 974180539422576070}
   m_Layer: 0
-  m_Name: DoubleObstacleSides
+  m_Name: DoubleObstacleLeftMiddle
   m_TagString: NormalObs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
   type: 0
-  obstacleLaneType: 1
+  obstacleLaneType: 2
   areaType: 0
   obstacleSound: {fileID: 8300000, guid: 8a3b04111f5a7de4a9eeb0dfd7bc8cdf, type: 3}
 --- !u!1001 &1707963046123531449
