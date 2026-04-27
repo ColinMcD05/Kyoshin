@@ -488,6 +488,7 @@ MonoBehaviour:
   timingUI: {fileID: 0}
   moveBackwards: {fileID: 0}
   songClass: {fileID: 0}
+  countDownSound: {fileID: 7157778044438292944}
   ScratchSound: {fileID: 8300000, guid: 6d8abe5fad4dd8249baf30498e70350f, type: 3}
   scratchSource: {fileID: 6310300128418858321}
   songPosition: 0
@@ -543,6 +544,7 @@ MonoBehaviour:
   groundLayers:
     serializedVersion: 2
     m_Bits: 0
+  extraFallingGravity: 1.5
   playerRigidbody: {fileID: 8025993684956010781}
   jumpSource: {fileID: 6310300128418858321}
   jumpSound: {fileID: 8300000, guid: e0a1d3ef26abad547accd3a143bfa53f, type: 3}
@@ -582,7 +584,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 54
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -673,13 +675,13 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.065
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 256
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

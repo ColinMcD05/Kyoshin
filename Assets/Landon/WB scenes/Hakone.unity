@@ -70881,14 +70881,6 @@ PrefabInstance:
       propertyPath: moveBackwards
       value: 
       objectReference: {fileID: 129578519}
-    - target: {fileID: 717243329461297844, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
-      propertyPath: Priority
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 717243329461297844, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
-      propertyPath: m_Volume
-      value: 0.197
-      objectReference: {fileID: 0}
     - target: {fileID: 1567925838254450578, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
       propertyPath: timingUI
       value: 
@@ -70973,10 +70965,6 @@ PrefabInstance:
       propertyPath: moveBackwards
       value: 
       objectReference: {fileID: 129578519}
-    - target: {fileID: 6310300128418858321, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
-      propertyPath: Priority
-      value: 54
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

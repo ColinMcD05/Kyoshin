@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 4225424394795353221}
   m_Layer: 0
   m_Name: BigJumpable
-  m_TagString: Untagged
+  m_TagString: NormalObs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &661124621974209202
 Transform:
   m_ObjectHideFlags: 0
@@ -71,6 +71,7 @@ MonoBehaviour:
   obstacleLaneType: 4
   whichLevel: 0
   areaType: 0
+  obstacleSound: {fileID: 8300000, guid: 75e999a75991e4b4c991843c85684470, type: 3}
 --- !u!1001 &4700258007787940291
 PrefabInstance:
   m_ObjectHideFlags: 0

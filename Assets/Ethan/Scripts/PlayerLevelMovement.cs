@@ -18,6 +18,7 @@ public class PlayerLevelMovement : MonoBehaviour
     public float groundCheckDistance = 1.5f; // This is the distance to check for the ground
     public float groundCheckStartHeight = .5f; // This is the height to start checking for the ground
     public LayerMask groundLayers; // This is the layer mask for the ground
+    public float extraFallingGravity; // Increase fall speed when falling
 
     public Rigidbody playerRigidbody; // This is the rigidbody component of the player
     private Collider activeWallCollider; // Wall we're currently touching (set on enter, used when jumping off)
@@ -286,6 +287,13 @@ public class PlayerLevelMovement : MonoBehaviour
             {
                 // Audio: one-shot on impact when we cross from not grounded to grounded (edge detect, not every grounded frame)
                 jumpSource.PlayOneShot(landingSound);
+            }
+        }
+        if (!groundedNow)
+        {
+            if (playerRigidbody.linearVelocity.y < 0)
+            {
+                playerRigidbody.linearVelocity = new Vector3(playerRigidbody.linearVelocity.x, playerRigidbody.linearVelocity.y - extraFallingGravity, playerRigidbody.linearVelocity.z);
             }
         }
         wasGrounded = groundedNow;

@@ -99,14 +99,14 @@ public class SpawnObjects : MonoBehaviour
                     {
                         float lastObstacleWidth = lastObject.GetComponent<Collider>().bounds.extents.z;
 
-                        float changeBasedOnWidth = lastObstacleWidth - obstacleWidth;
+                        float changeBasedOnWidth =  lastObstacleWidth-obstacleWidth;
                         //Debug.Log(changeBasedOnWidth);
 
                         nextPosition.z += changeBasedOnWidth;
                     }
                     else
                     {
-                        nextPosition.z += obstacleWidth;
+                        nextPosition.z -= obstacleWidth;
                     }
                     nextPosition.y = 0.5f;
                     nextPosition.x = spawns[randomLane].transform.position.x;
