@@ -27,7 +27,7 @@ public class Rewind : MonoBehaviour
     [HideInInspector] public List<int> laneSpeed;
     float startRewindTime;
     float totalRewindTime;
-    public AudioSource rewindSource;
+    AudioSource rewindSource;
     public AudioClip rewindSound;
 
     // Mutable Variables in other scripts
@@ -38,6 +38,7 @@ public class Rewind : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         musicPlayer = GameObject.Find("Audio").transform.Find("Music").GetComponent<AudioSource>();
+        rewindSource = GameObject.Find("Audio").transform.Find("SoundEffects").GetComponent<AudioSource>();
     }
 
     // FixedUpdate

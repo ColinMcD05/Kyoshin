@@ -39,7 +39,7 @@ public class PauseMenu : MonoBehaviour
     PlayerLevelMovement playerMovement;
     GameManager gameManager;
 
-    public AudioSource buttonSource;
+    AudioSource buttonSource;
     public AudioClip buttonSound;
     #endregion
 
@@ -257,6 +257,7 @@ public class PauseMenu : MonoBehaviour
     // Loads the HUB scene
     public void GoToHub()
     {
+        Time.timeScale = 1;
         // Play sound effect
         buttonSource.PlayOneShot(buttonSound);
         SceneManager.LoadScene("HUB");
@@ -270,6 +271,7 @@ public class PauseMenu : MonoBehaviour
     {
         // Assigns music audio source
         music = GameObject.Find("Audio").transform.Find("Music").GetComponent<AudioSource>();
+        buttonSource = GameObject.Find("Audio").transform.Find("SoundEffects").GetComponent<AudioSource>();
         // assigns variables if scene is not HUB
         if (scene.name != "HUB" && scene.name != "LoseScreen")
         {

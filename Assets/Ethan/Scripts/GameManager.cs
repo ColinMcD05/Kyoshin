@@ -283,6 +283,7 @@ public class GameManager : MonoBehaviour
     {
         // Set last scene variables
         lastScene = scene.name;
+        GameObject.Find("Audio").transform.Find("SoundEffects").GetComponent<AudioSource>().Stop();
     }
     #endregion
 

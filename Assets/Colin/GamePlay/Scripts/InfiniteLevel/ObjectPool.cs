@@ -29,9 +29,13 @@ public class ObjectPool : MonoBehaviour
     [Header("Hakone Objects")]
     public GameObject[] HakoneToPool;
     public int[] amountHakoneToPool;
-    #endregion
 
     public SpawnObjects.Level currentLevel;
+    public SectionManager.AreaType aeraType;
+    #endregion
+
+
+
 
     // Awake
     #region
@@ -267,6 +271,11 @@ public class ObjectPool : MonoBehaviour
         while (availableObstacles[randomObject].activeInHierarchy)
         {
             randomObject = UnityEngine.Random.Range(0, numbersToRandomize);
+        }
+
+        if (availableObstacles[randomObject].GetComponent<Obstacle>().areaType != SectionManager.AreaType.AllOpen)
+        {
+            aeraType = availableObstacles[randomObject].GetComponent<Obstacle>().areaType;
         }
 
         return availableObstacles[randomObject];

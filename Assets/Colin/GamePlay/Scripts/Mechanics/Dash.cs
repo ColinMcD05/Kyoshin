@@ -16,12 +16,13 @@ public class Dash : MonoBehaviour
     [SerializeField] Rewind rewind;
     Slider dashSlider;
 
-    public AudioSource dashSource;
+    AudioSource dashSource;
     public AudioClip dashSound;
 
     void Start()
     {
         dashSlider = GameObject.Find("GameManager").transform.Find("Canvas").transform.Find("Dash").GetComponent<Slider>();
+        dashSource = GameObject.Find("Audio").transform.Find("SoundEffects").GetComponent<AudioSource>();
     }
 
     private void Update()

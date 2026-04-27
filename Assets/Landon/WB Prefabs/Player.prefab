@@ -460,6 +460,8 @@ MonoBehaviour:
   positions: []
   lane: 
   laneSpeed: 
+  rewindSource: {fileID: 0}
+  rewindSound: {fileID: 8300000, guid: d93119819ca1eac4bb174ff715d3bc5a, type: 3}
   rewinding: 0
 --- !u!114 &1567925838254450578
 MonoBehaviour:
@@ -511,6 +513,8 @@ MonoBehaviour:
   playerController: {fileID: 4074926366466159053}
   timing: {fileID: 1567925838254450578}
   rewind: {fileID: 3233316654364501501}
+  dashSource: {fileID: 0}
+  dashSound: {fileID: 8300000, guid: f58e734f8889bf847811e9f8a8d5dc50, type: 3}
 --- !u!114 &8146030246671798739
 MonoBehaviour:
   m_ObjectHideFlags: 0

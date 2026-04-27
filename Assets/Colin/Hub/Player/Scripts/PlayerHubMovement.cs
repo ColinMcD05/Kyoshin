@@ -9,7 +9,7 @@ public class PlayerHubMovement : MonoBehaviour
     public Vector3 direction;
     [SerializeField] Transform orientation;
     [SerializeField] Transform playerVisual; // child of this object
-    public AudioSource moveSource;
+    AudioSource moveSource;
     public AudioClip movementSound;
     AudioSource music;
     Songs songs;
@@ -18,6 +18,7 @@ public class PlayerHubMovement : MonoBehaviour
     void Start()
     {
         music = GameObject.Find("Audio").transform.Find("Music").GetComponent<AudioSource>();
+        moveSource = GameObject.Find("Audio").transform.Find("SoundEffects").GetComponent<AudioSource>();
         songs = GameObject.Find("GameManager").GetComponent<Songs>();
 
         foreach (Songs.SongData song in songs.songs)
