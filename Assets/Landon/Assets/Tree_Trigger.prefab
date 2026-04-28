@@ -108,6 +108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
   type: 0
+  obstacleLaneType: 4
+  areaType: 1
 --- !u!64 &3506406161867665224
 MeshCollider:
   m_ObjectHideFlags: 0

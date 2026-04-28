@@ -13,7 +13,7 @@ public class Timing : MonoBehaviour
     GameManager gameManager;
     [SerializeField] InputActionReference move;
     [SerializeField] InputActionReference jump;
-    [SerializeField] InputActionReference slide;
+    [SerializeField] InputActionReference slide, trick;
     [SerializeField] GameObject player;
     [SerializeField] TimingUI timingUI;
     Rewind rewind;
@@ -22,8 +22,10 @@ public class Timing : MonoBehaviour
     [SerializeField] MoveBackwards moveBackwards;
     [SerializeField] Songs songClass;
     [HideInInspector] public Songs.SongData currentSong;
-    [SerializeField] AudioSource musicPlayer;
+    AudioSource musicPlayer;
     [SerializeField] AudioSource countDownSound;
+    public AudioClip ScratchSound;
+    public AudioSource scratchSource;
 
     // IEnumerators
     IEnumerator resetCircle;
@@ -39,8 +41,6 @@ public class Timing : MonoBehaviour
     // Other variables
     public int comboNeeded = 3;
     public float startWaitTime = 1;
-    public int maxMult = 10;
-    public int comboNeededMult = 5;
     public int goodScore = 5;
     string currentScene;
     #endregion
@@ -64,7 +64,7 @@ public class Timing : MonoBehaviour
     private void Start()
     {
         currentScene = SceneManager.GetActiveScene().name;
-        resetCircle = timingUI.ResetCircle();
+        resetCircle = timingUI.IndicateBeat();
         songStartTime = 0;
         songPosition = 0;
         if (player == null)
@@ -73,6 +73,7 @@ public class Timing : MonoBehaviour
         rewind = player.GetComponent<Rewind>();
         playerLevelMovement = player.GetComponent<PlayerLevelMovement>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        musicPlayer = GameObject.Find("Audio").transform.Find("Music").GetComponent<AudioSource>();
 
         // Changing current song based on the build index. May change
         foreach (Songs.SongData song in songClass.songs)
@@ -113,6 +114,7 @@ public class Timing : MonoBehaviour
     public void StartMusic()
     {
         Invoke("SubscribeActions", currentSong.bps * 16);
+        playerLevelMovement.SubscribeActions();
         StartCoroutine(CountDown());
         if (!playerLevelMovement.enabled)
         {
@@ -157,7 +159,7 @@ public class Timing : MonoBehaviour
             }
             StopCoroutine(resetCircle);
             UnSubscribeActions();
-            currentSong = songClass.songs[newSong];
+            currentSong = songClass.songs[0];
             StartMusic();
         }
         else
@@ -172,33 +174,28 @@ public class Timing : MonoBehaviour
     // Check if input is hit at correct time
     public void CheckTime(InputAction.CallbackContext context)
     {
-        int mult = goodScore + gameManager.combo / comboNeededMult;
-        if (mult > maxMult)
-        {
-            mult = maxMult;
-        }
         float positionDecimal = GetDecimal(songPositionInBeats); // Getting decimals of beat position
         //Debug.Log(positionDecimal);
         if (positionDecimal <= messUpRange || positionDecimal >= 1 - messUpRange) // checks if action takes place in the mess up range.
         {
             // Do correct movement
             // Add combo
-            gameManager.combo++;
+            gameManager.IncreaseCombo();
             // Check player speed, if not at max speed go faster
             if (moveBackwards.forwardSpeed < moveBackwards.maxSpeed && gameManager.combo % comboNeeded == 0)
             {
                 moveBackwards.forwardSpeed *= 2;
             }
-            gameManager.AddScore(mult);
+            gameManager.AddScore(goodScore);
             //Debug.Log("Good");
         }
         else
         {
             // Else bad move
             // camera shakes intensify
+            // Put sound effect here
+            scratchSource.PlayOneShot(ScratchSound);
             playerControllerLevel.LoseLife();
-            // reset combo and speed
-            gameManager.combo = 0;
         }
     }
     #endregion
@@ -211,29 +208,52 @@ public class Timing : MonoBehaviour
     }
     #endregion
 
+    // Subscribe and Unsubscribe actions
+    #region
+    // Subscribes actions for both timing and player movement, ensureing CheckTime is infront
     public void SubscribeActions()
     {
         move.action.performed += CheckTime;
         jump.action.performed += CheckTime;
         slide.action.performed += CheckTime;
+        trick.action.performed += CheckTime;
+        // Unsubscribes player movement actions and subscribes them ensuring CheckTime happens first
         playerLevelMovement.UnSubscribeActions();
         playerLevelMovement.SubscribeActions();
     }
 
+    // Unsubcribes timing actions only
     public void UnSubscribeActions()
     {
         move.action.performed -= CheckTime;
         jump.action.performed -= CheckTime;
         slide.action.performed -= CheckTime;
+        trick.action.performed -= CheckTime;
     }
+    #endregion
 
+    // CountDown
+    #region
+    // Function that handles that count down UI
     IEnumerator CountDown()
     {
+        // Gets the countDown text component
         TextMeshProUGUI countDown = timingUI.transform.Find("Countdown").GetComponent<TextMeshProUGUI>();
+        // Waits 3 measures
         yield return new WaitForSeconds(currentSong.bps * 13);
+
+        // enabled countdown text
         countDown.enabled = true;
+
+        // Changes countdown pitch based on bpm of the song
+        float pitch = ((float)currentSong.bpm / 125f) * 2f;
+        countDownSound.pitch = pitch;
+
+        // Play count down sound and displays #
         countDownSound.Play();
         countDown.text = "3";
+
+        // Waits one beat then changes text until it shows GO
         yield return new WaitForSeconds(currentSong.bps);
         countDown.text = "2";
         yield return new WaitForSeconds(currentSong.bps);
@@ -241,6 +261,8 @@ public class Timing : MonoBehaviour
         yield return new WaitForSeconds(currentSong.bps);
         countDown.text = "GO!";
         yield return new WaitForSeconds(currentSong.bps);
+        // Disables countdown
         countDown.enabled = false;
     }
+    #endregion
 }

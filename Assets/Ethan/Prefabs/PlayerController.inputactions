@@ -59,6 +59,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Trick",
+                    "type": "Button",
+                    "id": "46386df8-ad1c-4e07-9640-7eaf700da376",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -116,17 +125,6 @@
                     "action": "LeftRight",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "cb173359-4f90-441c-8e37-d8f68162cf78",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "LeftRight",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "2D Vector",
@@ -198,17 +196,6 @@
                     "name": "",
                     "id": "2153b911-f1d2-48a2-b315-2234f5182700",
                     "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9962f870-a3c9-4db1-a26e-c5e35f42b8d1",
-                    "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -295,8 +282,8 @@
                 },
                 {
                     "name": "",
-                    "id": "81b561df-77ad-46fb-9c97-4c4b13fed7d3",
-                    "path": "<Gamepad>/leftStick/down",
+                    "id": "ec3c7593-01c6-4b9e-b1e6-df945ad63a1b",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -323,6 +310,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a4893c98-1339-4017-9a2c-3a51628103da",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Trick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad97e8fb-3b6f-4dfe-84b9-57ccbea4242b",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Trick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

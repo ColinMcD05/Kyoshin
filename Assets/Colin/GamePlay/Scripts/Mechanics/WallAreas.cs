@@ -8,6 +8,27 @@ public class WallAreas : MonoBehaviour
     public Transform leftWallPosition;
     public Transform rightWallPosition;
 
+    public void Start()
+    {
+        if (leftWallPosition == null && rightWallPosition == null)
+        {
+            GameObject sectionManager = GameObject.Find("SectionManager");
+            if (sectionManager == null) return;
+            switch (areaType)
+            {
+                default:
+                case PlayerLevelMovement.AreaType.wallRunning:
+                    leftWallPosition = sectionManager.transform.Find("LeftWall");
+                    rightWallPosition = sectionManager.transform.Find("RightWall");
+                    break;
+                case PlayerLevelMovement.AreaType.closeWallRunning:
+                    leftWallPosition = sectionManager.transform.Find("CloseLeftWall");
+                    rightWallPosition = sectionManager.transform.Find("CloseRightWall");
+                    break;
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Player"))
