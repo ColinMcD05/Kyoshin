@@ -124,7 +124,6 @@ public class PauseMenu : MonoBehaviour
     // Pauses game
     public void Pause()
     {
-        lastSelectedButton = resume;
         // Unsubscribes actions on player if in a level
         if (timing != null)
         {
@@ -174,6 +173,7 @@ public class PauseMenu : MonoBehaviour
         
         // Sets first selected game object to the resume button
         eventSystem.firstSelectedGameObject = resume.gameObject;
+        lastSelectedButton = eventSystem.currentSelectedGameObject.GetComponent<Button>();
 
         // sets the volume slider values to the values in PlayerPrefs
         masterVolume.value = PlayerPrefs.GetFloat("MasterVolume", 1);
@@ -293,12 +293,20 @@ public class PauseMenu : MonoBehaviour
         {
             default:
             case "Up":
-                if (lastSelectedButton.navigation.selectOnUp.gameObject == null) return;
+                if (lastSelectedButton.navigation.selectOnUp == null)
+                {
+                    eventSystem.SetSelectedGameObject(lastSelectedButton.gameObject); 
+                    return;
+                }
                 eventSystem.SetSelectedGameObject(lastSelectedButton.navigation.selectOnUp.gameObject);
                 lastSelectedButton = eventSystem.currentSelectedGameObject.GetComponent<Button>();
                 break;
             case "Down":
-                if (lastSelectedButton.navigation.selectOnDown.gameObject == null) return;
+                if (lastSelectedButton.navigation.selectOnDown == null)
+                {
+                    eventSystem.SetSelectedGameObject(lastSelectedButton.gameObject);
+                    return;
+                }
                 eventSystem.SetSelectedGameObject(lastSelectedButton.navigation.selectOnDown.gameObject);
                 lastSelectedButton = eventSystem.currentSelectedGameObject.GetComponent<Button>();
                 break;
@@ -417,6 +425,7 @@ public class PauseMenu : MonoBehaviour
     #region
     void ChangeLastSelected(InputAction.CallbackContext callbackContext)
     {
+        Debug.Log("Hello");
         if (!eventSystem.currentSelectedGameObject.CompareTag("Button"))
         {
             lastSelectedButton = eventSystem.currentSelectedGameObject.GetComponent<Button>();
