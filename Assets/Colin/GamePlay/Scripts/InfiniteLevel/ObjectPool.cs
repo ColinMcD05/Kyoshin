@@ -12,7 +12,7 @@ public class ObjectPool : MonoBehaviour
 
     public static ObjectPool sharedInstance;
     [Header("Pooled Objects")]
-    List<GameObject> pooledKyotoSections, pooledHakoneSections, pooledTokyoSections;
+    public List<GameObject> pooledKyotoSections, pooledHakoneSections, pooledTokyoSections;
     Dictionary<ObstacleLaneType, List<GameObject>> pooledKyotoObstacles, pooledTokyoObstacles, pooledHakoneObstacles;
 
     [Header("Section Info")]
@@ -36,6 +36,12 @@ public class ObjectPool : MonoBehaviour
 
     public SpawnObjects.Level currentLevel;
     public SectionManager.AreaType aeraType;
+
+    /// <summary>
+    /// 0 Kyoto, 1 Hakone, 2 Tokyo
+    /// </summary>
+    [Header("Skyboxes")]
+    public Material[] skyBoxes;
     #endregion
 
     // Awake
@@ -155,17 +161,33 @@ public class ObjectPool : MonoBehaviour
     // Get a section from the object pool
     public GameObject GetPooledSections()
     {
+        int randomSection = 0;
         switch (currentLevel)
         {
             default:
             case Level.All:
                 break;
             case Level.Kyoto:
-                break;
+                randomSection = UnityEngine.Random.Range(0, pooledKyotoSections.Count);
+                while (pooledKyotoSections[randomSection].activeInHierarchy)
+                {
+                    randomSection = randomSection = UnityEngine.Random.Range(0, pooledKyotoSections.Count);
+                }
+                return pooledHakoneSections[randomSection];
             case Level.Hakone:
-                break;
+                randomSection = UnityEngine.Random.Range(0, pooledHakoneSections.Count);
+                while (pooledHakoneSections[randomSection].activeInHierarchy)
+                {
+                    randomSection = randomSection = UnityEngine.Random.Range(0, pooledHakoneSections.Count);
+                }
+                return pooledHakoneSections[randomSection];
             case Level.Tokyo:
-                break;
+                randomSection = UnityEngine.Random.Range(0, pooledTokyoSections.Count);
+                while (pooledTokyoSections[randomSection].activeInHierarchy)
+                {
+                    randomSection = randomSection = UnityEngine.Random.Range(0, pooledTokyoSections.Count);
+                }
+                return pooledTokyoSections[randomSection];
         }
         return null;
     }
