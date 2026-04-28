@@ -13,7 +13,7 @@ public class Rewind : MonoBehaviour
     [SerializeField] Rigidbody playerRigidbody;
     [SerializeField] PlayerLevelMovement playerMovement;
     [SerializeField] MoveBackwards moveBackwards;
-    [SerializeField] AudioSource musicPlayer;
+    AudioSource musicPlayer;
     [SerializeField] Timing timing;
     [SerializeField] Collider playerCollider;
 
@@ -25,6 +25,10 @@ public class Rewind : MonoBehaviour
     [HideInInspector] public List<Vector2> positions; // List holding players last known position between 0 and rewindTime seconds
     [HideInInspector] public List<int> lane;
     [HideInInspector] public List<int> laneSpeed;
+    float startRewindTime;
+    float totalRewindTime;
+    AudioSource rewindSource;
+    public AudioClip rewindSound;
 
     // Mutable Variables in other scripts
     public bool rewinding = false;
@@ -33,6 +37,8 @@ public class Rewind : MonoBehaviour
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        musicPlayer = GameObject.Find("Audio").transform.Find("Music").GetComponent<AudioSource>();
+        rewindSource = GameObject.Find("Audio").transform.Find("SoundEffects").GetComponent<AudioSource>();
     }
 
     // FixedUpdate
@@ -110,6 +116,7 @@ public class Rewind : MonoBehaviour
     // Lets other scripts more easily start rewind mechanic
     public void StartRewind()
     {
+        startRewindTime = (float)AudioSettings.dspTime; ;
         rewinding = true;
 
         musicPlayer.pitch = -1; // Reverses music
@@ -119,15 +126,20 @@ public class Rewind : MonoBehaviour
         playerController.enabled = false;
         playerMovement.UnSubscribeActions();
         timing.UnSubscribeActions();
+        Time.timeScale = 2;
+        // Play rewind sound
+        rewindSource.PlayOneShot(rewindSound);
     }
 
     // Lets other scripts more easily stop rewind mechanic
     public void StopRewind()
     {
+        totalRewindTime = (float)AudioSettings.dspTime - startRewindTime;
         rewinding = false;
 
         musicPlayer.pitch = 1; // Music plays normally
-        timing.rewindTimeUsed += rewindTime * 2; // Adds time that was rewound to get accurate position of song
+        timing.rewindTimeUsed += totalRewindTime; // Adds time that was rewound to get accurate position of song
+        Debug.Log(totalRewindTime);
 
         // Enables parts of player
         Invoke("BecomeVulnerable", invincibility);
@@ -136,6 +148,9 @@ public class Rewind : MonoBehaviour
         moveBackwards.forwardSpeed *= -1;
         moveBackwards.forwardSpeed = moveBackwards.minSpeed;
         lane.Clear();
+        Time.timeScale = 1;
+        // Stop rewind sound
+        rewindSource.Stop();
     }
     #endregion
 

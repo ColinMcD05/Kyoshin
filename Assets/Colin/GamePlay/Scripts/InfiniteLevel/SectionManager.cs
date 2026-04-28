@@ -1,13 +1,20 @@
-using System;
 using UnityEngine;
 
 public class SectionManager : MonoBehaviour
 {
-    Timing timing;
-    Songs.SongData currentSong;
-
+    public AreaType currentArea;
+    public enum AreaType
+    {
+        AllOpen,
+        LeftClosed,
+        RightClosed,
+        MiddleClosed,
+        WallRun,
+        CloseWallRun
+    }
     void Start()
     {
+        // Sets up the original 6 sections at the start
         Vector3 spawnPosition = new Vector3(0, 0, 16);
         GameObject section = ObjectPool.sharedInstance.GetPooledSections();
         if (section != null)
@@ -47,8 +54,5 @@ public class SectionManager : MonoBehaviour
             section.transform.rotation = gameObject.transform.rotation;
             section.SetActive(true);
         }
-
-        timing = GameObject.Find("Player").GetComponent<Timing>();
-        currentSong = timing.currentSong;
     }
 }

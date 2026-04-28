@@ -25,7 +25,6 @@ public class Cameras : MonoBehaviour
         mainCamera = Camera.main;
         player = GameObject.Find("Player_Hub");
         orientation = player.transform.GetChild(0);
-        Debug.Log(orientation.gameObject.name);
         playerMovement = player.GetComponent<PlayerHubMovement>();
         originalRotation = orientation.transform.rotation;
         newRotation = originalRotation * Quaternion.Euler(0, rotationChange, 0);

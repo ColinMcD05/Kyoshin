@@ -18,6 +18,9 @@ public class PlayerControllerLevel : MonoBehaviour
     public float regenTime = 2.0f;
     public bool invincible = false;
 
+    public AudioSource audioSource;
+    public AudioClip HealthSound;
+
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -39,9 +42,11 @@ public class PlayerControllerLevel : MonoBehaviour
     #region
     // lose a life function will only be called after player collides with an obstacle x amount of times each collison will cause the camera to shake
     public void LoseLife(){
+        Debug.Log("Active");
         if (timing.songPosition >= 4)
         {
             if (invincible) return;
+            gameManager.ClearCombo();
             if (collidedAmout == 0)
             {
                 collidedAmout++;
@@ -53,7 +58,7 @@ public class PlayerControllerLevel : MonoBehaviour
             }
             cineMachineNoise.AmplitudeGain += 1;
             cineMachineNoise.FrequencyGain += 1;
-            Debug.Log("Collided Amount: " + collidedAmout); // Log the collided amount
+            //Debug.Log("Collided Amount: " + collidedAmout); // Log the collided amount
             if (collidedAmout >= maxCollisions)
             { // If the collided amount is greater than or equal to the max collisions
                 //Debug.Log("Lives: " + lives);
@@ -63,15 +68,13 @@ public class PlayerControllerLevel : MonoBehaviour
             {
                 moveBackwards.forwardSpeed = moveBackwards.minSpeed;
             }
-            if (gameManager.lives <= 0)
-            {
-                gameManager.GameOver();
-            }
         }
     }
+    #endregion
 
     public void Death()
     {
+        gameManager.ClearCombo();
         collidedAmout = 0;
         cineMachineNoise.AmplitudeGain = 0;
         cineMachineNoise.FrequencyGain = 0;
@@ -80,24 +83,40 @@ public class PlayerControllerLevel : MonoBehaviour
         livesText.ChangeText();
         if (gameManager.lives <= 0)
         {
-            gameManager.GameOver();
+            if (SceneManager.GetActiveScene().name != "Infinite")
+            {
+                gameManager.GameOver();
+            }
+            else
+            {
+                Win win = GameObject.Find("SectionManager").GetComponent<Win>();
+                win.Winning();
+            }
         }
     }
 
     IEnumerator RegainLives()
     {
+        yield return new WaitForSeconds(regenTime);
         while (collidedAmout > 0)
         { 
-            yield return new WaitForSeconds(regenTime);
             collidedAmout--;
-            cineMachineNoise.AmplitudeGain -= 1;
-            cineMachineNoise.FrequencyGain -= 1;
-            Debug.Log("Regained");
+            // Put sound effect here
+            if (audioSource != null && HealthSound != null)
+            {
+                audioSource.PlayOneShot(HealthSound);
+            }
+            if (cineMachineNoise.AmplitudeGain > 0)
+            {
+                cineMachineNoise.AmplitudeGain -= 1;
+                cineMachineNoise.FrequencyGain -= 1;
+            }
+            yield return new WaitForSeconds(regenTime);
+            //Debug.Log("Regained");
         }
     }
 
     public void ShakeCamera(int shakeIntensity){
         // shake the camera by using the CinemachineShake script
     } // end of ShakeCamera function
-    #endregion
 }

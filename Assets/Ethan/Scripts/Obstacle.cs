@@ -10,10 +10,37 @@ public class Obstacle : MonoBehaviour
         Hurt
     }
 
-    void OnTriggerEnter(Collider other){
-        if(other.gameObject.CompareTag("Player") /*&& !other.GetComponent<Dash>().dashing*/)
+
+    /// <summary>
+    /// Only used in the infinite level to determine what to spawn
+    /// </summary>
+    public SpawnObjects.ObstacleLaneType obstacleLaneType;
+    public SectionManager.AreaType areaType;
+
+    AudioSource obstacleSource;
+    public AudioClip obstacleSound;
+
+    void OnDisable()
+    {
+        for (int i = 1; i < transform.childCount; i++)
         {
-            if (!other.GetComponent<Dash>().dashing)
+            Transform child = transform.GetChild(i);
+            if (child.gameObject.CompareTag("NormalObs"))
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    void Start()
+    {
+        obstacleSource = GameObject.Find("Audio").transform.Find("SoundEffects").GetComponent<AudioSource>();
+    }
+
+    /*void OnTriggerEnter(Collider other){
+        if(other.gameObject.CompareTag("Player") && !other.GetComponent<Dash>().dashing)
+        {
+            if (!other.GetComponent<Dash>().dashing && obstacleLaneType == ObstacleLaneType.SingleObject)
             {
                 Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
                 PlayerLevelMovement playerMovement = other.GetComponent<PlayerLevelMovement>();
@@ -47,5 +74,5 @@ public class Obstacle : MonoBehaviour
                 }
             }
         }
-    } // end of OnTriggerEnter function
+    } // end of OnTriggerEnter function*/
 }
