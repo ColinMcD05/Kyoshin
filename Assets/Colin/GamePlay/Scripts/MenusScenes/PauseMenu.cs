@@ -1,8 +1,10 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -17,17 +19,18 @@ public class PauseMenu : MonoBehaviour
 
     // Last selected object variables
     Button lastSelectedButton;
+    Slider lastSlider;
 
     // Toggle variables to avoid pausing too often in a short time
     private float lastToggleTime;
     private float toggleCooldown = 0.2f;
 
     // Input action references
-    [SerializeField] InputActionReference pause, pauseHub;
+    [SerializeField] InputActionReference pause;
 
     // Audio references
     [SerializeField] AudioMixer audioMixer;
-    AudioSource music;
+    AudioSource music, playerAudio;
 
     // Pause menu canvas references
     public EventSystem eventSystem;
@@ -44,6 +47,7 @@ public class PauseMenu : MonoBehaviour
     GameManager gameManager;
     [SerializeField] InputActionReference uiNavigations;
     [SerializeField] Toggle uiToggle;
+    InputSystemUIInputModule inputModule;
 
     AudioSource buttonSource;
     public AudioClip buttonSound;
@@ -72,7 +76,9 @@ public class PauseMenu : MonoBehaviour
         // Sets the volume based on saved player settings
         audioMixer.SetFloat("MasterVolume", Mathf.Log10(PlayerPrefs.GetFloat("MasterVolume", 1)) * 20);
         audioMixer.SetFloat("MusicVolume", Mathf.Log10(PlayerPrefs.GetFloat("MusicVolume", 1)) * 20);
-        uiNavigations.action.performed += ChangeLastSelected;
+        // Get the input module to assign functions to the action for moving with keyboard
+        inputModule = eventSystem.gameObject.GetComponent<InputSystemUIInputModule>();
+        inputModule.move.action.performed += ChangeLastSelected;
     }
     #endregion
 
@@ -83,6 +89,7 @@ public class PauseMenu : MonoBehaviour
         // Unsubscribe actions when object is destroyed
         pause.action.performed -= PausePerformed; 
         SceneManager.sceneLoaded -= GetReferences;
+        inputModule.move.action.performed -= ChangeLastSelected;
     }
     #endregion
 
@@ -98,7 +105,7 @@ public class PauseMenu : MonoBehaviour
         // Avoids pausing too often
         if (Time.realtimeSinceStartup - lastToggleTime < toggleCooldown) return;
         // Halt pausing a cuople of seconds to make sure nothing breaks
-        if (SceneManager.GetActiveScene().name != "HUB" && Time.timeSinceLevelLoad < 2) return;
+        if (SceneManager.GetActiveScene().name != "HUB" && Time.timeSinceLevelLoad < 3) return;
 
         // Logs the toggle time
         lastToggleTime = Time.realtimeSinceStartup;
@@ -170,10 +177,11 @@ public class PauseMenu : MonoBehaviour
 
         // Pauses music
         music.Pause();
-        
+        playerAudio.Pause();
+
         // Sets first selected game object to the resume button
-        eventSystem.firstSelectedGameObject = resume.gameObject;
-        lastSelectedButton = eventSystem.currentSelectedGameObject.GetComponent<Button>();
+        eventSystem.SetSelectedGameObject(resume.gameObject);
+        lastSelectedButton = resume;
 
         // sets the volume slider values to the values in PlayerPrefs
         masterVolume.value = PlayerPrefs.GetFloat("MasterVolume", 1);
@@ -212,7 +220,9 @@ public class PauseMenu : MonoBehaviour
         }
         // Unpauses music and deactivates pause menu images
         music.UnPause();
+        playerAudio.UnPause();
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        buttonSource.PlayOneShot(buttonSound);
     }
     #endregion
 
@@ -237,6 +247,7 @@ public class PauseMenu : MonoBehaviour
     // Changes master volume
     public void ChangeVolume(float value)
     {
+        buttonSource.PlayOneShot(buttonSound);
         // Logarithmically change master volume based on value
         audioMixer.SetFloat("MasterVolume", Mathf.Log10(value) * 20);
         // Saves setting in PlayerPrefs
@@ -247,6 +258,7 @@ public class PauseMenu : MonoBehaviour
     // Change music volume
     public void ChangeMusicVolume(float value)
     {
+        buttonSource.PlayOneShot(buttonSound);
         // Logarithmically change music volume based on value
         audioMixer.SetFloat("MusicVolume", Mathf.Log10(value) * 20);
         // Saves setting in PlayerPrefs
@@ -274,6 +286,7 @@ public class PauseMenu : MonoBehaviour
     // Turn on the controls screen
     public void Controls()
     {
+        buttonSource.PlayOneShot(buttonSound);
         controls.enabled = true;
         eventSystem.SetSelectedGameObject(returnButton.gameObject);
     }
@@ -281,6 +294,7 @@ public class PauseMenu : MonoBehaviour
     // Returns back to the pause menu
     public void Return()
     {
+        buttonSource.PlayOneShot(buttonSound);
         controls.enabled = false;
         eventSystem.SetSelectedGameObject(lastSelectedButton.gameObject);
     }
@@ -288,32 +302,59 @@ public class PauseMenu : MonoBehaviour
     // Arrows behavior
     public void Arrows(string name)
     {
+        buttonSource.PlayOneShot(buttonSound);
+        Debug.Log(name);
         Slider slider = null;
+        // Gets the type of arrow to assign correct behavior
         switch (name)
         {
             default:
             case "Up":
+                if (lastSlider != null)
+                {
+                    lastSlider = null;
+                }
+                // On up arrow, if button is connected up, move up
                 if (lastSelectedButton.navigation.selectOnUp == null)
                 {
                     eventSystem.SetSelectedGameObject(lastSelectedButton.gameObject); 
                     return;
                 }
+                // Set selected game object and set last selected button to current gameobject
                 eventSystem.SetSelectedGameObject(lastSelectedButton.navigation.selectOnUp.gameObject);
                 lastSelectedButton = eventSystem.currentSelectedGameObject.GetComponent<Button>();
                 break;
             case "Down":
+                if (lastSlider != null)
+                {
+                    lastSlider = null;
+                }
+                // On down arrow, if button is connected down, move down
                 if (lastSelectedButton.navigation.selectOnDown == null)
                 {
                     eventSystem.SetSelectedGameObject(lastSelectedButton.gameObject);
                     return;
                 }
+                // Set selected game object and set last selected button to current game object
                 eventSystem.SetSelectedGameObject(lastSelectedButton.navigation.selectOnDown.gameObject);
                 lastSelectedButton = eventSystem.currentSelectedGameObject.GetComponent<Button>();
                 break;
-            case "Right":
-                Debug.Log(eventSystem.currentSelectedGameObject == null);
+            case "Left":
+                buttonSource.PlayOneShot(buttonSound);
+                // Check if current selected game object is a slider
+                if (lastSlider != null)
+                {
+                    eventSystem.SetSelectedGameObject(lastSlider.gameObject);
+                }
+                else
+                {
+                    eventSystem.SetSelectedGameObject(lastSelectedButton.gameObject);
+                    return;
+                }
                 if (eventSystem.currentSelectedGameObject.CompareTag("MusicSlider") || eventSystem.currentSelectedGameObject.CompareTag("MasterSlider"))
                 {
+                    Debug.Log(eventSystem.currentSelectedGameObject == null);
+                    // Change slider value down
                     slider = eventSystem.currentSelectedGameObject.GetComponent<Slider>();
                     if (slider.value > slider.minValue)
                     {
@@ -325,15 +366,26 @@ public class PauseMenu : MonoBehaviour
                     }
                 }
                 break;
-            case "Left":
-                Debug.Log(eventSystem.currentSelectedGameObject == null);
+            case "Right":
+                buttonSource.PlayOneShot(buttonSound);
+                // Check if current selected game object is a slider
+                if (lastSlider != null)
+                {
+                    eventSystem.SetSelectedGameObject(lastSlider.gameObject);
+                }
+                else
+                {
+                    eventSystem.SetSelectedGameObject(lastSelectedButton.gameObject);
+                    return;
+                }
                 if (eventSystem.currentSelectedGameObject.CompareTag("MusicSlider") || eventSystem.currentSelectedGameObject.CompareTag("MasterSlider"))
                 {
+                    // Check slider value down
                     slider = eventSystem.currentSelectedGameObject.GetComponent<Slider>();
                     if (slider.value < slider.maxValue)
                     {
                         slider.value += 0.1f;
-                        if (slider.value < slider.maxValue)
+                        if (slider.value > slider.maxValue)
                         {
                             slider.value = slider.maxValue;
                         }
@@ -343,9 +395,13 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    // Toggle the ui canvas on and off
     public void ToggleIndicator()
     {
+        buttonSource.PlayOneShot(buttonSound);
+        // switch toggle is on state
         uiToggle.isOn = !uiToggle.isOn;
+        // if timing ui is available, turn it off
         if (timingUI != null)
         {
             if (uiToggle.isOn)
@@ -359,16 +415,26 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    // Enter button for Ipod 
     public void Enter()
     {
+        buttonSource.PlayOneShot(buttonSound);
+        //ensure selected object is last selected
         eventSystem.SetSelectedGameObject(lastSelectedButton.gameObject);
+        // Invoke last selected buttons on click event
         lastSelectedButton.onClick.Invoke();
     }
 
+    // Moves to slider
     public void MoveToSlider()
     {
+        buttonSource.PlayOneShot(buttonSound);
+        // Set last selectedButton to the current button
         lastSelectedButton = eventSystem.currentSelectedGameObject.GetComponent<Button>();
+        // move current slected objecct to the slider
         eventSystem.SetSelectedGameObject(lastSelectedButton.transform.GetChild(0).gameObject);
+        lastSlider = eventSystem.currentSelectedGameObject.GetComponent<Slider>();
+        Debug.Log(eventSystem.currentSelectedGameObject.name);
     }
 
     #endregion
@@ -409,6 +475,10 @@ public class PauseMenu : MonoBehaviour
             else
             {
                 timingUI.GetComponent<Canvas>().enabled = false;
+            }
+            if (playerMovement != null)
+            {
+                playerAudio = playerMovement.transform.Find("RunningAudio").GetComponent<AudioSource>();
             }
         }
         else
