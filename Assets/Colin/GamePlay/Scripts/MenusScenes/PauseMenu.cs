@@ -15,6 +15,9 @@ public class PauseMenu : MonoBehaviour
     private float endPauseTime;
     bool hasStarted;
 
+    // Last selected object variables
+    Button lastSelectedButton;
+
     // Toggle variables to avoid pausing too often in a short time
     private float lastToggleTime;
     private float toggleCooldown = 0.2f;
@@ -28,9 +31,10 @@ public class PauseMenu : MonoBehaviour
 
     // Pause menu canvas references
     public EventSystem eventSystem;
-    public Button resume;
+    public Button resume, returnButton;
     [SerializeField]
     Slider masterVolume, musicVolume;
+    [SerializeField] Canvas controls;
 
     // Other game object and script references
     Timing timing;
@@ -38,6 +42,8 @@ public class PauseMenu : MonoBehaviour
     GameObject winScreen;
     PlayerLevelMovement playerMovement;
     GameManager gameManager;
+    [SerializeField] InputActionReference uiNavigations;
+    [SerializeField] Toggle uiToggle;
 
     AudioSource buttonSource;
     public AudioClip buttonSound;
@@ -66,6 +72,7 @@ public class PauseMenu : MonoBehaviour
         // Sets the volume based on saved player settings
         audioMixer.SetFloat("MasterVolume", Mathf.Log10(PlayerPrefs.GetFloat("MasterVolume", 1)) * 20);
         audioMixer.SetFloat("MusicVolume", Mathf.Log10(PlayerPrefs.GetFloat("MusicVolume", 1)) * 20);
+        uiNavigations.action.performed += ChangeLastSelected;
     }
     #endregion
 
@@ -117,6 +124,7 @@ public class PauseMenu : MonoBehaviour
     // Pauses game
     public void Pause()
     {
+        lastSelectedButton = resume;
         // Unsubscribes actions on player if in a level
         if (timing != null)
         {
@@ -262,6 +270,99 @@ public class PauseMenu : MonoBehaviour
         buttonSource.PlayOneShot(buttonSound);
         SceneManager.LoadScene("HUB");
     }
+
+    // Turn on the controls screen
+    public void Controls()
+    {
+        controls.enabled = true;
+        eventSystem.SetSelectedGameObject(returnButton.gameObject);
+    }
+
+    // Returns back to the pause menu
+    public void Return()
+    {
+        controls.enabled = false;
+        eventSystem.SetSelectedGameObject(lastSelectedButton.gameObject);
+    }
+
+    // Arrows behavior
+    public void Arrows(string name)
+    {
+        Slider slider = null;
+        switch (name)
+        {
+            default:
+            case "Up":
+                if (lastSelectedButton.navigation.selectOnUp.gameObject == null) return;
+                eventSystem.SetSelectedGameObject(lastSelectedButton.navigation.selectOnUp.gameObject);
+                lastSelectedButton = eventSystem.currentSelectedGameObject.GetComponent<Button>();
+                break;
+            case "Down":
+                if (lastSelectedButton.navigation.selectOnDown.gameObject == null) return;
+                eventSystem.SetSelectedGameObject(lastSelectedButton.navigation.selectOnDown.gameObject);
+                lastSelectedButton = eventSystem.currentSelectedGameObject.GetComponent<Button>();
+                break;
+            case "Right":
+                Debug.Log(eventSystem.currentSelectedGameObject == null);
+                if (eventSystem.currentSelectedGameObject.CompareTag("MusicSlider") || eventSystem.currentSelectedGameObject.CompareTag("MasterSlider"))
+                {
+                    slider = eventSystem.currentSelectedGameObject.GetComponent<Slider>();
+                    if (slider.value > slider.minValue)
+                    {
+                        slider.value -= 0.1f;
+                        if (slider.value < slider.minValue)
+                        {
+                            slider.value = slider.minValue;
+                        }
+                    }
+                }
+                break;
+            case "Left":
+                Debug.Log(eventSystem.currentSelectedGameObject == null);
+                if (eventSystem.currentSelectedGameObject.CompareTag("MusicSlider") || eventSystem.currentSelectedGameObject.CompareTag("MasterSlider"))
+                {
+                    slider = eventSystem.currentSelectedGameObject.GetComponent<Slider>();
+                    if (slider.value < slider.maxValue)
+                    {
+                        slider.value += 0.1f;
+                        if (slider.value < slider.maxValue)
+                        {
+                            slider.value = slider.maxValue;
+                        }
+                    }
+                }
+                break;
+        }
+    }
+
+    public void ToggleIndicator()
+    {
+        uiToggle.isOn = !uiToggle.isOn;
+        if (timingUI != null)
+        {
+            if (uiToggle.isOn)
+            {
+                timingUI.GetComponent<Canvas>().enabled = true;
+            }
+            else
+            {
+                timingUI.GetComponent<Canvas>().enabled = false;
+            }
+        }
+    }
+
+    public void Enter()
+    {
+        eventSystem.SetSelectedGameObject(lastSelectedButton.gameObject);
+        lastSelectedButton.onClick.Invoke();
+    }
+
+    public void MoveToSlider()
+    {
+        lastSelectedButton = eventSystem.currentSelectedGameObject.GetComponent<Button>();
+        eventSystem.SetSelectedGameObject(lastSelectedButton.transform.GetChild(0).gameObject);
+    }
+
     #endregion
 
     // GetReferences
@@ -291,7 +392,16 @@ public class PauseMenu : MonoBehaviour
             {
                 winScreen = GameObject.Find("WinScreen");
             }
-            
+
+            // Set Timing Ui canvas on or off based on settings
+            if (uiToggle.isOn)
+            {
+                timingUI.GetComponent<Canvas>().enabled = true;
+            }
+            else
+            {
+                timingUI.GetComponent<Canvas>().enabled = false;
+            }
         }
         else
         {
@@ -299,6 +409,17 @@ public class PauseMenu : MonoBehaviour
             timing = null;
             timingUI = null;
             winScreen = null;
+        }
+    }
+    #endregion
+
+    // ChangeLastSelected
+    #region
+    void ChangeLastSelected(InputAction.CallbackContext callbackContext)
+    {
+        if (!eventSystem.currentSelectedGameObject.CompareTag("Button"))
+        {
+            lastSelectedButton = eventSystem.currentSelectedGameObject.GetComponent<Button>();
         }
     }
     #endregion
