@@ -193,7 +193,9 @@ public class Win : MonoBehaviour
 
         // Set position of both characters to win positions
         player.transform.position = playerWinPosition.position;
+        player.transform.localScale = playerWinPosition.localScale;
         otherChar.transform.position = otherCharWinPosition.position;
+        otherChar.transform.localScale = otherCharWinPosition.localScale;
 
         // Change camera
         mainCamera.enabled = false;
