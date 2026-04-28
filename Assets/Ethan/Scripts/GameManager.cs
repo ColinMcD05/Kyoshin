@@ -1,13 +1,9 @@
 using UnityEngine;
 using System.IO;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
 using TMPro;
 using UnityEngine.UI;
-using Unity.VisualScripting;
+using System;
 public class GameManager : MonoBehaviour
 {
     // Variables
@@ -105,31 +101,30 @@ public class GameManager : MonoBehaviour
     {
         dataPath = filePath + "Level_Data.json"; // Set dataPath to where Level_Data is held
         // If directory and file exists, set level list to the level data saved
-        if (Directory.Exists(filePath))
+        try
         {
-            if (File.Exists(dataPath))
+            using (StreamReader stream = new StreamReader(dataPath))
             {
-                using (StreamReader stream = new StreamReader(dataPath))
-                {
-                    var levelString = stream.ReadToEnd(); // Reads data
-                    var levelData = JsonUtility.FromJson<LevelList>(levelString); // sets data into lists to distrubute
+                var levelString = stream.ReadToEnd(); // Reads data
+                var levelData = JsonUtility.FromJson<LevelList>(levelString); // sets data into lists to distrubute
 
-                    for (int i = 0; i < levelData.levelList.Length; i++)
+                for (int i = 0; i < levelData.levelList.Length; i++)
+                {
+                    levels[i] = levelData.levelList[i]; // correctly assigns data to the correct list
+                    if (levels[i].name == "Unlimited")
                     {
-                        levels[i] = levelData.levelList[i]; // correctly assigns data to the correct list
-                        if (levels[i].name == "Unlimited")
-                        {
-                            levels[i].name = "Infinite";
-                        }
+                        levels[i].name = "Infinite";
                     }
                 }
             }
         }
-        else
+        catch (Exception ex)
         {
-            // If this is the first time opening the game set up levels information
-            levels = new Levels[4]
+            if (ex is DirectoryNotFoundException || ex is FileNotFoundException)
             {
+                // If this is the first time opening the game set up levels information
+                levels = new Levels[4]
+                {
                 new Levels
                 {
                     name = "Hakone",
@@ -165,7 +160,9 @@ public class GameManager : MonoBehaviour
                     progress = Levels.Progress.incompleted,
                     lockStatus = Levels.LockStatus.Locked
                 }
-            };
+                };
+            }
+            else throw;
         }
     }
     #endregion
@@ -232,7 +229,7 @@ public class GameManager : MonoBehaviour
     void SceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Saves the game to ensure no data loss
-        Save();
+        //Save();
 
         // set score and lives back to normal
         score = 0;
