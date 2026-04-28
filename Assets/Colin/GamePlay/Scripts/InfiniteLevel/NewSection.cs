@@ -160,7 +160,19 @@ public class NewSection : MonoBehaviour
                 Transform child = transform.parent.transform.GetChild(i);
                 if (child.gameObject.CompareTag("NormalObs"))
                 {
+                    if (child.childCount > 0)
+                    {
+                        for (int j = 0; j < child.childCount; j++)
+                        {
+                            Transform otherChild = child.transform.GetChild(j);
+                            if (otherChild.CompareTag("NormalObs"))
+                            {
+                                otherChild.gameObject.SetActive(false);
+                            }
+                        }
+                    }
                     child.gameObject.SetActive(false);
+
                 }
             }
             // Send object back to object pool

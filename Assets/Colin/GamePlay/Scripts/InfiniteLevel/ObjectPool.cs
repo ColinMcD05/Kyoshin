@@ -12,12 +12,16 @@ public class ObjectPool : MonoBehaviour
 
     public static ObjectPool sharedInstance;
     [Header("Pooled Objects")]
-    public List<GameObject> pooledSections;
+    List<GameObject> pooledKyotoSections, pooledHakoneSections, pooledTokyoSections;
     Dictionary<ObstacleLaneType, List<GameObject>> pooledKyotoObstacles, pooledTokyoObstacles, pooledHakoneObstacles;
 
     [Header("Section Info")]
-    public GameObject sectionToPool;
-    public int amountSectionsToPool;
+    public GameObject[] sectionKyotoPool;
+    public int[] amountSectionKyotoPool;
+    public GameObject[] sectionHakonePool;
+    public int[] amountSectionHakonePool;
+    public GameObject[] sectionTokyoPool;
+    public int[] amountSectionTokyoPool;
 
     [Header("Obstacles Info")]
     [Header("Kyoto Objects")]
@@ -41,14 +45,41 @@ public class ObjectPool : MonoBehaviour
         // Sets shared instance to this instance of game object
         sharedInstance = this;
 
-        // Creating an object pool for all the sections
-        pooledSections = new List<GameObject>();
+        // Creating an object pool for the Kyoto sections
+        pooledKyotoSections = new List<GameObject>();
         GameObject tmp;
-        for (int i = 0; i < amountSectionsToPool; i++)
+        for (int i = 0; i < amountSectionKyotoPool.Length; i++)
         {
-            tmp = Instantiate(sectionToPool);
-            tmp.SetActive(false);
-            pooledSections.Add(tmp);
+            for (int j = 0; j < amountSectionKyotoPool[i]; j++)
+            {
+                tmp = Instantiate(sectionKyotoPool[i]);
+                tmp.SetActive(false);
+                pooledKyotoSections.Add(tmp);
+            }
+        }
+
+        // Creating an object pool for all the Hakone sections
+        pooledHakoneSections = new List<GameObject>();
+        for (int i = 0; i < amountSectionHakonePool.Length; i++)
+        {
+            for (int j = 0; j < amountSectionHakonePool[i]; j++)
+            {
+                tmp = Instantiate(sectionHakonePool[i]);
+                tmp.SetActive(false);
+                pooledHakoneSections.Add(tmp);
+            }
+        }
+
+        // Creating an object pool for all the Tokyo sections
+        pooledTokyoSections = new List<GameObject>();
+        for (int i = 0; i < amountSectionTokyoPool.Length; i++)
+        {
+            for (int j = 0; j < amountSectionTokyoPool[i]; j++)
+            {
+                tmp = Instantiate(sectionTokyoPool[i]);
+                tmp.SetActive(false);
+                pooledTokyoSections.Add(tmp);
+            }
         }
 
         // Creating an object pool for kyoto obstacles
@@ -124,13 +155,17 @@ public class ObjectPool : MonoBehaviour
     // Get a section from the object pool
     public GameObject GetPooledSections()
     {
-        // Check for the first section that is not active in the hierarchy and return it
-        for (int i = 0; i < amountSectionsToPool; i++)
+        switch (currentLevel)
         {
-            if (!pooledSections[i].activeInHierarchy)
-            {
-                return pooledSections[i];
-            }
+            default:
+            case Level.All:
+                break;
+            case Level.Kyoto:
+                break;
+            case Level.Hakone:
+                break;
+            case Level.Tokyo:
+                break;
         }
         return null;
     }

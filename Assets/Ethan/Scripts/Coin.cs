@@ -27,7 +27,10 @@ public class Coin : MonoBehaviour
         {
             float addedValue = 1 / dashValue;
             gameManager.AddScore(coinValue);
-            other.GetComponent<Dash>().AddDash(addedValue);
+            if (!other.GetComponent<Dash>().dashing)
+            {
+                other.GetComponent<Dash>().AddDash(addedValue);
+            }
             if (dashSlider.value < dashSlider.maxValue)
             {
                 dashSlider.value += addedValue;

@@ -209,9 +209,14 @@ public class Win : MonoBehaviour
         TextMeshProUGUI highScore = winScreen.transform.Find("HighScore").GetComponent<TextMeshProUGUI>();
         highScore.text = "High Score: " + gameManager.GetHighScore(SceneManager.GetActiveScene().name);
         // if it is a new high score, create the text of a new highscore
+        TextMeshProUGUI newHighScoreText = winScreen.transform.Find("NewHighScore").GetComponent<TextMeshProUGUI>();
         if (newHighScore)
         {
-            // NEW HIGH SCORE
+            newHighScoreText.enabled = true;
+        }
+        else
+        {
+            newHighScoreText.enabled = false;
         }
 
         StartCoroutine(FadeIn());

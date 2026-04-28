@@ -117,6 +117,10 @@ public class GameManager : MonoBehaviour
                     for (int i = 0; i < levelData.levelList.Length; i++)
                     {
                         levels[i] = levelData.levelList[i]; // correctly assigns data to the correct list
+                        if (levels[i].name == "Unlimited")
+                        {
+                            levels[i].name = "Infinite";
+                        }
                     }
                 }
             }
@@ -155,7 +159,7 @@ public class GameManager : MonoBehaviour
 
                 new Levels
                 {
-                    name = "Unlimited",
+                    name = "Infinite",
                     level = 4,
                     highScore = 0,
                     progress = Levels.Progress.incompleted,

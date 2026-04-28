@@ -68,18 +68,6 @@ public class PlayerControllerLevel : MonoBehaviour
             {
                 moveBackwards.forwardSpeed = moveBackwards.minSpeed;
             }
-            if (gameManager.lives <= 0)
-            {
-                if (SceneManager.GetActiveScene().name != "Infinite")
-                {
-                    gameManager.GameOver();
-                }
-                else
-                {
-                    Win win = GameObject.Find("SectionManager").GetComponent<Win>();
-                    win.Winning();
-                }
-            }
         }
     }
     #endregion
@@ -95,7 +83,15 @@ public class PlayerControllerLevel : MonoBehaviour
         livesText.ChangeText();
         if (gameManager.lives <= 0)
         {
-            gameManager.GameOver();
+            if (SceneManager.GetActiveScene().name != "Infinite")
+            {
+                gameManager.GameOver();
+            }
+            else
+            {
+                Win win = GameObject.Find("SectionManager").GetComponent<Win>();
+                win.Winning();
+            }
         }
     }
 

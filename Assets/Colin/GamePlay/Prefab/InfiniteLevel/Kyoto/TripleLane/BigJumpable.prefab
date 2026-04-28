@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 661124621974209202}
   - component: {fileID: 1914701276613714816}
   - component: {fileID: 4225424394795353221}
+  - component: {fileID: 6244462347593323962}
   m_Layer: 0
   m_Name: BigJumpable
   m_TagString: NormalObs
@@ -69,9 +70,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
   type: 0
   obstacleLaneType: 4
-  whichLevel: 0
   areaType: 0
   obstacleSound: {fileID: 8300000, guid: 75e999a75991e4b4c991843c85684470, type: 3}
+--- !u!114 &6244462347593323962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3318075963410257482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aee2534ef4b27c40a16f619075bebd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Check
 --- !u!1001 &4700258007787940291
 PrefabInstance:
   m_ObjectHideFlags: 0

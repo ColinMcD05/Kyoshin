@@ -2154,7 +2154,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
   type: 0
   obstacleLaneType: 0
-  whichLevel: 0
   areaType: 0
   obstacleSound: {fileID: 0}
 --- !u!65 &58569296
@@ -15811,7 +15810,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
   type: 1
   obstacleLaneType: 0
-  whichLevel: 0
   areaType: 0
   obstacleSound: {fileID: 0}
 --- !u!65 &505409431
@@ -21016,7 +21014,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
   type: 0
   obstacleLaneType: 0
-  whichLevel: 0
   areaType: 0
   obstacleSound: {fileID: 0}
 --- !u!65 &593212913
@@ -36704,7 +36701,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -63025,7 +63022,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
   type: 0
   obstacleLaneType: 0
-  whichLevel: 0
   areaType: 0
   obstacleSound: {fileID: 0}
 --- !u!65 &1916132241

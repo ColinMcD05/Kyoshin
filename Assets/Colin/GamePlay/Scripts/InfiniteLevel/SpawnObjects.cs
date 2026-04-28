@@ -18,10 +18,10 @@ public class SpawnObjects : MonoBehaviour
     Vector3 nextPosition;
 
     // Wall Positions
-    public Vector3 closeLeftWall;
-    public Vector3 closeRightWall;
-    public Vector3 leftWall;
-    public Vector3 rightWall;
+    public Transform closeLeftWall;
+    public Transform closeRightWall;
+    public Transform leftWall;
+    public Transform rightWall;
 
     // Holds distance between each obstacle
     float distanceBetween;
@@ -39,7 +39,8 @@ public class SpawnObjects : MonoBehaviour
         RightMiddle,
         ThreeLanes,
         LeftWall,
-        RightWall
+        RightWall,
+        None
     }
 
     // Which objects to spawn based on level
@@ -115,6 +116,7 @@ public class SpawnObjects : MonoBehaviour
                     {
                         default:
                         case ObstacleLaneType.SingleObject:
+
                             switch (sectionManager.currentArea)
                             {
                                 case SectionManager.AreaType.AllOpen:
@@ -130,7 +132,7 @@ public class SpawnObjects : MonoBehaviour
                                 case SectionManager.AreaType.MiddleClosed:
                                     while (randomLane == 1)
                                     {
-                                        randomLane = Random.Range(1, spawns.Length);
+                                        randomLane = Random.Range(0, spawns.Length);
                                     }
                                     break;
                                 case SectionManager.AreaType.RightClosed:
@@ -140,10 +142,11 @@ public class SpawnObjects : MonoBehaviour
                                     }
                                     break;
                             }
-                            obstacleWidth = obstacle.GetComponent<Collider>().bounds.extents.z;
                             nextPosition.x = spawns[randomLane].transform.position.x;
+                            obstacleWidth = obstacle.GetComponent<Collider>().bounds.extents.z;
                             break;
                         case ObstacleLaneType.LeftRight:
+                            nextPosition.x = 0;
                             firstObject = Random.Range(0, obstacle.transform.childCount);
                             secondObject = Random.Range(0, obstacle.transform.childCount);
                             while (secondObject == firstObject)
@@ -151,13 +154,13 @@ public class SpawnObjects : MonoBehaviour
                                 secondObject = Random.Range(0, obstacle.transform.childCount);
                             }
                             obstacle.transform.GetChild(firstObject).gameObject.SetActive(true);
-                            obstacle.transform.GetChild(firstObject).transform.position = new Vector3(spawns[0].transform.position.x, 0, 0);
+                            obstacle.transform.GetChild(firstObject).transform.localPosition = new Vector3(spawns[0].transform.position.x, 0, 0);
                             obstacle.transform.GetChild(secondObject).gameObject.SetActive(true);
-                            obstacle.transform.GetChild(secondObject).transform.position = new Vector3(spawns[2].transform.position.x, 0, 0);
+                            obstacle.transform.GetChild(secondObject).transform.localPosition = new Vector3(spawns[2].transform.position.x, 0, 0);
                             obstacleWidth = obstacle.transform.GetChild(firstObject).GetComponent<Collider>().bounds.extents.z;
-                            nextPosition.x = 0;
                             break;
                         case ObstacleLaneType.LeftMiddle:
+                            nextPosition.x = 0;
                             firstObject = Random.Range(0, obstacle.transform.childCount);
                             secondObject = Random.Range(0, obstacle.transform.childCount);
                             while (secondObject == firstObject)
@@ -165,13 +168,13 @@ public class SpawnObjects : MonoBehaviour
                                 secondObject = Random.Range(0, obstacle.transform.childCount);
                             }
                             obstacle.transform.GetChild(firstObject).gameObject.SetActive(true);
-                            obstacle.transform.GetChild(firstObject).transform.position = new Vector3(spawns[0].transform.position.x, 0, 0);
+                            obstacle.transform.GetChild(firstObject).transform.localPosition = new Vector3(spawns[0].transform.position.x, 0, 0);
                             obstacle.transform.GetChild(secondObject).gameObject.SetActive(true);
-                            obstacle.transform.GetChild(secondObject).transform.position = new Vector3(spawns[1].transform.position.x, 0, 0);
+                            obstacle.transform.GetChild(secondObject).transform.localPosition = new Vector3(spawns[1].transform.position.x, 0, 0);
                             obstacleWidth = obstacle.transform.GetChild(firstObject).GetComponent<Collider>().bounds.extents.z;
-                            nextPosition.x = 0;
                             break;
                         case ObstacleLaneType.RightMiddle:
+                            nextPosition.x = 0;
                             firstObject = Random.Range(0, obstacle.transform.childCount);
                             secondObject = Random.Range(0, obstacle.transform.childCount);
                             while (secondObject == firstObject)
@@ -179,11 +182,10 @@ public class SpawnObjects : MonoBehaviour
                                 secondObject = Random.Range(0, obstacle.transform.childCount);
                             }
                             obstacle.transform.GetChild(firstObject).gameObject.SetActive(true);
-                            obstacle.transform.GetChild(firstObject).transform.position = new Vector3(spawns[1].transform.position.x, 0, 0);
+                            obstacle.transform.GetChild(firstObject).transform.localPosition = new Vector3(spawns[1].transform.position.x, 0, 0);
                             obstacle.transform.GetChild(secondObject).gameObject.SetActive(true);
-                            obstacle.transform.GetChild(secondObject).transform.position = new Vector3(spawns[2].transform.position.x, 0, 0);
+                            obstacle.transform.GetChild(secondObject).transform.localPosition = new Vector3(spawns[2].transform.position.x, 0, 0);
                             obstacleWidth = obstacle.transform.GetChild(firstObject).GetComponent<Collider>().bounds.extents.z;
-                            nextPosition.x = 0;
                             break;
                         case ObstacleLaneType.ThreeLanes:
                             if (obstacle.transform.childCount > 1)
@@ -200,11 +202,11 @@ public class SpawnObjects : MonoBehaviour
                                     thirdObject = Random.Range(0, obstacle.transform.childCount);
                                 }
                                 obstacle.transform.GetChild(firstObject).gameObject.SetActive(true);
-                                obstacle.transform.GetChild(firstObject).transform.position = new Vector3(spawns[0].transform.position.x, 0, 0);
+                                obstacle.transform.GetChild(firstObject).transform.localPosition = new Vector3(spawns[0].transform.position.x, 0, 0);
                                 obstacle.transform.GetChild(secondObject).gameObject.SetActive(true);
-                                obstacle.transform.GetChild(secondObject).transform.position = new Vector3(spawns[1].transform.position.x, 0, 0);
+                                obstacle.transform.GetChild(secondObject).transform.localPosition = new Vector3(spawns[1].transform.position.x, 0, 0);
                                 obstacle.transform.GetChild(thirdObject).gameObject.SetActive(true);
-                                obstacle.transform.GetChild(thirdObject).transform.position = new Vector3(spawns[2].transform.position.x, 0, 0);
+                                obstacle.transform.GetChild(thirdObject).transform.localPosition = new Vector3(spawns[2].transform.position.x, 0, 0);
                                 obstacleWidth = obstacle.transform.GetChild(firstObject).GetComponent<Collider>().bounds.extents.z;
                             }
                             else
@@ -218,12 +220,12 @@ public class SpawnObjects : MonoBehaviour
                             {
                                 default:
                                 case SectionManager.AreaType.CloseWallRun:
-                                    nextPosition.y = closeLeftWall.y;
-                                    nextPosition.x = closeLeftWall.x;
+                                    nextPosition.y = closeLeftWall.position.y;
+                                    nextPosition.x = closeLeftWall.position.x;
                                     break;
                                 case SectionManager.AreaType.WallRun:
-                                    nextPosition.y = closeLeftWall.y;
-                                    nextPosition.x = closeLeftWall.x;
+                                    nextPosition.y = closeLeftWall.position.y;
+                                    nextPosition.x = closeLeftWall.position.x;
                                     break;
                             }
                             break;
@@ -232,28 +234,31 @@ public class SpawnObjects : MonoBehaviour
                             {
                                 default:
                                 case SectionManager.AreaType.CloseWallRun:
-                                    nextPosition.y = closeRightWall.y;
-                                    nextPosition.x = closeRightWall.x;
+                                    nextPosition.y = closeRightWall.position.y;
+                                    nextPosition.x = closeRightWall.position.x;
                                     break;
                                 case SectionManager.AreaType.WallRun:
-                                    nextPosition.y = closeRightWall.y;
-                                    nextPosition.x = closeRightWall.x;
+                                    nextPosition.y = closeRightWall.position.y;
+                                    nextPosition.x = closeRightWall.position.x;
                                     break;
                             }
+                            break;
+                        case ObstacleLaneType.None:
+                            obstacleWidth = 0;
                             break;
                     }
 
                     if (lastObject != null)
                     {
 
-                        float changeBasedOnWidth =  lastObstacleWidth-obstacleWidth;
+                        float changeBasedOnWidth = obstacleWidth - lastObstacleWidth;
                         //Debug.Log(changeBasedOnWidth);
 
                         nextPosition.z += changeBasedOnWidth;
                     }
                     else
                     {
-                        nextPosition.z -= obstacleWidth;
+                        nextPosition.z += obstacleWidth;
                     }
                     if (obstacleScript.obstacleLaneType != ObstacleLaneType.LeftWall && obstacleScript.obstacleLaneType != ObstacleLaneType.RightWall)
                     {
