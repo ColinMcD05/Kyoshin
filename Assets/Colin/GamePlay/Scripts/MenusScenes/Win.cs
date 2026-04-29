@@ -186,7 +186,7 @@ public class Win : MonoBehaviour
 
         // Set winscreento active and set first button
         winScreen.SetActive(true);
-        eventSystem.firstSelectedGameObject = winScreen.transform.Find("Retry").gameObject; ;
+        eventSystem.firstSelectedGameObject = winScreen.transform.Find("WinScreen").Find("Retry").gameObject;
 
         // Stops move backwards scripts
         moveBackwards.enabled = false;
@@ -207,12 +207,12 @@ public class Win : MonoBehaviour
         // Play Animation, win music, show score
 
         // Show score and High Score
-        TextMeshProUGUI score = winScreen.transform.Find("Score").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI score = winScreen.transform.Find("WinScreen").Find("Score").GetComponent<TextMeshProUGUI>();
         score.text = "Score: " + gameManager.score;
-        TextMeshProUGUI highScore = winScreen.transform.Find("HighScore").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI highScore = winScreen.transform.Find("WinScreen").Find("HighScore").GetComponent<TextMeshProUGUI>();
         highScore.text = "High Score: " + gameManager.GetHighScore(SceneManager.GetActiveScene().name);
         // if it is a new high score, create the text of a new highscore
-        TextMeshProUGUI newHighScoreText = winScreen.transform.Find("NewHighScore").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI newHighScoreText = winScreen.transform.Find("WinScreen").Find("NewHighScore").GetComponent<TextMeshProUGUI>();
         if (newHighScore)
         {
             newHighScoreText.enabled = true;
@@ -223,5 +223,6 @@ public class Win : MonoBehaviour
         }
 
         StartCoroutine(FadeIn());
+        player.transform.position = playerWinPosition.position;
     }
 }

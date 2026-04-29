@@ -188,6 +188,7 @@ public class SpawnObjects : MonoBehaviour
                             obstacleWidth = obstacle.transform.GetChild(firstObject).GetComponent<Collider>().bounds.extents.z;
                             break;
                         case ObstacleLaneType.ThreeLanes:
+                            nextPosition.x = 0;
                             if (obstacle.transform.childCount > 1)
                             {
                                 firstObject = Random.Range(0, obstacle.transform.childCount);
@@ -211,7 +212,6 @@ public class SpawnObjects : MonoBehaviour
                             }
                             else
                             {
-                                nextPosition.x = 0;
                                 obstacleWidth = obstacle.GetComponent<Collider>().bounds.extents.z;
                             }
                             break;

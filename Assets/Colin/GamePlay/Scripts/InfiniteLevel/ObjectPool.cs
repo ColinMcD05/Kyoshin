@@ -173,7 +173,7 @@ public class ObjectPool : MonoBehaviour
                 {
                     randomSection = randomSection = UnityEngine.Random.Range(0, pooledKyotoSections.Count);
                 }
-                return pooledHakoneSections[randomSection];
+                return pooledKyotoSections[randomSection];
             case Level.Hakone:
                 randomSection = UnityEngine.Random.Range(0, pooledHakoneSections.Count);
                 while (pooledHakoneSections[randomSection].activeInHierarchy)
