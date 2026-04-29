@@ -34,7 +34,7 @@ public class PauseMenu : MonoBehaviour
 
     // Pause menu canvas references
     public EventSystem eventSystem;
-    public Button resume, returnButton;
+    public Button resume, returnButton, retryButton, quitButton, hubButton, toggleButton;
     [SerializeField]
     Slider masterVolume, musicVolume;
     [SerializeField] Canvas controls;
@@ -59,6 +59,7 @@ public class PauseMenu : MonoBehaviour
     {
         pause.action.performed += PausePerformed; // Assigning pause action
         SceneManager.sceneLoaded += GetReferences; // Assign Getting references once a new scene is loaded
+        SceneManager.sceneLoaded += SetRetryOnButtonDown;
     }
     #endregion
 
@@ -88,6 +89,7 @@ public class PauseMenu : MonoBehaviour
         // Unsubscribe actions when object is destroyed
         pause.action.performed -= PausePerformed; 
         SceneManager.sceneLoaded -= GetReferences;
+        SceneManager.sceneLoaded += SetRetryOnButtonDown;
     }
     #endregion
 
@@ -167,19 +169,22 @@ public class PauseMenu : MonoBehaviour
         // If in the HUB, do not show Retry or Hub buttons. Else, do show buttons
         if (SceneManager.GetActiveScene().name != "HUB")
         {
-            gameObject.transform.GetChild(0).gameObject.transform.Find("Retry").gameObject.SetActive(true);
+            EnableButton(retryButton);
         }
         else
         {
-            gameObject.transform.GetChild(0).gameObject.transform.Find("Retry").gameObject.SetActive(false);
+           DisableButton(retryButton);
         }
 
         // Pauses music
         music.Pause();
-        playerAudio.Pause();
+        if (playerAudio != null)
+        {
+            playerAudio.Pause();
+        }
 
-        // Sets first selected game object to the resume button
-        eventSystem.SetSelectedGameObject(resume.gameObject);
+            // Sets first selected game object to the resume button
+            eventSystem.SetSelectedGameObject(resume.gameObject);
         lastSelectedButton = resume;
 
         // sets the volume slider values to the values in PlayerPrefs
@@ -219,7 +224,10 @@ public class PauseMenu : MonoBehaviour
         }
         // Unpauses music and deactivates pause menu images
         music.UnPause();
-        playerAudio.UnPause();
+        if (playerAudio != null)
+        {
+            playerAudio.UnPause();
+        }
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
         buttonSource.PlayOneShot(buttonSound);
         inputModule.move.action.performed -= ChangeLastSelected;
@@ -440,6 +448,37 @@ public class PauseMenu : MonoBehaviour
 
     #endregion
 
+    // SetRetryButtonOnDown
+    #region
+    // Set the retry button on down stuff based on scene
+    void SetRetryOnButtonDown(Scene scene, LoadSceneMode mode)
+    {
+        Navigation newNav = new Navigation();
+        newNav.mode = Navigation.Mode.Explicit;
+
+        if (scene.name == "HUB")
+        {
+            newNav.selectOnUp = toggleButton.navigation.selectOnUp;
+            EnableButton(quitButton);
+            DisableButton(hubButton);
+            newNav.selectOnDown = quitButton;
+            toggleButton.navigation = newNav;
+        }
+        else
+        {
+            newNav.selectOnUp = toggleButton.navigation.selectOnUp;
+            newNav.selectOnDown = retryButton;
+            toggleButton.navigation = newNav;
+
+            newNav.selectOnUp = retryButton.navigation.selectOnUp;
+            EnableButton(hubButton);
+            DisableButton(quitButton);
+            newNav.selectOnDown = hubButton; 
+            retryButton.navigation = newNav;
+        }
+    }
+    #endregion
+
     // GetReferences
     #region
     // Gets level references needed as pause menu is a permanent object
@@ -501,6 +540,24 @@ public class PauseMenu : MonoBehaviour
         {
             lastSelectedButton = eventSystem.currentSelectedGameObject.GetComponent<Button>();
         }
+    }
+    #endregion
+
+    // EnableButton
+    #region
+    void EnableButton(Button button)
+    {
+        button.enabled = true;
+        button.GetComponent<Image>().enabled = true;
+    }
+    #endregion
+
+    // DisableButton
+    #region
+    void DisableButton(Button button)
+    {
+        button.enabled = false;
+        button.GetComponent<Image>().enabled = false;
     }
     #endregion
 }
