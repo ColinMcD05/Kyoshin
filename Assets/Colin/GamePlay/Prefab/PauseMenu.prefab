@@ -276,8 +276,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6864804441912918036}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 5.9, y: 7.7}
   m_SizeDelta: {x: 75, y: 146}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -442,7 +442,6 @@ GameObject:
   - component: {fileID: 1370574364689486787}
   - component: {fileID: 4239645962928718995}
   - component: {fileID: 5829247877263551259}
-  - component: {fileID: 6401206263832465075}
   m_Layer: 5
   m_Name: Hub
   m_TagString: Untagged
@@ -484,7 +483,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1374602939635910186}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -514,15 +513,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1374602939635910186}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 0
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
+    m_SelectOnUp: {fileID: 5829247877263551259}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
@@ -563,18 +562,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6401206263832465075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374602939635910186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f38ec37740ca85642be6e4952d2d986f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HoverOver
 --- !u!1 &1450341200626579196
 GameObject:
   m_ObjectHideFlags: 0
@@ -1585,7 +1572,7 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 4218378902272526634}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 5512300034498962590}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -2398,8 +2385,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5537563132917772896}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 6, y: 7.9}
   m_SizeDelta: {x: 75, y: 146}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3123,7 +3110,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6361716858267500342
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3568,7 +3555,7 @@ RectTransform:
   m_Father: {fileID: 2661768593824665578}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3660,6 +3647,10 @@ MonoBehaviour:
   eventSystem: {fileID: 0}
   resume: {fileID: 6966349306516701221}
   returnButton: {fileID: 22237959795857209}
+  retryButton: {fileID: 5512300034498962590}
+  quitButton: {fileID: 5287514313449928051}
+  hubButton: {fileID: 5829247877263551259}
+  toggleButton: {fileID: 690447166368122587}
   masterVolume: {fileID: 3424967377042933509}
   musicVolume: {fileID: 8943642119182764954}
   controls: {fileID: 2790322045574980358}
@@ -3810,7 +3801,6 @@ GameObject:
   - component: {fileID: 917086998823435529}
   - component: {fileID: 467716215787625562}
   - component: {fileID: 5512300034498962590}
-  - component: {fileID: 8219689423885788100}
   m_Layer: 5
   m_Name: Retry
   m_TagString: Untagged
@@ -3888,12 +3878,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 0
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 8943642119182764954}
+    m_SelectOnUp: {fileID: 690447166368122587}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 8943642119182764954}
+    m_SelectOnRight: {fileID: 0}
   m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -3931,18 +3921,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8219689423885788100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8645158440310810722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f38ec37740ca85642be6e4952d2d986f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HoverOver
 --- !u!1 &9173945208961213463
 GameObject:
   m_ObjectHideFlags: 0
@@ -3976,7 +3954,7 @@ RectTransform:
   m_Father: {fileID: 268386226983400310}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
