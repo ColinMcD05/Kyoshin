@@ -18,7 +18,7 @@ public class PlayerControllerLevel : MonoBehaviour
     public float regenTime = 2.0f;
     public bool invincible = false;
 
-    public AudioSource audioSource;
+    AudioSource audioSource;
     public AudioClip HealthSound;
 
     private void Start()
@@ -26,6 +26,7 @@ public class PlayerControllerLevel : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         cineMachineNoise = GameObject.Find("CinemachineCamera").GetComponent<CinemachineBasicMultiChannelPerlin>();
         livesText = gameManager.transform.Find("Canvas").transform.Find("RewindCounter").GetComponent<RewindTracker>();
+        audioSource = GameObject.Find("Audio").transform.Find("SoundEffects").GetComponent<AudioSource>();
     }
 
     private void OnEnable()

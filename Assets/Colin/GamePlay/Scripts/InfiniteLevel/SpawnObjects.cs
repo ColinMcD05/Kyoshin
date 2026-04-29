@@ -188,6 +188,7 @@ public class SpawnObjects : MonoBehaviour
                             obstacleWidth = obstacle.transform.GetChild(firstObject).GetComponent<Collider>().bounds.extents.z;
                             break;
                         case ObstacleLaneType.ThreeLanes:
+                            nextPosition.x = 0;
                             if (obstacle.transform.childCount > 1)
                             {
                                 firstObject = Random.Range(0, obstacle.transform.childCount);
@@ -211,7 +212,6 @@ public class SpawnObjects : MonoBehaviour
                             }
                             else
                             {
-                                nextPosition.x = 0;
                                 obstacleWidth = obstacle.GetComponent<Collider>().bounds.extents.z;
                             }
                             break;
@@ -286,19 +286,25 @@ public class SpawnObjects : MonoBehaviour
         // Set variables for spawning logic to start correctly
         isNewSong = true;
         lastObject = null;
+        ObjectPool objectPool = ObjectPool.sharedInstance;
         switch (newSong.levelName)
         {
             default:
-                ObjectPool.sharedInstance.currentLevel = Level.All;
+                objectPool.currentLevel = Level.All;
+                int randomSkybox = Random.Range(0, objectPool.skyBoxes.Length);
+                RenderSettings.skybox = objectPool.skyBoxes[randomSkybox];
                 break;
             case "Kyoto":
-                ObjectPool.sharedInstance.currentLevel = Level.Kyoto;
+                objectPool.currentLevel = Level.Kyoto;
+                RenderSettings.skybox = objectPool.skyBoxes[0];
                 break;
             case "Tokyo":
-                ObjectPool.sharedInstance.currentLevel = Level.Tokyo;
+                objectPool.currentLevel = Level.Tokyo;
+                RenderSettings.skybox = objectPool.skyBoxes[2];
                 break;
             case "Hakone":
-                ObjectPool.sharedInstance.currentLevel = Level.Hakone;
+                objectPool.currentLevel = Level.Hakone;
+                RenderSettings.skybox = objectPool.skyBoxes[1];
                 break;
         }
     }
