@@ -127,7 +127,7 @@ Material:
     - _RimIntensity: 0
     - _RimPower: 8
     - _ShadowSoftness: 0.3
-    - _ShadowThreshold: 0.18
+    - _ShadowThreshold: 0.054
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
