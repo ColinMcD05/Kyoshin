@@ -581,6 +581,10 @@ MonoBehaviour:
   regenTime: 2
   invincible: 0
   HealthSound: {fileID: 8300000, guid: 25685435d481b2e4cab2dbf4105827df, type: 3}
+  shaders:
+  - {fileID: 4800000, guid: 602138a1056b3ce4f909e7b8f0bfe504, type: 3}
+  - {fileID: 4800000, guid: 09ffee9e02598974598c0b581f853e8b, type: 3}
+  - {fileID: 4800000, guid: af02fe1ffc837df429ce98eb9c04cd0c, type: 3}
 --- !u!114 &3233316654364501501
 MonoBehaviour:
   m_ObjectHideFlags: 0
