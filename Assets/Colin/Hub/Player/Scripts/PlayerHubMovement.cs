@@ -14,6 +14,7 @@ public class PlayerHubMovement : MonoBehaviour
     AudioSource music;
     Songs songs;
     public Animator animator;
+    public Shader hubShader;
 
 
     void Start()

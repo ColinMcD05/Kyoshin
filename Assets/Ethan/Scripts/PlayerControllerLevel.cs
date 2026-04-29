@@ -20,6 +20,7 @@ public class PlayerControllerLevel : MonoBehaviour
 
     AudioSource audioSource;
     public AudioClip HealthSound;
+    public Shader[] shaders;
 
     private void Start()
     {
