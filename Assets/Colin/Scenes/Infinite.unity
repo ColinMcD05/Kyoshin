@@ -1069,7 +1069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 721062600316765441, guid: e1ddf480164cd6e449823c126d857ad9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 721062600316765441, guid: e1ddf480164cd6e449823c126d857ad9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1445,6 +1445,7 @@ MonoBehaviour:
   pooledKyotoSections: []
   pooledHakoneSections: []
   pooledTokyoSections: []
+  allSections: []
   sectionKyotoPool:
   - {fileID: 1432564064076710494, guid: bdde035e1a8789d478590649369822c4, type: 3}
   - {fileID: 2688494882910919236, guid: a0ac4ab20ff049b49a1db001e8ef8feb, type: 3}

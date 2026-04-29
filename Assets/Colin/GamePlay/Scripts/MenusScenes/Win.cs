@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -72,6 +73,20 @@ public class Win : MonoBehaviour
 
         music.Stop();
         music.PlayOneShot(win);
+
+        if (Time.timeSinceLevelLoad - 1 < 60)
+        {
+            gameManager.score *= 3;
+        }
+        else if (Time.timeSinceLevelLoad - 1 < 90)
+        {
+            gameManager.score *= 2;
+        }
+        else if (Time.timeSinceLevelLoad - 1 < 105)
+        {
+            float score = gameManager.score * 1.5f;
+            gameManager.score = Convert.ToInt32(score);
+        }
 
         // If score is higher than level highscore, set highscore to score
         if (gameManager.score > currentLevel.highScore)
@@ -191,7 +206,6 @@ public class Win : MonoBehaviour
         // Stops move backwards scripts
         moveBackwards.enabled = false;
 
-        player.GetComponent<PlayerLevelMovement>().enabled = false;
         // Set position of both characters to win positions
         player.transform.position = playerWinPosition.position;
         player.transform.rotation = playerWinPosition.rotation;
@@ -223,6 +237,9 @@ public class Win : MonoBehaviour
         {
             newHighScoreText.enabled = false;
         }
+
+        //player.GetComponent<Animator>().SetBool("Moving", false);
+        //otherChar.GetComponent<Animator>().SetBool("Moving", false);
 
         StartCoroutine(FadeIn());
     }

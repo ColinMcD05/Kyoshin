@@ -1,3 +1,4 @@
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,6 +8,7 @@ public class DelaMovementHub : MonoBehaviour
     public Vector3 playerTarget;
     private NavMeshAgent agent; //Navmesh Agent
     public NpcManager npcManager; //Npc Manager
+    public Animator animator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,6 +30,14 @@ public class DelaMovementHub : MonoBehaviour
         {
             agent.isStopped = false;
             ResetPath();   
+        }
+        if (Mathf.Abs(agent.velocity.x) < 0.001 & Mathf.Abs(agent.velocity.z) < 0.001)
+        {
+            animator.SetBool("Moving", false);
+        }
+        else
+        {
+            animator.SetBool("Moving", true);
         }
 
     }
