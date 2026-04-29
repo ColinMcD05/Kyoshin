@@ -242,6 +242,10 @@ public class PlayerLevelMovement : MonoBehaviour
     // FixedUpdate
     #region
     void FixedUpdate(){// This is a function that is called every fixed delta time
+        if (!enabled)
+        {
+            return;
+        }
         if (isWallRunning && jumpPressed)
         {
             StopWallRun();

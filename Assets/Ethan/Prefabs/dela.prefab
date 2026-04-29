@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: dela
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: ee4ab37589947df4492e25f543625b30, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 692f20e568267a44382cb164f227961e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -108,3 +112,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NpcMovement
   target: {fileID: 0}
   npcManager: {fileID: 0}
+  speed: 0

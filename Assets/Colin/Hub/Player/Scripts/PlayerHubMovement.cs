@@ -13,6 +13,7 @@ public class PlayerHubMovement : MonoBehaviour
     public AudioClip movementSound;
     AudioSource music;
     Songs songs;
+    public Animator animator;
 
 
     void Start()
@@ -71,7 +72,14 @@ public class PlayerHubMovement : MonoBehaviour
         Vector3 xInput = movement.x * orientation.right;
         Vector3 yInput = movement.y * orientation.forward;
         direction = xInput + yInput;
-
+        if (Mathf.Abs(direction.x) < 0.001 && Mathf.Abs(direction.z) < 0.001)
+        {
+            animator.SetBool("Moving", false);
+        }
+        else
+        {
+            animator.SetBool("Moving", true);
+        }
       
     }
 

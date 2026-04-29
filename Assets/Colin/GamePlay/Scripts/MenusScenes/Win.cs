@@ -191,7 +191,6 @@ public class Win : MonoBehaviour
         // Stops move backwards scripts
         moveBackwards.enabled = false;
 
-        player.GetComponent<PlayerLevelMovement>().enabled = false;
         // Set position of both characters to win positions
         player.transform.position = playerWinPosition.position;
         player.transform.rotation = playerWinPosition.rotation;
@@ -223,6 +222,9 @@ public class Win : MonoBehaviour
         {
             newHighScoreText.enabled = false;
         }
+
+        //player.GetComponent<Animator>().SetBool("Moving", false);
+        //otherChar.GetComponent<Animator>().SetBool("Moving", false);
 
         StartCoroutine(FadeIn());
     }
