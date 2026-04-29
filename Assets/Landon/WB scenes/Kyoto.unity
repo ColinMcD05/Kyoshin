@@ -22741,7 +22741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 721062600316765441, guid: e1ddf480164cd6e449823c126d857ad9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -29.08
+      value: -29.512
       objectReference: {fileID: 0}
     - target: {fileID: 721062600316765441, guid: e1ddf480164cd6e449823c126d857ad9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22771,6 +22771,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6692795765247352699, guid: e1ddf480164cd6e449823c126d857ad9, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6ec4e518b2e5a8f44b3b64b035be8292, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -32928,7 +32932,6 @@ GameObject:
   m_Component:
   - component: {fileID: 618975938}
   - component: {fileID: 618975937}
-  - component: {fileID: 618975936}
   - component: {fileID: 618975935}
   m_Layer: 0
   m_Name: WinCamera
@@ -32981,14 +32984,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!81 &618975936
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618975934}
-  m_Enabled: 1
 --- !u!20 &618975937
 Camera:
   m_ObjectHideFlags: 0
@@ -57325,6 +57320,10 @@ PrefabInstance:
       propertyPath: moveBackwards
       value: 
       objectReference: {fileID: 464841304}
+    - target: {fileID: 729997663836137328, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1567925838254450578, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
       propertyPath: timingUI
       value: 
@@ -57409,6 +57408,10 @@ PrefabInstance:
       propertyPath: moveBackwards
       value: 
       objectReference: {fileID: 464841304}
+    - target: {fileID: 6176210339163740595, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 8025993684956010781, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
       propertyPath: m_IsKinematic
       value: 0
