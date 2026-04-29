@@ -110,7 +110,7 @@ Material:
     - _ReceiveShadows: 1
     - _RimIntensity: 0.18
     - _RimPower: 3
-    - _ShadowSoftness: 0.05
+    - _ShadowSoftness: 0.279
     - _ShadowThreshold: 0.783
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
