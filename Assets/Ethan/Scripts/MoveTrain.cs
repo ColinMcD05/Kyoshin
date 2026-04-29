@@ -29,18 +29,21 @@ public class MoveTrain : MonoBehaviour
 
     void Update()
     {
-        if (target == null){
+        Move();
+    }
+
+    void Move()
+    {
+        if (target == null)
+        {
             return;
         }
         // Move the train towards the target position, Vector3.MoveTowards is a method that moves the train towards the target position at the speed specified.
-        transform.position = Vector3.MoveTowards(transform.position,target.position, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         // transform.position is current position of the train, target.position is the target position, sqrMagnitude is the square distance between the two, arriveThreshold is the distance to a marker at which the train turns around. If the square distance is less than or equal to the square of the arriveThreshold, the train will turn around.
         if ((transform.position - target.position).sqrMagnitude <= arriveThreshold * arriveThreshold) //If the train is close enough to the target position, turn around.
-            if(target == PosZ){ //If the target is PosZ, set the target to NegZ.
-                target = NegZ;
-            }else{ //If the target is NegZ, set the target to PosZ.
-                target = PosZ;
-            }
-            
+        {
+            transform.position = NegZ.position;
+        }
     }
 }

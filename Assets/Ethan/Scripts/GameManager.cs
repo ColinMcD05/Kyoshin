@@ -1,18 +1,18 @@
 using UnityEngine;
 using System.IO;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
 using TMPro;
 using UnityEngine.UI;
-using Unity.VisualScripting;
+using System;
 public class GameManager : MonoBehaviour
 {
+    // Variables
+    #region
+    // Important player variables
     public int score = 0;
     public int combo = 0;
     public int lives = 3;
+    public int coins = 0;
 
     // Variables to get correct file pathing
     string filePath; // Path to directory
@@ -26,45 +26,97 @@ public class GameManager : MonoBehaviour
     [Header("Persistant Objects")]
     static GameManager instance; // instance for persistant objects
     [SerializeField] GameObject[] persistantObjects;
-    public TextMeshProUGUI scoreText, rewindText;
+
+    // Canvas objects
+    public TextMeshProUGUI scoreText, rewindText, comboText, multText;
     public RewindTracker rewindTracker;
     public GameObject dashSlider;
+    public RawImage visualizer;
+    [SerializeField] Color[] colors;
 
+    // Variable holding last scene
     static public string lastScene;
 
+    // Multiplier variables
+    int mult;
+    public int maxMult = 10;
+    public int comboNeededMult = 5;
+
+    // Other
+    Scene currentScene;
+    #endregion
+
+    // Awake
+    #region
     public void Awake()
     {
+        // If instance is not null destroy any duplicates
         if (instance != null)
         {
             CleanAndDestroy();
             return;
         }
+        // Set game objects to not destroy on load
         else
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
             MarkObjects();
+            // Subscribes actions
             SceneManager.sceneLoaded += SceneLoaded;
             SceneManager.sceneUnloaded += SceneUnLoaded;
         }
+        // Sets file path for saving and loading
         filePath = Application.persistentDataPath + "/Player_Data/";
+        // Load level data
         Load();
     }
+    #endregion
 
+    // GameOver
+    #region
+    // When lost all lives, lood the losing screen
     public void GameOver()
     {
         SceneManager.LoadScene("LoseScreen");
     }
-    public void AddScore(int value){
-        score += value;
-        scoreText.text = "Score: " + score;
-        if (score % 100 < (score - value) % 100)
+    #endregion
+
+    // AddScore
+    #region
+    // Adds coins
+    public void AddScore(int value, bool isCoin)
+    {
+        if (isCoin)
         {
-            lives++;
+            coins += 1;
+        }
+        if (coins % 30 == 0)
+        {
+            lives += 1;
             rewindTracker.ChangeText();
         }
+
+        score += value * mult;
+        scoreText.text = "Score: " + score;
+    }
+
+    // Adds score to game manager
+    public void AddScore(int value){
+        // multipliers score by multiplier
+        score += value * mult;
+        // Change text
+        scoreText.text = "Score: " + score;
         //Debug.Log("Score: " + score);
     }
+
+    public void AddScore()
+    {
+        score += 1 * mult;
+
+        scoreText.text = "Score: " + score;
+    }
+    #endregion
 
     // Load
     #region
@@ -72,27 +124,30 @@ public class GameManager : MonoBehaviour
     {
         dataPath = filePath + "Level_Data.json"; // Set dataPath to where Level_Data is held
         // If directory and file exists, set level list to the level data saved
-        if (Directory.Exists(filePath))
+        try
         {
-            if (File.Exists(dataPath))
+            using (StreamReader stream = new StreamReader(dataPath))
             {
-                using (StreamReader stream = new StreamReader(dataPath))
-                {
-                    var levelString = stream.ReadToEnd(); // Reads data
-                    var levelData = JsonUtility.FromJson<LevelList>(levelString); // sets data into lists to distrubute
+                var levelString = stream.ReadToEnd(); // Reads data
+                var levelData = JsonUtility.FromJson<LevelList>(levelString); // sets data into lists to distrubute
 
-                    for (int i = 0; i < levelData.levelList.Length; i++)
+                for (int i = 0; i < levelData.levelList.Length; i++)
+                {
+                    levels[i] = levelData.levelList[i]; // correctly assigns data to the correct list
+                    if (levels[i].name == "Unlimited")
                     {
-                        levels[i] = levelData.levelList[i]; // correctly assigns data to the correct list
+                        levels[i].name = "Infinite";
                     }
                 }
             }
         }
-        else
+        catch (Exception ex)
         {
-            // If this is the first time opening the game set up levels information
-            levels = new Levels[4]
+            if (ex is DirectoryNotFoundException || ex is FileNotFoundException)
             {
+                // If this is the first time opening the game set up levels information
+                levels = new Levels[4]
+                {
                 new Levels
                 {
                     name = "Hakone",
@@ -122,13 +177,15 @@ public class GameManager : MonoBehaviour
 
                 new Levels
                 {
-                    name = "Unlimited",
+                    name = "Infinite",
                     level = 4,
                     highScore = 0,
                     progress = Levels.Progress.incompleted,
                     lockStatus = Levels.LockStatus.Locked
                 }
-            };
+                };
+            }
+            else throw;
         }
     }
     #endregion
@@ -153,6 +210,9 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    // Creating persistant object
+    #region
+    // Mark objects to not destroy on load
     private void MarkObjects()
     {
         foreach (GameObject obj in persistantObjects)
@@ -164,6 +224,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Destroy persistent objects or duplicate objects
     private void CleanAndDestroy()
     {
         foreach (GameObject obj in persistantObjects)
@@ -172,19 +233,33 @@ public class GameManager : MonoBehaviour
         }
         Destroy(gameObject);
     }
+    #endregion
 
+    // ApplicationQuit
+    #region
+    // save game and unsubscribe actions when application quits
     private void OnApplicationQuit()
     {
         // Save game once application ends
         Save();
         SceneManager.sceneLoaded -= SceneLoaded;
     }
+    #endregion
 
+    // Scene loaded scripts
+    #region
+    // Script that runs when scene loads
     void SceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Save();
+        // Saves the game to ensure no data loss
+        //Save();
+
+        // set score and lives back to normal
         score = 0;
         lives = 3;
+        currentScene = scene;
+
+        // if title screen, get rid of game manager and all other persistent objects
         if (scene.name == "TitleScreen")
         {
             instance = null;
@@ -193,40 +268,119 @@ public class GameManager : MonoBehaviour
             CleanAndDestroy();
             scoreText.enabled = false;
             rewindText.enabled = false;
+            comboText.enabled = false;
+            multText.enabled = false;
             for (int i = 0; i < dashSlider.transform.childCount; i++)
             {
                 dashSlider.transform.GetChild(i).gameObject.SetActive(false);
             }
         }
+        // if on lose screen or hub, set UI to disabled
         else if (scene.name == "LoseScreen" || scene.name == "HUB")
         {
             scoreText.enabled = false;
             rewindText.enabled = false;
+            comboText.enabled = false;
+            multText.enabled = false;
             for (int i = 0; i < dashSlider.transform.childCount; i++)
             {
                 dashSlider.transform.GetChild(i).gameObject.SetActive(false);
             }
         }
+        // set UI to active in levels
         else
         {
             scoreText.enabled = true;
             scoreText.text = "Score: " + score;
             rewindTracker.ChangeText();
             rewindText.enabled = true;
+            comboText.enabled = true;
+            multText.enabled = true;
+            ClearCombo();
             for (int i = 0; i < dashSlider.transform.childCount; i++)
             {
                 dashSlider.transform.GetChild(i).gameObject.SetActive(true);
             }
         }
+        if (scene.name == "Infinite")
+        {
+            InvokeRepeating("AddScore", 0, 1/3);
+        }
     }
 
     void SceneUnLoaded(Scene scene)
     {
+        // Set last scene variables
         lastScene = scene.name;
+        GameObject.Find("Audio").transform.Find("SoundEffects").GetComponent<AudioSource>().Stop();
+    }
+    #endregion
+
+    // Combo scripts
+    #region
+    // Increases combo
+    public void IncreaseCombo()
+    {
+        // adds combo
+        combo++;
+        //changes mult based on combo
+        mult = mult = combo / comboNeededMult + 1;
+        // Ensures mult is not higher than maxMult
+        if (mult > maxMult)
+        {
+            mult = maxMult;
+        }
+        // Change combo and mult text and color
+        comboText.text = combo + "X";
+        comboText.color = colors[mult - 1];
+        multText.text = "Mult " + mult;
+        multText.color = colors[mult - 1];
     }
 
+    public void ClearCombo()
+    {
+        // Reset mult and combo
+        mult = 1;
+        combo = 0;
+        comboText.text = combo + "X";
+        multText.text = "Mult " + mult;
+        comboText.color = colors[0];
+        multText.color = colors[0];
+    }
+    #endregion
+
+    // Get data
+    #region
+    // Sends out the last scene variable
     public string GetLastScene()
     {
         return lastScene;
     }
+
+    // Returns level based on scene name
+    public Levels GetLevel(string name)
+    {
+        foreach (Levels level in levels)
+        {
+            if (name == level.name)
+            {
+                return level;
+            }
+        }
+        return null;
+    }
+
+    // returns highscore of level based on scene name
+    public float GetHighScore(string name)
+    {
+        foreach (Levels level in levels)
+        {
+            if (name == level.name)
+            {
+                return level.highScore;
+            }
+        }
+        return 0;
+    }
+    #endregion
 }
