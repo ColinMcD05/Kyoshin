@@ -13,7 +13,7 @@ public class Timing : MonoBehaviour
     GameManager gameManager;
     [SerializeField] InputActionReference move;
     [SerializeField] InputActionReference jump;
-    [SerializeField] InputActionReference slide;
+    [SerializeField] InputActionReference slide, trick;
     [SerializeField] GameObject player;
     [SerializeField] TimingUI timingUI;
     Rewind rewind;
@@ -24,6 +24,8 @@ public class Timing : MonoBehaviour
     [HideInInspector] public Songs.SongData currentSong;
     AudioSource musicPlayer;
     [SerializeField] AudioSource countDownSound;
+    public AudioClip ScratchSound;
+    public AudioSource scratchSource;
 
     // IEnumerators
     IEnumerator resetCircle;
@@ -157,7 +159,7 @@ public class Timing : MonoBehaviour
             }
             StopCoroutine(resetCircle);
             UnSubscribeActions();
-            currentSong = songClass.songs[newSong];
+            currentSong = songClass.songs[0];
             StartMusic();
         }
         else
@@ -191,6 +193,8 @@ public class Timing : MonoBehaviour
         {
             // Else bad move
             // camera shakes intensify
+            // Put sound effect here
+            scratchSource.PlayOneShot(ScratchSound);
             playerControllerLevel.LoseLife();
         }
     }
@@ -212,6 +216,7 @@ public class Timing : MonoBehaviour
         move.action.performed += CheckTime;
         jump.action.performed += CheckTime;
         slide.action.performed += CheckTime;
+        trick.action.performed += CheckTime;
         // Unsubscribes player movement actions and subscribes them ensuring CheckTime happens first
         playerLevelMovement.UnSubscribeActions();
         playerLevelMovement.SubscribeActions();
@@ -223,6 +228,7 @@ public class Timing : MonoBehaviour
         move.action.performed -= CheckTime;
         jump.action.performed -= CheckTime;
         slide.action.performed -= CheckTime;
+        trick.action.performed -= CheckTime;
     }
     #endregion
 

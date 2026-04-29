@@ -23,7 +23,6 @@ public class Win : MonoBehaviour
     public Camera winCamera;
     public GameObject winScreen;
     EventSystem eventSystem;
-    GameObject retry;
     AudioSource music;
     public AudioClip win;
     bool newHighScore;
@@ -35,7 +34,6 @@ public class Win : MonoBehaviour
         otherChar = GameObject.Find("OtherChar");
         player = GameObject.Find("Player");
         eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
-        retry = winScreen.transform.Find("Retry").gameObject;
         music = GameObject.Find("Audio").transform.Find("Music").GetComponent<AudioSource>();
     }
 
@@ -46,15 +44,8 @@ public class Win : MonoBehaviour
             // Set player speed to max speed
             moveBackwards.forwardSpeed = moveBackwards.maxSpeed;
 
-            // Disable timing based mechanics
-            other.GetComponent<Timing>().enabled = false;
-            other.GetComponent<PlayerLevelMovement>().enabled = false;
-            moveImage.enabled = false;
-            stillImage.enabled = false;
-
             Levels currentLevel = Winning(other);
 
-            gameManager.transform.Find("Canvas").GetComponent<Canvas>().enabled = false;
             // Start fadeout
             StartCoroutine(FadeOut(currentLevel));
         }
@@ -70,6 +61,12 @@ public class Win : MonoBehaviour
         // Get current level
         Levels currentLevel = gameManager.GetLevel(SceneManager.GetActiveScene().name);
 
+        // Disable timing based mechanics
+        other.GetComponent<Timing>().enabled = false;
+        other.GetComponent<PlayerLevelMovement>().enabled = false;
+        moveImage.enabled = false;
+        stillImage.enabled = false;
+
         // Set current levels progress to completed
         currentLevel.progress = Levels.Progress.completed;
 
@@ -99,6 +96,7 @@ public class Win : MonoBehaviour
             }
         }
 
+        gameManager.transform.Find("Canvas").GetComponent<Canvas>().enabled = false;
         return currentLevel;
     }
 
@@ -112,6 +110,12 @@ public class Win : MonoBehaviour
         // Set current levels progress to completed
         currentLevel.progress = Levels.Progress.completed;
 
+        // Disable timing based mechanics
+        player.GetComponent<Timing>().enabled = false;
+        player.GetComponent<PlayerLevelMovement>().enabled = false;
+        moveImage.enabled = false;
+        stillImage.enabled = false;
+
         music.Stop();
         music.PlayOneShot(win);
 
@@ -138,7 +142,8 @@ public class Win : MonoBehaviour
             }
         }
 
-        SceneManager.LoadScene("InfiniteWin");
+        gameManager.transform.Find("Canvas").GetComponent<Canvas>().enabled = false;
+        Transition();
     }
     #endregion
 
@@ -155,21 +160,7 @@ public class Win : MonoBehaviour
             image.color = color;
             yield return null;
         }
-        //Transition();
-        otherChar.GetComponent<FollowScript>().enabled = false;
-        winScreen.SetActive(true);
-        eventSystem.firstSelectedGameObject = retry;
-
-        // Show score and High Score
-        TextMeshProUGUI score = winScreen.transform.Find("Score").GetComponent<TextMeshProUGUI>();
-        score.text = "Score: " + gameManager.score;
-        TextMeshProUGUI highScore = winScreen.transform.Find("HighScore").GetComponent<TextMeshProUGUI>();
-        highScore.text = "High Score: " + currentLevel.highScore;
-        // if it is a new high score, create the text of a new highscore
-        if (newHighScore)
-        {
-            // NEW HIGH SCORE
-        }
+        Transition();
     }
 
     IEnumerator FadeIn()
@@ -190,12 +181,22 @@ public class Win : MonoBehaviour
 
     void Transition()
     {
+        // Stops other character from moving
+        otherChar.GetComponent<FollowScript>().enabled = false;
+
+        // Set winscreento active and set first button
+        winScreen.SetActive(true);
+        eventSystem.firstSelectedGameObject = winScreen.transform.Find("Retry").gameObject; ;
+
         // Stops move backwards scripts
         moveBackwards.enabled = false;
 
         // Set position of both characters to win positions
         player.transform.position = playerWinPosition.position;
+        player.transform.rotation = playerWinPosition.rotation;
         otherChar.transform.position = otherCharWinPosition.position;
+        otherChar.transform.rotation = otherCharWinPosition.rotation;
+        otherChar.GetComponent<Rigidbody>().useGravity = true;
 
         // Change camera
         mainCamera.enabled = false;
@@ -204,6 +205,22 @@ public class Win : MonoBehaviour
         // Spawn in whats needed
 
         // Play Animation, win music, show score
+
+        // Show score and High Score
+        TextMeshProUGUI score = winScreen.transform.Find("Score").GetComponent<TextMeshProUGUI>();
+        score.text = "Score: " + gameManager.score;
+        TextMeshProUGUI highScore = winScreen.transform.Find("HighScore").GetComponent<TextMeshProUGUI>();
+        highScore.text = "High Score: " + gameManager.GetHighScore(SceneManager.GetActiveScene().name);
+        // if it is a new high score, create the text of a new highscore
+        TextMeshProUGUI newHighScoreText = winScreen.transform.Find("NewHighScore").GetComponent<TextMeshProUGUI>();
+        if (newHighScore)
+        {
+            newHighScoreText.enabled = true;
+        }
+        else
+        {
+            newHighScoreText.enabled = false;
+        }
 
         StartCoroutine(FadeIn());
     }

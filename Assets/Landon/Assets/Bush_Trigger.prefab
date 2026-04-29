@@ -208,6 +208,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
   type: 0
+  obstacleLaneType: 0
+  areaType: 0
+  obstacleSound: {fileID: 0}
 --- !u!136 &2389817672119871559
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -223,7 +226,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2

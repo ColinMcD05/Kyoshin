@@ -11,6 +11,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Image blackScreen;
     [SerializeField] Canvas howToPlayCanvas, titleScreen;
 
+    public AudioSource buttonSource;
+    public AudioClip buttonSound;
+
     public float fadeOutTime;
 
     private void Start()
@@ -22,16 +25,21 @@ public class MainMenu : MonoBehaviour
     public void Play()
     {
         // Play sound effect
+        buttonSource.PlayOneShot(buttonSound);
         StartCoroutine(FadeOut());
     }
 
     public void Quit()
     {
+        // Play sound effect
+        buttonSource.PlayOneShot(buttonSound);
         Application.Quit();
     }
 
     public void HowToPlay()
     {
+        // Play sound effect
+        buttonSource.PlayOneShot(buttonSound);
         howToPlayCanvas.enabled = true;
         titleScreen.enabled = false;
         eventSystem.SetSelectedGameObject(returnButton.gameObject);
@@ -39,6 +47,8 @@ public class MainMenu : MonoBehaviour
 
     public void Return()
     {
+        // Play sound effect
+        buttonSource.PlayOneShot(buttonSound);
         howToPlayCanvas.enabled = false;
         titleScreen.enabled = true;
         eventSystem.SetSelectedGameObject(playButton.gameObject);
