@@ -75,17 +75,17 @@ Material:
     - _OutlineThickness: 0.03
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RimIntensity: 0.08
+    - _RimIntensity: 0
     - _RimPower: 8
-    - _ShadowSoftness: 0.05
-    - _ShadowThreshold: 0.285
+    - _ShadowSoftness: 0.199
+    - _ShadowThreshold: 0.818
     - _SpecularIntensity: 2
     - _SpecularThreshold: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 0, g: 0, b: 0, a: 1}
-    - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
+    - _ShadowColor: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
