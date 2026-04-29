@@ -143,7 +143,7 @@ public class Win : MonoBehaviour
         }
 
         gameManager.transform.Find("Canvas").GetComponent<Canvas>().enabled = false;
-        Transition();
+        StartCoroutine(FadeOut(gameManager.GetLevel(SceneManager.GetActiveScene().name)));
     }
     #endregion
 
@@ -185,15 +185,17 @@ public class Win : MonoBehaviour
         otherChar.GetComponent<FollowScript>().enabled = false;
 
         // Set winscreento active and set first button
-        winScreen.SetActive(true);
+        winScreen.transform.Find("WinScreen").gameObject.SetActive(true);
         eventSystem.firstSelectedGameObject = winScreen.transform.Find("WinScreen").Find("Retry").gameObject;
 
         // Stops move backwards scripts
         moveBackwards.enabled = false;
 
+        player.GetComponent<PlayerLevelMovement>().enabled = false;
         // Set position of both characters to win positions
         player.transform.position = playerWinPosition.position;
         player.transform.rotation = playerWinPosition.rotation;
+        Debug.Log(player.transform.position.x);
         otherChar.transform.position = otherCharWinPosition.position;
         otherChar.transform.rotation = otherCharWinPosition.rotation;
         otherChar.GetComponent<Rigidbody>().useGravity = true;
@@ -223,6 +225,5 @@ public class Win : MonoBehaviour
         }
 
         StartCoroutine(FadeIn());
-        player.transform.position = playerWinPosition.position;
     }
 }

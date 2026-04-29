@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public int combo = 0;
     public int lives = 3;
+    public int coins = 0;
 
     // Variables to get correct file pathing
     string filePath; // Path to directory
@@ -40,6 +41,9 @@ public class GameManager : MonoBehaviour
     int mult;
     public int maxMult = 10;
     public int comboNeededMult = 5;
+
+    // Other
+    Scene currentScene;
     #endregion
 
     // Awake
@@ -80,18 +84,37 @@ public class GameManager : MonoBehaviour
 
     // AddScore
     #region
+    // Adds coins
+    public void AddScore(int value, bool isCoin)
+    {
+        if (isCoin)
+        {
+            coins += 1;
+        }
+        if (coins % 30 == 0)
+        {
+            lives += 1;
+            rewindTracker.ChangeText();
+        }
+
+        score += value * mult;
+        scoreText.text = "Score: " + score;
+    }
+
     // Adds score to game manager
     public void AddScore(int value){
         // multipliers score by multiplier
         score += value * mult;
         // Change text
         scoreText.text = "Score: " + score;
-        if (score % 100 < (score - value) % 100)
-        {
-            lives++;
-            rewindTracker.ChangeText();
-        }
         //Debug.Log("Score: " + score);
+    }
+
+    public void AddScore()
+    {
+        score += 1 * mult;
+
+        scoreText.text = "Score: " + score;
     }
     #endregion
 
@@ -234,6 +257,7 @@ public class GameManager : MonoBehaviour
         // set score and lives back to normal
         score = 0;
         lives = 3;
+        currentScene = scene;
 
         // if title screen, get rid of game manager and all other persistent objects
         if (scene.name == "TitleScreen")
@@ -277,6 +301,10 @@ public class GameManager : MonoBehaviour
             {
                 dashSlider.transform.GetChild(i).gameObject.SetActive(true);
             }
+        }
+        if (scene.name == "Infinite")
+        {
+            InvokeRepeating("AddScore", 0, 1/3);
         }
     }
 

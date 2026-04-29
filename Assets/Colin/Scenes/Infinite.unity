@@ -1535,7 +1535,7 @@ MonoBehaviour:
   moveImage: {fileID: 523661053}
   stillImage: {fileID: 523661052}
   image: {fileID: 523661051}
-  fadeOutTime: 0
+  fadeOutTime: 1.5
   playerWinPosition: {fileID: 810257187}
   otherCharWinPosition: {fileID: 1253774212}
   player: {fileID: 177301708}

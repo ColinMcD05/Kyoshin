@@ -139,7 +139,6 @@ public class Rewind : MonoBehaviour
 
         musicPlayer.pitch = 1; // Music plays normally
         timing.rewindTimeUsed += totalRewindTime; // Adds time that was rewound to get accurate position of song
-        Debug.Log(totalRewindTime);
 
         // Enables parts of player
         Invoke("BecomeVulnerable", invincibility);
