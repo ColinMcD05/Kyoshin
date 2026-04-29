@@ -13367,7 +13367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1536192387026689351, guid: f2f280d2783593448a76a6841b41fcf6, type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: TimingUI
       objectReference: {fileID: 0}
     - target: {fileID: 6242634373749834897, guid: f2f280d2783593448a76a6841b41fcf6, type: 3}
       propertyPath: m_Color.a

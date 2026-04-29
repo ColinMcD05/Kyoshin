@@ -159,7 +159,7 @@ public class Timing : MonoBehaviour
             }
             StopCoroutine(resetCircle);
             UnSubscribeActions();
-            currentSong = songClass.songs[0];
+            currentSong = songClass.songs[1];
             StartMusic();
         }
         else
