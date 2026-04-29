@@ -56,6 +56,7 @@ public class WallAreas : MonoBehaviour
             playerMovement.leftWallPosition = null;
             playerMovement.rightWallPosition = null;
             playerMovement.areaType = PlayerLevelMovement.AreaType.normal;
+            other.GetComponent<Rigidbody>().useGravity = true;
             if (!playerMovement.IsGrounded())
             {
                 switch (areaType)

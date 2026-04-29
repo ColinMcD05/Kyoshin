@@ -78,7 +78,6 @@ public class PauseMenu : MonoBehaviour
         audioMixer.SetFloat("MusicVolume", Mathf.Log10(PlayerPrefs.GetFloat("MusicVolume", 1)) * 20);
         // Get the input module to assign functions to the action for moving with keyboard
         inputModule = eventSystem.gameObject.GetComponent<InputSystemUIInputModule>();
-        inputModule.move.action.performed += ChangeLastSelected;
     }
     #endregion
 
@@ -89,7 +88,6 @@ public class PauseMenu : MonoBehaviour
         // Unsubscribe actions when object is destroyed
         pause.action.performed -= PausePerformed; 
         SceneManager.sceneLoaded -= GetReferences;
-        inputModule.move.action.performed -= ChangeLastSelected;
     }
     #endregion
 
@@ -131,6 +129,7 @@ public class PauseMenu : MonoBehaviour
     // Pauses game
     public void Pause()
     {
+        inputModule.move.action.performed += ChangeLastSelected;
         // Unsubscribes actions on player if in a level
         if (timing != null)
         {
@@ -223,6 +222,7 @@ public class PauseMenu : MonoBehaviour
         playerAudio.UnPause();
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
         buttonSource.PlayOneShot(buttonSound);
+        inputModule.move.action.performed -= ChangeLastSelected;
     }
     #endregion
 
@@ -231,7 +231,8 @@ public class PauseMenu : MonoBehaviour
     
     // Restarts the current level
     public void Retry()
-    { 
+    {
+        if (SceneManager.GetActiveScene().name == "HUB") return;
         // Ensures game get unpaused and pause menu is deactivated
         Time.timeScale = 1;
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
