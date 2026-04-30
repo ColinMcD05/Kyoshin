@@ -16,7 +16,6 @@ public class Timing : MonoBehaviour
     [SerializeField] InputActionReference slide, trick;
     [SerializeField] GameObject player;
     [SerializeField] TimingUI timingUI;
-    Rewind rewind;
     PlayerLevelMovement playerLevelMovement;
     PlayerControllerLevel playerControllerLevel;
     [SerializeField] MoveBackwards moveBackwards;
@@ -70,10 +69,10 @@ public class Timing : MonoBehaviour
         if (player == null)
             player = GameObject.FindWithTag("Player");
         playerControllerLevel = player.GetComponent<PlayerControllerLevel>();
-        rewind = player.GetComponent<Rewind>();
         playerLevelMovement = player.GetComponent<PlayerLevelMovement>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         musicPlayer = GameObject.Find("Audio").transform.Find("Music").GetComponent<AudioSource>();
+        musicPlayer.clip = null;
 
         // Changing current song based on the build index. May change
         foreach (Songs.SongData song in songClass.songs)
