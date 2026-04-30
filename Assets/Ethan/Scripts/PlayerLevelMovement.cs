@@ -132,7 +132,6 @@ public class PlayerLevelMovement : MonoBehaviour
                 }
                 if (xInput > 0f)
                 {
-                    Debug.Log("Doing This");
                     if (currentLane == 2)
                     {
                         if (rightWallPosition != null)
@@ -143,7 +142,6 @@ public class PlayerLevelMovement : MonoBehaviour
                         }
                         else return;
                     }
-                    Debug.Log(xInput);
                     currentLane++;
                 }
                 else if (xInput < 0f)
@@ -218,8 +216,6 @@ public class PlayerLevelMovement : MonoBehaviour
         isSliding = true; // Set sliding equal to true
         // Audio: one-shot layer on slideSource when the slide input fires (independent of the looping run SFX)
         slideSource.PlayOneShot(slideSound);
-
-        Debug.Log(slideSound);
 
         gameObject.transform.localScale *= shrinkPercentage;
         Invoke("StopSliding", slidingLength); // Invoke StopSliding after the slidingLength
