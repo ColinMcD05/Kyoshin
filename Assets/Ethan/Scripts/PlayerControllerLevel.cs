@@ -1,9 +1,7 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using Unity.Cinemachine;
-using TMPro;
 public class PlayerControllerLevel : MonoBehaviour
 {
     [SerializeField] Rewind rewind;
@@ -85,6 +83,7 @@ public class PlayerControllerLevel : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().name != "Infinite")
             {
+                Time.timeScale = 1;
                 gameManager.GameOver();
             }
             else
