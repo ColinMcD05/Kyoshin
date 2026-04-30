@@ -198,7 +198,6 @@ public class ObjectPool : MonoBehaviour
                 }
                 return pooledTokyoSections[randomSection];
         }
-        return null;
     }
 
     // Need to limit range by finding area type and last pooled objects lane type
