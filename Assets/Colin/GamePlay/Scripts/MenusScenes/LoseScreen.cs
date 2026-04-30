@@ -14,12 +14,12 @@ public class LoseScreen : MonoBehaviour
         lastScene = gameManager.GetLastScene();
         Debug.Log(lastScene);
         music.Stop();
+        music.clip = null;
+        music.pitch = 1;
     }
 
     public void Retry()
     {
-        music.clip = null;
-        music.UnPause();
         SceneManager.LoadScene(lastScene);
     }
 
