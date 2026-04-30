@@ -467,7 +467,7 @@ public class PlayerLevelMovement : MonoBehaviour
     }
 
     public bool IsGrounded(){ // This is a function that is called to check if the player is grounded
-        Vector3 rayStart = transform.position + Vector3.up * groundCheckStartHeight; // Get the start of the ray by adding the up vector to the position of the player and the ground check start height
+        Vector3 rayStart =  transform.position + Vector3.up * groundCheckStartHeight; // Get the start of the ray by adding the up vector to the position of the player and the ground check start height
         return Physics.Raycast(rayStart, Vector3.down, groundCheckDistance, groundLayers); // Cast a ray down from the start of the ray to the ground check distance and check if the ray hits the ground layers
     }
     #endregion
