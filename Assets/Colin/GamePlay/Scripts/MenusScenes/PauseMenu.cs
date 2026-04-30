@@ -259,6 +259,8 @@ public class PauseMenu : MonoBehaviour
         // Reloads the game
         // Play sound effect
         buttonSource.PlayOneShot(buttonSound);
+        music.clip = null;
+        music.UnPause();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

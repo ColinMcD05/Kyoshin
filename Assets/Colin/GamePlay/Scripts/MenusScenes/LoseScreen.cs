@@ -18,6 +18,8 @@ public class LoseScreen : MonoBehaviour
 
     public void Retry()
     {
+        music.clip = null;
+        music.UnPause();
         SceneManager.LoadScene(lastScene);
     }
 
