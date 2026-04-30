@@ -37,7 +37,6 @@ public class Coin : MonoBehaviour
             }
             // Put sound effect here
             AudioSource.PlayClipAtPoint(randomSound, transform.position);
-            Debug.Log("sound played" + randomSound.name) ;
             gameObject.SetActive(false);
         }
     }
