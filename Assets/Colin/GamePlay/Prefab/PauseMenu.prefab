@@ -276,8 +276,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6864804441912918036}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 5.9, y: 7.7}
   m_SizeDelta: {x: 75, y: 146}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2385,8 +2385,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5537563132917772896}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 6, y: 7.9}
   m_SizeDelta: {x: 75, y: 146}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3555,7 +3555,7 @@ RectTransform:
   m_Father: {fileID: 2661768593824665578}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3642,7 +3642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da51d491baa0bf41bf4638ff7c24956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
-  pause: {fileID: -80611357765666335, guid: a1fa9bfeab0d76b4994c5ae431a6888a, type: 3}
+  pause: {fileID: 2536315911987204123, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   audioMixer: {fileID: 24100000, guid: 32f5c99afd17cec4fb215a89044c5078, type: 2}
   eventSystem: {fileID: 0}
   resume: {fileID: 6966349306516701221}
@@ -3954,7 +3954,7 @@ RectTransform:
   m_Father: {fileID: 268386226983400310}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
