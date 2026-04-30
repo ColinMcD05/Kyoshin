@@ -118,7 +118,7 @@ public class Rewind : MonoBehaviour
         startRewindTime = (float)AudioSettings.dspTime; ;
         rewinding = true;
 
-        musicPlayer.pitch = -1; // Reverses music
+        musicPlayer.pitch = -2; // Reverses music
         moveBackwards.forwardSpeed *= -1;
 
         // Disables parts of player

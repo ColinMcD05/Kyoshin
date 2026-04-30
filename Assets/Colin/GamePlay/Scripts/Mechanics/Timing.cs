@@ -72,6 +72,7 @@ public class Timing : MonoBehaviour
         playerLevelMovement = player.GetComponent<PlayerLevelMovement>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         musicPlayer = GameObject.Find("Audio").transform.Find("Music").GetComponent<AudioSource>();
+        musicPlayer.pitch = 1;
 
         // Changing current song based on the build index. May change
         foreach (Songs.SongData song in songClass.songs)
