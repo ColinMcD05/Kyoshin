@@ -1359,7 +1359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 721062600316765441, guid: e1ddf480164cd6e449823c126d857ad9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -82.387
+      value: -70
       objectReference: {fileID: 0}
     - target: {fileID: 721062600316765441, guid: e1ddf480164cd6e449823c126d857ad9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1786,7 +1786,7 @@ Transform:
   m_GameObject: {fileID: 50293279}
   serializedVersion: 2
   m_LocalRotation: {x: 0.08828583, y: 0, z: 0, w: 0.9960952}
-  m_LocalPosition: {x: 0.15, y: 2.6000001, z: -84.397}
+  m_LocalPosition: {x: 0.15, y: 2.6000001, z: -72.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14584,7 +14584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e069973875d4c4fa875763be65eae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveBackwards
-  forwardSpeed: 16
+  forwardSpeed: 8
   maxSpeed: 0
   minSpeed: 0
 --- !u!4 &357729120 stripped
@@ -16601,8 +16601,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.08557416, y: 0.46532324, z: 1.1184945}
-  m_Center: {x: 2.7123297e-15, y: 0.007843746, z: 3.142382e-15}
+  m_Size: {x: 0.08557416, y: 0.44524577, z: 1.1184945}
+  m_Center: {x: 1.9865254e-15, y: 0.017882513, z: 3.4593194e-15}
 --- !u!114 &453573670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46778,7 +46778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2523096700075287972, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -81.317
+      value: -68.93
       objectReference: {fileID: 0}
     - target: {fileID: 2523096700075287972, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
       propertyPath: m_LocalRotation.w
@@ -70031,7 +70031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6975411035422619735, guid: 459dce46211c54544a40abde73b11228, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -84.397
+      value: -72.01
       objectReference: {fileID: 0}
     - target: {fileID: 6975411035422619735, guid: 459dce46211c54544a40abde73b11228, type: 3}
       propertyPath: m_LocalRotation.w
@@ -74903,12 +74903,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9097326294300799460, guid: 495dbf2d6442b914ca0350d9b0275f73, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2131065605}
-    - targetCorrespondingSourceObject: {fileID: 9097326294300799460, guid: 495dbf2d6442b914ca0350d9b0275f73, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2131065604}
-    - targetCorrespondingSourceObject: {fileID: 9097326294300799460, guid: 495dbf2d6442b914ca0350d9b0275f73, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2131065603}
   m_SourcePrefab: {fileID: 100100000, guid: 495dbf2d6442b914ca0350d9b0275f73, type: 3}
 --- !u!4 &2131065601 stripped
 Transform:
@@ -74920,38 +74914,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9097326294300799460, guid: 495dbf2d6442b914ca0350d9b0275f73, type: 3}
   m_PrefabInstance: {fileID: 2131065600}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2131065603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2131065602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  type: 0
-  obstacleLaneType: 0
-  areaType: 0
-  obstacleSound: {fileID: 8300000, guid: 8a3b04111f5a7de4a9eeb0dfd7bc8cdf, type: 3}
---- !u!114 &2131065604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2131065602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  type: 0
-  obstacleLaneType: 0
-  areaType: 0
-  obstacleSound: {fileID: 8300000, guid: 8a3b04111f5a7de4a9eeb0dfd7bc8cdf, type: 3}
 --- !u!65 &2131065605
 BoxCollider:
   m_ObjectHideFlags: 0
