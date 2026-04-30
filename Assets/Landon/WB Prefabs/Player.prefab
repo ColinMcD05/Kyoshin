@@ -687,6 +687,7 @@ MonoBehaviour:
   jumpSource: {fileID: 6310300128418858321}
   jumpSound: {fileID: 8300000, guid: e0a1d3ef26abad547accd3a143bfa53f, type: 3}
   landingSound: {fileID: 8300000, guid: 3edc2b417a463714488e7d68619102df, type: 3}
+  animator: {fileID: 8494910124883673054}
   currentLane: 1
   lefLaneX: -5
   centerLaneX: 0
@@ -800,3 +801,8 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &8494910124883673054 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 19bed16e927a2ca4e95cdb15a3c222e4, type: 3}
+  m_PrefabInstance: {fileID: 2632756857970606671}
+  m_PrefabAsset: {fileID: 0}
