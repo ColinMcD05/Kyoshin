@@ -263,6 +263,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6748931085991258304, guid: 0f2d1333b81a62c4987a544ece5b1911, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6978555408005624271}
+    - targetCorrespondingSourceObject: {fileID: 6748931085991258304, guid: 0f2d1333b81a62c4987a544ece5b1911, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9045653810401298665}
   m_SourcePrefab: {fileID: 100100000, guid: 0f2d1333b81a62c4987a544ece5b1911, type: 3}
 --- !u!1 &7479909342908993059 stripped
 GameObject:
@@ -290,6 +293,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.34289953, y: 0.31170347, z: 2.7827163}
   m_Center: {x: -0.039495796, y: -0.018821532, z: 0.08800139}
+--- !u!114 &9045653810401298665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7479909342908993059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Obstacle
+  type: 0
+  obstacleLaneType: 0
+  areaType: 0
+  obstacleSound: {fileID: 8300000, guid: 8a3b04111f5a7de4a9eeb0dfd7bc8cdf, type: 3}
 --- !u!4 &7819983184984478873 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6260801435976987258, guid: 0f2d1333b81a62c4987a544ece5b1911, type: 3}
@@ -646,32 +665,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b6ae41abd8ba6ce4885af20e593faef3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5929251871965984114}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6ae41abd8ba6ce4885af20e593faef3, type: 3}
---- !u!1 &8397166146901233660 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b6ae41abd8ba6ce4885af20e593faef3, type: 3}
-  m_PrefabInstance: {fileID: 8667691844902515373}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5929251871965984114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8397166146901233660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2b6a14e97f4c634b9fed5d312944df8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  type: 1
-  obstacleLaneType: 0
-  areaType: 0
-  obstacleSound: {fileID: 8300000, guid: 8a3b04111f5a7de4a9eeb0dfd7bc8cdf, type: 3}
 --- !u!4 &9206319377141175622 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b6ae41abd8ba6ce4885af20e593faef3, type: 3}
