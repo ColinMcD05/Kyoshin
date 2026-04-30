@@ -24,6 +24,7 @@ public class PlayerLevelMovement : MonoBehaviour
     public AudioSource jumpSource;
     public AudioClip jumpSound;
     public AudioClip landingSound;
+    public Animator animator;
 
     // Lane Variables
     private Vector2 leftRightInput; // This is a vector2 that is used to store the value of the leftRightInput
@@ -234,7 +235,8 @@ public class PlayerLevelMovement : MonoBehaviour
         }
         tricking = true;
         // Play animation
-        Invoke("StopTricking", 0.5f);
+        animator.SetTrigger("Trick");
+        Invoke("StopTricking", 1f);
     }
     #endregion
 
