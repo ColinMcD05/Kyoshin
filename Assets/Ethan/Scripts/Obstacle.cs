@@ -37,7 +37,7 @@ public class Obstacle : MonoBehaviour
         obstacleSource = GameObject.Find("Audio").transform.Find("SoundEffects").GetComponent<AudioSource>();
     }
 
-    /*void OnTriggerEnter(Collider other){
+    void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("Player") && !other.GetComponent<Dash>().dashing)
         {
             if (!other.GetComponent<Dash>().dashing && obstacleLaneType == ObstacleLaneType.SingleObject)
