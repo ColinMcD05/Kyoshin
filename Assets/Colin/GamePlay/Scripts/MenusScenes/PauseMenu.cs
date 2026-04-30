@@ -12,6 +12,8 @@ public class PauseMenu : MonoBehaviour
 {
     // Variables
     #region
+    static GameObject instance;
+
     // Variables to check how long game has been paused
     private float startPauseTime;
     private float endPauseTime;
@@ -57,9 +59,13 @@ public class PauseMenu : MonoBehaviour
     #region
     private void Awake()
     {
-        pause.action.performed += PausePerformed; // Assigning pause action
-        SceneManager.sceneLoaded += GetReferences; // Assign Getting references once a new scene is loaded
-        SceneManager.sceneLoaded += SetRetryOnButtonDown;
+        if (instance == null)
+        {
+            pause.action.performed += PausePerformed; // Assigning pause action
+            SceneManager.sceneLoaded += SetRetryOnButtonDown;
+            SceneManager.sceneLoaded += GetReferences; // Assign Getting references once a new scene is loaded
+            instance = gameObject;
+        }
     }
     #endregion
 
@@ -87,9 +93,12 @@ public class PauseMenu : MonoBehaviour
     private void OnDestroy()
     {
         // Unsubscribe actions when object is destroyed
-        pause.action.performed -= PausePerformed; 
-        SceneManager.sceneLoaded -= GetReferences;
-        SceneManager.sceneLoaded += SetRetryOnButtonDown;
+        if (instance.GetEntityId() == gameObject.GetEntityId())
+        {
+            pause.action.performed -= PausePerformed;
+            SceneManager.sceneLoaded -= SetRetryOnButtonDown;
+            SceneManager.sceneLoaded -= GetReferences;
+        }
     }
     #endregion
 
@@ -98,6 +107,7 @@ public class PauseMenu : MonoBehaviour
     // Function occurs when the pause button is pressed
     void PausePerformed(InputAction.CallbackContext context)
     {
+        Debug.Log("Hello");
         // Checks to see if winScreen is in hierachery and active. If both are trye the pause screen does not appear.
         if (winScreen != null && winScreen.transform.Find("WinScreen").gameObject.activeInHierarchy == true) return;
         // Check if the current scene is the Lose screen. If it is return and do not pause
@@ -289,6 +299,11 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         // Play sound effect
         buttonSource.PlayOneShot(buttonSound);
+        music.Stop();
+        if (playerAudio != null)
+        {
+            playerAudio.Stop();
+        }
         SceneManager.LoadScene("HUB");
     }
 
@@ -527,6 +542,10 @@ public class PauseMenu : MonoBehaviour
             timing = null;
             timingUI = null;
             winScreen = null;
+        }
+        if (transform.GetChild(0).gameObject.activeInHierarchy)
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
         }
     }
     #endregion
