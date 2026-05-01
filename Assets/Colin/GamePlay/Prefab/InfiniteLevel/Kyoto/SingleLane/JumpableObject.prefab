@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2336522017423562289}
   - component: {fileID: 4602743835797880813}
   - component: {fileID: 1946027579541288970}
+  - component: {fileID: 4362676859909493366}
   m_Layer: 0
   m_Name: JumpableObject
   m_TagString: NormalObs
@@ -72,6 +73,19 @@ MonoBehaviour:
   obstacleLaneType: 0
   areaType: 0
   obstacleSound: {fileID: 8300000, guid: 8a3b04111f5a7de4a9eeb0dfd7bc8cdf, type: 3}
+--- !u!114 &4362676859909493366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6808174880238031145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8f8031136b4e24dbb71fb126c19a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RespawnCoins
+  coins: {fileID: 3342366627790669708}
 --- !u!1001 &4497500440988662247
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -132,6 +146,11 @@ PrefabInstance:
 --- !u!4 &2865188633133924274 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1849120392370030165, guid: 92cedf650302e0540b62aff01ebb0fd0, type: 3}
+  m_PrefabInstance: {fileID: 4497500440988662247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3342366627790669708 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1155222162976538219, guid: 92cedf650302e0540b62aff01ebb0fd0, type: 3}
   m_PrefabInstance: {fileID: 4497500440988662247}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7766356109266882307

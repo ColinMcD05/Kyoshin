@@ -13,6 +13,7 @@ public class ObjectPool : MonoBehaviour
     [Header("Pooled Objects")]
     public List<GameObject> pooledKyotoSections, pooledHakoneSections, pooledTokyoSections, allSections;
     Dictionary<ObstacleLaneType, List<GameObject>> pooledKyotoObstacles, pooledTokyoObstacles, pooledHakoneObstacles;
+    public List<GameObject> pooledCoins;
 
     [Header("Section Info")]
     public GameObject[] sectionKyotoPool;
@@ -32,6 +33,10 @@ public class ObjectPool : MonoBehaviour
     [Header("Hakone Objects")]
     public GameObject[] HakoneToPool;
     public int[] amountHakoneToPool;
+
+    [Header("Coins Info")]
+    public GameObject coinsToPool;
+    public int[] amountCoinsPool;
 
     public SpawnObjects.Level currentLevel;
     public SectionManager.AreaType aeraType;
@@ -155,6 +160,15 @@ public class ObjectPool : MonoBehaviour
             {
                 pooledTokyoObstacles[laneType].AddRange(pooledObstacles);
             }
+        }
+
+        // Pooling coins
+        pooledCoins = new List<GameObject>();
+        for (int i = 0; i < amountCoinsPool.Length; i++)
+        {
+            tmp = Instantiate(coinsToPool);
+            tmp.SetActive(false);
+            pooledCoins.Add(tmp);
         }
     }
     #endregion
@@ -342,4 +356,16 @@ public class ObjectPool : MonoBehaviour
         return availableObstacles[randomObject];
     }
     #endregion
+
+    public GameObject GetPooledCoins()
+    {
+        foreach (GameObject coin in pooledCoins)
+        {
+            if (!coin.activeInHierarchy)
+            {
+                return coin;
+            }
+        }
+        return null;
+    }
 }

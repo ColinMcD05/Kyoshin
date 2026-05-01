@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7113015353280950326}
   - component: {fileID: 30084463526940213}
   - component: {fileID: 6279723716980765152}
+  - component: {fileID: 440275488704401988}
   m_Layer: 0
   m_Name: JumpObstacle
   m_TagString: NormalObs
@@ -72,6 +73,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2155077, y: 1, z: 0.72463685}
   m_Center: {x: -0.04636112, y: 0, z: -0.001972884}
+--- !u!114 &440275488704401988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7844497119821018189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8f8031136b4e24dbb71fb126c19a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RespawnCoins
+  coins: {fileID: 8134310934893357208}
 --- !u!1001 &5418746538592119259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -158,6 +172,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jump_Coins
       objectReference: {fileID: 0}
+    - target: {fileID: 1155222162976538219, guid: 92cedf650302e0540b62aff01ebb0fd0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1849120392370030165, guid: 92cedf650302e0540b62aff01ebb0fd0, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -215,6 +233,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92cedf650302e0540b62aff01ebb0fd0, type: 3}
+--- !u!1 &8134310934893357208 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1155222162976538219, guid: 92cedf650302e0540b62aff01ebb0fd0, type: 3}
+  m_PrefabInstance: {fileID: 6983619423399253747}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8738014542839058598 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1849120392370030165, guid: 92cedf650302e0540b62aff01ebb0fd0, type: 3}

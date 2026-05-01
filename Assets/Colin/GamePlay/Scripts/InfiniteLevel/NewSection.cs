@@ -174,6 +174,10 @@ public class NewSection : MonoBehaviour
                     child.gameObject.SetActive(false);
 
                 }
+                if (child.gameObject.CompareTag("Coins"))
+                {
+                    child.gameObject.SetActive(false);
+                }
             }
             // Send object back to object pool
             transform.parent.gameObject.SetActive(false);

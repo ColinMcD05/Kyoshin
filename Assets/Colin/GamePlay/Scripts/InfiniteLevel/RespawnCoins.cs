@@ -2,15 +2,21 @@ using UnityEngine;
 
 public class RespawnCoins : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public GameObject coins;
 
-    // Update is called once per frame
-    void Update()
+    void Start() { }
+
+    void OnEnable()
     {
-        
+        if (coins != null)
+        {
+            int willSpawn = Random.Range(0, 2);
+            if (willSpawn == 1) coins.SetActive(false);
+            coins.SetActive(true);
+            for (int i = 0; i < coins.transform.childCount; i++)
+            {
+                coins.transform.GetChild(i).gameObject.SetActive(true);
+            }
+        }
     }
 }

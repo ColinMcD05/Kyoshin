@@ -309,4 +309,18 @@ public class SpawnObjects : MonoBehaviour
         }
     }
     #endregion
+
+    void SpawnCoin(int lane, Vector3 position)
+    {
+        GameObject coin = ObjectPool.sharedInstance.GetPooledCoins();
+
+        position.x = spawns[lane].transform.position.x;
+
+        for (int i = 0; i < coin.transform.childCount; i++)
+        {
+            coin.transform.GetChild(i).gameObject.SetActive(true);
+        }
+
+        coin.transform.position = position;
+    }
 }

@@ -12,6 +12,7 @@ TagManager:
   - NormalObs
   - MusicSlider
   - MasterSlider
+  - Coins
   layers:
   - Default
   - TransparentFX
