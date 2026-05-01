@@ -304,7 +304,7 @@ public class GameManager : MonoBehaviour
         }
         if (scene.name == "Infinite")
         {
-            InvokeRepeating("AddScore", 0, 1/3);
+            InvokeRepeating("AddScore", 0, 0.2f);
         }
     }
 
