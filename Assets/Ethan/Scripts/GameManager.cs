@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject[] persistantObjects;
 
     // Canvas objects
-    public TextMeshProUGUI scoreText, rewindText, comboText, multText;
+    public TextMeshProUGUI scoreText, rewindText, comboText, multText, coinsText;
     public RewindTracker rewindTracker;
     public GameObject dashSlider;
     public RawImage visualizer;
@@ -41,9 +41,6 @@ public class GameManager : MonoBehaviour
     int mult;
     public int maxMult = 10;
     public int comboNeededMult = 5;
-
-    // Other
-    Scene currentScene;
     #endregion
 
     // Awake
@@ -87,10 +84,9 @@ public class GameManager : MonoBehaviour
     // Adds coins
     public void AddScore(int value, bool isCoin)
     {
-        if (isCoin)
-        {
-            coins += 1;
-        }
+        if (!isCoin) return;
+        coins += 1;
+        coinsText.text = "Coins: " + coins;
         if (coins % 30 == 0)
         {
             lives += 1;
@@ -257,7 +253,7 @@ public class GameManager : MonoBehaviour
         // set score and lives back to normal
         score = 0;
         lives = 3;
-        currentScene = scene;
+        coins = 0;
 
         // if title screen, get rid of game manager and all other persistent objects
         if (scene.name == "TitleScreen")
@@ -270,6 +266,7 @@ public class GameManager : MonoBehaviour
             rewindText.enabled = false;
             comboText.enabled = false;
             multText.enabled = false;
+            coinsText.enabled = false;
             for (int i = 0; i < dashSlider.transform.childCount; i++)
             {
                 dashSlider.transform.GetChild(i).gameObject.SetActive(false);
@@ -282,6 +279,7 @@ public class GameManager : MonoBehaviour
             rewindText.enabled = false;
             comboText.enabled = false;
             multText.enabled = false;
+            coinsText.enabled = false;
             for (int i = 0; i < dashSlider.transform.childCount; i++)
             {
                 dashSlider.transform.GetChild(i).gameObject.SetActive(false);
@@ -295,7 +293,9 @@ public class GameManager : MonoBehaviour
             rewindTracker.ChangeText();
             rewindText.enabled = true;
             comboText.enabled = true;
-            multText.enabled = true;
+            multText.enabled = true; 
+            coinsText.enabled = true;
+            coinsText.text = "Coins: " + coins;
             ClearCombo();
             for (int i = 0; i < dashSlider.transform.childCount; i++)
             {

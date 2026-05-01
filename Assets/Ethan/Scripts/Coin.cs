@@ -26,7 +26,7 @@ public class Coin : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             float addedValue = 1 / dashValue;
-            gameManager.AddScore(coinValue);
+            gameManager.AddScore(coinValue, true);
             if (!other.GetComponent<Dash>().dashing)
             {
                 other.GetComponent<Dash>().AddDash(addedValue);
