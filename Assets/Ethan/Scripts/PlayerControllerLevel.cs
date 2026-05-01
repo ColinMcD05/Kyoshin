@@ -74,8 +74,7 @@ public class PlayerControllerLevel : MonoBehaviour
     #endregion
 
     public void Death(string where)
-    {
-        Debug.Log(where);
+    { 
         gameManager.ClearCombo();
         collidedAmout = 0;
         cineMachineNoise.AmplitudeGain = 0;

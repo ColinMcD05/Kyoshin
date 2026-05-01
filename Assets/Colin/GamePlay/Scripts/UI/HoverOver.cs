@@ -13,7 +13,5 @@ public class HoverOver : MonoBehaviour, IPointerEnterHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         eventSystem.SetSelectedGameObject(gameObject);
-        Debug.Log("Entered");
-        Debug.Log(eventSystem.currentSelectedGameObject.name);
     }
 }

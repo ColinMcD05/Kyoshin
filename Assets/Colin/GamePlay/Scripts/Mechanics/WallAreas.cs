@@ -62,9 +62,9 @@ public class WallAreas : MonoBehaviour
                 {
                     default:
                     case PlayerLevelMovement.AreaType.closeWallRunning:
-                            playerMovement.currentLane = 1;
+                        playerMovement.currentLane = 1;
                         break;
-                        
+
                     case PlayerLevelMovement.AreaType.wallRunning:
                         {
                             switch (playerMovement.wallType)
