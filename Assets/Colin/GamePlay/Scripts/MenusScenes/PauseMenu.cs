@@ -328,7 +328,6 @@ public class PauseMenu : MonoBehaviour
     public void Arrows(string name)
     {
         buttonSource.PlayOneShot(buttonSound);
-        Debug.Log(name);
         Slider slider = null;
         // Gets the type of arrow to assign correct behavior
         switch (name)
@@ -555,7 +554,6 @@ public class PauseMenu : MonoBehaviour
     #region
     void ChangeLastSelected(InputAction.CallbackContext callbackContext)
     {
-        Debug.Log("Hello");
         if (!eventSystem.currentSelectedGameObject.CompareTag("Button"))
         {
             lastSelectedButton = eventSystem.currentSelectedGameObject.GetComponent<Button>();

@@ -268,6 +268,17 @@ public class SpawnObjects : MonoBehaviour
 
                     lastObject = obstacle;
                     lastObstacleWidth = obstacleWidth;
+
+                    // Spawn in coins on lanes not in use
+                    int coinLane = Random.Range(0, spawns.Length - 1);
+                    int spawnCoins = Random.Range(0, 2); // 50% chance coins spawn
+                    if (spawnCoins == 0)
+                    {
+                        if (coinLane > randomLane)
+                        {
+                            coinLane++;
+                        }
+                    }
                 }
             }
         }
@@ -280,7 +291,7 @@ public class SpawnObjects : MonoBehaviour
     public void ChangeVariables(Songs.SongData newSong, Vector3 newPosition)
     {
         // Sets the distance between each obstacle
-        distanceBetween = 32 * newSong.bps;
+        distanceBetween = 32 * newSong.bps * 2;
         // last position is equal to player posittion at the start of song
         lastPosition = newPosition;
         // Set variables for spawning logic to start correctly

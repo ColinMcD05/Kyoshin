@@ -63,7 +63,11 @@ public class PlayerControllerLevel : MonoBehaviour
             }
             else
             {
-                moveBackwards.forwardSpeed = moveBackwards.minSpeed;
+                moveBackwards.forwardSpeed /= 2;
+                if (moveBackwards.forwardSpeed < moveBackwards.minSpeed)
+                {
+                    moveBackwards.forwardSpeed = moveBackwards.minSpeed;
+                }
             }
         }
     }
