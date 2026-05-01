@@ -267,6 +267,7 @@ public class GameManager : MonoBehaviour
             comboText.enabled = false;
             multText.enabled = false;
             coinsText.enabled = false;
+            visualizer.enabled = false;
             for (int i = 0; i < dashSlider.transform.childCount; i++)
             {
                 dashSlider.transform.GetChild(i).gameObject.SetActive(false);
@@ -280,6 +281,7 @@ public class GameManager : MonoBehaviour
             comboText.enabled = false;
             multText.enabled = false;
             coinsText.enabled = false;
+            visualizer.enabled = false;
             for (int i = 0; i < dashSlider.transform.childCount; i++)
             {
                 dashSlider.transform.GetChild(i).gameObject.SetActive(false);
@@ -296,6 +298,7 @@ public class GameManager : MonoBehaviour
             multText.enabled = true; 
             coinsText.enabled = true;
             coinsText.text = "Coins: " + coins;
+            visualizer.enabled = true;
             ClearCombo();
             for (int i = 0; i < dashSlider.transform.childCount; i++)
             {
