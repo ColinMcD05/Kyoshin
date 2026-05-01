@@ -65,7 +65,7 @@ public class Obstacle : MonoBehaviour
                                     return;
                                 }
                             }
-                            playerController.Death();
+                            playerController.Death(gameObject.name);
                             break;
                         case ObstacleType.Hurt:
                             playerController.LoseLife();

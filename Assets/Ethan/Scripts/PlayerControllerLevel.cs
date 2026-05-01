@@ -11,7 +11,7 @@ public class PlayerControllerLevel : MonoBehaviour
     [SerializeField] MoveBackwards moveBackwards;
     RewindTracker livesText;
 
-    int collidedAmout = 0;
+    public int collidedAmout = 0;
     public int maxCollisions = 4;
     public float regenTime = 2.0f;
     public bool invincible = false;
@@ -59,7 +59,7 @@ public class PlayerControllerLevel : MonoBehaviour
             if (collidedAmout >= maxCollisions)
             { // If the collided amount is greater than or equal to the max collisions
                 //Debug.Log("Lives: " + lives);
-                Death();
+                Death("LoseLife");
             }
             else
             {
@@ -73,8 +73,9 @@ public class PlayerControllerLevel : MonoBehaviour
     }
     #endregion
 
-    public void Death()
+    public void Death(string where)
     {
+        Debug.Log(where);
         gameManager.ClearCombo();
         collidedAmout = 0;
         cineMachineNoise.AmplitudeGain = 0;

@@ -127,6 +127,7 @@ public class Win : MonoBehaviour
         // Disable timing based mechanics
         player.GetComponent<Timing>().enabled = false;
         player.GetComponent<PlayerLevelMovement>().enabled = false;
+        player.GetComponent<Rigidbody>().useGravity = false;
         moveImage.enabled = false;
         stillImage.enabled = false;
 
@@ -208,7 +209,6 @@ public class Win : MonoBehaviour
         // Set position of both characters to win positions
         player.transform.position = playerWinPosition.position;
         player.transform.rotation = playerWinPosition.rotation;
-        Debug.Log(player.transform.position.x);
         otherChar.transform.position = otherCharWinPosition.position;
         otherChar.transform.rotation = otherCharWinPosition.rotation;
         otherChar.GetComponent<Rigidbody>().useGravity = true;

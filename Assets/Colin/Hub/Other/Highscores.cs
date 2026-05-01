@@ -5,7 +5,7 @@ public class Highscores : MonoBehaviour
 {
     // Variables
     GameManager gameManager;
-    public Transform facingCamera; 
+    //public Transform facingCamera; 
     float highscore;
 
     void Start()
@@ -27,9 +27,9 @@ public class Highscores : MonoBehaviour
         gameObject.GetComponent<TextMeshPro>().text = gameObject.name + "\n Highscore: " + highscore;
 
         // Have the highscore lists face the camera
-        Vector3 direction = (facingCamera.position - transform.position).normalized; // Get direction
+        /*Vector3 direction = (facingCamera.position - transform.position).normalized; // Get direction
         Quaternion targetRotation = Quaternion.LookRotation(new Vector3(direction.x, direction.y, direction.z ), Vector3.up);
         transform.rotation = targetRotation;
-        transform.localRotation *= Quaternion.Euler(new Vector3(0, 180, 0));
+        transform.localRotation *= Quaternion.Euler(new Vector3(0, 180, 0));*/
     }
 }

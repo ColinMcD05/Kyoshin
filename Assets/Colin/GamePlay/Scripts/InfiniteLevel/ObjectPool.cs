@@ -36,7 +36,7 @@ public class ObjectPool : MonoBehaviour
 
     [Header("Coins Info")]
     public GameObject coinsToPool;
-    public int[] amountCoinsPool;
+    public int amountCoinsPool;
 
     public SpawnObjects.Level currentLevel;
     public SectionManager.AreaType aeraType;
@@ -164,7 +164,7 @@ public class ObjectPool : MonoBehaviour
 
         // Pooling coins
         pooledCoins = new List<GameObject>();
-        for (int i = 0; i < amountCoinsPool.Length; i++)
+        for (int i = 0; i < amountCoinsPool; i++)
         {
             tmp = Instantiate(coinsToPool);
             tmp.SetActive(false);

@@ -272,11 +272,24 @@ public class SpawnObjects : MonoBehaviour
                     // Spawn in coins on lanes not in use
                     int coinLane = Random.Range(0, spawns.Length - 1);
                     int spawnCoins = Random.Range(0, 2); // 50% chance coins spawn
-                    if (spawnCoins == 0)
+                    int spawnCoins2 = Random.Range(0, 4); // 33% chance to spawn in multple sets
+
+                    if (spawnCoins == 0 && obstacleScript.obstacleLaneType == ObstacleLaneType.SingleObject)
                     {
-                        if (coinLane > randomLane)
+                        if (coinLane >= randomLane)
                         {
                             coinLane++;
+                        }
+                        SpawnCoin(coinLane, nextPosition, newParent);
+                        if (spawnCoins2 == 0)
+                        {
+                            for (int j = 0; j < 3; j++)
+                            {
+                                if (j != randomLane && j != coinLane)
+                                {
+
+                                }
+                            }
                         }
                     }
                 }
@@ -321,9 +334,12 @@ public class SpawnObjects : MonoBehaviour
     }
     #endregion
 
-    void SpawnCoin(int lane, Vector3 position)
+    void SpawnCoin(int lane, Vector3 position, Transform newParent)
     {
         GameObject coin = ObjectPool.sharedInstance.GetPooledCoins();
+        coin.SetActive(true);
+
+        coin.transform.SetParent(newParent);
 
         position.x = spawns[lane].transform.position.x;
 

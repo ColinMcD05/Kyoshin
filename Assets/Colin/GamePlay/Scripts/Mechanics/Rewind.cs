@@ -103,7 +103,7 @@ public class Rewind : MonoBehaviour
         // Rewind starts if not currently rewinding and enough time has passed
         if (input.isPressed && !rewinding && timing.songPosition > 4)
         {
-            playerController.Death();
+            playerController.Death("Rewind");
         }
     }
     #endregion
