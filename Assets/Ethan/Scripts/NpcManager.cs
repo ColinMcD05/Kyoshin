@@ -1,11 +1,17 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class NpcManager : MonoBehaviour
 {
+    public List<GameObject> pooledNpcs;
+
     public GameObject[] npcPrefabs; // array of npc prefabs
+    public int amountToPoolTotal = 125; // Total amount of npcs needeing to be pool
+
     public Transform[] targets; // array of targets for npc to move to
     public Transform[] spawnPoints; // array of spawn points for npc to spawn at
     public int maxNpcs = 10; // max number of npcs to spawn
+    public int maxNpcsSpawnGroup = 3; // max number of npcs to spawn in a group
     
 
     public Transform currentTarget; // current target for npc to move to
@@ -13,20 +19,49 @@ public class NpcManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
-        SpawnNpcLoop();
-
-    }
-
-    private void Update()
-    {
-        if(npcCount == 0)
+        pooledNpcs = new List<GameObject>();
+        GameObject tmp = null;
+        for (int i = 0; i <amountToPoolTotal; i++)
         {
-            SpawnNpcLoop();
+            int randomNPC = Random.Range(0, npcPrefabs.Length);
+            tmp = Instantiate(npcPrefabs[randomNPC]);
+            pooledNpcs.Add(tmp);
+            tmp.SetActive(false);
         }
+
+        InvokeRepeating("Spawn", 0, 0.5f);
+
     }
 
-    void SpawnNpc()
+
+    void Spawn()
+    {
+        int randomAmount = Random.Range(1, maxNpcsSpawnGroup);
+        GameObject npc = null;
+        foreach (Transform spawn in spawnPoints)
+        {
+            for (int i = 0; i < randomAmount; i++)
+            {
+                npc = GetPooledNPC();
+                if (npc != null)
+                {
+                    npc.transform.position = spawn.position;
+                    foreach (Transform target in targets)
+                    {
+                        if (target.name != spawn.name)
+                        {
+                            npc.GetComponent<NpcMovement>().target = target;
+                            break;
+                        }
+                    }
+                    npc.SetActive(true);
+                }
+            }
+        }
+ 
+    }
+
+    /*void SpawnNpc()
     {
         if (npcPrefabs == null || npcPrefabs.Length == 0) // if the npc prefabs is not set or is empty return
         {
@@ -73,5 +108,17 @@ public class NpcManager : MonoBehaviour
             SpawnNpc();
             npcCount++;
         }
+    }*/
+
+    GameObject GetPooledNPC()
+    {
+        if (pooledNpcs != null)
+        {
+            foreach (GameObject npc in pooledNpcs)
+            {
+                if (!npc.activeInHierarchy) return npc;
+            }
+        }
+        return null;
     }
 }
