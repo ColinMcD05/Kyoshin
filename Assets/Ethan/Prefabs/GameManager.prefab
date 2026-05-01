@@ -1110,7 +1110,7 @@ MonoBehaviour:
   rewindText: {fileID: 915652400874834848}
   comboText: {fileID: 906522751044202154}
   multText: {fileID: 8725378943053457450}
-  coinsText: {fileID: 0}
+  coinsText: {fileID: 2613543291357073189}
   rewindTracker: {fileID: 3891333846117371018}
   dashSlider: {fileID: 9005737770268303239}
   visualizer: {fileID: 9068424414906722098}
