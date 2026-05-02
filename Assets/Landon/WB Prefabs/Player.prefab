@@ -577,6 +577,8 @@ MonoBehaviour:
   rewind: {fileID: 3233316654364501501}
   timing: {fileID: 1567925838254450578}
   moveBackwards: {fileID: 0}
+  indicators: []
+  collidedAmout: 0
   maxCollisions: 3
   regenTime: 2
   invincible: 0
@@ -629,6 +631,7 @@ MonoBehaviour:
   countDownSound: {fileID: 7157778044438292944}
   ScratchSound: {fileID: 8300000, guid: 6d8abe5fad4dd8249baf30498e70350f, type: 3}
   scratchSource: {fileID: 6310300128418858321}
+  indicators: []
   songPosition: 0
   songPositionInBeats: 0
   messUpRange: 0.33

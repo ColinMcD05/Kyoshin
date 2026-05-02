@@ -22,7 +22,7 @@ public class Rewind : MonoBehaviour
 
     // Mutable Variables in script
     [HideInInspector] public List<Vector2> positions; // List holding players last known position between 0 and rewindTime seconds
-    [HideInInspector] public List<int> lane;
+    public List<int> lane;
     [HideInInspector] public List<int> laneSpeed;
     float startRewindTime;
     float totalRewindTime;
@@ -117,6 +117,7 @@ public class Rewind : MonoBehaviour
     {
         startRewindTime = (float)AudioSettings.dspTime;
         rewinding = true;
+        GetComponent<Rigidbody>().useGravity = false;
 
         musicPlayer.pitch = -2; // Reverses music
         moveBackwards.forwardSpeed *= -1;
@@ -149,6 +150,49 @@ public class Rewind : MonoBehaviour
         Time.timeScale = 1;
         // Stop rewind sound
         rewindSource.Stop();
+        Debug.Log(playerMovement.currentLane);
+        switch (playerMovement.areaType)
+        {
+            default:
+            case PlayerLevelMovement.AreaType.normal:
+                playerRigidbody.useGravity = true;
+                playerMovement.isWallRunning = false;
+                break;
+            case PlayerLevelMovement.AreaType.wallRunning:
+                if(playerMovement.currentLane == -1)
+                {
+                    playerMovement.wallType = PlayerLevelMovement.WallType.leftWall;
+                    playerMovement.isWallRunning = true;
+                }
+                else if(playerMovement.currentLane == 3)
+                {
+                    playerMovement.wallType = PlayerLevelMovement.WallType.rightWall;
+                    playerMovement.isWallRunning = true;
+                }
+                else
+                {
+                    playerRigidbody.useGravity = true;
+                    playerMovement.isWallRunning = false;
+                }
+                break;
+            case PlayerLevelMovement.AreaType.closeWallRunning:
+                if (playerMovement.currentLane == 0 && playerMovement.leftWallPosition != null)
+                {
+                    playerMovement.wallType = PlayerLevelMovement.WallType.leftWall;
+                    playerMovement.isWallRunning = true;
+                }
+                else if (playerMovement.currentLane == 2 && playerMovement.rightWallPosition != null)
+                {
+                    playerMovement.wallType = PlayerLevelMovement.WallType.rightWall;
+                    playerMovement.isWallRunning = true;
+                }
+                else
+                {
+                    playerRigidbody.useGravity = true;
+                    playerMovement.isWallRunning = false;
+                }
+                break;
+        }
     }
     #endregion
 

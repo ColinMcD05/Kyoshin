@@ -34,24 +34,28 @@ public class WallAreas : MonoBehaviour
         {
             // Once player enters wall running area, it sets the position of where the walls are, and what type.
             PlayerLevelMovement playerMovement = other.GetComponent<PlayerLevelMovement>();
-            if (leftWallPosition != null)
+            if (playerMovement.areaType != areaType)
             {
-                playerMovement.leftWallPosition = leftWallPosition.position;
+                if (leftWallPosition != null)
+                {
+                    playerMovement.leftWallPosition = leftWallPosition.position;
+                }
+                if (rightWallPosition != null)
+                {
+                    playerMovement.rightWallPosition = rightWallPosition.position;
+                }
+                if (areaType == PlayerLevelMovement.AreaType.closeWallRunning && !other.GetComponent<Rewind>().rewinding)
+                {
+                    playerMovement.currentLane = 1;
+                }
+                playerMovement.areaType = areaType;
             }
-            if (rightWallPosition != null)
-            {
-                playerMovement.rightWallPosition = rightWallPosition.position;
-            }
-            if (areaType == PlayerLevelMovement.AreaType.closeWallRunning)
-            {
-                playerMovement.currentLane = 1;
-            }
-            playerMovement.areaType = areaType;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log("Doing This");
         //Once player exits area, sets player back to normal position
         if (other.gameObject.CompareTag("Player"))
         {

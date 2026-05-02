@@ -24647,7 +24647,7 @@ Transform:
   m_GameObject: {fileID: 407502626}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -80.26723, y: 0, z: 9.787125}
+  m_LocalPosition: {x: -77.16925, y: 0, z: 9.787125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -81139,10 +81139,6 @@ PrefabInstance:
       propertyPath: 'indicators.Array.data[2]'
       value: 
       objectReference: {fileID: 1554915093}
-    - target: {fileID: 8025993684956010781, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8204015858981761027, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
       propertyPath: playerRigidbody
       value: 
@@ -99490,8 +99486,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 33.499332, y: 38.1883, z: 63.057495}
-  m_Center: {x: 5.4883122, y: -3.2737885, z: 12.626821}
+  m_Size: {x: 64.497536, y: 59.451027, z: 63.057495}
+  m_Center: {x: 2.8235276, y: 7.3575745, z: 12.626821}
 --- !u!114 &1568784892
 MonoBehaviour:
   m_ObjectHideFlags: 0
