@@ -42,6 +42,7 @@ public class Timing : MonoBehaviour
     public float startWaitTime = 1;
     public int goodScore = 5;
     string currentScene;
+    int lastBeat;
     #endregion
 
     // OnEnable and OnDisble
@@ -131,9 +132,11 @@ public class Timing : MonoBehaviour
     #region
     void SongPosition(out float songPosition, out float songPositionInBeats)
     {
-        if (musicPlayer.isPlaying) {
-            songPosition = (float)(AudioSettings.dspTime - songStartTime - rewindTimeUsed); //Calculate song position in seconds by subtracting the time the song started and how much time was rewound by the current clock in AudioSettings
-            songPositionInBeats = 1 + songPosition / currentSong.bps; // Calculate song in beats by dividing song position by the sec per beat of the song
+        if (musicPlayer.clip != null) {
+            songPosition = ((float)musicPlayer.timeSamples / (musicPlayer.clip.frequency)); //Calculate song position in seconds by subtracting the time the song started and how much time was rewound by the current clock in AudioSettings
+            songPositionInBeats = ((float)musicPlayer.timeSamples / (musicPlayer.clip.frequency * currentSong.bps)); // Calculate song in beats by dividing song position by the sec per beat of the song
+            float thisBeat = songPositionInBeats;
+            Debug.Log(songPosition);
         }
         else
         {
@@ -196,6 +199,7 @@ public class Timing : MonoBehaviour
             scratchSource.PlayOneShot(ScratchSound);
             playerControllerLevel.LoseLife();
         }
+        Debug.Log(positionDecimal);
     }
     #endregion
 
