@@ -56,8 +56,9 @@ public class Win : MonoBehaviour
     // functions that handle the winning function
     public Levels Winning(Collider other)
     {
+        Timing timing = other.GetComponent<Timing>();
         // Get current song
-        Songs.SongData currentSong = other.GetComponent<Timing>().currentSong;
+        Songs.SongData currentSong = timing.currentSong;
         // Get current level
         Levels currentLevel = gameManager.GetLevel(SceneManager.GetActiveScene().name);
 
@@ -70,22 +71,22 @@ public class Win : MonoBehaviour
         // Set current levels progress to completed
         currentLevel.progress = Levels.Progress.completed;
 
-        music.Stop();
-        music.PlayOneShot(win);
-
-        if (Time.timeSinceLevelLoad - 1 < 60)
+        if (timing.songPosition < 60)
         {
             gameManager.score *= 3;
         }
-        else if (Time.timeSinceLevelLoad - 1 < 90)
+        else if (timing.songPosition < 90)
         {
             gameManager.score *= 2;
         }
-        else if (Time.timeSinceLevelLoad - 1 < 105)
+        else if (timing.songPosition < 105)
         {
             float score = gameManager.score * 1.5f;
             gameManager.score = Convert.ToInt32(score);
         }
+
+        music.Stop();
+        music.PlayOneShot(win);
 
         // If score is higher than level highscore, set highscore to score
         if (gameManager.score > currentLevel.highScore)

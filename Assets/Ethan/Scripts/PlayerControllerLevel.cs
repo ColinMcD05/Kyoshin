@@ -10,6 +10,7 @@ public class PlayerControllerLevel : MonoBehaviour
     CinemachineBasicMultiChannelPerlin cineMachineNoise;
     [SerializeField] MoveBackwards moveBackwards;
     RewindTracker livesText;
+    public GameObject[] indicators;
 
     public int collidedAmout = 0;
     public int maxCollisions = 4;
@@ -63,10 +64,17 @@ public class PlayerControllerLevel : MonoBehaviour
             }
             else
             {
-                moveBackwards.forwardSpeed /= 2;
-                if (moveBackwards.forwardSpeed < moveBackwards.minSpeed)
+                if (moveBackwards.forwardSpeed > moveBackwards.minSpeed)
                 {
-                    moveBackwards.forwardSpeed = moveBackwards.minSpeed;
+                    moveBackwards.forwardSpeed /= 2;
+                    if (moveBackwards.forwardSpeed == 16)
+                    {
+                        indicators[1].SetActive(true);
+                    }
+                    else if (moveBackwards.forwardSpeed == 8)
+                    {
+                        indicators[0].SetActive(true);
+                    }
                 }
             }
         }
@@ -82,6 +90,10 @@ public class PlayerControllerLevel : MonoBehaviour
         rewind.StartRewind();
         gameManager.lives--;
         livesText.ChangeText();
+        foreach(GameObject indicator in indicators)
+        {
+            indicator.SetActive(true);
+        }
         if (gameManager.lives <= 0)
         {
             if (SceneManager.GetActiveScene().name != "Infinite")

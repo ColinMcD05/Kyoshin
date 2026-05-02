@@ -25,6 +25,7 @@ public class Timing : MonoBehaviour
     [SerializeField] AudioSource countDownSound;
     public AudioClip ScratchSound;
     public AudioSource scratchSource;
+    public GameObject[] indicators;
 
     // IEnumerators
     IEnumerator resetCircle;
@@ -187,6 +188,14 @@ public class Timing : MonoBehaviour
             if (moveBackwards.forwardSpeed < moveBackwards.maxSpeed && gameManager.combo % comboNeeded == 0)
             {
                 moveBackwards.forwardSpeed *= 2;
+                if(moveBackwards.forwardSpeed == 16)
+                {
+                    indicators[0].SetActive(false);
+                }
+                else if(moveBackwards.forwardSpeed == 32)
+                {
+                    indicators[1].SetActive(false);
+                }
             }
             gameManager.AddScore(goodScore);
             //Debug.Log("Good");
