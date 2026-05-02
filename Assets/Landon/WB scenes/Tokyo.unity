@@ -24646,15 +24646,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 407502626}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -68.930016}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -80.26723, y: 0, z: 9.787125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1244316060}
   - {fileID: 340836601}
   - {fileID: 1554915094}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 357042304}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &408614348
 PrefabInstance:
@@ -131483,10 +131483,50 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1227318146273539661, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227318146273539661, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3164813810061704556, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3164813810061704556, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4614581518317326760, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
       propertyPath: eventSystem
       value: 
       objectReference: {fileID: 152903159}
+    - target: {fileID: 5358624168218139795, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5358624168218139795, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5358624168218139795, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8400413770989179831, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8400413770989179831, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8400413770989179831, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8511903877688896299, guid: 1eabea781268d134b8c3b54c346e2036, type: 3}
       propertyPath: m_Name
       value: PauseMenu
@@ -136688,5 +136728,4 @@ SceneRoots:
   - {fileID: 1971942654}
   - {fileID: 2080524847}
   - {fileID: 152903160}
-  - {fileID: 407502627}
   - {fileID: 357042304}
