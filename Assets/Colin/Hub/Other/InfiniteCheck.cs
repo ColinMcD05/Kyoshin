@@ -6,10 +6,10 @@ public class InfiniteCheck : MonoBehaviour
 {
 
     GameManager gameManager;
+    public Canvas canvas;
 
     void Start()
     {
-        TextMeshPro canvas = GetComponentInChildren<TextMeshPro>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         if (gameManager.levels[3].lockStatus == Levels.LockStatus.Unlocked)
         {

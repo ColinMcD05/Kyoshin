@@ -101,7 +101,7 @@ public class Rewind : MonoBehaviour
     public void OnRewind(InputValue input)
     {
         // Rewind starts if not currently rewinding and enough time has passed
-        if (input.isPressed && !rewinding && timing.songPosition > 4)
+        if (input.isPressed && !rewinding && timing.songPosition > 4 && playerMovement.enabled)
         {
             playerController.Death("Rewind");
         }
@@ -115,7 +115,7 @@ public class Rewind : MonoBehaviour
     // Lets other scripts more easily start rewind mechanic
     public void StartRewind()
     {
-        startRewindTime = (float)AudioSettings.dspTime; ;
+        startRewindTime = (float)AudioSettings.dspTime;
         rewinding = true;
 
         musicPlayer.pitch = -2; // Reverses music
@@ -137,7 +137,7 @@ public class Rewind : MonoBehaviour
         rewinding = false;
 
         musicPlayer.pitch = 1; // Music plays normally
-        timing.rewindTimeUsed += totalRewindTime; // Adds time that was rewound to get accurate position of song
+        timing.rewindTimeUsed += totalRewindTime * 3; // Adds time that was rewound to get accurate position of song
 
         // Enables parts of player
         Invoke("BecomeVulnerable", invincibility);
