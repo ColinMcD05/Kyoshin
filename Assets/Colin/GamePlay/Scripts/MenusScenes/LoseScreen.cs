@@ -16,6 +16,7 @@ public class LoseScreen : MonoBehaviour
         music.Stop();
         music.clip = null;
         music.pitch = 1;
+        Time.timeScale = 1;
     }
 
     public void Retry()

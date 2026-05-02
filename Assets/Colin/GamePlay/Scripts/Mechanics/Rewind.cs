@@ -101,7 +101,7 @@ public class Rewind : MonoBehaviour
     public void OnRewind(InputValue input)
     {
         // Rewind starts if not currently rewinding and enough time has passed
-        if (input.isPressed && !rewinding && timing.songPosition > 4 && playerMovement.enabled)
+        if (input.isPressed && !rewinding && timing.songPosition > 4 && !playerController.invincible)
         {
             playerController.Death("Rewind");
         }
