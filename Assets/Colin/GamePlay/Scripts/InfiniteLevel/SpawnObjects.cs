@@ -304,7 +304,7 @@ public class SpawnObjects : MonoBehaviour
     public void ChangeVariables(Songs.SongData newSong, Vector3 newPosition)
     {
         // Sets the distance between each obstacle
-        distanceBetween = 32 * newSong.bps * 2;
+        distanceBetween = 32 * newSong.bps;
         // last position is equal to player posittion at the start of song
         lastPosition = newPosition;
         // Set variables for spawning logic to start correctly
