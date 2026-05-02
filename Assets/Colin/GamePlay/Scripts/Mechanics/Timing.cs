@@ -25,7 +25,6 @@ public class Timing : MonoBehaviour
     [SerializeField] AudioSource countDownSound;
     public AudioClip ScratchSound;
     public AudioSource scratchSource;
-    public GameObject[] indicators;
 
     // IEnumerators
     IEnumerator resetCircle;
@@ -101,7 +100,7 @@ public class Timing : MonoBehaviour
     private void Update()
     {
         SongPosition(out songPosition, out songPositionInBeats);
-        if (songPosition >= currentSong.length && songStartTime != 0 && currentScene != "Infinite")
+        if (songPosition >= currentSong.length && currentScene != "Infinite")
         {
             SceneManager.LoadScene("LoseScreen");
         }
@@ -137,12 +136,18 @@ public class Timing : MonoBehaviour
             songPosition = ((float)musicPlayer.timeSamples / (musicPlayer.clip.frequency)); //Calculate song position in seconds by subtracting the time the song started and how much time was rewound by the current clock in AudioSettings
             songPositionInBeats = ((float)musicPlayer.timeSamples / (musicPlayer.clip.frequency * currentSong.bps)); // Calculate song in beats by dividing song position by the sec per beat of the song
             float thisBeat = songPositionInBeats;
+            if (Mathf.Floor(songPositionInBeats) > lastBeat)
+            {
+                lastBeat = (int)Mathf.Floor(thisBeat);
+                Debug.Log(lastBeat);
+            }
         }
         else
         {
             songPosition = 0;
             songPositionInBeats = 0;
         }
+
     }
     #endregion
 
@@ -187,14 +192,6 @@ public class Timing : MonoBehaviour
             if (moveBackwards.forwardSpeed < moveBackwards.maxSpeed && gameManager.combo % comboNeeded == 0)
             {
                 moveBackwards.forwardSpeed *= 2;
-                if(moveBackwards.forwardSpeed == 16)
-                {
-                    indicators[0].SetActive(false);
-                }
-                else if(moveBackwards.forwardSpeed == 32)
-                {
-                    indicators[1].SetActive(false);
-                }
             }
             gameManager.AddScore(goodScore);
             //Debug.Log("Good");

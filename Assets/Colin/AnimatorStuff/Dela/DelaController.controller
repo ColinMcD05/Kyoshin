@@ -139,7 +139,7 @@ AnimatorState:
   m_PrefabAsset: {fileID: 0}
   m_Name: DelaRun
   m_Speed: 1
-  m_CycleOffset: 0
+  m_CycleOffset: 0.2
   m_Transitions:
   - {fileID: 5010170101491666383}
   m_StateMachineBehaviours: []
@@ -151,7 +151,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: a83501b5ce1afdd49ab564bb89dee333, type: 2}
+  m_Motion: {fileID: 1827226128182048838, guid: fbc2c3d7b2173dd4c8c411c7fd14a35e, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -44,10 +44,6 @@ public class WallAreas : MonoBehaviour
                 {
                     playerMovement.rightWallPosition = rightWallPosition.position;
                 }
-                if (areaType == PlayerLevelMovement.AreaType.closeWallRunning && !other.GetComponent<Rewind>().rewinding)
-                {
-                    playerMovement.currentLane = 1;
-                }
                 playerMovement.areaType = areaType;
             }
         }
