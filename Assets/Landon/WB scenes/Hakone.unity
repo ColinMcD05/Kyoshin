@@ -8770,11 +8770,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ac9c70fa9c4c3944adcf7da68d129fa, type: 3}
---- !u!1 &140395299 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1046953044882817281, guid: 6108b2a7ac94f654db47f89cfd7060c1, type: 3}
-  m_PrefabInstance: {fileID: 5494856568158778339}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &141322459
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -123474,7 +123469,7 @@ PrefabInstance:
     - target: {fileID: 8017993728839861718, guid: fbd4c46f22cda2e4fa90aeec79338c00, type: 3}
       propertyPath: winScreen
       value: 
-      objectReference: {fileID: 140395299}
+      objectReference: {fileID: 5494856568158778340}
     - target: {fileID: 8017993728839861718, guid: fbd4c46f22cda2e4fa90aeec79338c00, type: 3}
       propertyPath: mainCamera
       value: 
@@ -141832,6 +141827,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6108b2a7ac94f654db47f89cfd7060c1, type: 3}
+--- !u!1 &5494856568158778340 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5675119968277700208, guid: 6108b2a7ac94f654db47f89cfd7060c1, type: 3}
+  m_PrefabInstance: {fileID: 5494856568158778339}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6195086892498857576 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1849120392370030165, guid: 92cedf650302e0540b62aff01ebb0fd0, type: 3}
