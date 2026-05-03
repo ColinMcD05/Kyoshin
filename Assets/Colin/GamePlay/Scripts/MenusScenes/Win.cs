@@ -37,6 +37,8 @@ public class Win : MonoBehaviour
         eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
         music = GameObject.Find("Audio").transform.Find("Music").GetComponent<AudioSource>();
         indicators = GameObject.Find("Indicators");
+        if (indicators == null)
+            Debug.LogWarning("Win: No active GameObject named 'Indicators' was found. Rename the object or assign it in the inspector if you add a serialized field.");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,7 +48,8 @@ public class Win : MonoBehaviour
             // Set player speed to max speed
             moveBackwards.forwardSpeed = moveBackwards.maxSpeed;
 
-            indicators.SetActive(false);
+            if (indicators != null)
+                indicators.SetActive(false);
 
             Levels currentLevel = Winning(other);
 
