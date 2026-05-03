@@ -131343,6 +131343,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1074506693197297644, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
+      propertyPath: 'cameras.Array.data[0]'
+      value: 
+      objectReference: {fileID: 766202225}
     - target: {fileID: 1567925838254450578, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
       propertyPath: timingUI
       value: 
@@ -131450,7 +131454,7 @@ PrefabInstance:
     - target: {fileID: 4074926366466159053, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
       propertyPath: 'indicators.Array.data[0]'
       value: 
-      objectReference: {fileID: 1950270233}
+      objectReference: {fileID: 0}
     - target: {fileID: 4074926366466159053, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
       propertyPath: 'indicators.Array.data[1]'
       value: 
@@ -131467,6 +131471,10 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8146030246671798739, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
+      propertyPath: otherAnimations
+      value: 
+      objectReference: {fileID: 1948524794}
     - target: {fileID: 8146030246671798739, guid: 4caea927916c8c3408ead49dc2586298, type: 3}
       propertyPath: groundCheckDistance
       value: 2
@@ -185890,6 +185898,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 93003504255442875, guid: e1ddf480164cd6e449823c126d857ad9, type: 3}
   m_PrefabInstance: {fileID: 1948524792}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1948524794 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5389546232746815432, guid: e1ddf480164cd6e449823c126d857ad9, type: 3}
+  m_PrefabInstance: {fileID: 1948524792}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948524793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1d83b98c3fd4b4ea88f9ed4f8bc42a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OtherAnimations
 --- !u!1 &1948647008
 GameObject:
   m_ObjectHideFlags: 0

@@ -81,7 +81,7 @@ public class NewSection : MonoBehaviour
                     }
                 }
             }
-            if (hit == 4)
+            if (hit == 3)
             {
                 // Once hit 4  sections after song is almost over or over, change song and reset variables based on the new song
                 timing.ChangeSong();
