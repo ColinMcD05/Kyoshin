@@ -6,7 +6,7 @@ public class InfiniteCheck : MonoBehaviour
 {
 
     GameManager gameManager;
-    public Canvas canvas;
+    public TextMeshPro canvas;
 
     void Start()
     {
