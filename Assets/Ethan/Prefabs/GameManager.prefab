@@ -1125,6 +1125,7 @@ MonoBehaviour:
   - {r: 0.32866496, g: 0.33799714, b: 0.78113204, a: 1}
   - {r: 0.23179588, g: 0.18216442, b: 0.4490565, a: 1}
   - {r: 0.56885237, g: 0.21394801, b: 0.7509433, a: 1}
+  showSong: {fileID: 0}
   maxMult: 10
   comboNeededMult: 5
 --- !u!114 &213474859250481102
@@ -1144,6 +1145,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 52fa32fa877288245a02b318d76fa00c, type: 3}
   - {fileID: 8300000, guid: 9ea27a37948c09445a78fa28eee3baff, type: 3}
   - {fileID: 8300000, guid: 4782f55c4418f7b4ea4cb35a0f41d835, type: 3}
+  - {fileID: 8300000, guid: a3d84c3442c72d44aa4a7132ede23e98, type: 3}
 --- !u!1 &8038177158938640265
 GameObject:
   m_ObjectHideFlags: 0

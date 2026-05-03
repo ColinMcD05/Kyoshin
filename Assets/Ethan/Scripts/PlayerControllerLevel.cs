@@ -42,7 +42,7 @@ public class PlayerControllerLevel : MonoBehaviour
     #region
     // lose a life function will only be called after player collides with an obstacle x amount of times each collison will cause the camera to shake
     public void LoseLife(){
-        if (timing.songPosition >= 4)
+        if (timing.songPosition >= 4 && !moveBackwards.enabled)
         {
             if (invincible) return;
             gameManager.ClearCombo();
@@ -66,6 +66,7 @@ public class PlayerControllerLevel : MonoBehaviour
             if (moveBackwards.forwardSpeed > moveBackwards.minSpeed)
             {
                 moveBackwards.forwardSpeed /= 2;
+                /*
                 if (indicators != null)
                 {
                     if (moveBackwards.forwardSpeed == 16)
@@ -78,7 +79,7 @@ public class PlayerControllerLevel : MonoBehaviour
                         indicators[0].SetActive(true);
                         indicators[1].SetActive(false);
                     }
-                }
+                }*/
             }
         }
     }
@@ -93,9 +94,11 @@ public class PlayerControllerLevel : MonoBehaviour
         rewind.StartRewind();
         gameManager.lives--;
         livesText.ChangeText();
+        /*
         indicators[0].SetActive(true);
         indicators[1].SetActive(false);
         indicators[2].SetActive(false);
+        */
         if (gameManager.lives <= 0)
         {
             if (SceneManager.GetActiveScene().name != "Infinite")

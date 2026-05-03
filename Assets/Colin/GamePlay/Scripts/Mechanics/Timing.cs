@@ -206,6 +206,7 @@ public class Timing : MonoBehaviour
             if (moveBackwards.forwardSpeed < moveBackwards.maxSpeed && gameManager.combo % comboNeeded == 0)
             {
                 moveBackwards.forwardSpeed *= 2;
+                /*
                 if (indicators != null)
                 {
                     if (moveBackwards.forwardSpeed == 16)
@@ -218,7 +219,7 @@ public class Timing : MonoBehaviour
                         indicators[1].SetActive(false);
                         indicators[2].SetActive(true);
                     }
-                }
+                }*/
             }
             gameManager.AddScore(goodScore);
             //Debug.Log("Good");

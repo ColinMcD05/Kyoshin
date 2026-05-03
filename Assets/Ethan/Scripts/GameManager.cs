@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public GameObject dashSlider;
     public RawImage visualizer;
     [SerializeField] Color[] colors;
+    public Canvas showSong;
 
     // Variable holding last scene
     static public string lastScene;
@@ -260,6 +261,7 @@ public class GameManager : MonoBehaviour
         score = 0;
         lives = 3;
         coins = 0;
+        dashSlider.GetComponent<Slider>().value = 0;
 
         // if title screen, get rid of game manager and all other persistent objects
         if (scene.name == "TitleScreen")

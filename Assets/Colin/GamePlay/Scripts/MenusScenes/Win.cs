@@ -26,6 +26,7 @@ public class Win : MonoBehaviour
     AudioSource music;
     public AudioClip win;
     bool newHighScore;
+    GameObject indicators;
     #endregion
 
     void Start()
@@ -35,6 +36,7 @@ public class Win : MonoBehaviour
         player = GameObject.Find("Player");
         eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
         music = GameObject.Find("Audio").transform.Find("Music").GetComponent<AudioSource>();
+        indicators = GameObject.Find("Indicators");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -43,6 +45,8 @@ public class Win : MonoBehaviour
         {
             // Set player speed to max speed
             moveBackwards.forwardSpeed = moveBackwards.maxSpeed;
+
+            indicators.SetActive(false);
 
             Levels currentLevel = Winning(other);
 
