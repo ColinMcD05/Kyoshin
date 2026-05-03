@@ -121,10 +121,11 @@ public class Timing : MonoBehaviour
             playerLevelMovement.enabled = true; // Lets players move
         }
         playerControllerLevel.enabled = true;
-        songStartTime = (float)AudioSettings.dspTime; // Sets songStartTime based on AudioSettings clock
+        songStartTime = (float)AudioSettings.dspTime + 0.1f; // Sets songStartTime based on AudioSettings clock
         musicPlayer.clip = currentSong.song; // Sets current clip to current song clip
-        musicPlayer.Play(); // Players music
+        musicPlayer.PlayScheduled(0.1f); // Players music
         StartCoroutine(resetCircle);
+        StartCoroutine(Resync());
     }
     #endregion
 
@@ -133,13 +134,12 @@ public class Timing : MonoBehaviour
     void SongPosition(out float songPosition, out float songPositionInBeats)
     {
         if (musicPlayer.clip != null) {
-            songPosition = ((float)musicPlayer.timeSamples / (musicPlayer.clip.frequency)); //Calculate song position in seconds by subtracting the time the song started and how much time was rewound by the current clock in AudioSettings
-            songPositionInBeats = ((float)musicPlayer.timeSamples / (musicPlayer.clip.frequency * currentSong.bps)); // Calculate song in beats by dividing song position by the sec per beat of the song
+            songPosition = (float)AudioSettings.dspTime - songStartTime - rewindTimeUsed; //Calculate song position in seconds by subtracting the time the song started and how much time was rewound by the current clock in AudioSettings
+            songPositionInBeats = songPosition / currentSong.bps; // Calculate song in beats by dividing song position by the sec per beat of the song
             float thisBeat = songPositionInBeats;
             if (Mathf.Floor(songPositionInBeats) > lastBeat)
             {
                 lastBeat = (int)Mathf.Floor(thisBeat);
-                Debug.Log(lastBeat);
             }
         }
         else
@@ -150,6 +150,18 @@ public class Timing : MonoBehaviour
 
     }
     #endregion
+
+    IEnumerator Resync()
+    {
+        float currentAudioTime = 0;
+        while (musicPlayer.isPlaying)
+        {
+            currentAudioTime = (float)musicPlayer.timeSamples / musicPlayer.clip.frequency;
+            songStartTime = (float)AudioSettings.dspTime - currentAudioTime;
+            rewindTimeUsed = 0;
+            yield return new WaitForSeconds(2);
+        }
+    }
 
     // ChangeSong
     #region
@@ -247,7 +259,7 @@ public class Timing : MonoBehaviour
         // Gets the countDown text component
         TextMeshProUGUI countDown = timingUI.transform.Find("Countdown").GetComponent<TextMeshProUGUI>();
         // Waits 3 measures
-        yield return new WaitForSeconds(currentSong.bps * 13);
+        yield return new WaitForSeconds(currentSong.bps * 13 + 0.1f);
 
         // enabled countdown text
         countDown.enabled = true;

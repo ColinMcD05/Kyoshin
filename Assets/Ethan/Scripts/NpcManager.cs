@@ -11,7 +11,7 @@ public class NpcManager : MonoBehaviour
     public Transform[] targets; // array of targets for npc to move to
     public Transform[] spawnPoints; // array of spawn points for npc to spawn at
     public int maxNpcs = 10; // max number of npcs to spawn
-    public int maxNpcsSpawnGroup = 3; // max number of npcs to spawn in a group
+    public int maxNpcsSpawnGroup = 2; // max number of npcs to spawn in a group
     
 
     public Transform currentTarget; // current target for npc to move to
@@ -29,7 +29,7 @@ public class NpcManager : MonoBehaviour
             tmp.SetActive(false);
         }
 
-        InvokeRepeating("Spawn", 0, 0.5f);
+        InvokeRepeating("Spawn", 0, 0.75f);
 
     }
 

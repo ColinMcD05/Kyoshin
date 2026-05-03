@@ -21623,7 +21623,7 @@ MonoBehaviour:
   - {fileID: 1287672246}
   - {fileID: 1042489903}
   maxNpcs: 100
-  maxNpcsSpawnGroup: 3
+  maxNpcsSpawnGroup: 2
   currentTarget: {fileID: 0}
   npcCount: 0
 --- !u!4 &1614981644
