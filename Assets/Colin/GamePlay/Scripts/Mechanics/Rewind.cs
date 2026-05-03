@@ -198,6 +198,9 @@ public class Rewind : MonoBehaviour
 
     public void BecomeVulnerable()
     {
-        playerController.enabled = true;
+        if (playerController.invincible)
+        {
+            playerController.enabled = true;
+        }
     }
 }

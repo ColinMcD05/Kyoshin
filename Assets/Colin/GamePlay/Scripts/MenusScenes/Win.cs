@@ -133,7 +133,7 @@ public class Win : MonoBehaviour
         player.GetComponent<Timing>().enabled = false;
         player.GetComponent<PlayerControllerLevel>().invincible = false;
         player.GetComponent<PlayerLevelMovement>().enabled = false;
-        player.GetComponent<Rigidbody>().useGravity = false;
+
         moveImage.enabled = false;
         stillImage.enabled = false;
 
@@ -205,7 +205,6 @@ public class Win : MonoBehaviour
         // Stops other character from moving
         otherChar.GetComponent<FollowScript>().enabled = false;
         player.GetComponent<PlayerLevelMovement>().enabled = false;
-        player.GetComponent<Rigidbody>().useGravity = false;
 
         // Set winscreento active and set first button
         winScreen.transform.Find("WinScreen").gameObject.SetActive(true);
