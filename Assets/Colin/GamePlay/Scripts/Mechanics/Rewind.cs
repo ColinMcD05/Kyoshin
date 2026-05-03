@@ -78,7 +78,7 @@ public class Rewind : MonoBehaviour
     #region
     void RewindTime()
     {
-        if (positions.Count > 0) // Checks if there are still places to go
+        if (positions.Count > 0 && !playerMovement.won) // Checks if there are still places to go
         {
             int nextPosition = positions.Count - 1; // Gets last position in list index
             playerRigidbody.MovePosition(positions[nextPosition]); // Moves player to last position in list index
@@ -150,7 +150,6 @@ public class Rewind : MonoBehaviour
         Time.timeScale = 1;
         // Stop rewind sound
         rewindSource.Stop();
-        Debug.Log(playerMovement.currentLane);
         switch (playerMovement.areaType)
         {
             default:
@@ -198,6 +197,9 @@ public class Rewind : MonoBehaviour
 
     public void BecomeVulnerable()
     {
-        playerController.enabled = true;
+        if (playerController.invincible)
+        {
+            playerController.enabled = true;
+        }
     }
 }

@@ -40,14 +40,14 @@ public class Obstacle : MonoBehaviour
     void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("Player") && !other.GetComponent<Dash>().dashing)
         {
-            obstacleSource.PlayOneShot(obstacleSound);
             if (!other.GetComponent<Dash>().dashing )
             {
                 Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
                 PlayerLevelMovement playerMovement = other.GetComponent<PlayerLevelMovement>();
                 PlayerControllerLevel playerController = other.GetComponent<PlayerControllerLevel>();
-                if (!playerController.invincible)
+                if (!playerController.invincible && !playerMovement.won)
                 {
+                    obstacleSource.PlayOneShot(obstacleSound);
                     switch (type)
                     {
                         case ObstacleType.Kill:

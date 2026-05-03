@@ -5,6 +5,9 @@ public class PlayerLevelMovement : MonoBehaviour
 {
     //Variables
     #region
+    // Other references
+    [SerializeField] OtherAnimations otherAnimations;
+
     // Input Action Variables
     public InputActionReference leftRight;
     public InputActionReference jump;
@@ -52,6 +55,8 @@ public class PlayerLevelMovement : MonoBehaviour
     CapsuleCollider capsuleCollider;
     public AudioSource slideSource;
     public AudioClip slideSound;
+
+    [HideInInspector] public bool won = false;
 
     // Trick Variables
     bool tricking = false;
@@ -202,6 +207,7 @@ public class PlayerLevelMovement : MonoBehaviour
             { // If the jump button is pressed, then set the jumpPressed to true
                 jumpPressed = true;// Set the jumpPressed to true
                 animator.SetTrigger("Jump");
+                otherAnimations.StartAnimations("Jump");
             }
             if (isSliding)
             {
@@ -221,7 +227,9 @@ public class PlayerLevelMovement : MonoBehaviour
         isSliding = true; // Set sliding equal to true
         // Audio: one-shot layer on slideSource when the slide input fires (independent of the looping run SFX)
         slideSource.PlayOneShot(slideSound);
+
         animator.SetTrigger("Slide");
+        otherAnimations.StartAnimations("Slide");
 
         capsuleCollider.height *= shrinkPercentage;
         capsuleCollider.center -= Vector3.up * (1 - shrinkPercentage);
@@ -237,8 +245,13 @@ public class PlayerLevelMovement : MonoBehaviour
             return;
         }
         tricking = true;
+        int randomValue = Random.Range(1, 4);
         // Play animation
+        animator.SetInteger("TrickType", randomValue);
         animator.SetTrigger("Trick");
+
+        otherAnimations.StartAnimations("Trick", "TrickType", randomValue);
+
         Invoke("StopTricking", 1f);
     }
     #endregion
@@ -246,7 +259,7 @@ public class PlayerLevelMovement : MonoBehaviour
     // FixedUpdate
     #region
     void FixedUpdate(){// This is a function that is called every fixed delta time
-        if (!enabled)
+        if (!enabled || won)
         {
             return;
         }

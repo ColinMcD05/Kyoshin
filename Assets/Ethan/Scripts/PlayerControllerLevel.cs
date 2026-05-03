@@ -42,7 +42,7 @@ public class PlayerControllerLevel : MonoBehaviour
     #region
     // lose a life function will only be called after player collides with an obstacle x amount of times each collison will cause the camera to shake
     public void LoseLife(){
-        if (timing.songPosition >= 4 && !moveBackwards.enabled)
+        if (timing.songPosition >= 4 && moveBackwards.enabled)
         {
             if (invincible) return;
             gameManager.ClearCombo();

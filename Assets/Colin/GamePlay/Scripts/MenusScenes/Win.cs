@@ -72,6 +72,7 @@ public class Win : MonoBehaviour
         // Disable timing based mechanics
         other.GetComponent<Timing>().enabled = false;
         other.GetComponent<PlayerLevelMovement>().enabled = false;
+        other.GetComponent<PlayerLevelMovement>().won = true;
         moveImage.enabled = false;
         stillImage.enabled = false;
 
@@ -135,7 +136,10 @@ public class Win : MonoBehaviour
         // Disable timing based mechanics
         player.GetComponent<Timing>().enabled = false;
         player.GetComponent<PlayerLevelMovement>().enabled = false;
-        player.GetComponent<Rigidbody>().useGravity = false;
+        player.GetComponent<PlayerControllerLevel>().enabled = false;
+        player.GetComponent<PlayerLevelMovement>().won = true;
+        player.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+
         moveImage.enabled = false;
         stillImage.enabled = false;
 
@@ -206,6 +210,8 @@ public class Win : MonoBehaviour
     {
         // Stops other character from moving
         otherChar.GetComponent<FollowScript>().enabled = false;
+        player.GetComponent<PlayerLevelMovement>().enabled = false;
+        player.GetComponent<PlayerControllerLevel>().invincible = false;
 
         // Set winscreento active and set first button
         winScreen.transform.Find("WinScreen").gameObject.SetActive(true);
@@ -219,7 +225,7 @@ public class Win : MonoBehaviour
         player.transform.rotation = playerWinPosition.rotation;
         otherChar.transform.position = otherCharWinPosition.position;
         otherChar.transform.rotation = otherCharWinPosition.rotation;
-        otherChar.GetComponent<Rigidbody>().useGravity = true;
+        otherChar.GetComponent<Rigidbody>().useGravity = false;
 
         // Change camera
         mainCamera.enabled = false;
@@ -249,6 +255,22 @@ public class Win : MonoBehaviour
         //otherChar.GetComponent<Animator>().SetBool("Moving", false);
 
         StartCoroutine(FadeIn());
-        player.GetComponent<PlayerLevelMovement>().animator.SetTrigger("Win");
+        int randomInt = UnityEngine.Random.Range(1, 5);
+        if (randomInt == 1)
+        {
+            player.GetComponent<Animator>().SetInteger("WinType", randomInt);
+            player.GetComponent<PlayerLevelMovement>().animator.SetTrigger("Win");
+
+
+            otherChar.GetComponent<OtherAnimations>().StartAnimations("Win", "WinType", randomInt);
+        }
+        else
+        {
+            player.GetComponent<Animator>().SetInteger("WinType", randomInt);
+            player.GetComponent<PlayerLevelMovement>().animator.SetTrigger("Win");
+
+            randomInt = UnityEngine.Random.Range(2, 4);
+            otherChar.GetComponent<OtherAnimations>().StartAnimations("Win", "WinType", randomInt);
+        }
     }
 }
