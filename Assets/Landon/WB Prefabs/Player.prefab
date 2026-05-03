@@ -1289,7 +1289,7 @@ MonoBehaviour:
   wallRunDelay: 0.2
   wallType: 0
   areaType: 0
-  slidingLength: 1.5
+  slidingLength: 0.75
   isSliding: 0
   shrinkPercentage: 0.5
   slideSource: {fileID: 6310300128418858321}

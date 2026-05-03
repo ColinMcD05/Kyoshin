@@ -216,8 +216,10 @@ public class PlayerLevelMovement : MonoBehaviour
         isSliding = true; // Set sliding equal to true
         // Audio: one-shot layer on slideSource when the slide input fires (independent of the looping run SFX)
         slideSource.PlayOneShot(slideSound);
+        animator.SetTrigger("Slide");
 
-        gameObject.transform.localScale *= shrinkPercentage;
+        capsuleCollider.height *= shrinkPercentage;
+        capsuleCollider.center -= Vector3.up * (1 - shrinkPercentage);
         Invoke("StopSliding", slidingLength); // Invoke StopSliding after the slidingLength
 
     }
@@ -498,10 +500,9 @@ public class PlayerLevelMovement : MonoBehaviour
         if (isSliding)
         {
             isSliding = false;
-            gameObject.transform.localScale /= shrinkPercentage;
+            capsuleCollider.height /= shrinkPercentage;
+            capsuleCollider.center += Vector3.up * (1 - shrinkPercentage);
         }
-        //capsuleCollider.height /= shrinkPercentage;
-        //capsuleCollider.center += Vector3.up * (1 - shrinkPercentage);
     }
 
     void StopTricking()
