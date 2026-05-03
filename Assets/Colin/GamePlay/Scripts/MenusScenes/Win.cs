@@ -246,5 +246,6 @@ public class Win : MonoBehaviour
         //otherChar.GetComponent<Animator>().SetBool("Moving", false);
 
         StartCoroutine(FadeIn());
+        player.GetComponent<PlayerLevelMovement>().animator.SetTrigger("Win");
     }
 }

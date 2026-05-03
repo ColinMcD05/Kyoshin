@@ -196,12 +196,17 @@ public class PlayerLevelMovement : MonoBehaviour
 
     // Jump action
     public void Jump(InputAction.CallbackContext value){ // This is a function that is called when the jump button is pressed argument is the value of the input
-        if(value.ReadValueAsButton()){ // If the jump button is pressed, then set the jumpPressed to true
-            jumpPressed = true;// Set the jumpPressed to true
-        }
-        if (isSliding)
+        if (!jumpPressed)
         {
-            StopSliding();
+            if (value.ReadValueAsButton())
+            { // If the jump button is pressed, then set the jumpPressed to true
+                jumpPressed = true;// Set the jumpPressed to true
+                animator.SetTrigger("Jump");
+            }
+            if (isSliding)
+            {
+                StopSliding();
+            }
         }
     }
 

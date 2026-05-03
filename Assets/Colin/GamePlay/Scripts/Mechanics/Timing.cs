@@ -128,6 +128,10 @@ public class Timing : MonoBehaviour
         musicPlayer.PlayScheduled(0.1f); // Players music
         StartCoroutine(resetCircle);
         StartCoroutine(Resync());
+
+        float pitch = ((float)currentSong.bpm / 125f) * 2f;
+        countDownSound.pitch = pitch;
+        countDownSound.PlayScheduled(AudioSettings.dspTime + currentSong.bps * 13 + 0.1f);
     }
     #endregion
 
@@ -281,11 +285,9 @@ public class Timing : MonoBehaviour
         countDown.enabled = true;
 
         // Changes countdown pitch based on bpm of the song
-        float pitch = ((float)currentSong.bpm / 125f) * 2f;
-        countDownSound.pitch = pitch;
+
 
         // Play count down sound and displays #
-        countDownSound.Play();
         countDown.text = "3";
 
         // Waits one beat then changes text until it shows GO
