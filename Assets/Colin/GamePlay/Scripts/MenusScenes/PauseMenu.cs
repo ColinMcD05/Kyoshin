@@ -42,6 +42,7 @@ public class PauseMenu : MonoBehaviour
 
     // Other game object and script references
     Timing timing;
+    GameObject indicator;
     GameObject timingUI;
     GameObject winScreen;
     PlayerLevelMovement playerMovement;
@@ -431,10 +432,18 @@ public class PauseMenu : MonoBehaviour
             if (uiToggle.isOn)
             {
                 timingUI.GetComponent<Canvas>().enabled = true;
+                if (indicator != null)
+                {
+                    indicator.SetActive(true);
+                }
             }
             else
             {
                 timingUI.GetComponent<Canvas>().enabled = false;
+                if (indicator != null)
+                {
+                    indicator.SetActive(false);
+                }
             }
         }
     }
@@ -508,6 +517,7 @@ public class PauseMenu : MonoBehaviour
             timing = GameObject.Find("Player").GetComponent<Timing>(); 
             playerMovement = GameObject.Find("Player").GetComponent<PlayerLevelMovement>();
             timingUI = GameObject.Find("TimingUI");
+            
             if (gameManager != null)
             {
                 gameManager.transform.Find("Canvas").GetComponent<Canvas>().enabled = true;
@@ -516,20 +526,31 @@ public class PauseMenu : MonoBehaviour
             if (scene.name == "Infinite")
             {
                 winScreen = null;
+                indicator = null;
             }
             else
             {
                 winScreen = GameObject.Find("WinScreen");
+                indicator = GameObject.Find("Indicators");
             }
+
 
             // Set Timing Ui canvas on or off based on settings
             if (uiToggle.isOn)
             {
                 timingUI.GetComponent<Canvas>().enabled = true;
+                if (indicator != null)
+                {
+                    indicator.SetActive(true);
+                }
             }
             else
             {
                 timingUI.GetComponent<Canvas>().enabled = false;
+                if (indicator != null)
+                {
+                    indicator.SetActive(false);
+                }
             }
             if (playerMovement != null)
             {

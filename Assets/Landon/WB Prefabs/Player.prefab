@@ -955,7 +955,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 2c5c05c02df10f64ca0fbed1ee59b089, type: 2}
     - target: {fileID: 5866666021909216657, guid: 19bed16e927a2ca4e95cdb15a3c222e4, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3403870942742053944, guid: e9e49bedfb413be4c975864fb521a703, type: 3}
       propertyPath: rewind

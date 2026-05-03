@@ -16,6 +16,8 @@ public class PlayerControllerLevel : MonoBehaviour
     public float regenTime = 2.0f;
     public bool invincible = false;
 
+    public GameObject[] indicators;
+
     AudioSource audioSource;
     public AudioClip HealthSound;
     private void Start()
@@ -61,6 +63,23 @@ public class PlayerControllerLevel : MonoBehaviour
                 //Debug.Log("Lives: " + lives);
                 Death("LoseLife");
             }
+            if (moveBackwards.forwardSpeed > moveBackwards.minSpeed)
+            {
+                moveBackwards.forwardSpeed /= 2;
+                if (indicators != null)
+                {
+                    if (moveBackwards.forwardSpeed == 16)
+                    {
+                        indicators[1].SetActive(true);
+                        indicators[2].SetActive(false);
+                    }
+                    else if (moveBackwards.forwardSpeed == 8)
+                    {
+                        indicators[0].SetActive(true);
+                        indicators[1].SetActive(false);
+                    }
+                }
+            }
         }
     }
     #endregion
@@ -74,6 +93,9 @@ public class PlayerControllerLevel : MonoBehaviour
         rewind.StartRewind();
         gameManager.lives--;
         livesText.ChangeText();
+        indicators[0].SetActive(true);
+        indicators[1].SetActive(false);
+        indicators[2].SetActive(false);
         if (gameManager.lives <= 0)
         {
             if (SceneManager.GetActiveScene().name != "Infinite")

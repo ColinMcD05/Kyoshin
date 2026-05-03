@@ -127,6 +127,11 @@ public class GameManager : MonoBehaviour
                 var levelString = stream.ReadToEnd(); // Reads data
                 var levelData = JsonUtility.FromJson<LevelList>(levelString); // sets data into lists to distrubute
 
+                if (levelData.levelList[0].name != "Hakone" || levelData.levelList[1].name != "Kyoto" || levelData.levelList[2].name != "Tokyo" || levelData.levelList[3].name != "Infinite")
+                {
+                    throw new FileNotFoundException("File was corrupted. Making a new save file.");
+                }
+
                 for (int i = 0; i < levelData.levelList.Length; i++)
                 {
                     levels[i] = levelData.levelList[i]; // correctly assigns data to the correct list
@@ -139,6 +144,7 @@ public class GameManager : MonoBehaviour
         }
         catch (Exception ex)
         {
+            Debug.Log("New save file made");
             if (ex is DirectoryNotFoundException || ex is FileNotFoundException)
             {
                 // If this is the first time opening the game set up levels information

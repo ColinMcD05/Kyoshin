@@ -37,6 +37,8 @@ public class Timing : MonoBehaviour
     [Range(0, 0.33f)] public float messUpRange = 0.33f;
     public float rewindTimeUsed; // How much time has been rewinded
 
+    public GameObject[] indicators;
+
     // Other variables
     public int comboNeeded = 3;
     public float startWaitTime = 1;
@@ -204,6 +206,19 @@ public class Timing : MonoBehaviour
             if (moveBackwards.forwardSpeed < moveBackwards.maxSpeed && gameManager.combo % comboNeeded == 0)
             {
                 moveBackwards.forwardSpeed *= 2;
+                if (indicators != null)
+                {
+                    if (moveBackwards.forwardSpeed == 16)
+                    {
+                        indicators[0].SetActive(false);
+                        indicators[1].SetActive(true);
+                    }
+                    else if (moveBackwards.forwardSpeed == 32)
+                    {
+                        indicators[1].SetActive(false);
+                        indicators[2].SetActive(true);
+                    }
+                }
             }
             gameManager.AddScore(goodScore);
             //Debug.Log("Good");
