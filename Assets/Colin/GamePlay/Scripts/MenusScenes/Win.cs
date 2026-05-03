@@ -252,7 +252,7 @@ public class Win : MonoBehaviour
         //otherChar.GetComponent<Animator>().SetBool("Moving", false);
 
         StartCoroutine(FadeIn());
-        int randomInt = UnityEngine.Random.Range(1, 4);
+        int randomInt = UnityEngine.Random.Range(1, 5);
         if (randomInt == 1)
         {
             player.GetComponent<Animator>().SetInteger("WinType", randomInt);

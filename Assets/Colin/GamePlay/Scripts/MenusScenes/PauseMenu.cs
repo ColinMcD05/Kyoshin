@@ -208,7 +208,6 @@ public class PauseMenu : MonoBehaviour
         // Resubscribes actions and turns timing UI back on
         if (timing != null)
         {
-            Debug.Log(hasStarted);
             if (hasStarted)
             {
                 timing.SubscribeActions();
