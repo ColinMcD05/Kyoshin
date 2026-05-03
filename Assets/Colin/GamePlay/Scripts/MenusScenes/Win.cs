@@ -69,6 +69,7 @@ public class Win : MonoBehaviour
         // Disable timing based mechanics
         other.GetComponent<Timing>().enabled = false;
         other.GetComponent<PlayerLevelMovement>().enabled = false;
+        other.GetComponent<PlayerLevelMovement>().won = true;
         moveImage.enabled = false;
         stillImage.enabled = false;
 
@@ -132,6 +133,9 @@ public class Win : MonoBehaviour
         // Disable timing based mechanics
         player.GetComponent<Timing>().enabled = false;
         player.GetComponent<PlayerLevelMovement>().enabled = false;
+        player.GetComponent<PlayerControllerLevel>().enabled = false;
+        player.GetComponent<PlayerLevelMovement>().won = true;
+        player.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
 
         moveImage.enabled = false;
         stillImage.enabled = false;
@@ -248,7 +252,22 @@ public class Win : MonoBehaviour
         //otherChar.GetComponent<Animator>().SetBool("Moving", false);
 
         StartCoroutine(FadeIn());
-        player.GetComponent<PlayerLevelMovement>().animator.SetTrigger("Win");
-        otherChar.GetComponent<Animator>().SetTrigger("Win");
+        int randomInt = UnityEngine.Random.Range(1, 4);
+        if (randomInt == 1)
+        {
+            player.GetComponent<Animator>().SetInteger("WinType", randomInt);
+            player.GetComponent<PlayerLevelMovement>().animator.SetTrigger("Win");
+
+
+            otherChar.GetComponent<OtherAnimations>().StartAnimations("Win", "WinType", randomInt);
+        }
+        else
+        {
+            player.GetComponent<Animator>().SetInteger("WinType", randomInt);
+            player.GetComponent<PlayerLevelMovement>().animator.SetTrigger("Win");
+
+            randomInt = UnityEngine.Random.Range(2, 4);
+            otherChar.GetComponent<OtherAnimations>().StartAnimations("Win", "WinType", randomInt);
+        }
     }
 }

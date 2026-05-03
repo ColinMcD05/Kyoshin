@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class ShowSong : MonoBehaviour
 {
     Songs song;
-    Songs.SongData currentSong;
+    public Songs.SongData currentSong;
     Dictionary<string, TextMeshProUGUI> text;
 
     Canvas canvas;
@@ -29,10 +29,24 @@ public class ShowSong : MonoBehaviour
             {"Length", transform.GetChild(2).GetComponent<TextMeshProUGUI>()},
             {"BPM", transform.GetChild(3).GetComponent<TextMeshProUGUI>()}
         };
-        SetCanvas();
+        if (currentSong != null)
+        {
+            SetCanvas();
+        }
     }
 
     public void SetCanvas()
+    {
+        text["Name"].text = currentSong.name;
+        int minutes = (int)Mathf.Floor(currentSong.length / 60);
+        int second = (int)currentSong.length - (minutes * 60);
+
+        text["Length"].text = minutes + ": " + second;
+
+        text["BPM"].text = "BPM: " + currentSong.bpm;
+    }
+
+    public void SetCanvas(Songs.SongData currentSong)
     {
         text["Name"].text = currentSong.name;
         int minutes = (int)Mathf.Floor(currentSong.length / 60);

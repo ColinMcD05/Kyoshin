@@ -45,7 +45,7 @@ public class Obstacle : MonoBehaviour
                 Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
                 PlayerLevelMovement playerMovement = other.GetComponent<PlayerLevelMovement>();
                 PlayerControllerLevel playerController = other.GetComponent<PlayerControllerLevel>();
-                if (!playerController.invincible)
+                if (!playerController.invincible && !playerMovement.won)
                 {
                     obstacleSource.PlayOneShot(obstacleSound);
                     switch (type)

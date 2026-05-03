@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NewSection : MonoBehaviour
@@ -13,6 +14,9 @@ public class NewSection : MonoBehaviour
     SectionManager sectionManager;
     SpawnObjects spawnObjects;
     Timing timing;
+
+    ShowSong showSong;
+    FadeOut fadeOut;
 
     // Destroy self funstion holder
     IEnumerator destroySelf;
@@ -36,6 +40,8 @@ public class NewSection : MonoBehaviour
         sectionManager = parent.GetComponent<SectionManager>();
         spawnObjects = sectionManager.GetComponent<SpawnObjects>();
         timing = GameObject.Find("Player").GetComponent<Timing>();
+        showSong = GameObject.Find("NowPlaying").GetComponent<ShowSong>();
+        fadeOut = GameObject.Find("NowPlaying").GetComponent<FadeOut>();
     }
     #endregion
 
@@ -87,6 +93,8 @@ public class NewSection : MonoBehaviour
                 timing.ChangeSong();
                 spawnObjects.ChangeVariables(timing.currentSong, other.transform.position);
                 twoMeasures = timing.currentSong.bps * 12;
+                showSong.SetCanvas(timing.currentSong);
+                StartCoroutine(fadeOut.FadingIn());
             }
             // Start destruction process if not already destroying self
             if (!destroying)

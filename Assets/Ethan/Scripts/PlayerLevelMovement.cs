@@ -56,6 +56,8 @@ public class PlayerLevelMovement : MonoBehaviour
     public AudioSource slideSource;
     public AudioClip slideSound;
 
+    [HideInInspector] public bool won = false;
+
     // Trick Variables
     bool tricking = false;
     private bool wasGrounded;
@@ -257,7 +259,7 @@ public class PlayerLevelMovement : MonoBehaviour
     // FixedUpdate
     #region
     void FixedUpdate(){// This is a function that is called every fixed delta time
-        if (!enabled)
+        if (!enabled || won)
         {
             return;
         }
