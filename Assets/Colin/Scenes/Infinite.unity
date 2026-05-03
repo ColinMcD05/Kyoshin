@@ -1448,14 +1448,14 @@ MonoBehaviour:
   - {fileID: 2688494882910919236, guid: a0ac4ab20ff049b49a1db001e8ef8feb, type: 3}
   - {fileID: 3801530366398225708, guid: 10b98f0bab3fab742a7b50fdef393afe, type: 3}
   - {fileID: 3895848653049235300, guid: ec4004ee114da4c49b1493285fa43f82, type: 3}
-  amountSectionKyotoPool: 05000000050000000500000005000000
+  amountSectionKyotoPool: 0a0000000a0000000a0000000a000000
   sectionHakonePool:
   - {fileID: 2102276137776193915, guid: 05dc0beb877026047a48cddc22409059, type: 3}
   - {fileID: 6523943263181763880, guid: fcfa6c592ae6ae24d9b5292c2e140e1b, type: 3}
-  amountSectionHakonePool: 0700000008000000
+  amountSectionHakonePool: 0e00000010000000
   sectionTokyoPool:
   - {fileID: 4312798424886872558, guid: 0c4ec0b8d76fbce48bb36178f231560b, type: 3}
-  amountSectionTokyoPool: 0f000000
+  amountSectionTokyoPool: 1e000000
   KyotoToPool:
   - {fileID: 5445503930673040909, guid: e03a3a66babb18b48bd354a53d56de65, type: 3}
   - {fileID: 6808174880238031145, guid: 4e4312639c332624a94a3604ea37ebb3, type: 3}
@@ -1488,7 +1488,7 @@ MonoBehaviour:
   - {fileID: 7084561056397293998, guid: bc787a552346a5f4a9862ad159e30767, type: 3}
   amountHakoneToPool: 14000000140000001400000014000000050000000a0000000a0000000a00000008000000
   coinsToPool: {fileID: 3550775307178560845, guid: d4fd23cb155fe3f46b0e4b024333851f, type: 3}
-  amountCoinsPool: 30
+  amountCoinsPool: 40
   currentLevel: 1
   aeraType: 0
   skyBoxes:

@@ -30,10 +30,10 @@ public class Coin : MonoBehaviour
             if (!other.GetComponent<Dash>().dashing)
             {
                 other.GetComponent<Dash>().AddDash(addedValue);
-            }
-            if (dashSlider.value < dashSlider.maxValue)
-            {
-                dashSlider.value += addedValue;
+                if (dashSlider.value < dashSlider.maxValue)
+                {
+                    dashSlider.value += addedValue;
+                }
             }
             // Put sound effect here
             AudioSource.PlayClipAtPoint(randomSound, transform.position);

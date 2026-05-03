@@ -4,18 +4,19 @@ public class RespawnCoins : MonoBehaviour
 {
     public GameObject coins;
 
-    void Start() { }
-
     void OnEnable()
     {
         if (coins != null)
         {
             int willSpawn = Random.Range(0, 2);
             if (willSpawn == 1) coins.SetActive(false);
-            coins.SetActive(true);
-            for (int i = 0; i < coins.transform.childCount; i++)
+            else
             {
-                coins.transform.GetChild(i).gameObject.SetActive(true);
+                coins.SetActive(true);
+                for (int i = 0; i < coins.transform.childCount; i++)
+                {
+                    coins.transform.GetChild(i).gameObject.SetActive(true);
+                }
             }
         }
     }

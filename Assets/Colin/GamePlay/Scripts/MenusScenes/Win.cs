@@ -131,6 +131,7 @@ public class Win : MonoBehaviour
 
         // Disable timing based mechanics
         player.GetComponent<Timing>().enabled = false;
+        player.GetComponent<PlayerControllerLevel>().invincible = false;
         player.GetComponent<PlayerLevelMovement>().enabled = false;
         player.GetComponent<Rigidbody>().useGravity = false;
         moveImage.enabled = false;
@@ -203,6 +204,8 @@ public class Win : MonoBehaviour
     {
         // Stops other character from moving
         otherChar.GetComponent<FollowScript>().enabled = false;
+        player.GetComponent<PlayerLevelMovement>().enabled = false;
+        player.GetComponent<Rigidbody>().useGravity = false;
 
         // Set winscreento active and set first button
         winScreen.transform.Find("WinScreen").gameObject.SetActive(true);
@@ -216,7 +219,7 @@ public class Win : MonoBehaviour
         player.transform.rotation = playerWinPosition.rotation;
         otherChar.transform.position = otherCharWinPosition.position;
         otherChar.transform.rotation = otherCharWinPosition.rotation;
-        otherChar.GetComponent<Rigidbody>().useGravity = true;
+        otherChar.GetComponent<Rigidbody>().useGravity = false;
 
         // Change camera
         mainCamera.enabled = false;
@@ -247,5 +250,6 @@ public class Win : MonoBehaviour
 
         StartCoroutine(FadeIn());
         player.GetComponent<PlayerLevelMovement>().animator.SetTrigger("Win");
+        otherChar.GetComponent<Animator>().SetTrigger("Win");
     }
 }
