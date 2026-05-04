@@ -1039,6 +1039,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NowPlaying
       objectReference: {fileID: 0}
+    - target: {fileID: 4341405198265813731, guid: 740bbb362e151f1488ea40696532d3d9, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6107227561282673070, guid: 740bbb362e151f1488ea40696532d3d9, type: 3}
       propertyPath: m_Pivot.x
       value: 0
