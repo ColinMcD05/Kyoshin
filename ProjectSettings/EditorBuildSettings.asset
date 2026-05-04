@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScreen.unity
     guid: 4d59440e2d0ae2443bf8963b088da037
   - enabled: 1
+    path: Assets/Colin/Scenes/HUBCS.unity
+    guid: 445d4e0d92fa3ce4f91871a26f70879b
+  - enabled: 1
     path: Assets/Landon/WB scenes/HUB.unity
     guid: 8bf2079a54613a14c98d6b80db0d3592
   - enabled: 1
@@ -26,9 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Colin/Scenes/LoseScreen.unity
     guid: 811e16393c15b83408d3acc4c44c2441
-  - enabled: 1
-    path: Assets/Colin/Scenes/WinScene.unity
-    guid: a32d18c5e1cddaa4a97b82d7518d7ceb
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

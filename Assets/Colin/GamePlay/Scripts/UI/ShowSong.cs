@@ -54,6 +54,6 @@ public class ShowSong : MonoBehaviour
 
         text["Length"].text = minutes + ": " + second;
 
-        text["BPM"].text = "BPM: " + currentSong.bpm;
+        text["BPM"].text = currentSong.bpm + " bpm";
     }
 }

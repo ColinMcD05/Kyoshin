@@ -19610,21 +19610,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
   playButton: {fileID: 1059513702}
-  returnButton: {fileID: 0}
-  nextButton: {fileID: 0}
-  backButton: {fileID: 0}
+  returnButton: {fileID: 1501372334}
+  nextButton: {fileID: 1732823782}
+  backButton: {fileID: 1140830845}
   eventSystem: {fileID: 222941648}
   blackScreen: {fileID: 490420123}
-  howToPlayCanvas: {fileID: 0}
+  howToPlayCanvas: {fileID: 1273642581}
   titleScreen: {fileID: 1651538889}
-  audioMixer: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: 32f5c99afd17cec4fb215a89044c5078, type: 2}
   buttonSource: {fileID: 1651538892}
   buttonSound: {fileID: 8300000, guid: 336da40ae5c957b40a38e8c2de3d4f69, type: 3}
   controlImages:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  fadeOutTime: 3
+  - {fileID: 959331083}
+  - {fileID: 144696833}
+  - {fileID: 1656848192}
+  fadeOutTime: 2
 --- !u!82 &1651538892
 AudioSource:
   m_ObjectHideFlags: 0
