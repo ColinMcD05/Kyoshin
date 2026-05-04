@@ -19195,7 +19195,7 @@ AudioSource:
   m_GameObject: {fileID: 1649254322}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5291533499962535411, guid: 32f5c99afd17cec4fb215a89044c5078, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 4782f55c4418f7b4ea4cb35a0f41d835, type: 3}
   m_PlayOnAwake: 1
@@ -19401,12 +19401,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
   playButton: {fileID: 1059513702}
   returnButton: {fileID: 846352165}
+  nextButton: {fileID: 0}
+  backButton: {fileID: 0}
   eventSystem: {fileID: 222941648}
   blackScreen: {fileID: 490420123}
   howToPlayCanvas: {fileID: 854436539}
   titleScreen: {fileID: 1651538889}
+  audioMixer: {fileID: 24100000, guid: 32f5c99afd17cec4fb215a89044c5078, type: 2}
   buttonSource: {fileID: 1651538892}
   buttonSound: {fileID: 8300000, guid: 336da40ae5c957b40a38e8c2de3d4f69, type: 3}
+  controlImages: []
   fadeOutTime: 3
 --- !u!82 &1651538892
 AudioSource:
