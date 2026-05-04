@@ -73,6 +73,8 @@ public class Win : MonoBehaviour
         other.GetComponent<Timing>().enabled = false;
         other.GetComponent<PlayerLevelMovement>().enabled = false;
         other.GetComponent<PlayerLevelMovement>().won = true;
+        other.GetComponent<PlayerLevelMovement>().UnSubscribeActions();
+        other.GetComponent<Timing>().UnSubscribeActions();
         moveImage.enabled = false;
         stillImage.enabled = false;
 
@@ -140,6 +142,8 @@ public class Win : MonoBehaviour
         player.GetComponent<PlayerLevelMovement>().enabled = false;
         player.GetComponent<PlayerControllerLevel>().enabled = false;
         player.GetComponent<PlayerLevelMovement>().won = true;
+        player.GetComponent<PlayerLevelMovement>().UnSubscribeActions();
+        player.GetComponent<Timing>().UnSubscribeActions();
         player.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
 
         moveImage.enabled = false;

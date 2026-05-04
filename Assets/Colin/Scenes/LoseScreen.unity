@@ -1271,6 +1271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09c27a1e278f2fc42b8fdc9d28cc35cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoseScreen
+  retry: {fileID: 921948107}
 --- !u!1 &2133724841
 GameObject:
   m_ObjectHideFlags: 0

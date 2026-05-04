@@ -1,11 +1,15 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LoseScreen : MonoBehaviour
 {
     GameManager gameManager;
     AudioSource music;
     string lastScene;
+    EventSystem eventsystem;
+    public Button retry;
 
     private void Start()
     {
@@ -17,6 +21,8 @@ public class LoseScreen : MonoBehaviour
         music.clip = null;
         music.pitch = 1;
         Time.timeScale = 1;
+        eventsystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+        eventsystem.SetSelectedGameObject(retry.gameObject);
     }
 
     public void Retry()
