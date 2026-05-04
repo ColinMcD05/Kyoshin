@@ -125,7 +125,7 @@ public class Timing : MonoBehaviour
         playerControllerLevel.enabled = true;
         songStartTime = (float)AudioSettings.dspTime + 0.1f; // Sets songStartTime based on AudioSettings clock
         musicPlayer.clip = currentSong.song; // Sets current clip to current song clip
-        musicPlayer.PlayScheduled(0.1f); // Players music
+        musicPlayer.PlayScheduled((float)AudioSettings.dspTime + 0.1f); // Players music
         StartCoroutine(resetCircle);
         StartCoroutine(Resync());
 
@@ -142,18 +142,12 @@ public class Timing : MonoBehaviour
         if (musicPlayer.clip != null) {
             songPosition = (float)AudioSettings.dspTime - songStartTime - rewindTimeUsed; //Calculate song position in seconds by subtracting the time the song started and how much time was rewound by the current clock in AudioSettings
             songPositionInBeats = songPosition / currentSong.bps; // Calculate song in beats by dividing song position by the sec per beat of the song
-            float thisBeat = songPositionInBeats;
-            if (Mathf.Floor(songPositionInBeats) > lastBeat)
-            {
-                lastBeat = (int)Mathf.Floor(thisBeat);
-            }
         }
         else
         {
             songPosition = 0;
             songPositionInBeats = 0;
         }
-
     }
     #endregion
 
