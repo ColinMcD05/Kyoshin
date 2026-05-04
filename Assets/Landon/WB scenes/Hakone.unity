@@ -5587,7 +5587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e069973875d4c4fa875763be65eae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveBackwards
-  forwardSpeed: 8
+  forwardSpeed: 32
   maxSpeed: 0
   minSpeed: 0
 --- !u!1001 &138608917
@@ -12158,22 +12158,6 @@ PrefabInstance:
     - target: {fileID: 1536192387026689351, guid: f2f280d2783593448a76a6841b41fcf6, type: 3}
       propertyPath: m_Name
       value: TimingUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 2067459368901389714, guid: f2f280d2783593448a76a6841b41fcf6, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3870894110024280271, guid: f2f280d2783593448a76a6841b41fcf6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3870894110024280271, guid: f2f280d2783593448a76a6841b41fcf6, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6221740056280165061, guid: f2f280d2783593448a76a6841b41fcf6, type: 3}
-      propertyPath: m_Color.a
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7145286482678232311, guid: f2f280d2783593448a76a6841b41fcf6, type: 3}
       propertyPath: timing
@@ -100562,6 +100546,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1046953044882817281, guid: 6108b2a7ac94f654db47f89cfd7060c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5142185659171572223, guid: 6108b2a7ac94f654db47f89cfd7060c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
