@@ -248,63 +248,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1001 &127450742
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2837599895862959210, guid: 1c45fe51b72773c45b78268a8cc6d117, type: 3}
-      propertyPath: m_Name
-      value: SlideObstacle
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603288088068003701, guid: 1c45fe51b72773c45b78268a8cc6d117, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603288088068003701, guid: 1c45fe51b72773c45b78268a8cc6d117, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603288088068003701, guid: 1c45fe51b72773c45b78268a8cc6d117, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603288088068003701, guid: 1c45fe51b72773c45b78268a8cc6d117, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603288088068003701, guid: 1c45fe51b72773c45b78268a8cc6d117, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603288088068003701, guid: 1c45fe51b72773c45b78268a8cc6d117, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603288088068003701, guid: 1c45fe51b72773c45b78268a8cc6d117, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603288088068003701, guid: 1c45fe51b72773c45b78268a8cc6d117, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603288088068003701, guid: 1c45fe51b72773c45b78268a8cc6d117, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603288088068003701, guid: 1c45fe51b72773c45b78268a8cc6d117, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1c45fe51b72773c45b78268a8cc6d117, type: 3}
 --- !u!1 &140229053
 GameObject:
   m_ObjectHideFlags: 0
@@ -1634,7 +1577,7 @@ MonoBehaviour:
   - {fileID: 7378474187513871424, guid: 8e2be1dfcafd94348b8a5d4d0b9d4cd2, type: 3}
   - {fileID: 2739655852298236000, guid: d192c6a9dd9fe43409e3b8ce71c8e86a, type: 3}
   - {fileID: 5068707345703271510, guid: 94116c58c65a29249b58b2919f7b7c77, type: 3}
-  amountKyotoToPool: 140000001400000014000000140000000a0000000a0000000a00000008000000
+  amountKyotoToPool: 0a0000001400000014000000140000000a0000000a0000000a00000008000000
   TokyoToPool:
   - {fileID: 5445503930673040909, guid: e03a3a66babb18b48bd354a53d56de65, type: 3}
   - {fileID: 7844497119821018189, guid: 981a702c5cb19ba45921eda40c24ef2e, type: 3}
@@ -1644,7 +1587,7 @@ MonoBehaviour:
   - {fileID: 4723704024211333508, guid: efcbb11366bab9244b305de175a5fdcb, type: 3}
   - {fileID: 2497438169732394167, guid: fb7126405bf6b414a977706e2be0766e, type: 3}
   - {fileID: 247319879250857784, guid: e7a507f8f0d5d7041875ab46da1f83b1, type: 3}
-  amountTokyoToPool: 140000001400000014000000140000000a0000000a0000000a00000008000000
+  amountTokyoToPool: 0a0000001400000014000000140000000a0000000a0000000a00000008000000
   HakoneToPool:
   - {fileID: 5445503930673040909, guid: e03a3a66babb18b48bd354a53d56de65, type: 3}
   - {fileID: 2394988146648867748, guid: 62449037c23ab594892723ddd711de8e, type: 3}
@@ -1655,7 +1598,7 @@ MonoBehaviour:
   - {fileID: 3538792088725479090, guid: eb07d01c0ba739b4d990516c702b8163, type: 3}
   - {fileID: 3538792088725479090, guid: db5c85748a305a34ba74128a45846750, type: 3}
   - {fileID: 7084561056397293998, guid: bc787a552346a5f4a9862ad159e30767, type: 3}
-  amountHakoneToPool: 14000000140000001400000014000000050000000a0000000a0000000a00000008000000
+  amountHakoneToPool: 0a000000140000001400000014000000050000000a0000000a0000000a00000008000000
   coinsToPool: {fileID: 3550775307178560845, guid: d4fd23cb155fe3f46b0e4b024333851f, type: 3}
   amountCoinsPool: 40
   currentLevel: 1
@@ -2525,4 +2468,3 @@ SceneRoots:
   - {fileID: 2063176701}
   - {fileID: 1809079354}
   - {fileID: 1952297826}
-  - {fileID: 127450742}

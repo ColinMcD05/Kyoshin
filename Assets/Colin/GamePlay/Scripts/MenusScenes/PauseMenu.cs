@@ -315,6 +315,7 @@ public class PauseMenu : MonoBehaviour
     {
         buttonSource.PlayOneShot(buttonSound);
         controls.enabled = true;
+        backButton.gameObject.SetActive(false);
         eventSystem.SetSelectedGameObject(nextButton.gameObject);
     }
 
@@ -328,6 +329,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Next()
     {
+        buttonSource.PlayOneShot(buttonSound);
         controlImages[currentImage].enabled = false;
         currentImage++;
         if (currentImage == controlImages.Length - 1)
@@ -344,6 +346,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Back()
     {
+        buttonSource.PlayOneShot(buttonSound);
         controlImages[currentImage].enabled = false;
         currentImage--;
         if (currentImage == 0)

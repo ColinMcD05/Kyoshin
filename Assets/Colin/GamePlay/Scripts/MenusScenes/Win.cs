@@ -79,15 +79,17 @@ public class Win : MonoBehaviour
         // Set current levels progress to completed
         currentLevel.progress = Levels.Progress.completed;
 
-        if (timing.songPosition < 60)
+        float levelTime = Time.timeSinceLevelLoad - other.GetComponent<Rewind>().rewindsUsed * 1.5f - currentSong.bps * 16 - 0.1f;
+
+        if ( levelTime < currentSong.bestTime)
         {
             gameManager.score *= 3;
         }
-        else if (timing.songPosition < 90)
+        else if (timing.songPosition < currentSong.bestTime + 15)
         {
             gameManager.score *= 2;
         }
-        else if (timing.songPosition < 105)
+        else if (timing.songPosition < currentSong.bestTime + 30)
         {
             float score = gameManager.score * 1.5f;
             gameManager.score = Convert.ToInt32(score);

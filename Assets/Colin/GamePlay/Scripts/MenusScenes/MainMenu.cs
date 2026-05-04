@@ -60,12 +60,14 @@ public class MainMenu : MonoBehaviour
         // Play sound effect
         buttonSource.PlayOneShot(buttonSound);
         howToPlayCanvas.enabled = false;
+        backButton.gameObject.SetActive(false);
         titleScreen.enabled = true;
         eventSystem.SetSelectedGameObject(playButton.gameObject);
     }
 
     public void Next()
     {
+        buttonSource.PlayOneShot(buttonSound);
         controlImages[currentImage].enabled = false;
         currentImage++;
         if (currentImage == controlImages.Length -1)
@@ -82,6 +84,7 @@ public class MainMenu : MonoBehaviour
 
     public void Back()
     {
+        buttonSource.PlayOneShot(buttonSound);
         controlImages[currentImage].enabled = false;
         currentImage--;
         if (currentImage == 0)

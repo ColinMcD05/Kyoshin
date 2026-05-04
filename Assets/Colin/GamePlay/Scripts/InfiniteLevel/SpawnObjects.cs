@@ -271,8 +271,8 @@ public class SpawnObjects : MonoBehaviour
 
                     // Spawn in coins on lanes not in use
                     int coinLane = Random.Range(0, spawns.Length - 1);
-                    int spawnCoins = Random.Range(0, 2); // 50% chance coins spawn
-                    int spawnCoins2 = Random.Range(0, 4); // 33% chance to spawn in multple sets
+                    int spawnCoins = Random.Range(0, 4); // 50% chance coins spawn
+                    int spawnCoins2 = Random.Range(0, 8); // 33% chance to spawn in multple sets
 
                     if (spawnCoins == 0 && obstacleScript.obstacleLaneType == ObstacleLaneType.SingleObject)
                     {
