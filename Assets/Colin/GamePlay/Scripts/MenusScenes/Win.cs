@@ -227,7 +227,7 @@ public class Win : MonoBehaviour
         player.transform.rotation = playerWinPosition.rotation;
         otherChar.transform.position = otherCharWinPosition.position;
         otherChar.transform.rotation = otherCharWinPosition.rotation;
-        otherChar.GetComponent<Rigidbody>().useGravity = false;
+        otherChar.GetComponent<Rigidbody>().useGravity = true;
 
         // Change camera
         mainCamera.enabled = false;
