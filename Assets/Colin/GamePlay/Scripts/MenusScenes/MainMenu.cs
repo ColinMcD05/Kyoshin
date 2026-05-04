@@ -51,6 +51,7 @@ public class MainMenu : MonoBehaviour
         titleScreen.enabled = false;
         currentImage = 0;
         controlImages[currentImage].enabled = true;
+        backButton.gameObject.SetActive(false);
         nextButton.gameObject.SetActive(true);
         eventSystem.SetSelectedGameObject(nextButton.gameObject);
     }
