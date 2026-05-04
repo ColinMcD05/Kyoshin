@@ -51,8 +51,8 @@ public class Songs : MonoBehaviour
         {
             new SongData("Torii Gate", "Hakone", songClips[0], 1, 125, 146, 64),
             new SongData("Adrift", "Kyoto", songClips[1], 2, 133, 130, 44),
-            new SongData("Bullet Train", "Tokyo", songClips[2], 3, 155, 137, 65),
-            new SongData("Day Dreamer", "none", songClips[3], 0, 127, 144),
+            new SongData("BulletTrain", "Tokyo", songClips[2], 3, 155, 137, 65),
+            new SongData("DayDreamer", "none", songClips[3], 0, 127, 144),
             new SongData("Heatwave", "HUB", songClips[4], 0, 120, 168)
         };
     }
