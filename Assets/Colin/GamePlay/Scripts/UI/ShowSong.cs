@@ -40,7 +40,7 @@ public class ShowSong : MonoBehaviour
         int minutes = (int)Mathf.Floor(currentSong.length / 60);
         int second = (int)currentSong.length - (minutes * 60);
 
-        text["BPM"].text = "BPM: " + currentSong.bpm;
+        text["BPM"].text = currentSong.bpm + " bpm";
     }
 
     public void SetCanvas(Songs.SongData currentSong)
