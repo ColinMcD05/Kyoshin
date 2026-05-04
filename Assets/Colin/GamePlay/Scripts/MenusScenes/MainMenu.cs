@@ -6,13 +6,16 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] Button playButton, returnButton;
+    [SerializeField] Button playButton, returnButton, nextButton, backButton;
     [SerializeField] EventSystem eventSystem;
     [SerializeField] Image blackScreen;
     [SerializeField] Canvas howToPlayCanvas, titleScreen;
 
     public AudioSource buttonSource;
     public AudioClip buttonSound;
+
+    public Image[] controlImages;
+    int currentImage = 0;
 
     public float fadeOutTime;
 
@@ -42,7 +45,10 @@ public class MainMenu : MonoBehaviour
         buttonSource.PlayOneShot(buttonSound);
         howToPlayCanvas.enabled = true;
         titleScreen.enabled = false;
-        eventSystem.SetSelectedGameObject(returnButton.gameObject);
+        controlImages[currentImage].enabled = false;
+        currentImage = 0;
+        controlImages[currentImage].enabled = true;
+        eventSystem.SetSelectedGameObject(nextButton.gameObject);
     }
 
     public void Return()
@@ -52,6 +58,38 @@ public class MainMenu : MonoBehaviour
         howToPlayCanvas.enabled = false;
         titleScreen.enabled = true;
         eventSystem.SetSelectedGameObject(playButton.gameObject);
+    }
+
+    public void Next()
+    {
+        controlImages[currentImage].enabled = false;
+        currentImage++;
+        if (currentImage == controlImages.Length -1)
+        {
+            nextButton.gameObject.SetActive(false);
+            eventSystem.SetSelectedGameObject(backButton.gameObject);
+        }
+        if(currentImage != 0 && !backButton.gameObject.activeInHierarchy)
+        {
+            backButton.gameObject.SetActive(true);
+        }
+        controlImages[currentImage].enabled = true;
+    }
+
+    public void Back()
+    {
+        controlImages[currentImage].enabled = false;
+        currentImage--;
+        if (currentImage == 0)
+        {
+            backButton.gameObject.SetActive(false);
+            eventSystem.SetSelectedGameObject(nextButton.gameObject);
+        }
+        if (currentImage != controlImages.Length - 1 && !nextButton.gameObject.activeInHierarchy)
+        {
+            nextButton.gameObject.SetActive(true);
+        }
+        controlImages[currentImage].enabled = true;
     }
 
     IEnumerator FadeIn()

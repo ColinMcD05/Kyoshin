@@ -35,10 +35,12 @@ public class PauseMenu : MonoBehaviour
 
     // Pause menu canvas references
     public EventSystem eventSystem;
-    public Button resume, returnButton, retryButton, quitButton, hubButton, toggleButton;
+    public Button resume, returnButton, retryButton, quitButton, hubButton, toggleButton, nextButton, backButton;
     [SerializeField]
     Slider masterVolume, musicVolume;
     [SerializeField] Canvas controls;
+    public Image[] controlImages;
+    int currentImage = 0;
 
     // Other game object and script references
     Timing timing;
@@ -313,7 +315,7 @@ public class PauseMenu : MonoBehaviour
     {
         buttonSource.PlayOneShot(buttonSound);
         controls.enabled = true;
-        eventSystem.SetSelectedGameObject(returnButton.gameObject);
+        eventSystem.SetSelectedGameObject(nextButton.gameObject);
     }
 
     // Returns back to the pause menu
@@ -322,6 +324,37 @@ public class PauseMenu : MonoBehaviour
         buttonSource.PlayOneShot(buttonSound);
         controls.enabled = false;
         eventSystem.SetSelectedGameObject(lastSelectedButton.gameObject);
+    }
+
+    public void Next()
+    {
+        controlImages[currentImage].enabled = false;
+        currentImage++;
+        if (currentImage == controlImages.Length - 1)
+        {
+            nextButton.gameObject.SetActive(false);
+            eventSystem.SetSelectedGameObject(backButton.gameObject);
+        }
+        if (currentImage != 0 && !backButton.gameObject.activeInHierarchy)
+        {
+            backButton.gameObject.SetActive(true);
+        }
+        controlImages[currentImage].enabled = true;
+    }
+
+    public void Back()
+    {
+        controlImages[currentImage].enabled = false;
+        currentImage--;
+        if (currentImage == 0)
+        {
+            backButton.gameObject.SetActive(false);
+            eventSystem.SetSelectedGameObject(nextButton.gameObject);
+        }
+        if (currentImage != controlImages.Length - 1 && !nextButton.gameObject.activeInHierarchy)
+        {
+            nextButton.gameObject.SetActive(true);
+        }
     }
 
     // Arrows behavior
