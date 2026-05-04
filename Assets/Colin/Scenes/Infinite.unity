@@ -1669,6 +1669,7 @@ MonoBehaviour:
   winCamera: {fileID: 495237066}
   winScreen: {fileID: 1809079355}
   win: {fileID: 8300000, guid: 7c69eb01439e1184d901d606a3cdfbdb, type: 3}
+  retryButton: {fileID: 1809079356}
 --- !u!43 &1739417003
 Mesh:
   m_ObjectHideFlags: 0
@@ -1911,6 +1912,11 @@ PrefabInstance:
 --- !u!1 &1809079355 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5675119968277700208, guid: 6108b2a7ac94f654db47f89cfd7060c1, type: 3}
+  m_PrefabInstance: {fileID: 1809079354}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1809079356 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2398341192903586576, guid: 6108b2a7ac94f654db47f89cfd7060c1, type: 3}
   m_PrefabInstance: {fileID: 1809079354}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1850970597
