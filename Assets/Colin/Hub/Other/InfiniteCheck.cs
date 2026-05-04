@@ -21,7 +21,7 @@ public class InfiniteCheck : MonoBehaviour
         {
             GetComponent<Collider>().isTrigger = false;
             canvas.enabled = false;
-            arrow.enabled = true;
+            arrow.enabled = false;
         }
     }
 
