@@ -26,7 +26,6 @@ public class ShowSong : MonoBehaviour
         text = new Dictionary<string, TextMeshProUGUI>()
         {
             {"Name", transform.GetChild(0).GetComponent<TextMeshProUGUI>()},
-            {"Length", transform.GetChild(2).GetComponent<TextMeshProUGUI>()},
             {"BPM", transform.GetChild(3).GetComponent<TextMeshProUGUI>()}
         };
         if (currentSong != null)
@@ -41,8 +40,6 @@ public class ShowSong : MonoBehaviour
         int minutes = (int)Mathf.Floor(currentSong.length / 60);
         int second = (int)currentSong.length - (minutes * 60);
 
-        text["Length"].text = minutes + ": " + second;
-
         text["BPM"].text = "BPM: " + currentSong.bpm;
     }
 
@@ -51,8 +48,6 @@ public class ShowSong : MonoBehaviour
         text["Name"].text = currentSong.name;
         int minutes = (int)Mathf.Floor(currentSong.length / 60);
         int second = (int)currentSong.length - (minutes * 60);
-
-        text["Length"].text = minutes + ": " + second;
 
         text["BPM"].text = currentSong.bpm + " bpm";
     }
