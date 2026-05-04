@@ -346,6 +346,17 @@
                 },
                 {
                     "name": "",
+                    "id": "045633ac-2983-491d-bff2-9f55b7e69829",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Trick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "35259271-0a4a-45e5-be97-65273c3422e9",
                     "path": "<Keyboard>/1",
                     "interactions": "",
