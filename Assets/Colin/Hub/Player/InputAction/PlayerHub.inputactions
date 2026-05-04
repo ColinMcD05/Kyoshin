@@ -137,7 +137,7 @@
                 {
                     "name": "",
                     "id": "9f33a765-ea1f-4a2f-a550-f8f6fe64fd42",
-                    "path": "<Gamepad>/leftStick",
+                    "path": "<Gamepad>/dpad",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
