@@ -19,6 +19,7 @@ public class Rewind : MonoBehaviour
     // Mutable Variables in Inspector
     public float rewindTime = 3f; // How far back does the player rewind
     public float invincibility = 2f;
+    public int rewindsUsed = 0;
 
     // Mutable Variables in script
     [HideInInspector] public List<Vector2> positions; // List holding players last known position between 0 and rewindTime seconds
@@ -136,6 +137,7 @@ public class Rewind : MonoBehaviour
     {
         totalRewindTime = (float)AudioSettings.dspTime - startRewindTime;
         rewinding = false;
+        rewindsUsed++;
 
         musicPlayer.pitch = 1; // Music plays normally
         timing.rewindTimeUsed += totalRewindTime * 3; // Adds time that was rewound to get accurate position of song

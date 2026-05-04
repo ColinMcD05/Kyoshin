@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,7 +11,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] EventSystem eventSystem;
     [SerializeField] Image blackScreen;
     [SerializeField] Canvas howToPlayCanvas, titleScreen;
-
+    [SerializeField] AudioMixer audioMixer;
     public AudioSource buttonSource;
     public AudioClip buttonSound;
 
@@ -23,12 +24,15 @@ public class MainMenu : MonoBehaviour
     {
         eventSystem.firstSelectedGameObject = playButton.gameObject;
         StartCoroutine(FadeIn());
+        audioMixer.SetFloat("MasterVolume", Mathf.Log10(PlayerPrefs.GetFloat("MasterVolume", 1)) * 20);
+        audioMixer.SetFloat("MusicVolume", Mathf.Log10(PlayerPrefs.GetFloat("MusicVolume", 1)) * 20);
     }
 
     public void Play()
     {
         // Play sound effect
         buttonSource.PlayOneShot(buttonSound);
+        StopAllCoroutines();
         StartCoroutine(FadeOut());
     }
 
@@ -45,9 +49,9 @@ public class MainMenu : MonoBehaviour
         buttonSource.PlayOneShot(buttonSound);
         howToPlayCanvas.enabled = true;
         titleScreen.enabled = false;
-        controlImages[currentImage].enabled = false;
         currentImage = 0;
         controlImages[currentImage].enabled = true;
+        nextButton.gameObject.SetActive(true);
         eventSystem.SetSelectedGameObject(nextButton.gameObject);
     }
 
@@ -55,13 +59,17 @@ public class MainMenu : MonoBehaviour
     {
         // Play sound effect
         buttonSource.PlayOneShot(buttonSound);
+        controlImages[currentImage].enabled = false;
         howToPlayCanvas.enabled = false;
+        currentImage = 0;
+        backButton.gameObject.SetActive(false);
         titleScreen.enabled = true;
         eventSystem.SetSelectedGameObject(playButton.gameObject);
     }
 
     public void Next()
     {
+        buttonSource.PlayOneShot(buttonSound);
         controlImages[currentImage].enabled = false;
         currentImage++;
         if (currentImage == controlImages.Length -1)
@@ -78,6 +86,7 @@ public class MainMenu : MonoBehaviour
 
     public void Back()
     {
+        buttonSource.PlayOneShot(buttonSound);
         controlImages[currentImage].enabled = false;
         currentImage--;
         if (currentImage == 0)

@@ -102,7 +102,7 @@ public class Timing : MonoBehaviour
     private void Update()
     {
         SongPosition(out songPosition, out songPositionInBeats);
-        if (songPosition >= currentSong.length && currentScene != "Infinite")
+        if (songPosition >= currentSong.length && currentScene != "Infinite" && Time.timeSinceLevelLoad > 10)
         {
             SceneManager.LoadScene("LoseScreen");
         }

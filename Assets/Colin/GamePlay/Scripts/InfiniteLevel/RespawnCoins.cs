@@ -8,7 +8,7 @@ public class RespawnCoins : MonoBehaviour
     {
         if (coins != null)
         {
-            int willSpawn = Random.Range(0, 2);
+            int willSpawn = Random.Range(0, 4);
             if (willSpawn == 1) coins.SetActive(false);
             else
             {

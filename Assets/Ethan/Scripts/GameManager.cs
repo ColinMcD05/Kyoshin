@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Color[] colors;
     public Canvas showSong;
 
+    string currentLevel;
+
     // Variable holding last scene
     static public string lastScene;
 
@@ -88,7 +90,12 @@ public class GameManager : MonoBehaviour
         if (!isCoin) return;
         coins += 1;
         coinsText.text = "Coins: " + coins;
-        if (coins % 30 == 0)
+        if (coins % 30 == 0 || currentLevel != "Infinite")
+        {
+            lives += 1;
+            rewindTracker.ChangeText();
+        }
+        if (coins % 150 == 0 || currentLevel == "Infinite")
         {
             lives += 1;
             rewindTracker.ChangeText();
@@ -263,6 +270,8 @@ public class GameManager : MonoBehaviour
         coins = 0;
         dashSlider.GetComponent<Slider>().value = 0;
 
+        currentLevel = scene.name;
+
         // if title screen, get rid of game manager and all other persistent objects
         if (scene.name == "TitleScreen")
         {
@@ -282,7 +291,7 @@ public class GameManager : MonoBehaviour
             }
         }
         // if on lose screen or hub, set UI to disabled
-        else if (scene.name == "LoseScreen" || scene.name == "HUB")
+        else if (scene.name == "LoseScreen" || scene.name == "HUB" || scene.name == "KyotoCS" || scene.name == "HakoneCS" || scene.name == "TokyoCS")
         {
             scoreText.enabled = false;
             rewindText.enabled = false;

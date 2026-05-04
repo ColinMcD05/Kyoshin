@@ -315,12 +315,17 @@ public class PauseMenu : MonoBehaviour
     {
         buttonSource.PlayOneShot(buttonSound);
         controls.enabled = true;
+        currentImage = 0;
+        controlImages[currentImage].enabled = true;
+        nextButton.gameObject.SetActive(true);
+        backButton.gameObject.SetActive(false);
         eventSystem.SetSelectedGameObject(nextButton.gameObject);
     }
 
     // Returns back to the pause menu
     public void Return()
     {
+        controlImages[currentImage].enabled = false;
         buttonSource.PlayOneShot(buttonSound);
         controls.enabled = false;
         eventSystem.SetSelectedGameObject(lastSelectedButton.gameObject);
@@ -328,6 +333,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Next()
     {
+        buttonSource.PlayOneShot(buttonSound);
         controlImages[currentImage].enabled = false;
         currentImage++;
         if (currentImage == controlImages.Length - 1)
@@ -344,6 +350,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Back()
     {
+        buttonSource.PlayOneShot(buttonSound);
         controlImages[currentImage].enabled = false;
         currentImage--;
         if (currentImage == 0)
@@ -355,6 +362,7 @@ public class PauseMenu : MonoBehaviour
         {
             nextButton.gameObject.SetActive(true);
         }
+        controlImages[currentImage].enabled = true;
     }
 
     // Arrows behavior
