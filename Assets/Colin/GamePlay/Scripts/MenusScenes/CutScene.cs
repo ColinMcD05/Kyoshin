@@ -39,7 +39,7 @@ public class CutScene : MonoBehaviour
         yield return new WaitForSeconds(cutSceneLength);
         while (canvas.alpha < 1)
         {
-            canvas.alpha += Time.deltaTime / 2;
+            canvas.alpha += Time.deltaTime / 3;
             yield return null;
         }
         NextLevel();
