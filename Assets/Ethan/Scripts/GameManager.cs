@@ -90,12 +90,12 @@ public class GameManager : MonoBehaviour
         if (!isCoin) return;
         coins += 1;
         coinsText.text = "Coins: " + coins;
-        if (coins % 30 == 0 || currentLevel != "Infinite")
+        if (coins % 30 == 0 && currentLevel != "Infinite")
         {
             lives += 1;
             rewindTracker.ChangeText();
         }
-        if (coins % 150 == 0 || currentLevel == "Infinite")
+        if (coins % 150 == 0 && currentLevel == "Infinite")
         {
             lives += 1;
             rewindTracker.ChangeText();
