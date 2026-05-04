@@ -13808,6 +13808,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1014088275}
     - target: {fileID: 8017993728839861718, guid: fbd4c46f22cda2e4fa90aeec79338c00, type: 3}
+      propertyPath: retryButton
+      value: 
+      objectReference: {fileID: 377249554}
+    - target: {fileID: 8017993728839861718, guid: fbd4c46f22cda2e4fa90aeec79338c00, type: 3}
       propertyPath: moveBackwards
       value: 
       objectReference: {fileID: 125643817}
@@ -33766,6 +33770,11 @@ PrefabInstance:
 --- !u!1 &377249553 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5675119968277700208, guid: 6108b2a7ac94f654db47f89cfd7060c1, type: 3}
+  m_PrefabInstance: {fileID: 377249552}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &377249554 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2398341192903586576, guid: 6108b2a7ac94f654db47f89cfd7060c1, type: 3}
   m_PrefabInstance: {fileID: 377249552}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &377653444

@@ -27,6 +27,7 @@ public class Win : MonoBehaviour
     public AudioClip win;
     bool newHighScore;
     GameObject indicators;
+    public GameObject retryButton;
     #endregion
 
     void Start()
@@ -221,7 +222,7 @@ public class Win : MonoBehaviour
 
         // Set winscreento active and set first button
         winScreen.transform.Find("WinScreen").gameObject.SetActive(true);
-        eventSystem.firstSelectedGameObject = winScreen.transform.Find("WinScreen").Find("Retry").gameObject;
+        eventSystem.SetSelectedGameObject(retryButton);
 
         // Stops move backwards scripts
         moveBackwards.enabled = false;

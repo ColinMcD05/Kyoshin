@@ -52503,6 +52503,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5675119968277700208, guid: 6108b2a7ac94f654db47f89cfd7060c1, type: 3}
   m_PrefabInstance: {fileID: 1685009841}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1685009843 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2398341192903586576, guid: 6108b2a7ac94f654db47f89cfd7060c1, type: 3}
+  m_PrefabInstance: {fileID: 1685009841}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1688895105
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60541,6 +60546,10 @@ PrefabInstance:
       propertyPath: stillImage
       value: 
       objectReference: {fileID: 1615583160}
+    - target: {fileID: 8017993728839861718, guid: fbd4c46f22cda2e4fa90aeec79338c00, type: 3}
+      propertyPath: retryButton
+      value: 
+      objectReference: {fileID: 1685009843}
     - target: {fileID: 8017993728839861718, guid: fbd4c46f22cda2e4fa90aeec79338c00, type: 3}
       propertyPath: moveBackwards
       value: 
