@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public int lives = 3;
     public int coins = 0;
 
+    int maxRewind = 5;
+
     // Variables to get correct file pathing
     string filePath; // Path to directory
     string dataPath; // Path to specific file
@@ -95,7 +97,7 @@ public class GameManager : MonoBehaviour
             lives += 1;
             rewindTracker.ChangeText();
         }
-        if (coins % 150 == 0 && currentLevel == "Infinite")
+        if (coins % 150 == 0 && currentLevel == "Infinite" && lives < maxRewind)
         {
             lives += 1;
             rewindTracker.ChangeText();
