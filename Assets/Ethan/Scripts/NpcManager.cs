@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Mono.Cecil;
 
 public class NpcManager : MonoBehaviour
 {
