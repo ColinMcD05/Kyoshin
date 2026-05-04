@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Mono.Cecil;
 
 public class NpcManager : MonoBehaviour
 {
@@ -46,14 +47,12 @@ public class NpcManager : MonoBehaviour
                 if (npc != null)
                 {
                     npc.transform.position = spawn.position;
-                    foreach (Transform target in targets)
+                    int randomTarget = Random.Range(0, targets.Length - 1);
+                    if (targets[randomTarget].name == spawn.name)
                     {
-                        if (target.name != spawn.name)
-                        {
-                            npc.GetComponent<NpcMovement>().target = target;
-                            break;
-                        }
+                        randomTarget++;
                     }
+                    npc.GetComponent<NpcMovement>().target = targets[randomTarget];
                     npc.SetActive(true);
                 }
             }
