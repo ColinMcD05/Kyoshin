@@ -11854,37 +11854,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 206759122813149366, guid: 740bbb362e151f1488ea40696532d3d9, type: 3}
-      propertyPath: m_TextWrappingMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1776652199847480944, guid: 740bbb362e151f1488ea40696532d3d9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.28674993
-      objectReference: {fileID: 0}
-    - target: {fileID: 1776652199847480944, guid: 740bbb362e151f1488ea40696532d3d9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.33716056
-      objectReference: {fileID: 0}
-    - target: {fileID: 1776652199847480944, guid: 740bbb362e151f1488ea40696532d3d9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.28674993
-      objectReference: {fileID: 0}
-    - target: {fileID: 1776652199847480944, guid: 740bbb362e151f1488ea40696532d3d9, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 132.96
-      objectReference: {fileID: 0}
-    - target: {fileID: 1776652199847480944, guid: 740bbb362e151f1488ea40696532d3d9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -56.3
-      objectReference: {fileID: 0}
     - target: {fileID: 3356806165336698995, guid: 740bbb362e151f1488ea40696532d3d9, type: 3}
       propertyPath: m_Name
       value: NowPlaying
-      objectReference: {fileID: 0}
-    - target: {fileID: 3797943008492853881, guid: 740bbb362e151f1488ea40696532d3d9, type: 3}
-      propertyPath: m_text
-      value: Torri Gate
       objectReference: {fileID: 0}
     - target: {fileID: 6107227561282673070, guid: 740bbb362e151f1488ea40696532d3d9, type: 3}
       propertyPath: m_Pivot.x
