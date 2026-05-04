@@ -49,9 +49,9 @@ public class MainMenu : MonoBehaviour
         buttonSource.PlayOneShot(buttonSound);
         howToPlayCanvas.enabled = true;
         titleScreen.enabled = false;
-        controlImages[currentImage].enabled = false;
         currentImage = 0;
         controlImages[currentImage].enabled = true;
+        nextButton.gameObject.SetActive(true);
         eventSystem.SetSelectedGameObject(nextButton.gameObject);
     }
 
@@ -59,7 +59,9 @@ public class MainMenu : MonoBehaviour
     {
         // Play sound effect
         buttonSource.PlayOneShot(buttonSound);
+        controlImages[currentImage].enabled = false;
         howToPlayCanvas.enabled = false;
+        currentImage = 0;
         backButton.gameObject.SetActive(false);
         titleScreen.enabled = true;
         eventSystem.SetSelectedGameObject(playButton.gameObject);
