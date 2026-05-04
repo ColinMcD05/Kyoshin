@@ -25,8 +25,8 @@ public class ShowSong : MonoBehaviour
         }
         text = new Dictionary<string, TextMeshProUGUI>()
         {
-            {"Name", transform.GetChild(0).GetComponent<TextMeshProUGUI>()},
-            {"BPM", transform.GetChild(2).GetComponent<TextMeshProUGUI>()}
+            {"Name", transform.GetChild(1).GetComponent<TextMeshProUGUI>()},
+            {"BPM", transform.GetChild(3).GetComponent<TextMeshProUGUI>()}
         };
         if (currentSong != null)
         {
