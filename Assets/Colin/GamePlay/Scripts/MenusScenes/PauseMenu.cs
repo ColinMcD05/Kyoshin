@@ -362,6 +362,7 @@ public class PauseMenu : MonoBehaviour
         {
             nextButton.gameObject.SetActive(true);
         }
+        controlImages[currentImage].enabled = true;
     }
 
     // Arrows behavior
