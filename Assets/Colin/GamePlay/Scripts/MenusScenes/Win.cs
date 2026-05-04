@@ -201,7 +201,7 @@ public class Win : MonoBehaviour
         // While alpha is greater than 0, slowly decrease alpha
         while (image.color.a >= 0)
         {
-            alpha -= Time.deltaTime/2;
+            alpha -= Time.deltaTime * 2;
             color.a = alpha;
             image.color = color;
             yield return null;
