@@ -88,6 +88,7 @@ public class Rewind : MonoBehaviour
             nextPosition = laneSpeed.Count - 1;
             moveBackwards.forwardSpeed = laneSpeed[nextPosition] * -1;
             laneSpeed.RemoveAt(nextPosition);
+            timing.rewindTimeUsed += Time.fixedDeltaTime * 1.5f;
         }
         else
         {
@@ -135,12 +136,10 @@ public class Rewind : MonoBehaviour
     // Lets other scripts more easily stop rewind mechanic
     public void StopRewind()
     {
-        totalRewindTime = (float)AudioSettings.dspTime - startRewindTime;
         rewinding = false;
         rewindsUsed++;
 
         musicPlayer.pitch = 1; // Music plays normally
-        timing.rewindTimeUsed += totalRewindTime * 3; // Adds time that was rewound to get accurate position of song
 
         // Enables parts of player
         Invoke("BecomeVulnerable", invincibility);

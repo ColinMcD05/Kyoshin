@@ -274,6 +274,8 @@ public class GameManager : MonoBehaviour
 
         currentLevel = scene.name;
 
+        CancelInvoke("AddScore");
+
         // if title screen, get rid of game manager and all other persistent objects
         if (scene.name == "TitleScreen")
         {

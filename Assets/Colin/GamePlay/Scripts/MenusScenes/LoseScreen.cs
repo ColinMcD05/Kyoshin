@@ -32,6 +32,6 @@ public class LoseScreen : MonoBehaviour
 
     public void Quit()
     {
-        Application.Quit();
+        SceneManager.LoadScene("HUB");
     }
 }
